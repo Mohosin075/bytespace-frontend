@@ -40,9 +40,9 @@ export function CoursesSection() {
                 onClick={() => setSelectedCategory(category)}
                 className={`px-5 py-2.5 rounded-full text-xs font-medium transition-all cursor-pointer ${
                   isActive
-                    ? 'bg-[#cbfc01] text-black font-semibold shadow-xs'
+                    ? 'bg-secondary-500 text-black font-semibold shadow-xs'
                     : isMore
-                      ? 'bg-transparent text-[#0445ff] font-semibold hover:underline'
+                      ? 'bg-transparent text-primary-600 font-semibold hover:underline'
                       : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
                 }`}
               >

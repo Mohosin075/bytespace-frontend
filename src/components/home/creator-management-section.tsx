@@ -34,19 +34,19 @@ export function CreatorManagementSection() {
               </div>
 
               {/* Total Revenue Badge */}
-              <div className="absolute top-4 -left-6 bg-[#0445ff] text-white rounded-2xl p-4 shadow-2xl w-44">
+              <div className="absolute top-4 -left-6 bg-primary-600 text-white rounded-2xl p-4 shadow-2xl w-44">
                 <p className="text-[11px] text-white/80 font-medium">Total Revenue</p>
                 <p className="text-[10px] text-white/60">July 1-28</p>
                 <p className="font-poppins font-bold text-xl mt-1">$120.29</p>
               </div>
 
               {/* Year to Date Badge */}
-              <div className="absolute top-28 -left-6 bg-[#0445ff] text-white rounded-2xl p-4 shadow-2xl w-44">
+              <div className="absolute top-28 -left-6 bg-primary-600 text-white rounded-2xl p-4 shadow-2xl w-44">
                 <p className="text-[11px] text-white/80 font-medium">Year to Date</p>
                 <p className="text-[10px] text-white/60">2023</p>
                 <div className="flex items-center justify-between mt-1">
                   <p className="font-poppins font-bold text-xl">$1,200.38</p>
-                  <span className="text-[10px] bg-[#cbfc01] text-black font-bold px-1.5 py-0.5 rounded-full">+12%</span>
+                  <span className="text-[10px] bg-secondary-500 text-black font-bold px-1.5 py-0.5 rounded-full">+12%</span>
                 </div>
               </div>
 
@@ -57,7 +57,7 @@ export function CreatorManagementSection() {
                   <div className="flex items-center text-[11px] font-bold text-neutral-900">
                     <span>4.5</span>
                     <span className="text-neutral-400 font-normal ml-0.5">(240)</span>
-                    <Star className="w-3 h-3 fill-[#fbbf24] text-[#fbbf24] ml-1" />
+                    <Star className="w-3 h-3 fill-amber-400 text-amber-400 ml-1" />
                   </div>
                 </div>
                 <div className="mt-2">
@@ -81,7 +81,7 @@ export function CreatorManagementSection() {
             <div className="space-y-4 pt-2">
               {CHECKLIST_ITEMS.map((item) => (
                 <div key={item} className="flex items-center gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-[#0445ff] fill-primary-50 shrink-0" />
+                  <CheckCircle2 className="w-5 h-5 text-primary-600 fill-primary-50 shrink-0" />
                   <span className="font-medium text-neutral-800 text-[15px]">{item}</span>
                 </div>
               ))}

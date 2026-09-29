@@ -43,13 +43,13 @@ export function CourseCard({ course }: CourseCardProps) {
           <div className="flex items-start justify-between gap-2">
             <Link
               href={ROUTES.COURSE_DETAIL(course.slug)}
-              className="font-poppins font-semibold text-[17px] text-neutral-950 group-hover:text-[#0445ff] transition-colors line-clamp-1 leading-snug"
+              className="font-poppins font-semibold text-[17px] text-neutral-950 group-hover:text-primary-600 transition-colors line-clamp-1 leading-snug"
             >
               {course.title}
             </Link>
             <div className="flex items-center gap-1 shrink-0 text-sm font-semibold text-neutral-900">
               <span>{course.rating.toFixed(1)}</span>
-              <Star className="w-3.5 h-3.5 fill-[#fbbf24] text-[#fbbf24]" />
+              <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
             </div>
           </div>
 
@@ -57,7 +57,7 @@ export function CourseCard({ course }: CourseCardProps) {
             by{' '}
             <Link
               href={ROUTES.CREATOR_DETAIL(course.creator.id)}
-              className="text-[#0445ff] hover:underline font-medium"
+              className="text-primary-600 hover:underline font-medium"
             >
               {course.creator.name}
             </Link>
@@ -76,7 +76,7 @@ export function CourseCard({ course }: CourseCardProps) {
 
         {/* Price */}
         <div className="pt-3 border-t border-neutral-100 flex items-baseline gap-1">
-          <span className="font-poppins font-bold text-xl text-[#0445ff]">
+          <span className="font-poppins font-bold text-xl text-primary-600">
             ${course.price}
           </span>
           <span className="text-xs text-neutral-500 font-normal">

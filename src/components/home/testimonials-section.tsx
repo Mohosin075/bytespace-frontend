@@ -4,7 +4,7 @@ import { SectionTitle, SectionSubtitle } from '@/components/ui/section-header';
 
 export function TestimonialsSection() {
   return (
-    <section className="py-24 bg-gradient-to-b from-[#f5ffc8]/50 via-[#f9ffe2]/30 to-white">
+    <section className="py-24 bg-gradient-to-b from-secondary-100/50 via-secondary-50/30 to-white">
       <div className="layout-container">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-16">
           <div className="lg:col-span-5">
@@ -38,7 +38,7 @@ export function TestimonialsSection() {
                     <p className="font-poppins font-semibold text-neutral-950 text-sm">
                       {item.name}
                     </p>
-                    <p className="text-xs text-[#0445ff] font-medium">{item.role}</p>
+                    <p className="text-xs text-primary-600 font-medium">{item.role}</p>
                   </div>
                 </div>
                 <p className="text-neutral-700 text-sm leading-relaxed">

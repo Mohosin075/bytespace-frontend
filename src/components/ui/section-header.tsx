@@ -19,7 +19,7 @@ export function SectionTitle({
 }) {
   return (
     <h2
-      className={`font-poppins font-semibold text-3xl sm:text-4xl md:text-[44px] text-black leading-[120%] tracking-[-0.01em] ${className}`}
+      className={`font-poppins font-semibold text-3xl sm:text-4xl md:text-[44px] text-neutral-950 leading-[120%] tracking-[-0.01em] ${className}`}
     >
       {children}
     </h2>
@@ -35,7 +35,7 @@ export function SectionSubtitle({
 }) {
   return (
     <p
-      className={`font-satoshi font-normal text-base md:text-[18px] text-[#82868E] leading-[160%] tracking-normal ${className}`}
+      className={`font-satoshi font-normal text-base md:text-[18px] text-neutral-400 leading-[160%] tracking-normal ${className}`}
     >
       {children}
     </p>

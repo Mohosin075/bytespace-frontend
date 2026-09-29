@@ -67,10 +67,10 @@ export function GrowthStatsSection() {
                   <span className="bg-neutral-100 px-2 py-0.5 rounded-full">2 hours 16 mins</span>
                 </div>
                 <p className="font-poppins font-semibold text-xs leading-snug">Learn Figma from Basic</p>
-                <p className="text-[10px] text-[#0445ff] font-medium mt-0.5">by purepearl studio</p>
+                <p className="text-[10px] text-primary-600 font-medium mt-0.5">by purepearl studio</p>
                 <div className="mt-2 pt-1 border-t border-neutral-100 flex items-center justify-between text-xs">
                   <span className="text-[10px] text-neutral-600">Beginner</span>
-                  <span className="font-bold text-[#0445ff]">$25</span>
+                  <span className="font-bold text-primary-600">$25</span>
                 </div>
               </div>
 
@@ -79,7 +79,7 @@ export function GrowthStatsSection() {
                 <p className="text-xs text-neutral-500 font-medium">Learning Progress</p>
                 <p className="font-poppins font-bold text-2xl text-neutral-900 mt-0.5">55%</p>
                 <div className="w-full bg-neutral-100 h-2 rounded-full mt-2 overflow-hidden">
-                  <div className="bg-[#cbfc01] h-full rounded-full w-[55%]" />
+                  <div className="bg-secondary-500 h-full rounded-full w-[55%]" />
                 </div>
               </div>
             </div>

@@ -45,7 +45,7 @@ export function LearningPathsSection() {
                 href={ROUTES.COURSES}
                 className="bg-white rounded-2xl p-7 border border-neutral-200/90 flex flex-col items-center justify-center gap-4 hover:shadow-xl hover:border-neutral-300 transition-all duration-300 group"
               >
-                <div className="w-16 h-16 rounded-full bg-[#cbfc01] flex items-center justify-center text-black shadow-xs group-hover:scale-110 transition-transform">
+                <div className="w-16 h-16 rounded-full bg-secondary-500 flex items-center justify-center text-black shadow-xs group-hover:scale-110 transition-transform">
                   <Icon className="w-7 h-7 stroke-[2]" />
                 </div>
                 <span className="font-poppins font-semibold text-neutral-900 text-sm">
