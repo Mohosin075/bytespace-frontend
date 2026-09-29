@@ -1,22 +1,30 @@
-@import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=satoshi@400,500,700&display=swap');
 @import "tailwindcss";
 
 /* ==========================================================================
-   Design Token System — follows typo/ design spec exactly
-   Fonts: Poppins (Headings) + Satoshi (Body & Labels)
-   Colors: Neutral, Primary (Electric Violet), Secondary (Crimson/Lime)
-   Grid: 12 columns, 120px margin, 40px gutter
+   Centralized Design Token System — Single Source of Truth
+   Updating font tokens here propagates everywhere across the entire app
    ========================================================================== */
+
+:root {
+  /* Global Font Variables (Single Source of Truth) */
+  --font-body: 'Satoshi';
+  --font-heading: var(--font-poppins), 'Poppins';
+  --font-logo: 'Clash Display';
+
+  /* Base Colors */
+  --background: #f5f5f6;   /* neutral-50 */
+  --foreground: #242528;   /* neutral-950 */
+}
 
 @theme {
   /* ------------------------------------------------------------------
-     Font Families
-     Poppins: loaded via Next.js next/font/google (CSS variable --font-poppins injected in layout.tsx)
-     Satoshi: loaded via @import from Fontshare above
+     Font Families — mapped to Centralized CSS Variables
   ------------------------------------------------------------------ */
-  --font-poppins: var(--font-poppins), 'Poppins', sans-serif;
-  --font-satoshi: 'Satoshi', sans-serif;
-  --font-sans: 'Satoshi', sans-serif;
+  --font-sans: var(--font-body);
+  --font-satoshi: var(--font-body);
+  --font-poppins: var(--font-heading);
+  --font-clash: var(--font-logo);
 
   /* ------------------------------------------------------------------
      Neutral Palette — "Black" (Spacing (2).png)
@@ -77,18 +85,22 @@
 }
 
 /* ==========================================================================
-   Base Reset
+   Global Base Typography & Reset
    ========================================================================== */
 
-:root {
-  --background: #f5f5f6;   /* neutral-50 */
-  --foreground: #242528;   /* neutral-950 */
+html,
+body,
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: var(--font-body);
 }
 
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: 'Satoshi', sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -97,110 +109,110 @@ body {
    Typography Utility Classes
    Source: typo/Spacing.png
 
-   HEADINGS — font-family: Poppins SemiBold (weight: 600)
-   ──────────────────────────────────────────────────────
+   HEADINGS — font-family: var(--font-heading) SemiBold (weight: 600)
+   ──────────────────────────────────────────────────────────────────
    Heading L  → 72px / 120% line-height
    Heading M  → 44px / 120% line-height
    Heading S  → 36px / 120% line-height
    Heading XS → 20px / 120% line-height
 
-   BODY — font-family: Satoshi Regular (weight: 400)
-   ──────────────────────────────────────────────────
+   BODY — font-family: var(--font-body) Regular (weight: 400)
+   ──────────────────────────────────────────────────────────
    Body L  → 18px / 160% line-height
    Body M  → 16px / 160% line-height
    Body S  → 14px / 160% line-height
    Body XS → 12px / 160% line-height
 
-   LABELS — font-family: Satoshi Medium (weight: 500)
-   ───────────────────────────────────────────────────
+   LABELS — font-family: var(--font-body) Medium (weight: 500)
+   ───────────────────────────────────────────────────────────
    Label L  → 18px / 120% line-height
    Label M  → 16px / 120% line-height
    Label S  → 14px / 120% line-height
    Label XS → 12px / 120% line-height
    ========================================================================== */
 
-/* --- Headings (Poppins SemiBold) --- */
+/* --- Headings --- */
 .heading-l {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-heading);
   font-weight: 600;
   font-size: 72px;
   line-height: 1.2; /* 120% */
 }
 
 .heading-m {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-heading);
   font-weight: 600;
   font-size: 44px;
   line-height: 1.2;
 }
 
 .heading-s {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-heading);
   font-weight: 600;
   font-size: 36px;
   line-height: 1.2;
 }
 
 .heading-xs {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-heading);
   font-weight: 600;
   font-size: 20px;
   line-height: 1.2;
 }
 
-/* --- Body (Satoshi Regular) --- */
+/* --- Body --- */
 .body-l {
-  font-family: 'Satoshi', sans-serif;
+  font-family: var(--font-body);
   font-weight: 400;
   font-size: 18px;
   line-height: 1.6; /* 160% */
 }
 
 .body-m {
-  font-family: 'Satoshi', sans-serif;
+  font-family: var(--font-body);
   font-weight: 400;
   font-size: 16px;
   line-height: 1.6;
 }
 
 .body-s {
-  font-family: 'Satoshi', sans-serif;
+  font-family: var(--font-body);
   font-weight: 400;
   font-size: 14px;
   line-height: 1.6;
 }
 
 .body-xs {
-  font-family: 'Satoshi', sans-serif;
+  font-family: var(--font-body);
   font-weight: 400;
   font-size: 12px;
   line-height: 1.6;
 }
 
-/* --- Labels (Satoshi Medium) --- */
+/* --- Labels --- */
 .label-l {
-  font-family: 'Satoshi', sans-serif;
+  font-family: var(--font-body);
   font-weight: 500;
   font-size: 18px;
   line-height: 1.2;
 }
 
 .label-m {
-  font-family: 'Satoshi', sans-serif;
+  font-family: var(--font-body);
   font-weight: 500;
   font-size: 16px;
   line-height: 1.2;
 }
 
 .label-s {
-  font-family: 'Satoshi', sans-serif;
+  font-family: var(--font-body);
   font-weight: 500;
   font-size: 14px;
   line-height: 1.2;
 }
 
 .label-xs {
-  font-family: 'Satoshi', sans-serif;
+  font-family: var(--font-body);
   font-weight: 500;
   font-size: 12px;
   line-height: 1.2;
@@ -256,4 +268,16 @@ body {
     linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
   background-size: 72px 72px;
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 

@@ -39,7 +39,7 @@ export function AuthVisualStack({ title, subtitle }: AuthVisualStackProps) {
               17 Lessons
             </div>
           </div>
-          <p className="font-poppins font-semibold text-sm">Build Digital Asset</p>
+          <p className="font-satoshi font-semibold text-sm">Build Digital Asset</p>
           <p className="text-[10px] text-primary-600">by purepearl studio</p>
           <div className="mt-2 flex items-center justify-between">
             <span className="text-[10px] bg-neutral-100 px-2 py-0.5 rounded-full">Beginner</span>
@@ -64,12 +64,12 @@ export function AuthVisualStack({ title, subtitle }: AuthVisualStackProps) {
           </div>
 
           <div className="flex items-start justify-between">
-            <p className="font-poppins font-bold text-base text-neutral-900 leading-snug">
+            <p className="font-satoshi font-bold text-base text-neutral-900 leading-snug">
               the Power of Big Data
             </p>
             <div className="flex items-center gap-1 text-xs font-semibold text-neutral-900">
               <span>4.5</span>
-              <Star className="w-3.5 h-3.5 fill-[#fbbf24] text-[#fbbf24]" />
+              <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
             </div>
           </div>
           <p className="text-xs text-primary-600 font-medium mt-0.5">by purepearl studio</p>
@@ -83,15 +83,15 @@ export function AuthVisualStack({ title, subtitle }: AuthVisualStackProps) {
           </div>
 
           <div className="mt-3 pt-2 border-t border-neutral-100 flex items-baseline gap-1">
-            <span className="font-poppins font-bold text-lg text-primary-600">$25</span>
+            <span className="font-satoshi font-bold text-lg text-primary-600">$25</span>
             <span className="text-[11px] text-neutral-500">/lifetime</span>
           </div>
         </div>
 
         {/* Lime Card: Happy Students */}
-        <div className="relative z-10 -mt-6 ml-16 bg-[#cbfc01] text-black rounded-2xl p-3.5 shadow-xl border border-black/5 w-64">
+        <div className="relative z-10 -mt-6 ml-16 bg-secondary-500 text-black rounded-2xl p-3.5 shadow-xl border border-black/5 w-64">
           <div className="flex items-center justify-between">
-            <p className="font-poppins font-bold text-xs">Happy Students</p>
+            <p className="font-satoshi font-bold text-xs">Happy Students</p>
             <div className="flex items-center text-[11px] font-bold">
               <span>4.5</span>
               <span className="text-black/60 font-normal ml-0.5">(240)</span>

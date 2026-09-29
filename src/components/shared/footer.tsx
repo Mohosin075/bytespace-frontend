@@ -43,7 +43,7 @@ export function Footer() {
               </div>
               <button
                 type="submit"
-                className="w-full sm:w-auto h-12 px-8 rounded-full bg-[#cbfc01] text-black font-semibold text-sm hover:brightness-95 active:scale-95 transition-all cursor-pointer whitespace-nowrap"
+                className="w-full sm:w-auto h-12 px-8 rounded-full bg-secondary-500 text-black font-semibold text-sm hover:brightness-95 active:scale-95 transition-all cursor-pointer whitespace-nowrap"
               >
                 {subscribed ? 'Subscribed!' : 'Search'}
               </button>

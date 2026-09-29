@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { ROUTES } from '@/constants/routes';
 
 interface LogoProps {
@@ -11,26 +12,23 @@ export function Logo({ variant = 'light', className = '', iconOnly = false }: Lo
   const isLight = variant === 'light';
 
   return (
-    <Link href={ROUTES.HOME} className={`inline-flex items-center gap-2 group ${className}`}>
-      {/* Lime 'b' icon */}
-      <div className="w-8 h-8 rounded-full bg-[#cbfc01] flex items-center justify-center font-bold text-black text-xl shadow-sm transform group-hover:scale-105 transition-transform duration-200">
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="3.2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="w-5 h-5 text-black"
-        >
-          <path d="M7 4v16M7 12a5 5 0 0 1 5-5h1a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-6" />
-        </svg>
+    <Link href={ROUTES.HOME} className={`inline-flex items-center gap-2.5 group ${className}`}>
+      {/* Lime 'b' logo vector */}
+      <div className="relative w-8 h-8 flex items-center justify-center transform group-hover:scale-105 transition-transform duration-200 shrink-0">
+        <Image
+          src="/logo1.png"
+          alt="ByteSpace Logo"
+          width={32}
+          height={32}
+          className="w-full h-full object-contain"
+          priority
+        />
       </div>
 
       {!iconOnly && (
         <span
-          className={`font-poppins font-bold text-xl tracking-tight transition-colors ${
-            isLight ? 'text-white' : 'text-[#242528]'
+          className={`font-clash font-bold text-[24px] leading-none tracking-normal transition-colors ${
+            isLight ? 'text-white' : 'text-neutral-950'
           }`}
         >
           ByteSpace
@@ -39,3 +37,4 @@ export function Logo({ variant = 'light', className = '', iconOnly = false }: Lo
     </Link>
   );
 }
+

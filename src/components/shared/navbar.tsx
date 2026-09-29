@@ -34,14 +34,14 @@ export function Navbar({ variant = 'blue' }: NavbarProps) {
               <Link
                 key={link.label}
                 href={link.href}
-                className={`text-[15px] font-medium transition-all ${
+                className={`font-satoshi text-[16px] leading-[160%] tracking-normal transition-all ${
                   isBlue
                     ? isActive
-                      ? 'text-white font-semibold'
-                      : 'text-white/80 hover:text-white'
+                      ? 'text-white font-bold'
+                      : 'text-white/80 hover:text-white font-normal'
                     : isActive
-                      ? 'text-primary-600 font-semibold'
-                      : 'text-neutral-600 hover:text-neutral-950'
+                      ? 'text-primary-600 font-bold'
+                      : 'text-neutral-600 hover:text-neutral-950 font-normal'
                 }`}
               >
                 {link.label}
@@ -54,7 +54,7 @@ export function Navbar({ variant = 'blue' }: NavbarProps) {
         <div className="flex items-center space-x-6">
           <Link
             href={ROUTES.AUTH.LOGIN}
-            className={`text-[15px] font-medium transition-colors ${
+            className={`font-satoshi font-normal text-[16px] leading-[160%] tracking-normal transition-colors ${
               isBlue ? 'text-white/90 hover:text-white' : 'text-neutral-700 hover:text-neutral-950'
             }`}
           >
@@ -63,7 +63,7 @@ export function Navbar({ variant = 'blue' }: NavbarProps) {
 
           <Link
             href={ROUTES.AUTH.REGISTER}
-            className={`text-[15px] font-medium transition-colors ${
+            className={`font-satoshi font-normal text-[16px] leading-[160%] tracking-normal transition-colors ${
               isBlue ? 'text-white/90 hover:text-white' : 'text-neutral-700 hover:text-neutral-950'
             }`}
           >
