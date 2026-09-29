@@ -1,0 +1,281 @@
+import { Course, coursesData } from "./course";
+
+export interface Creator {
+    id: string;
+    slug: string;
+    name: string;
+    role: string;
+    tagline: string;
+    avatar: string;
+    bio: string;
+    bioSecondary?: string;
+    productsCount: number;
+    followersCount: number;
+    rating: number;
+    category: string;
+    featured?: boolean;
+}
+
+export const creatorsData: Creator[] = [
+    {
+        id: "purepearl",
+        slug: "purepearl",
+        name: "PurePearl Studio",
+        role: "Creator",
+        tagline: "Passionate UI/UX, Web designer",
+        avatar: "/creators/purepearl.png",
+        bio: "Welcome to the creative world of PurePearl Studio. Here, you'll discover the passion, expertise, and inspiration that drive my creative journey. Let's explore and learn together!",
+        bioSecondary: "Dive into my creative portfolio, showcasing a glimpse of my artistic endeavors. From digital designs to multimedia projects, each piece tells a unique story. Explore the world of creativity with me.",
+        productsCount: 6,
+        followersCount: 12,
+        rating: 4.8,
+        category: "UI/UX Design",
+        featured: true,
+    },
+    {
+        id: "alex-devlin",
+        slug: "alex-devlin",
+        name: "Alex Devlin",
+        role: "Lead Instructor",
+        tagline: "Senior Cloud & DevOps Architect",
+        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80",
+        bio: "Hi! I'm Alex Devlin, a cloud architect with over 10 years of experience designing mission-critical enterprise infrastructure. I help developers bridge the gap to production-grade engineering.",
+        bioSecondary: "Through practical, code-first courses, I teach microservices, Kubernetes, and scalable distributed architectures.",
+        productsCount: 4,
+        followersCount: 340,
+        rating: 4.9,
+        category: "Development",
+        featured: true,
+    },
+    {
+        id: "sophia-carter",
+        slug: "sophia-carter",
+        name: "Sophia Carter",
+        role: "Creative Director",
+        tagline: "Digital Art & Brand Strategist",
+        avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80",
+        bio: "Sophia is an award-winning creative director specializing in digital branding, visual narratives, and human-centered design for high-growth tech companies.",
+        bioSecondary: "Her classes blend psychological research with bold aesthetic choices to help creators build timeless identities.",
+        productsCount: 5,
+        followersCount: 512,
+        rating: 4.8,
+        category: "Marketing",
+        featured: true,
+    },
+    {
+        id: "kenji-sato",
+        slug: "kenji-sato",
+        name: "Kenji Sato",
+        role: "Animator & Illustrator",
+        tagline: "Motion Designer & 3D Artist",
+        avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80",
+        bio: "Kenji Sato is a Tokyo-based motion director known for seamless 2D/3D hybrid animations in commercials, video games, and film.",
+        bioSecondary: "He guides students through foundational keyframing, rigging, and dynamic physics in Blender and After Effects.",
+        productsCount: 3,
+        followersCount: 289,
+        rating: 4.7,
+        category: "Animation",
+        featured: true,
+    },
+    {
+        id: "elena-rostova",
+        slug: "elena-rostova",
+        name: "Elena Rostova",
+        role: "Growth Strategist",
+        tagline: "Social Media & Viral Content Expert",
+        avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=300&q=80",
+        bio: "Elena specializes in multi-channel organic distribution, audience monetization, and algorithm optimization across TikTok, YouTube, and Instagram.",
+        bioSecondary: "Her frameworks have driven over 50M organic views and 6-figure revenue channels for emerging creators.",
+        productsCount: 4,
+        followersCount: 430,
+        rating: 4.9,
+        category: "Social Media",
+        featured: true,
+    },
+    {
+        id: "marcus-vance",
+        slug: "marcus-vance",
+        name: "Marcus Vance",
+        role: "Fine Artist",
+        tagline: "Contemporary Painter & Traditional Illustrator",
+        avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=300&q=80",
+        bio: "Marcus Vance combines traditional oil painting techniques with digital workflow solutions to help traditional artists thrive in the modern age.",
+        bioSecondary: "His workshops emphasize mastery of light, atmospheric depth, and expressive brushwork.",
+        productsCount: 3,
+        followersCount: 195,
+        rating: 4.6,
+        category: "Drawing & Painting",
+        featured: false,
+    },
+    {
+        id: "david-wu",
+        slug: "david-wu",
+        name: "David Wu",
+        role: "Full-Stack Instructor",
+        tagline: "React, Next.js & TypeScript Specialist",
+        avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=300&q=80",
+        bio: "David Wu is a seasoned web developer and educator passionate about building modern web applications with clean code and cutting-edge JavaScript frameworks.",
+        bioSecondary: "He breaks down complex software concepts into step-by-step interactive lessons for software engineers.",
+        productsCount: 7,
+        followersCount: 820,
+        rating: 4.9,
+        category: "Development",
+        featured: true,
+    },
+    {
+        id: "clara-bennett",
+        slug: "clara-bennett",
+        name: "Clara Bennett",
+        role: "UI/UX Researcher",
+        tagline: "Product Designer & Design Systems Lead",
+        avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80",
+        bio: "Clara Bennett helps designers master Figma, design tokens, accessibility standards, and seamless developer handoff workflows.",
+        bioSecondary: "She has led design systems engineering for leading SaaS platforms around the globe.",
+        productsCount: 5,
+        followersCount: 640,
+        rating: 4.8,
+        category: "UI/UX Design",
+        featured: true,
+    },
+    {
+        id: "liam-oconnor",
+        slug: "liam-oconnor",
+        name: "Liam O'Connor",
+        role: "Growth Marketer",
+        tagline: "PPC, SEO & Funnel Optimization Expert",
+        avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80",
+        bio: "Liam O'Connor teaches high-ROI growth marketing strategies, performance ad copy design, and conversion rate optimization.",
+        bioSecondary: "He has managed over $10M in digital media spend across e-commerce and SaaS verticals.",
+        productsCount: 4,
+        followersCount: 410,
+        rating: 4.7,
+        category: "Marketing",
+        featured: false,
+    },
+    {
+        id: "maya-lin",
+        slug: "maya-lin",
+        name: "Maya Lin",
+        role: "3D Character Artist",
+        tagline: "ZBrush & Maya Digital Sculptor",
+        avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=300&q=80",
+        bio: "Maya Lin creates game-ready 3D character assets and anatomical sculptures for AAA game studios and indie projects.",
+        bioSecondary: "Her tutorials cover texturing, retopology, and real-time rendering in Unreal Engine 5.",
+        productsCount: 4,
+        followersCount: 380,
+        rating: 4.9,
+        category: "Animation",
+        featured: true,
+    },
+    {
+        id: "lucas-grey",
+        slug: "lucas-grey",
+        name: "Lucas Grey",
+        role: "Cinematographer",
+        tagline: "Filmmaker & Color Grading Artist",
+        avatar: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=300&q=80",
+        bio: "Lucas Grey teaches visual storytelling, camera movement, DaVinci Resolve color grading, and commercial lighting setups.",
+        bioSecondary: "He has directed music videos, brand films, and documentary shorts worldwide.",
+        productsCount: 3,
+        followersCount: 290,
+        rating: 4.8,
+        category: "Social Media",
+        featured: false,
+    },
+    {
+        id: "zoe-taylor",
+        slug: "zoe-taylor",
+        name: "Zoe Taylor",
+        role: "Illustrator & Concept Artist",
+        tagline: "Digital Watercolor & Character Designer",
+        avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&q=80",
+        bio: "Zoe Taylor shares procreate techniques, character concept art creation, and storyboarding for picture books.",
+        bioSecondary: "Her warm, whimsical aesthetic has been published in international children's literature.",
+        productsCount: 5,
+        followersCount: 520,
+        rating: 4.9,
+        category: "Drawing & Painting",
+        featured: true,
+    },
+    {
+        id: "marco-rossi",
+        slug: "marco-rossi",
+        name: "Marco Rossi",
+        role: "Brand Identity Designer",
+        tagline: "Typography & Logo Systems Specialist",
+        avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=300&q=80",
+        bio: "Marco Rossi guides aspiring visual brand strategists through logo design grids, custom type design, and complete brand style guides.",
+        bioSecondary: "His Milan-based studio designs identity systems for luxury, hospitality, and tech brands.",
+        productsCount: 4,
+        followersCount: 360,
+        rating: 4.7,
+        category: "UI/UX Design",
+        featured: false,
+    },
+    {
+        id: "noah-parker",
+        slug: "noah-parker",
+        name: "Noah Parker",
+        role: "DevOps Engineer",
+        tagline: "Docker, Terraform & CI/CD Master",
+        avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=300&q=80",
+        bio: "Noah Parker empowers engineering teams to automate cloud infrastructure, build secure deployment pipelines, and optimize AWS setups.",
+        bioSecondary: "He emphasizes practical hands-on labs with real production scenarios.",
+        productsCount: 6,
+        followersCount: 490,
+        rating: 4.8,
+        category: "Development",
+        featured: true,
+    },
+    {
+        id: "julian-woods",
+        slug: "julian-woods",
+        name: "Julian Woods",
+        role: "Motion Graphics Artist",
+        tagline: "After Effects & 3D Typography Wizard",
+        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80",
+        bio: "Julian Woods crafts eye-catching kinetic typography, broadcast graphics, and title sequences for streaming networks.",
+        bioSecondary: "He teaches advanced motion design expressions, timing, and visual rhythm.",
+        productsCount: 3,
+        followersCount: 275,
+        rating: 4.6,
+        category: "Animation",
+        featured: false,
+    },
+    {
+        id: "camille-dupont",
+        slug: "camille-dupont",
+        name: "Camille Dupont",
+        role: "Content Strategist",
+        tagline: "Copywriting & Newsletter Business Builder",
+        avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80",
+        bio: "Camille Dupont helps writers turn newsletters into profitable media publications with compelling long-form storytelling.",
+        bioSecondary: "Her newsletter publication boasts over 150,000 active weekly subscribers.",
+        productsCount: 4,
+        followersCount: 430,
+        rating: 4.9,
+        category: "Marketing",
+        featured: true,
+    },
+];
+
+export function getCreatorBySlug(slug: string): Creator | undefined {
+    return creatorsData.find((c) => c.slug.toLowerCase() === slug.toLowerCase() || c.id.toLowerCase() === slug.toLowerCase());
+}
+
+export function getCoursesByCreator(creatorSlug: string): Course[] {
+    const creator = getCreatorBySlug(creatorSlug);
+    const authorName = creator?.name.toLowerCase() || "";
+    
+    const matched = coursesData.filter((course) => {
+        const cAuthor = course.author?.name?.toLowerCase() || "";
+        const cHref = course.author?.href?.toLowerCase() || "";
+        return cAuthor === authorName || cHref.includes(creatorSlug.toLowerCase()) || (creatorSlug === "purepearl" && (cAuthor.includes("purepearl") || course.id === "1" || course.id === "2" || course.id === "bda"));
+    });
+
+    if (matched.length >= 3) {
+        return matched;
+    }
+
+    return coursesData.slice(0, 6);
+}
