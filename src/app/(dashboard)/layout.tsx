@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { ROUTES } from '@/constants/routes';
 
 export const metadata = {
-  title: 'Dashboard | ByteSpace',
+  title: 'Dashboard',
   description: 'Manage your projects and overview',
 };
 
