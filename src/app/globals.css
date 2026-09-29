@@ -1,26 +1,247 @@
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap');
 @import "tailwindcss";
 
+/* ==========================================================================
+   Design Token System — follows typo/ design spec exactly
+   Fonts: Poppins (Headings) + Satoshi (Body & Labels)
+   Colors: Neutral, Primary (Electric Violet), Secondary (Crimson/Lime)
+   Grid: 12 columns, 120px margin, 40px gutter
+   ========================================================================== */
+
+@theme {
+  /* ------------------------------------------------------------------
+     Font Families
+     Poppins: loaded via Next.js next/font/google (CSS variable --font-poppins injected in layout.tsx)
+     Satoshi: loaded via @import from Fontshare above
+  ------------------------------------------------------------------ */
+  --font-poppins: var(--font-poppins), 'Poppins', sans-serif;
+  --font-satoshi: 'Satoshi', sans-serif;
+  --font-sans: 'Satoshi', sans-serif;
+
+  /* ------------------------------------------------------------------
+     Neutral Palette — "Black" (Spacing (2).png)
+     50  → #f5f5f6   100 → #e5e6e8   200 → #ced0d3
+     300 → #abaeb5   400 → #82868e   500 → #666973
+     600 → #585a62   700 → #4b4c53   800 → #424348
+     900 → #3a3b3f   950 → #242528
+  ------------------------------------------------------------------ */
+  --color-neutral-50:  #f5f5f6;
+  --color-neutral-100: #e5e6e8;
+  --color-neutral-200: #ced0d3;
+  --color-neutral-300: #abaeb5;
+  --color-neutral-400: #82868e;
+  --color-neutral-500: #666973;
+  --color-neutral-600: #585a62;
+  --color-neutral-700: #4b4c53;
+  --color-neutral-800: #424348;
+  --color-neutral-900: #3a3b3f;
+  --color-neutral-950: #242528;
+
+  /* ------------------------------------------------------------------
+     Primary Palette — "Electric Violet" (Spacing (2).png)
+     50  → #e7f6ff   100 → #d3eeff   200 → #b0ddff
+     300 → #81c5ff   400 → #4f9dff   500 → #2872ff
+     600 → #0445ff   700 → #0043ff   800 → #003be2
+     900 → #0b36a4   950 → #071e5f
+  ------------------------------------------------------------------ */
+  --color-primary-50:  #e7f6ff;
+  --color-primary-100: #d3eeff;
+  --color-primary-200: #b0ddff;
+  --color-primary-300: #81c5ff;
+  --color-primary-400: #4f9dff;
+  --color-primary-500: #2872ff;
+  --color-primary-600: #0445ff;
+  --color-primary-700: #0043ff;
+  --color-primary-800: #003be2;
+  --color-primary-900: #0b36a4;
+  --color-primary-950: #071e5f;
+
+  /* ------------------------------------------------------------------
+     Secondary Palette — "Crimson / Lime" (Spacing (2).png)
+     50  → #fdffe4   100 → #faffc5   200 → #f2ff92
+     300 → #e4ff54   400 → #d4fb20   500 → #cbfc01
+     600 → #8cb400   700 → #6a8902   800 → #546b09
+     900 → #465a0d   950 → #243300
+  ------------------------------------------------------------------ */
+  --color-secondary-50:  #fdffe4;
+  --color-secondary-100: #faffc5;
+  --color-secondary-200: #f2ff92;
+  --color-secondary-300: #e4ff54;
+  --color-secondary-400: #d4fb20;
+  --color-secondary-500: #cbfc01;
+  --color-secondary-600: #8cb400;
+  --color-secondary-700: #6a8902;
+  --color-secondary-800: #546b09;
+  --color-secondary-900: #465a0d;
+  --color-secondary-950: #243300;
+}
+
+/* ==========================================================================
+   Base Reset
+   ========================================================================== */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #f5f5f6;   /* neutral-50 */
+  --foreground: #242528;   /* neutral-950 */
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Satoshi', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* ==========================================================================
+   Typography Utility Classes
+   Source: typo/Spacing.png
+
+   HEADINGS — font-family: Poppins SemiBold (weight: 600)
+   ──────────────────────────────────────────────────────
+   Heading L  → 72px / 120% line-height
+   Heading M  → 44px / 120% line-height
+   Heading S  → 36px / 120% line-height
+   Heading XS → 20px / 120% line-height
+
+   BODY — font-family: Satoshi Regular (weight: 400)
+   ──────────────────────────────────────────────────
+   Body L  → 18px / 160% line-height
+   Body M  → 16px / 160% line-height
+   Body S  → 14px / 160% line-height
+   Body XS → 12px / 160% line-height
+
+   LABELS — font-family: Satoshi Medium (weight: 500)
+   ───────────────────────────────────────────────────
+   Label L  → 18px / 120% line-height
+   Label M  → 16px / 120% line-height
+   Label S  → 14px / 120% line-height
+   Label XS → 12px / 120% line-height
+   ========================================================================== */
+
+/* --- Headings (Poppins SemiBold) --- */
+.heading-l {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 72px;
+  line-height: 1.2; /* 120% */
+}
+
+.heading-m {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 44px;
+  line-height: 1.2;
+}
+
+.heading-s {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 1.2;
+}
+
+.heading-xs {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+/* --- Body (Satoshi Regular) --- */
+.body-l {
+  font-family: 'Satoshi', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.6; /* 160% */
+}
+
+.body-m {
+  font-family: 'Satoshi', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.body-s {
+  font-family: 'Satoshi', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.body-xs {
+  font-family: 'Satoshi', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* --- Labels (Satoshi Medium) --- */
+.label-l {
+  font-family: 'Satoshi', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.label-m {
+  font-family: 'Satoshi', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.label-s {
+  font-family: 'Satoshi', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.label-xs {
+  font-family: 'Satoshi', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.2;
+}
+
+/* ==========================================================================
+   Layout Container & Grid
+   Source: typo/Spacing (1).png
+   Count: 12 Columns | Margin: 120px | Gutter: 40px
+   ========================================================================== */
+
+.layout-container {
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 120px;
+  padding-right: 120px;
+}
+
+.layout-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 40px; /* Gutter: 40px */
+}
+
+/* Tablet: reduce margin */
+@media (max-width: 1280px) {
+  .layout-container {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+}
+
+/* Mobile: compact margin */
+@media (max-width: 768px) {
+  .layout-container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .layout-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+  }
 }
