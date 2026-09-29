@@ -8,9 +8,9 @@
 
 :root {
   /* Global Font Variables (Single Source of Truth) */
-  --font-body: 'Satoshi';
-  --font-heading: var(--font-poppins), 'Poppins';
-  --font-logo: 'Clash Display';
+  --font-body: var(--font-satoshi), 'Satoshi', sans-serif;
+  --font-heading: var(--font-poppins), 'Poppins', sans-serif;
+  --font-logo: var(--font-clash-display), 'Clash Display', sans-serif;
 
   /* Base Colors */
   --background: #f5f5f6;   /* neutral-50 */
@@ -21,10 +21,10 @@
   /* ------------------------------------------------------------------
      Font Families — mapped to Centralized CSS Variables
   ------------------------------------------------------------------ */
-  --font-sans: var(--font-body);
-  --font-satoshi: var(--font-body);
-  --font-poppins: var(--font-heading);
-  --font-clash: var(--font-logo);
+  --font-sans: var(--font-satoshi), sans-serif;
+  --font-satoshi: var(--font-satoshi), sans-serif;
+  --font-poppins: var(--font-poppins), sans-serif;
+  --font-clash: var(--font-clash-display), sans-serif;
 
   /* ------------------------------------------------------------------
      Neutral Palette — "Black" (Spacing (2).png)

@@ -16,9 +16,9 @@ export function Logo({ variant = 'light', className = '', iconOnly = false }: Lo
       {/* Lime 'b' logo vector */}
       <div className="relative w-8 h-8 flex items-center justify-center transform group-hover:scale-105 transition-transform duration-200 shrink-0">
         <Image
-          src="/logo1.png"
+          src="/logo.svg"
           alt="ByteSpace Logo"
-          width={32}
+          width={29}
           height={32}
           className="w-full h-full object-contain"
           priority

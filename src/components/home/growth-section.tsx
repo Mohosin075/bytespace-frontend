@@ -35,14 +35,6 @@ export function GrowthSection() {
         }}
       />
 
-      {/* 2. Top Section - Mid-Left Soft Blue Accent (under 12K Students) */}
-      <div
-        className="absolute top-[26%] -left-20 w-125 h-125 rounded-full pointer-events-none select-none blur-[90px]"
-        style={{
-          background:
-            'radial-gradient(circle, rgba(0, 59, 226, 0.10) 0%, rgba(0, 59, 226, 0.04) 50%, transparent 75%)',
-        }}
-      />
 
       {/* 3. Top Section - Top-Right Soft Blue Accent */}
       <div
@@ -62,11 +54,20 @@ export function GrowthSection() {
         }}
       />
 
+      {/* 5. Creator Section - Bottom-Right Blue Accent */}
+      <div
+        className="absolute -bottom-24 -right-28 w-[700px] h-[700px] rounded-full pointer-events-none select-none blur-[110px]"
+        style={{
+          background:
+            'radial-gradient(circle, rgba(0, 59, 226, 0.24) 0%, rgba(0, 59, 226, 0.12) 53%, rgba(0, 59, 226, 0.03) 75%, transparent 100%)',
+        }}
+      />
+
       <div className="layout-container relative z-10 flex flex-col gap-24 sm:gap-32 lg:gap-40">
         {/* ── PART 1: Student Growth Section ── */}
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-12 lg:gap-16">
           <div className="flex flex-col space-y-6">
-            <SectionTitle className="text-left text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-bold leading-[1.12]">
+            <SectionTitle className="text-left">
               Your Path to Professional
               <br />
               Growth Starts Here!
@@ -221,7 +222,7 @@ export function GrowthSection() {
 
           {/* Content Column (Right on desktop) */}
           <div className="order-1 lg:order-2 flex flex-col space-y-6">
-            <SectionTitle className="text-left text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-bold leading-[1.12]">
+            <SectionTitle className="text-left">
               Create &amp; Manage
               <br />
               Courses Easily.
