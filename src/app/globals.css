@@ -245,3 +245,15 @@ body {
     gap: 16px;
   }
 }
+
+/* ==========================================================================
+   Hero & Auth Blueprint Grid Pattern
+   ========================================================================== */
+.bg-hero-grid {
+  background-color: #0445ff;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
