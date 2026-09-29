@@ -1,37 +1,83 @@
+'use client';
+
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { ShoppingBag } from 'lucide-react';
 import { ROUTES } from '@/constants/routes';
-import { SITE_CONFIG } from '@/constants/site-config';
-import { Button } from '@/components/ui/button';
+import { Logo } from '@/components/shared/logo';
 
-export function Navbar() {
+interface NavbarProps {
+  variant?: 'blue' | 'light';
+}
+
+export function Navbar({ variant = 'blue' }: NavbarProps) {
+  const pathname = usePathname();
+  const isBlue = variant === 'blue';
+
+  const navLinks = [
+    { label: 'Home', href: ROUTES.HOME },
+    { label: 'Courses', href: ROUTES.COURSES },
+    { label: 'Creators', href: ROUTES.CREATORS },
+  ];
+
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md">
-      <div className="max-w-7xl mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href={ROUTES.HOME} className="flex items-center space-x-2">
-          <span className="text-xl font-bold bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent">
-            {SITE_CONFIG.name}
-          </span>
-        </Link>
+    <header className={`w-full z-40 transition-colors duration-200 ${isBlue ? 'bg-transparent text-white' : 'bg-white text-neutral-900 border-b border-neutral-100'}`}>
+      <div className="layout-container py-5 flex items-center justify-between">
+        {/* Logo */}
+        <Logo variant={isBlue ? 'light' : 'dark'} />
 
-        <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
-          <Link href={ROUTES.HOME} className="text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-            Home
-          </Link>
-          <Link href={ROUTES.DASHBOARD.ROOT} className="text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-            Dashboard
-          </Link>
+        {/* Center Nav Links */}
+        <nav className="hidden md:flex items-center space-x-8">
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <Link
+                key={link.label}
+                href={link.href}
+                className={`text-[15px] font-medium transition-all ${
+                  isBlue
+                    ? isActive
+                      ? 'text-white font-semibold'
+                      : 'text-white/80 hover:text-white'
+                    : isActive
+                      ? 'text-primary-600 font-semibold'
+                      : 'text-neutral-600 hover:text-neutral-950'
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </nav>
 
-        <div className="flex items-center space-x-3">
-          <Link href={ROUTES.AUTH.LOGIN}>
-            <Button variant="ghost" size="sm">
-              Sign In
-            </Button>
+        {/* Right CTA / Cart */}
+        <div className="flex items-center space-x-6">
+          <Link
+            href={ROUTES.AUTH.LOGIN}
+            className={`text-[15px] font-medium transition-colors ${
+              isBlue ? 'text-white/90 hover:text-white' : 'text-neutral-700 hover:text-neutral-950'
+            }`}
+          >
+            Sign In
           </Link>
-          <Link href={ROUTES.AUTH.REGISTER}>
-            <Button variant="primary" size="sm">
-              Get Started
-            </Button>
+
+          <Link
+            href={ROUTES.AUTH.REGISTER}
+            className={`text-[15px] font-medium transition-colors ${
+              isBlue ? 'text-white/90 hover:text-white' : 'text-neutral-700 hover:text-neutral-950'
+            }`}
+          >
+            Join Us
+          </Link>
+
+          <Link
+            href="/cart"
+            aria-label="Shopping Cart"
+            className={`p-2 transition-transform hover:scale-105 ${
+              isBlue ? 'text-white hover:text-white/80' : 'text-neutral-700 hover:text-neutral-950'
+            }`}
+          >
+            <ShoppingBag className="w-5 h-5 stroke-[1.8]" />
           </Link>
         </div>
       </div>
