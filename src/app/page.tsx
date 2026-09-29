@@ -48,44 +48,17 @@ export default function HomePage() {
       <section className="bg-hero-grid relative overflow-hidden text-white" style={{ minHeight: '780px' }}>
         <Navbar variant="blue" />
 
-        {/* ── 3D Floating Graphic Elements from Figma ── */}
+        {/* ── Top Floating Corner Graphic Elements from Figma ── */}
         {/* TOP-LEFT: Lime wavy ribbon */}
-        <div className="absolute top-8 left-4 xl:left-14 w-[160px] xl:w-[200px] pointer-events-none z-10">
+        <div className="absolute top-6 left-4 xl:left-14 w-[160px] xl:w-[200px] pointer-events-none z-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/hero/left1.svg" alt="3D Lime Ribbon" className="w-full h-auto drop-shadow-2xl" />
-        </div>
-
-        {/* MID-LEFT: White 3D coiled spring from Figma */}
-        <div className="absolute top-[34%] left-[10%] xl:left-[13%] w-[95px] md:w-[115px] xl:w-[135px] pointer-events-none z-10">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/hero/left2.svg" alt="3D White Spring" className="w-full h-auto drop-shadow-2xl" />
-        </div>
-
-        {/* BOTTOM-LEFT: Dark blue circle behind donut (exact match to Figma reference) */}
-        <div className="absolute -bottom-8 -left-8 md:left-2 xl:left-8 w-[220px] md:w-[260px] xl:w-[300px] h-[220px] md:h-[260px] xl:h-[300px] rounded-full bg-[#032eab] pointer-events-none z-10" />
-
-        {/* BOTTOM-LEFT: Giant white torus ring from Figma */}
-        <div className="absolute -bottom-4 -left-6 md:left-2 xl:left-8 w-[160px] md:w-[195px] xl:w-[225px] pointer-events-none z-20">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/hero/left3.svg" alt="3D White Donut" className="w-full h-auto drop-shadow-2xl" />
         </div>
 
         {/* TOP-RIGHT: Lime tall capsule/cylinder */}
         <div className="absolute top-6 right-6 xl:right-16 w-[130px] xl:w-[170px] pointer-events-none z-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/hero/right1.svg" alt="3D Lime Capsule" className="w-full h-auto drop-shadow-2xl" />
-        </div>
-
-        {/* MID-RIGHT: White 3D triangle / pyramid */}
-        <div className="absolute top-[36%] right-[8%] xl:right-[13%] w-[110px] xl:w-[140px] pointer-events-none z-10">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/hero/right2.svg" alt="3D White Pyramid" className="w-full h-auto drop-shadow-2xl" />
-        </div>
-
-        {/* BOTTOM-RIGHT: White wavy helical ribbon */}
-        <div className="absolute bottom-6 right-6 xl:right-14 w-[160px] xl:w-[220px] pointer-events-none z-20">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/hero/right3.svg" alt="3D White Wave" className="w-full h-auto drop-shadow-2xl" />
         </div>
 
         {/* ── Hero Text Content ── */}
@@ -121,7 +94,7 @@ export default function HomePage() {
         {/* ── Hero Bottom Visual: Fixed stage with centered arch and elements ── */}
         <div className="relative w-full flex justify-center overflow-visible" style={{ height: '450px', marginTop: '40px' }}>
 
-          {/* Fixed-width inner stage — everything positioned relative to this */}
+          {/* Fixed-width inner stage — everything positioned relative to this (100% matched to Image 2) */}
           <div className="relative" style={{ width: '960px', height: '450px' }}>
 
             {/* Dark blue inner circle at bottom center inside lime arch */}
@@ -173,11 +146,63 @@ export default function HomePage() {
               />
             </div>
 
+            {/* MID-LEFT: White 3D coiled spring from Figma */}
+            <div
+              className="absolute pointer-events-none z-10"
+              style={{
+                left: '135px',
+                top: '75px',
+                width: '95px',
+              }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/hero/left2.svg" alt="3D White Spring" className="w-full h-auto drop-shadow-2xl" />
+            </div>
+
+            {/* BOTTOM-LEFT: Giant white torus ring from Figma (resting directly on lime arch) */}
+            <div
+              className="absolute pointer-events-none z-20"
+              style={{
+                left: '45px',
+                bottom: '40px',
+                width: '190px',
+              }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/hero/left3.svg" alt="3D White Donut" className="w-full h-auto drop-shadow-2xl" />
+            </div>
+
+            {/* MID-RIGHT: White 3D triangle / pyramid from Figma */}
+            <div
+              className="absolute pointer-events-none z-10"
+              style={{
+                right: '115px',
+                top: '50px',
+                width: '105px',
+              }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/hero/right2.svg" alt="3D White Pyramid" className="w-full h-auto drop-shadow-2xl" />
+            </div>
+
+            {/* BOTTOM-RIGHT: White wavy helical ribbon from Figma */}
+            <div
+              className="absolute pointer-events-none z-20"
+              style={{
+                right: '40px',
+                bottom: '35px',
+                width: '180px',
+              }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/hero/right3.svg" alt="3D White Wave" className="w-full h-auto drop-shadow-2xl" />
+            </div>
+
             {/* ── Card 1: UI/UX Design — LEFT side of student ── */}
             <div
               className="absolute z-30 bg-white rounded-2xl border border-neutral-100 text-left"
               style={{
-                left: '70px',
+                left: '195px',
                 top: '110px',
                 padding: '14px 18px',
                 minWidth: '200px',
@@ -216,7 +241,7 @@ export default function HomePage() {
             <div
               className="absolute z-30 bg-white rounded-2xl border border-neutral-100 text-left"
               style={{
-                left: '70px',
+                left: '190px',
                 bottom: '70px',
                 padding: '12px 16px',
                 boxShadow: '0 8px 32px rgba(0,0,0,0.15)',
