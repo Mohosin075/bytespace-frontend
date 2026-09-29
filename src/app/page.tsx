@@ -170,65 +170,116 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* ── Hero Bottom Visual: Lime Circle + Student + Floating Cards ── */}
-        <div className="relative w-full flex justify-center items-end overflow-visible" style={{ height: '420px', marginTop: '48px' }}>
+        {/* ── Hero Bottom Visual: Fixed 900px container — all positions match reference ── */}
+        <div className="relative w-full flex justify-center overflow-visible" style={{ height: '440px', marginTop: '40px' }}>
 
-          {/* Giant Lime semi-circle at the very bottom center */}
-          <div
-            className="absolute bottom-0 left-1/2 -translate-x-1/2 rounded-full bg-[#cbfc01] pointer-events-none z-0"
-            style={{ width: '700px', height: '700px', bottom: '-350px' }}
-          />
+          {/* Fixed-width inner stage — everything positioned relative to this */}
+          <div className="relative" style={{ width: '900px', height: '440px' }}>
 
-          {/* Student photo — sits centered ON the lime circle */}
-          <div className="relative z-10" style={{ width: '380px', height: '460px' }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/hero-student.jpg"
-              alt="Student with headphones holding laptop"
-              className="w-full h-full object-cover object-top"
-              style={{ borderRadius: '200px 200px 0 0' }}
+            {/* Giant lime circle — centered, bottom half showing as semi-circle */}
+            <div
+              className="absolute rounded-full bg-[#cbfc01] pointer-events-none z-0"
+              style={{
+                width: '620px',
+                height: '620px',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                bottom: '-310px',
+              }}
             />
-          </div>
 
-          {/* ── Floating Card: UI/UX Design (LEFT of student) ── */}
-          <div
-            className="absolute z-30 bg-white rounded-2xl shadow-2xl border border-neutral-100 text-left"
-            style={{ left: 'calc(50% - 340px)', top: '80px', padding: '14px 18px', minWidth: '195px' }}
-          >
-            <p className="font-poppins font-bold text-sm text-neutral-950">UI/UX Design</p>
-            <p className="text-[12px] text-neutral-500 mt-1">200 Courses • 1000+ Students</p>
-          </div>
-
-          {/* ── Floating Card: Learning Progress 55% (RIGHT of student) ── */}
-          <div
-            className="absolute z-30 bg-white rounded-2xl shadow-2xl border border-neutral-100 text-left"
-            style={{ right: 'calc(50% - 340px)', top: '70px', padding: '14px 18px', minWidth: '185px' }}
-          >
-            <p className="text-[11px] text-neutral-500 font-medium">Learning Progress</p>
-            <p className="font-poppins font-bold text-[32px] leading-none mt-1 text-neutral-950">55%</p>
-            <div className="w-full bg-neutral-100 rounded-full mt-3 overflow-hidden" style={{ height: '6px' }}>
-              <div className="bg-[#cbfc01] h-full rounded-full" style={{ width: '55%' }} />
+            {/* Student photo — centered on the lime circle, upper body visible */}
+            <div
+              className="absolute z-10"
+              style={{
+                width: '340px',
+                height: '440px',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                bottom: 0,
+              }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/hero-student.jpg"
+                alt="Student with headphones holding laptop"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  objectPosition: 'top center',
+                  borderRadius: '180px 180px 0 0',
+                  display: 'block',
+                }}
+              />
             </div>
-          </div>
 
-          {/* ── Floating Card: Happy Students (BOTTOM LEFT) ── */}
-          <div
-            className="absolute z-30 bg-white rounded-2xl shadow-2xl border border-neutral-100 text-left"
-            style={{ left: 'calc(50% - 320px)', bottom: '60px', padding: '12px 16px' }}
-          >
-            <div className="flex items-center gap-2">
-              <p className="font-poppins font-semibold text-xs text-neutral-950">Happy Students</p>
-              <div className="flex items-center gap-0.5 text-[11px]">
-                <span className="font-bold text-neutral-800">4.5</span>
-                <span className="text-neutral-400">(240)</span>
-                <Star className="w-3 h-3 fill-[#fbbf24] text-[#fbbf24]" />
+            {/* ── Card 1: UI/UX Design — LEFT side of student ── */}
+            {/* In reference: card left edge ~100px from left of 900px stage, top ~120px */}
+            <div
+              className="absolute z-30 bg-white rounded-2xl border border-neutral-100 text-left"
+              style={{
+                left: '60px',
+                top: '110px',
+                padding: '14px 18px',
+                minWidth: '200px',
+                boxShadow: '0 8px 32px rgba(0,0,0,0.15)',
+              }}
+            >
+              <p style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700, fontSize: '14px', color: '#1a1a1a' }}>
+                UI/UX Design
+              </p>
+              <p style={{ fontSize: '12px', color: '#888', marginTop: '4px' }}>
+                200 Courses • 1000+ Students
+              </p>
+            </div>
+
+            {/* ── Card 2: Learning Progress 55% — RIGHT side of student ── */}
+            {/* In reference: card right edge ~100px from right of 900px stage, top ~100px */}
+            <div
+              className="absolute z-30 bg-white rounded-2xl border border-neutral-100 text-left"
+              style={{
+                right: '55px',
+                top: '95px',
+                padding: '14px 18px',
+                minWidth: '185px',
+                boxShadow: '0 8px 32px rgba(0,0,0,0.15)',
+              }}
+            >
+              <p style={{ fontSize: '11px', color: '#888', fontWeight: 500 }}>Learning Progress</p>
+              <p style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700, fontSize: '34px', lineHeight: 1, marginTop: '4px', color: '#111' }}>
+                55%
+              </p>
+              <div style={{ width: '100%', background: '#f0f0f0', borderRadius: '99px', height: '6px', marginTop: '10px', overflow: 'hidden' }}>
+                <div style={{ width: '55%', height: '100%', background: '#cbfc01', borderRadius: '99px' }} />
               </div>
             </div>
-            <div className="mt-2">
-              <AvatarGroup extraCount="2K+" size={28} />
-            </div>
-          </div>
 
+            {/* ── Card 3: Happy Students — BOTTOM LEFT ── */}
+            {/* In reference: card sits low left, bottom edge touches lime circle top */}
+            <div
+              className="absolute z-30 bg-white rounded-2xl border border-neutral-100 text-left"
+              style={{
+                left: '80px',
+                bottom: '70px',
+                padding: '12px 16px',
+                boxShadow: '0 8px 32px rgba(0,0,0,0.15)',
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <p style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 600, fontSize: '12px', color: '#111' }}>Happy Students</p>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '2px', fontSize: '11px' }}>
+                  <span style={{ fontWeight: 700, color: '#333' }}>4.5</span>
+                  <span style={{ color: '#aaa' }}>(240)</span>
+                  <Star className="w-3 h-3 fill-[#fbbf24] text-[#fbbf24]" />
+                </div>
+              </div>
+              <div className="mt-2">
+                <AvatarGroup extraCount="2K+" size={28} />
+              </div>
+            </div>
+
+          </div>
         </div>
       </section>
 
