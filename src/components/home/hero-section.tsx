@@ -73,11 +73,9 @@ export function HeroSection() {
   ];
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#0052FE] pt-2">
-      {/* Top Navbar */}
-      <div className="relative z-40">
-        <Navbar variant="blue" />
-      </div>
+    <>
+      <Navbar variant="blue" />
+      <section className="relative w-full overflow-hidden bg-[#0052FE] pt-28 sm:pt-32 lg:pt-36">
 
       {/* Blueprint Grid Lines */}
       <div
@@ -156,7 +154,7 @@ export function HeroSection() {
         />
       </div>
 
-      <div className="container relative mx-auto px-4 z-20 flex flex-col items-center pt-8 sm:pt-10">
+      <div className="container relative mx-auto px-4 z-20 flex flex-col items-center">
         <h1 className="font-poppins text-center font-bold tracking-tight text-white text-4xl sm:text-6xl md:text-7xl lg:text-[76px] leading-[1.08] max-w-4xl">
           Get Access to Hundreds
           <br />
@@ -390,5 +388,6 @@ export function HeroSection() {
         </div>
       </div>
     </section>
+  </>
   );
 }

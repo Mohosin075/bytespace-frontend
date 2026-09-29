@@ -45,10 +45,10 @@ export default function CoursesClient() {
       {/* =========================================================================
           HERO BANNER
           ========================================================================= */}
-      <section className="bg-hero-grid relative text-white pb-16 pt-2">
+      <section className="bg-hero-grid relative text-white pb-16 pt-24 sm:pt-28">
         <Navbar variant="blue" />
 
-        <div className="layout-container pt-12 pb-6 text-center">
+        <div className="layout-container pt-6 pb-6 text-center">
           <h1 className="font-poppins font-bold text-4xl sm:text-5xl text-white">
             Find Your Next Course
           </h1>

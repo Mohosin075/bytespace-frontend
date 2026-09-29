@@ -31,10 +31,10 @@ export default function CreatorDetailClient() {
       {/* =========================================================================
           HERO & CREATOR PROFILE BANNER
           ========================================================================= */}
-      <section className="bg-hero-grid text-white pb-20 pt-2">
+      <section className="bg-hero-grid text-white pb-20 pt-24 sm:pt-28">
         <Navbar variant="blue" />
 
-        <div className="layout-container pt-10">
+        <div className="layout-container pt-4">
           <div className="flex flex-col lg:flex-row items-start justify-between gap-8">
             <div className="space-y-6 max-w-3xl">
               {/* Avatar + Name + Creator Badge */}
