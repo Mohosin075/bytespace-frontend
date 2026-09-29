@@ -10,7 +10,7 @@ export function HeroStage() {
         <div className="absolute left-1/2 -translate-x-1/2 -bottom-[30px] w-[860px] z-0 overflow-hidden pointer-events-none">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/hero/centerbackshpae.svg"
+            src="/hero/hero-lime-semicircle-backdrop.svg"
             alt="Lime semicircle background"
             className="w-full h-auto object-contain"
           />
@@ -20,7 +20,7 @@ export function HeroStage() {
         <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-[480px] z-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/hero/centerman.svg"
+            src="/hero/hero-student-character.svg"
             alt="Student with headphones holding laptop"
             className="w-full h-auto object-contain block"
           />
