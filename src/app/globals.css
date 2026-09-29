@@ -1,9 +1,9 @@
-@import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=satoshi@400,500,700&display=swap');
 @import "tailwindcss";
 
 /* ==========================================================================
    Design Token System — follows typo/ design spec exactly
-   Fonts: Poppins (Headings) + Satoshi (Body & Labels)
+   Fonts: Clash Display (Logo), Poppins (Headings) + Satoshi (Body & Labels)
    Colors: Neutral, Primary (Electric Violet), Secondary (Crimson/Lime)
    Grid: 12 columns, 120px margin, 40px gutter
    ========================================================================== */
@@ -11,9 +11,11 @@
 @theme {
   /* ------------------------------------------------------------------
      Font Families
+     Clash Display: loaded via Fontshare (Logo text)
      Poppins: loaded via Next.js next/font/google (CSS variable --font-poppins injected in layout.tsx)
      Satoshi: loaded via @import from Fontshare above
   ------------------------------------------------------------------ */
+  --font-clash: 'Clash Display', sans-serif;
   --font-poppins: var(--font-poppins), 'Poppins', sans-serif;
   --font-satoshi: 'Satoshi', sans-serif;
   --font-sans: 'Satoshi', sans-serif;
