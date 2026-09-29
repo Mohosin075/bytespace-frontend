@@ -1,4 +1,4 @@
-import React from 'react';
+import Image from 'next/image';
 import { CheckCircle2, Star } from 'lucide-react';
 import { AvatarGroup } from '@/components/ui/avatar-group';
 import { DecorativeSquiggle } from '@/components/ui/decorative-squiggle';
@@ -24,12 +24,13 @@ export function CreatorManagementSection() {
             </div>
 
             <div className="relative mx-auto max-w-md z-10">
-              <div className="rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-neutral-100">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=80"
+              <div className="rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-neutral-100 flex items-center justify-center">
+                <Image
+                  src="/growth/growth-bottom.png"
                   alt="Course Creator"
-                  className="w-full h-[440px] object-cover"
+                  width={440}
+                  height={500}
+                  className="w-full h-auto object-cover"
                 />
               </div>
 
