@@ -9,20 +9,20 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, children, variant = 'primary', size = 'md', isLoading = false, disabled, ...props }, ref) => {
-    const baseStyles = 'inline-flex items-center justify-center rounded-lg font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none cursor-pointer';
+    const baseStyles = 'inline-flex items-center justify-center rounded-xl font-satoshi font-medium transition-all focus:outline-none focus:ring-2 focus:ring-primary-400 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none cursor-pointer';
 
     const variants = {
-      primary: 'bg-indigo-600 text-white hover:bg-indigo-700 active:bg-indigo-800 shadow-sm',
-      secondary: 'bg-slate-800 text-white hover:bg-slate-900 shadow-sm',
-      outline: 'border border-slate-300 dark:border-slate-700 bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-900 dark:text-slate-100',
-      ghost: 'bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200',
-      danger: 'bg-rose-600 text-white hover:bg-rose-700 active:bg-rose-800 shadow-sm',
+      primary: 'bg-primary-600 text-white hover:bg-primary-700 active:bg-primary-800 shadow-sm label-m',
+      secondary: 'bg-neutral-900 text-white hover:bg-neutral-950 shadow-sm label-m',
+      outline: 'border border-neutral-300 bg-white hover:bg-neutral-100 text-neutral-900 label-m',
+      ghost: 'bg-transparent hover:bg-neutral-100 text-neutral-700 label-m',
+      danger: 'bg-rose-600 text-white hover:bg-rose-700 active:bg-rose-800 shadow-sm label-m',
     };
 
     const sizes = {
-      sm: 'h-8 px-3 text-xs',
-      md: 'h-10 px-4 text-sm',
-      lg: 'h-12 px-6 text-base',
+      sm: 'h-9 px-3.5 text-xs',
+      md: 'h-11 px-5 text-sm',
+      lg: 'h-13 px-7 text-base',
     };
 
     return (
