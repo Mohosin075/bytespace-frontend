@@ -46,14 +46,14 @@ export function CreatorCtaBanner() {
           Unlock Your Potential as a <br /> Creator with ByteSpace
         </h2>
 
-        <p className="text-white/90 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto font-normal">
+        <p className="font-satoshi font-normal text-white/90 text-sm sm:text-base leading-[160%] max-w-2xl mx-auto">
           Experience the collaboration of numerous creators and an expanding selection of courses. Register now and become a part of a community comprising over 10,000 local and international creators. Utilize our Course Editor, and showcase your expertise by publishing your finest course on the ByteSpace Course Library.
         </p>
 
         <div className="pt-4">
           <Link
             href={ROUTES.AUTH.REGISTER}
-            className="inline-block px-9 py-3.5 rounded-full bg-secondary-500 text-black font-semibold text-sm hover:brightness-95 active:scale-95 transition-all shadow-2xl"
+            className="inline-block px-9 py-3.5 rounded-full bg-secondary-500 text-black font-satoshi font-semibold text-sm hover:brightness-95 active:scale-95 transition-all shadow-2xl"
           >
             Join as Creator
           </Link>

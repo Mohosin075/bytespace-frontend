@@ -43,7 +43,7 @@ export function CourseCard({ course }: CourseCardProps) {
           <div className="flex items-start justify-between gap-2">
             <Link
               href={ROUTES.COURSE_DETAIL(course.slug)}
-              className="font-poppins font-semibold text-[17px] text-neutral-950 group-hover:text-primary-600 transition-colors line-clamp-1 leading-snug"
+              className="font-satoshi font-bold text-[17px] text-neutral-950 group-hover:text-primary-600 transition-colors line-clamp-1 leading-snug"
             >
               {course.title}
             </Link>
@@ -76,7 +76,7 @@ export function CourseCard({ course }: CourseCardProps) {
 
         {/* Price */}
         <div className="pt-3 border-t border-neutral-100 flex items-baseline gap-1">
-          <span className="font-poppins font-bold text-xl text-primary-600">
+          <span className="font-satoshi font-bold text-xl text-primary-600">
             ${course.price}
           </span>
           <span className="text-xs text-neutral-500 font-normal">

@@ -35,7 +35,7 @@ export function TestimonialsSection() {
                     className="w-12 h-12 rounded-full object-cover border border-neutral-200"
                   />
                   <div>
-                    <p className="font-poppins font-semibold text-neutral-950 text-sm">
+                    <p className="font-satoshi font-semibold text-neutral-950 text-sm">
                       {item.name}
                     </p>
                     <p className="text-xs text-primary-600 font-medium">{item.role}</p>

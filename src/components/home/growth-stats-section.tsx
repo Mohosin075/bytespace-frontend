@@ -32,7 +32,7 @@ export function GrowthStatsSection() {
             <div className="pt-6 grid grid-cols-3 gap-6 border-t border-neutral-100">
               {STATS.map((stat) => (
                 <div key={stat.label}>
-                  <p className="font-poppins font-bold text-3xl sm:text-4xl text-neutral-950">
+                  <p className="font-satoshi font-bold text-3xl sm:text-4xl text-neutral-950">
                     {stat.value}
                   </p>
                   <p className="text-xs sm:text-sm text-neutral-500 mt-1 font-medium">
@@ -66,7 +66,7 @@ export function GrowthStatsSection() {
                   <span className="bg-neutral-100 px-2 py-0.5 rounded-full">17 Lessons</span>
                   <span className="bg-neutral-100 px-2 py-0.5 rounded-full">2 hours 16 mins</span>
                 </div>
-                <p className="font-poppins font-semibold text-xs leading-snug">Learn Figma from Basic</p>
+                <p className="font-satoshi font-semibold text-xs leading-snug">Learn Figma from Basic</p>
                 <p className="text-[10px] text-primary-600 font-medium mt-0.5">by purepearl studio</p>
                 <div className="mt-2 pt-1 border-t border-neutral-100 flex items-center justify-between text-xs">
                   <span className="text-[10px] text-neutral-600">Beginner</span>
@@ -77,7 +77,7 @@ export function GrowthStatsSection() {
               {/* Overlaid Progress Card */}
               <div className="absolute bottom-6 -right-6 bg-white rounded-2xl p-4 shadow-xl border border-neutral-100 w-48">
                 <p className="text-xs text-neutral-500 font-medium">Learning Progress</p>
-                <p className="font-poppins font-bold text-2xl text-neutral-900 mt-0.5">55%</p>
+                <p className="font-satoshi font-bold text-2xl text-neutral-900 mt-0.5">55%</p>
                 <div className="w-full bg-neutral-100 h-2 rounded-full mt-2 overflow-hidden">
                   <div className="bg-secondary-500 h-full rounded-full w-[55%]" />
                 </div>

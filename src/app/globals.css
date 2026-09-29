@@ -15,10 +15,10 @@
      Poppins: loaded via Next.js next/font/google (CSS variable --font-poppins injected in layout.tsx)
      Satoshi: loaded via @import from Fontshare above
   ------------------------------------------------------------------ */
-  --font-clash: 'Clash Display', sans-serif;
-  --font-poppins: var(--font-poppins), 'Poppins', sans-serif;
-  --font-satoshi: 'Satoshi', sans-serif;
-  --font-sans: 'Satoshi', sans-serif;
+  --font-clash: 'Clash Display';
+  --font-poppins: var(--font-poppins), 'Poppins';
+  --font-satoshi: 'Satoshi';
+  --font-sans: 'Satoshi';
 
   /* ------------------------------------------------------------------
      Neutral Palette — "Black" (Spacing (2).png)
@@ -90,7 +90,7 @@
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: 'Satoshi', sans-serif;
+  font-family: 'Satoshi';
   margin: 0;
   padding: 0;
 }
@@ -123,28 +123,28 @@ body {
 
 /* --- Headings (Poppins SemiBold) --- */
 .heading-l {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins';
   font-weight: 600;
   font-size: 72px;
   line-height: 1.2; /* 120% */
 }
 
 .heading-m {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins';
   font-weight: 600;
   font-size: 44px;
   line-height: 1.2;
 }
 
 .heading-s {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins';
   font-weight: 600;
   font-size: 36px;
   line-height: 1.2;
 }
 
 .heading-xs {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins';
   font-weight: 600;
   font-size: 20px;
   line-height: 1.2;
@@ -152,28 +152,28 @@ body {
 
 /* --- Body (Satoshi Regular) --- */
 .body-l {
-  font-family: 'Satoshi', sans-serif;
+  font-family: 'Satoshi';
   font-weight: 400;
   font-size: 18px;
   line-height: 1.6; /* 160% */
 }
 
 .body-m {
-  font-family: 'Satoshi', sans-serif;
+  font-family: 'Satoshi';
   font-weight: 400;
   font-size: 16px;
   line-height: 1.6;
 }
 
 .body-s {
-  font-family: 'Satoshi', sans-serif;
+  font-family: 'Satoshi';
   font-weight: 400;
   font-size: 14px;
   line-height: 1.6;
 }
 
 .body-xs {
-  font-family: 'Satoshi', sans-serif;
+  font-family: 'Satoshi';
   font-weight: 400;
   font-size: 12px;
   line-height: 1.6;
@@ -181,28 +181,28 @@ body {
 
 /* --- Labels (Satoshi Medium) --- */
 .label-l {
-  font-family: 'Satoshi', sans-serif;
+  font-family: 'Satoshi';
   font-weight: 500;
   font-size: 18px;
   line-height: 1.2;
 }
 
 .label-m {
-  font-family: 'Satoshi', sans-serif;
+  font-family: 'Satoshi';
   font-weight: 500;
   font-size: 16px;
   line-height: 1.2;
 }
 
 .label-s {
-  font-family: 'Satoshi', sans-serif;
+  font-family: 'Satoshi';
   font-weight: 500;
   font-size: 14px;
   line-height: 1.2;
 }
 
 .label-xs {
-  font-family: 'Satoshi', sans-serif;
+  font-family: 'Satoshi';
   font-weight: 500;
   font-size: 12px;
   line-height: 1.2;
@@ -258,4 +258,16 @@ body {
     linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
   background-size: 72px 72px;
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 

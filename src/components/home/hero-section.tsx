@@ -24,7 +24,7 @@ export function HeroSection() {
           Get Access to Hundreds <br />
           Courses Available
         </h1>
-        <p className="mt-5 text-white/85 text-sm sm:text-base md:text-lg max-w-2xl mx-auto font-normal">
+        <p className="mt-5 font-satoshi font-normal text-[18px] leading-[160%] tracking-normal text-white/85 max-w-2xl mx-auto text-center">
           Unlock your creativity, gain valuable knowledge, and grow your business with our wide range of courses.
         </p>
 

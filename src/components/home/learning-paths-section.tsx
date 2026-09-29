@@ -44,7 +44,7 @@ export function LearningPathsSection() {
                   className="w-full h-full object-contain"
                 />
               </div>
-              <span className="font-poppins font-semibold text-neutral-900 text-sm">
+              <span className="font-satoshi font-semibold text-neutral-900 text-sm">
                 {path.title}
               </span>
             </Link>

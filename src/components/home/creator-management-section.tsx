@@ -37,7 +37,7 @@ export function CreatorManagementSection() {
               <div className="absolute top-4 -left-6 bg-primary-600 text-white rounded-2xl p-4 shadow-2xl w-44">
                 <p className="text-[11px] text-white/80 font-medium">Total Revenue</p>
                 <p className="text-[10px] text-white/60">July 1-28</p>
-                <p className="font-poppins font-bold text-xl mt-1">$120.29</p>
+                <p className="font-satoshi font-bold text-xl mt-1">$120.29</p>
               </div>
 
               {/* Year to Date Badge */}
@@ -45,7 +45,7 @@ export function CreatorManagementSection() {
                 <p className="text-[11px] text-white/80 font-medium">Year to Date</p>
                 <p className="text-[10px] text-white/60">2023</p>
                 <div className="flex items-center justify-between mt-1">
-                  <p className="font-poppins font-bold text-xl">$1,200.38</p>
+                  <p className="font-satoshi font-bold text-xl">$1,200.38</p>
                   <span className="text-[10px] bg-secondary-500 text-black font-bold px-1.5 py-0.5 rounded-full">+12%</span>
                 </div>
               </div>
@@ -53,7 +53,7 @@ export function CreatorManagementSection() {
               {/* Happy Students Badge */}
               <div className="absolute -bottom-4 right-2 bg-white rounded-2xl p-3.5 shadow-2xl border border-neutral-100">
                 <div className="flex items-center gap-1.5">
-                  <p className="font-poppins font-semibold text-xs text-neutral-900">Happy Students</p>
+                  <p className="font-satoshi font-semibold text-xs text-neutral-900">Happy Students</p>
                   <div className="flex items-center text-[11px] font-bold text-neutral-900">
                     <span>4.5</span>
                     <span className="text-neutral-400 font-normal ml-0.5">(240)</span>
