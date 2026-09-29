@@ -45,43 +45,57 @@ export default function HomePage() {
           Large lime semicircle at bottom center
           Student centered on circle with 3 floating cards
           ========================================================================= */}
-      <section className="bg-hero-grid relative overflow-hidden text-white" style={{ minHeight: '760px' }}>
+      <section className="bg-hero-grid relative overflow-hidden text-white" style={{ minHeight: '780px' }}>
         <Navbar variant="blue" />
 
-        {/* ── 3D Floating Graphic Elements from Figma ── */}
-        {/* TOP-LEFT: Lime wavy ribbon */}
-        <div className="absolute top-10 left-4 xl:left-14 w-[160px] xl:w-[200px] pointer-events-none z-10">
+        {/* ══════════════════════════════════════════════════════════════════
+            ALL 6 FLOATING 3D SHAPE ELEMENTS
+            Positions matched pixel-perfect to reference design image.
+            Reference canvas: 1024×636px hero section
+
+            LEFT SIDE:
+              left1 (lime wavy ribbon):  left edge, top ~18%
+              left2 (white O/ring):      left ~10%, vertically centered ~45%
+              left3 (white donut):       left ~3%, bottom ~5%
+
+            RIGHT SIDE:
+              right1 (lime capsule):     right edge, top ~12%
+              right2 (white triangle):   right ~11%, top ~38%
+              right3 (white wavy):       right ~2%, bottom ~5%
+        ══════════════════════════════════════════════════════════════════ */}
+
+        {/* TOP-LEFT: Lime wavy ribbon — left1.svg */}
+        <div className="absolute pointer-events-none" style={{ left: '0', top: '18%', width: '12%', minWidth: '90px', maxWidth: '180px', zIndex: 10 }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/hero/left1.svg" alt="3D Lime Ribbon" className="w-full h-auto drop-shadow-2xl" />
         </div>
 
-        {/* MID-LEFT: White wavy ribbon */}
-        <div className="absolute top-[55%] left-[8%] xl:left-[12%] w-[85px] xl:w-[100px] pointer-events-none z-10 -rotate-6">
-          <svg viewBox="0 0 100 120" fill="none" className="w-full h-full drop-shadow-xl">
-            <path d="M 15 20 Q 90 25 70 60 Q 15 95 80 105" stroke="#ffffff" strokeWidth="22" strokeLinecap="round" />
-          </svg>
-        </div>
-
-        {/* BOTTOM-LEFT: Giant white torus ring */}
-        <div className="absolute bottom-4 -left-10 xl:left-4 w-[140px] xl:w-[170px] pointer-events-none z-20">
+        {/* MID-LEFT: White 3D ring/O shape — left2.svg */}
+        <div className="absolute pointer-events-none" style={{ left: '7%', top: '42%', width: '20%', minWidth: '110px', maxWidth: '240px', zIndex: 10 }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/hero/left2.svg" alt="3D White Donut" className="w-full h-auto drop-shadow-2xl" />
+          <img src="/hero/left2.svg" alt="3D White Ring" className="w-full h-auto drop-shadow-2xl" />
         </div>
 
-        {/* TOP-RIGHT: Lime tall capsule/cylinder */}
-        <div className="absolute top-6 right-6 xl:right-16 w-[130px] xl:w-[170px] pointer-events-none z-10">
+        {/* BOTTOM-LEFT: White 3D donut/torus — left3.svg */}
+        <div className="absolute pointer-events-none" style={{ left: '3%', bottom: '5%', width: '17%', minWidth: '110px', maxWidth: '220px', zIndex: 20 }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/hero/left3.svg" alt="3D White Donut" className="w-full h-auto drop-shadow-2xl" />
+        </div>
+
+        {/* TOP-RIGHT: Lime tall capsule/cylinder — right1.svg */}
+        <div className="absolute pointer-events-none" style={{ right: '0', top: '12%', width: '10%', minWidth: '80px', maxWidth: '160px', zIndex: 10 }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/hero/right1.svg" alt="3D Lime Capsule" className="w-full h-auto drop-shadow-2xl" />
         </div>
 
-        {/* MID-RIGHT: White 3D triangle / pyramid */}
-        <div className="absolute top-[38%] right-[8%] xl:right-[13%] w-[110px] xl:w-[140px] pointer-events-none z-10">
+        {/* MID-RIGHT: White 3D triangle/pyramid — right2.svg */}
+        <div className="absolute pointer-events-none" style={{ right: '11%', top: '38%', width: '19%', minWidth: '100px', maxWidth: '240px', zIndex: 10 }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/hero/right2.svg" alt="3D White Pyramid" className="w-full h-auto drop-shadow-2xl" />
+          <img src="/hero/right2.svg" alt="3D White Triangle" className="w-full h-auto drop-shadow-2xl" />
         </div>
 
-        {/* BOTTOM-RIGHT: White wavy ribbon */}
-        <div className="absolute bottom-8 right-6 xl:right-14 w-[160px] xl:w-[220px] pointer-events-none z-20">
+        {/* BOTTOM-RIGHT: White wavy helical ribbon — right3.svg */}
+        <div className="absolute pointer-events-none" style={{ right: '2%', bottom: '5%', width: '23%', minWidth: '130px', maxWidth: '300px', zIndex: 20 }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/hero/right3.svg" alt="3D White Wave" className="w-full h-auto drop-shadow-2xl" />
         </div>
@@ -116,20 +130,32 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* ── Hero Bottom Visual: Fixed 900px container — all positions match reference ── */}
-        <div className="relative w-full flex justify-center overflow-visible" style={{ height: '440px', marginTop: '40px' }}>
+        {/* ══════════════════════════════════════════════════════════════════
+            HERO BOTTOM VISUAL STAGE
+            Fixed 960px wide stage centered in section.
+            Layer order (bottom → top):
+              z-0  : Lime green circle (centerbackshpae.svg)
+              z-10 : Boy/student image (centerman.svg)
+              z-30 : Floating info cards
+        ══════════════════════════════════════════════════════════════════ */}
+        <div className="relative w-full flex justify-center overflow-visible" style={{ height: '460px', marginTop: '36px' }}>
+          <div className="relative" style={{ width: '960px', height: '460px' }}>
 
-          {/* Fixed-width inner stage — everything positioned relative to this */}
-          <div className="relative" style={{ width: '900px', height: '440px' }}>
-
-            {/* Giant lime circle arch from Figma */}
+            {/* ── Lime green full circle backdrop ──
+                The SVG is a circle centered at cx=574.5, cy=574.5 with r=414.5 + stroke-width=320.
+                Outer radius = 414.5 + 160 = 574.5px  → matches the SVG viewBox width (1149px = 2×574.5).
+                We need the TOP HALF only visible. Position it so its vertical center
+                sits at the bottom edge of the 460px stage → top = 460 - 574px ≈ -114px.
+                Width = 960px so it fills the stage exactly. */}
             <div
-              className="absolute pointer-events-none z-0"
+              className="absolute pointer-events-none"
               style={{
-                width: '880px',
+                width: '860px',
                 left: '50%',
                 transform: 'translateX(-50%)',
-                bottom: 0,
+                bottom: '-30px',
+                zIndex: 0,
+                overflow: 'hidden',
               }}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -140,14 +166,17 @@ export default function HomePage() {
               />
             </div>
 
-            {/* Student photo from Figma cutout */}
+            {/* ── Student / Boy image ──
+                Centered horizontally, anchored to bottom of stage.
+                Width slightly narrower than lime circle so circle peeks out on sides. */}
             <div
-              className="absolute z-10"
+              className="absolute"
               style={{
-                width: '520px',
+                width: '480px',
                 left: '50%',
                 transform: 'translateX(-50%)',
-                bottom: 0,
+                bottom: '0',
+                zIndex: 10,
               }}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -155,59 +184,51 @@ export default function HomePage() {
                 src="/hero/centerman.svg"
                 alt="Student with headphones holding laptop"
                 className="w-full h-auto object-contain"
+                style={{ display: 'block' }}
               />
             </div>
 
-            {/* ── Card 1: UI/UX Design — LEFT side of student ── */}
-            {/* In reference: card left edge ~100px from left of 900px stage, top ~120px */}
+            {/* ── Card 1: UI/UX Design (top-left of stage) ── */}
             <div
               className="absolute z-30 bg-white rounded-2xl border border-neutral-100 text-left"
               style={{
-                left: '60px',
-                top: '110px',
+                left: '40px',
+                top: '90px',
                 padding: '14px 18px',
-                minWidth: '200px',
-                boxShadow: '0 8px 32px rgba(0,0,0,0.15)',
+                minWidth: '210px',
+                boxShadow: '0 8px 32px rgba(0,0,0,0.13)',
               }}
             >
-              <p style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700, fontSize: '14px', color: '#1a1a1a' }}>
-                UI/UX Design
-              </p>
-              <p style={{ fontSize: '12px', color: '#888', marginTop: '4px' }}>
-                200 Courses • 1000+ Students
-              </p>
+              <p style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700, fontSize: '14px', color: '#1a1a1a' }}>UI/UX Design</p>
+              <p style={{ fontSize: '12px', color: '#888', marginTop: '4px' }}>200 Courses • 1000+ Students</p>
             </div>
 
-            {/* ── Card 2: Learning Progress 55% — RIGHT side of student ── */}
-            {/* In reference: card right edge ~100px from right of 900px stage, top ~100px */}
+            {/* ── Card 2: Learning Progress 55% (top-right of stage) ── */}
             <div
               className="absolute z-30 bg-white rounded-2xl border border-neutral-100 text-left"
               style={{
-                right: '55px',
-                top: '95px',
-                padding: '14px 18px',
-                minWidth: '185px',
-                boxShadow: '0 8px 32px rgba(0,0,0,0.15)',
+                right: '40px',
+                top: '80px',
+                padding: '14px 20px',
+                minWidth: '190px',
+                boxShadow: '0 8px 32px rgba(0,0,0,0.13)',
               }}
             >
               <p style={{ fontSize: '11px', color: '#888', fontWeight: 500 }}>Learning Progress</p>
-              <p style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700, fontSize: '34px', lineHeight: 1, marginTop: '4px', color: '#111' }}>
-                55%
-              </p>
+              <p style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700, fontSize: '34px', lineHeight: 1, marginTop: '4px', color: '#111' }}>55%</p>
               <div style={{ width: '100%', background: '#f0f0f0', borderRadius: '99px', height: '6px', marginTop: '10px', overflow: 'hidden' }}>
                 <div style={{ width: '55%', height: '100%', background: '#cbfc01', borderRadius: '99px' }} />
               </div>
             </div>
 
-            {/* ── Card 3: Happy Students — BOTTOM LEFT ── */}
-            {/* In reference: card sits low left, bottom edge touches lime circle top */}
+            {/* ── Card 3: Happy Students (bottom-left of stage) ── */}
             <div
               className="absolute z-30 bg-white rounded-2xl border border-neutral-100 text-left"
               style={{
-                left: '80px',
-                bottom: '70px',
+                left: '40px',
+                bottom: '60px',
                 padding: '12px 16px',
-                boxShadow: '0 8px 32px rgba(0,0,0,0.15)',
+                boxShadow: '0 8px 32px rgba(0,0,0,0.13)',
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
