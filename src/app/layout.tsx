@@ -63,7 +63,7 @@ const satoshi = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL('https://bytespace-frontend-indol.vercel.app'),
   title: {
-    default: 'ByteSpace — Modern E-Learning & Digital Course Platform',
+    default: 'ByteSpace — E-Learning Platform',
     template: '%s | ByteSpace',
   },
   description:

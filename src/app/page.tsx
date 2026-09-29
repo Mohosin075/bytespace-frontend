@@ -9,7 +9,7 @@ import { TestimonialsSection } from '@/components/home/testimonials-section';
 import { Footer } from '@/components/shared/footer';
 
 export const metadata: Metadata = {
-  title: 'ByteSpace — Modern E-Learning & Digital Course Platform',
+  title: 'ByteSpace — E-Learning Platform',
   description:
     'Unlock your creativity and level up your skills with hundreds of interactive online courses in UI/UX design, web development, marketing, and business taught by top industry creators.',
 };
