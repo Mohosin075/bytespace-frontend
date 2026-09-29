@@ -1,5 +1,6 @@
 import React from 'react';
 import { DecorativeSquiggle } from '@/components/ui/decorative-squiggle';
+import { SectionTitle, SectionSubtitle } from '@/components/ui/section-header';
 
 interface StatItem {
   value: string;
@@ -19,13 +20,13 @@ export function GrowthStatsSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Left Content */}
           <div className="lg:col-span-6 space-y-6">
-            <h2 className="font-poppins font-bold text-3xl sm:text-4xl md:text-[44px] text-neutral-950 leading-tight">
+            <SectionTitle className="text-left">
               Your Path to Professional Growth Starts Here!
-            </h2>
+            </SectionTitle>
 
-            <p className="text-neutral-600 text-base leading-relaxed">
+            <SectionSubtitle className="text-left">
               Explore our curated selection of courses tailored to enhance your capabilities and accelerate your career journey. Whether you are looking to sharpen specific skills, gain industry expertise, or embark on a new career path entirely, we have the resources you need.
-            </p>
+            </SectionSubtitle>
 
             {/* Stats Row */}
             <div className="pt-6 grid grid-cols-3 gap-6 border-t border-neutral-100">

@@ -1,5 +1,6 @@
 import React from 'react';
 import { MOCK_TESTIMONIALS } from '@/constants/mock-data';
+import { SectionTitle, SectionSubtitle } from '@/components/ui/section-header';
 
 export function TestimonialsSection() {
   return (
@@ -7,14 +8,14 @@ export function TestimonialsSection() {
       <div className="layout-container">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-16">
           <div className="lg:col-span-5">
-            <h2 className="font-poppins font-bold text-3xl sm:text-4xl text-neutral-950 leading-tight">
+            <SectionTitle className="text-left">
               Discover What Our <br /> Community Is Saying
-            </h2>
+            </SectionTitle>
           </div>
           <div className="lg:col-span-7">
-            <p className="text-neutral-700 text-[15px] leading-relaxed">
+            <SectionSubtitle className="text-left">
               At ByteSpace, our vibrant community of learners and creators is at the heart of what we do. Hear directly from those who have experienced the transformative journey of learning and creating on our platform. Explore testimonials that reflect the diverse perspectives of enthusiastic learners and accomplished creators.
-            </p>
+            </SectionSubtitle>
           </div>
         </div>
 

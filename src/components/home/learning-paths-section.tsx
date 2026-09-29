@@ -10,6 +10,7 @@ import {
   LucideIcon,
 } from 'lucide-react';
 import { ROUTES } from '@/constants/routes';
+import { SectionHeader } from '@/components/ui/section-header';
 
 interface LearningPath {
   title: string;
@@ -29,14 +30,10 @@ export function LearningPathsSection() {
   return (
     <section className="py-20 bg-neutral-50/60 border-t border-b border-neutral-200/80">
       <div className="layout-container text-center">
-        <div className="max-w-3xl mx-auto space-y-4">
-          <h2 className="font-poppins font-bold text-3xl sm:text-4xl text-neutral-950">
-            Explore Diverse Learning Paths at Bytespace
-          </h2>
-          <p className="text-neutral-600 text-[15px] leading-relaxed">
-            At Bytespace, we believe in empowering individuals through knowledge. Our diverse range of courses spans various fields, ensuring there&apos;s something for everyone. Unleash your potential and explore our carefully curated categories.
-          </p>
-        </div>
+        <SectionHeader
+          title="Explore Diverse Learning Paths at Bytespace"
+          subtitle="At Bytespace, we believe in empowering individuals through knowledge. Our diverse range of courses spans various fields, ensuring there's something for everyone. Unleash your potential and explore our carefully curated categories."
+        />
 
         {/* Category Icon Cards Grid */}
         <div className="mt-14 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">

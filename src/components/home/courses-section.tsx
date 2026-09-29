@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
+import { SectionHeader } from '@/components/ui/section-header';
 import { CourseCard } from '@/components/ui/course-card';
 import { MOCK_COURSES, CATEGORIES } from '@/constants/mock-data';
 
@@ -18,14 +19,14 @@ export function CoursesSection() {
     <section className="py-24 bg-white">
       <div className="layout-container">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4">
-          <h2 className="font-poppins font-bold text-3xl sm:text-4xl md:text-[44px] text-neutral-950 leading-tight">
-            Discover Your Passion, <br className="hidden sm:inline" /> Build Your Skills
-          </h2>
-          <p className="text-neutral-600 text-[15px] leading-relaxed">
-            At Bytespace Courses, we bring you closer to life-changing knowledge. Explore a variety of courses across different fields, from technology to the arts, and make a difference in your career and life.
-          </p>
-        </div>
+        <SectionHeader
+          title={
+            <>
+              Discover Your Passion, <br className="hidden sm:inline" /> Build Your Skills
+            </>
+          }
+          subtitle="At Bytespace Courses, we bring you closer to life-changing knowledge. Explore a variety of courses across different fields, from technology to the arts, and make a difference in your career and life."
+        />
 
         {/* Category Chips */}
         <div className="mt-10 flex flex-wrap items-center justify-center gap-2.5 max-w-5xl mx-auto">

@@ -2,6 +2,7 @@ import React from 'react';
 import { CheckCircle2, Star } from 'lucide-react';
 import { AvatarGroup } from '@/components/ui/avatar-group';
 import { DecorativeSquiggle } from '@/components/ui/decorative-squiggle';
+import { SectionTitle, SectionSubtitle } from '@/components/ui/section-header';
 
 const CHECKLIST_ITEMS = [
   'Share Your Expertise',
@@ -68,13 +69,13 @@ export function CreatorManagementSection() {
 
           {/* Right Content */}
           <div className="lg:col-span-6 space-y-6 order-1 lg:order-2">
-            <h2 className="font-poppins font-bold text-3xl sm:text-4xl md:text-[44px] text-neutral-950 leading-tight">
+            <SectionTitle className="text-left">
               Create &amp; Manage <br /> Courses Easily.
-            </h2>
+            </SectionTitle>
 
-            <p className="text-neutral-600 text-base leading-relaxed">
+            <SectionSubtitle className="text-left">
               <strong className="text-neutral-950 font-semibold">ByteSpace</strong> supports individuals or entities in the creation, publication, and administration of educational courses.
-            </p>
+            </SectionSubtitle>
 
             {/* Checklist */}
             <div className="space-y-4 pt-2">
