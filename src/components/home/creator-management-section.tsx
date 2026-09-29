@@ -50,12 +50,12 @@ export function CreatorManagementSection() {
             </div>
 
             {/* Lime squiggle icon — right-center, behind creator */}
-            <div className="absolute top-[140px] right-[30px] sm:right-[50px] z-10 w-[90px] sm:w-[105px] pointer-events-none">
+            <div className="absolute top-[130px] right-[25px] sm:right-[45px] z-10 w-[95px] sm:w-[110px] pointer-events-none">
               <Image
                 src="/growth/icon-growth.svg"
                 alt="Lime squiggle shape"
-                width={105}
-                height={130}
+                width={110}
+                height={135}
                 className="w-full h-auto object-contain"
                 priority
               />
