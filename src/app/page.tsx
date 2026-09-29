@@ -45,27 +45,29 @@ export default function HomePage() {
           Large lime semicircle at bottom center
           Student centered on circle with 3 floating cards
           ========================================================================= */}
-      <section className="bg-hero-grid relative overflow-hidden text-white" style={{ minHeight: '760px' }}>
+      <section className="bg-hero-grid relative overflow-hidden text-white" style={{ minHeight: '780px' }}>
         <Navbar variant="blue" />
 
         {/* ── 3D Floating Graphic Elements from Figma ── */}
         {/* TOP-LEFT: Lime wavy ribbon */}
-        <div className="absolute top-10 left-4 xl:left-14 w-[160px] xl:w-[200px] pointer-events-none z-10">
+        <div className="absolute top-8 left-4 xl:left-14 w-[160px] xl:w-[200px] pointer-events-none z-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/hero/left1.svg" alt="3D Lime Ribbon" className="w-full h-auto drop-shadow-2xl" />
         </div>
 
-        {/* MID-LEFT: White wavy ribbon */}
-        <div className="absolute top-[55%] left-[8%] xl:left-[12%] w-[85px] xl:w-[100px] pointer-events-none z-10 -rotate-6">
-          <svg viewBox="0 0 100 120" fill="none" className="w-full h-full drop-shadow-xl">
-            <path d="M 15 20 Q 90 25 70 60 Q 15 95 80 105" stroke="#ffffff" strokeWidth="22" strokeLinecap="round" />
-          </svg>
+        {/* MID-LEFT: White 3D coiled spring from Figma */}
+        <div className="absolute top-[34%] left-[10%] xl:left-[13%] w-[95px] md:w-[115px] xl:w-[135px] pointer-events-none z-10">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/hero/left2.svg" alt="3D White Spring" className="w-full h-auto drop-shadow-2xl" />
         </div>
 
-        {/* BOTTOM-LEFT: Giant white torus ring */}
-        <div className="absolute bottom-4 -left-10 xl:left-4 w-[140px] xl:w-[170px] pointer-events-none z-20">
+        {/* BOTTOM-LEFT: Dark blue circle behind donut (exact match to Figma reference) */}
+        <div className="absolute -bottom-8 -left-8 md:left-2 xl:left-8 w-[220px] md:w-[260px] xl:w-[300px] h-[220px] md:h-[260px] xl:h-[300px] rounded-full bg-[#032eab] pointer-events-none z-10" />
+
+        {/* BOTTOM-LEFT: Giant white torus ring from Figma */}
+        <div className="absolute -bottom-4 -left-6 md:left-2 xl:left-8 w-[160px] md:w-[195px] xl:w-[225px] pointer-events-none z-20">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/hero/left2.svg" alt="3D White Donut" className="w-full h-auto drop-shadow-2xl" />
+          <img src="/hero/left3.svg" alt="3D White Donut" className="w-full h-auto drop-shadow-2xl" />
         </div>
 
         {/* TOP-RIGHT: Lime tall capsule/cylinder */}
@@ -75,13 +77,13 @@ export default function HomePage() {
         </div>
 
         {/* MID-RIGHT: White 3D triangle / pyramid */}
-        <div className="absolute top-[38%] right-[8%] xl:right-[13%] w-[110px] xl:w-[140px] pointer-events-none z-10">
+        <div className="absolute top-[36%] right-[8%] xl:right-[13%] w-[110px] xl:w-[140px] pointer-events-none z-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/hero/right2.svg" alt="3D White Pyramid" className="w-full h-auto drop-shadow-2xl" />
         </div>
 
-        {/* BOTTOM-RIGHT: White wavy ribbon */}
-        <div className="absolute bottom-8 right-6 xl:right-14 w-[160px] xl:w-[220px] pointer-events-none z-20">
+        {/* BOTTOM-RIGHT: White wavy helical ribbon */}
+        <div className="absolute bottom-6 right-6 xl:right-14 w-[160px] xl:w-[220px] pointer-events-none z-20">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/hero/right3.svg" alt="3D White Wave" className="w-full h-auto drop-shadow-2xl" />
         </div>
@@ -116,17 +118,30 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* ── Hero Bottom Visual: Fixed 900px container — all positions match reference ── */}
-        <div className="relative w-full flex justify-center overflow-visible" style={{ height: '440px', marginTop: '40px' }}>
+        {/* ── Hero Bottom Visual: Fixed stage with centered arch and elements ── */}
+        <div className="relative w-full flex justify-center overflow-visible" style={{ height: '450px', marginTop: '40px' }}>
 
           {/* Fixed-width inner stage — everything positioned relative to this */}
-          <div className="relative" style={{ width: '900px', height: '440px' }}>
+          <div className="relative" style={{ width: '960px', height: '450px' }}>
+
+            {/* Dark blue inner circle at bottom center inside lime arch */}
+            <div
+              className="absolute pointer-events-none rounded-full bg-[#032eab]"
+              style={{
+                width: '420px',
+                height: '420px',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                bottom: '-120px',
+                zIndex: 1,
+              }}
+            />
 
             {/* Giant lime circle arch from Figma */}
             <div
               className="absolute pointer-events-none z-0"
               style={{
-                width: '880px',
+                width: '960px',
                 left: '50%',
                 transform: 'translateX(-50%)',
                 bottom: 0,
@@ -144,7 +159,7 @@ export default function HomePage() {
             <div
               className="absolute z-10"
               style={{
-                width: '520px',
+                width: '530px',
                 left: '50%',
                 transform: 'translateX(-50%)',
                 bottom: 0,
@@ -159,11 +174,10 @@ export default function HomePage() {
             </div>
 
             {/* ── Card 1: UI/UX Design — LEFT side of student ── */}
-            {/* In reference: card left edge ~100px from left of 900px stage, top ~120px */}
             <div
               className="absolute z-30 bg-white rounded-2xl border border-neutral-100 text-left"
               style={{
-                left: '60px',
+                left: '70px',
                 top: '110px',
                 padding: '14px 18px',
                 minWidth: '200px',
@@ -179,11 +193,10 @@ export default function HomePage() {
             </div>
 
             {/* ── Card 2: Learning Progress 55% — RIGHT side of student ── */}
-            {/* In reference: card right edge ~100px from right of 900px stage, top ~100px */}
             <div
               className="absolute z-30 bg-white rounded-2xl border border-neutral-100 text-left"
               style={{
-                right: '55px',
+                right: '65px',
                 top: '95px',
                 padding: '14px 18px',
                 minWidth: '185px',
@@ -200,11 +213,10 @@ export default function HomePage() {
             </div>
 
             {/* ── Card 3: Happy Students — BOTTOM LEFT ── */}
-            {/* In reference: card sits low left, bottom edge touches lime circle top */}
             <div
               className="absolute z-30 bg-white rounded-2xl border border-neutral-100 text-left"
               style={{
-                left: '80px',
+                left: '70px',
                 bottom: '70px',
                 padding: '12px 16px',
                 boxShadow: '0 8px 32px rgba(0,0,0,0.15)',
