@@ -13,7 +13,7 @@ export function Logo({ variant = 'light', className = '', iconOnly = false }: Lo
   return (
     <Link href={ROUTES.HOME} className={`inline-flex items-center gap-2 group ${className}`}>
       {/* Lime 'b' icon */}
-      <div className="w-8 h-8 rounded-full bg-[#cbfc01] flex items-center justify-center font-bold text-black text-xl shadow-sm transform group-hover:scale-105 transition-transform duration-200">
+      <div className="w-8 h-8 rounded-full bg-secondary-500 flex items-center justify-center font-bold text-black text-xl shadow-sm transform group-hover:scale-105 transition-transform duration-200">
         <svg
           viewBox="0 0 24 24"
           fill="none"
@@ -30,7 +30,7 @@ export function Logo({ variant = 'light', className = '', iconOnly = false }: Lo
       {!iconOnly && (
         <span
           className={`font-poppins font-bold text-xl tracking-tight transition-colors ${
-            isLight ? 'text-white' : 'text-[#242528]'
+            isLight ? 'text-white' : 'text-neutral-950'
           }`}
         >
           ByteSpace

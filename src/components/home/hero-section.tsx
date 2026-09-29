@@ -41,7 +41,7 @@ export function HeroSection() {
             />
             <Link
               href={ROUTES.COURSES}
-              className="px-7 py-3 rounded-full bg-[#cbfc01] text-black font-semibold text-sm hover:brightness-95 active:scale-95 transition-all cursor-pointer whitespace-nowrap"
+              className="px-7 py-3 rounded-full bg-secondary-500 text-black font-semibold text-sm hover:brightness-95 active:scale-95 transition-all cursor-pointer whitespace-nowrap"
             >
               Search
             </Link>

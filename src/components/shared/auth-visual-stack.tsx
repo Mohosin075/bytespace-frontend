@@ -69,7 +69,7 @@ export function AuthVisualStack({ title, subtitle }: AuthVisualStackProps) {
             </p>
             <div className="flex items-center gap-1 text-xs font-semibold text-neutral-900">
               <span>4.5</span>
-              <Star className="w-3.5 h-3.5 fill-[#fbbf24] text-[#fbbf24]" />
+              <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
             </div>
           </div>
           <p className="text-xs text-primary-600 font-medium mt-0.5">by purepearl studio</p>
@@ -89,7 +89,7 @@ export function AuthVisualStack({ title, subtitle }: AuthVisualStackProps) {
         </div>
 
         {/* Lime Card: Happy Students */}
-        <div className="relative z-10 -mt-6 ml-16 bg-[#cbfc01] text-black rounded-2xl p-3.5 shadow-xl border border-black/5 w-64">
+        <div className="relative z-10 -mt-6 ml-16 bg-secondary-500 text-black rounded-2xl p-3.5 shadow-xl border border-black/5 w-64">
           <div className="flex items-center justify-between">
             <p className="font-poppins font-bold text-xs">Happy Students</p>
             <div className="flex items-center text-[11px] font-bold">

@@ -30,7 +30,7 @@ export const MOCK_COURSES: Course[] = [
       name: 'purepearl studio',
       avatar: MOCK_CREATOR.avatar,
     },
-    image: 'https://images.unsplash.com/photo-1581291518655-9523c932694b?w=600&auto=format&fit=crop&q=80',
+    image: '/skill/skil1.jpg',
     lessonsCount: 17,
     duration: '2 hours 16 mins',
     commentsCount: 59,

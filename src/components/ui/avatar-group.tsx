@@ -39,7 +39,7 @@ export function AvatarGroup({
       {extraCount && (
         <div
           className={`rounded-full text-[10px] font-bold flex items-center justify-center border-2 border-white ${
-            isLime ? 'bg-[#cbfc01] text-black' : 'bg-black text-white'
+            isLime ? 'bg-secondary-500 text-black' : 'bg-black text-white'
           }`}
           style={{ width: `${size}px`, height: `${size}px` }}
         >

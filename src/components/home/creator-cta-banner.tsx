@@ -53,7 +53,7 @@ export function CreatorCtaBanner() {
         <div className="pt-4">
           <Link
             href={ROUTES.AUTH.REGISTER}
-            className="inline-block px-9 py-3.5 rounded-full bg-[#cbfc01] text-black font-semibold text-sm hover:brightness-95 active:scale-95 transition-all shadow-2xl"
+            className="inline-block px-9 py-3.5 rounded-full bg-secondary-500 text-black font-semibold text-sm hover:brightness-95 active:scale-95 transition-all shadow-2xl"
           >
             Join as Creator
           </Link>

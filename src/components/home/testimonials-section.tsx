@@ -4,8 +4,8 @@ import { SectionTitle, SectionSubtitle } from '@/components/ui/section-header';
 
 export function TestimonialsSection() {
   return (
-    <section className="py-24 bg-gradient-to-b from-secondary-100/50 via-secondary-50/30 to-white">
-      <div className="layout-container">
+    <section className="py-24 bg-white relative overflow-hidden bg-[radial-gradient(ellipse_70%_70%_at_100%_60%,rgba(203,252,1,0.28),transparent_70%)]">
+      <div className="layout-container relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-16">
           <div className="lg:col-span-5">
             <SectionTitle className="text-left">

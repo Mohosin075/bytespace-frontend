@@ -37,7 +37,7 @@ export function HeroStage() {
           <p className="text-xs text-neutral-500 font-medium">Learning Progress</p>
           <p className="font-poppins font-bold text-3xl leading-none mt-1 text-neutral-900">55%</p>
           <div className="w-full bg-neutral-100 rounded-full h-1.5 mt-2.5 overflow-hidden">
-            <div className="w-[55%] h-full bg-[#cbfc01] rounded-full" />
+            <div className="w-[55%] h-full bg-secondary-500 rounded-full" />
           </div>
         </div>
 
@@ -48,7 +48,7 @@ export function HeroStage() {
             <div className="flex items-center gap-0.5 text-xs">
               <span className="font-bold text-neutral-800">4.5</span>
               <span className="text-neutral-400">(240)</span>
-              <Star className="w-3 h-3 fill-[#fbbf24] text-[#fbbf24]" />
+              <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
             </div>
           </div>
           <div className="mt-2">
