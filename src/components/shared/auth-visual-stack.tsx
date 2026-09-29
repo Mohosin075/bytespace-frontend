@@ -75,11 +75,11 @@ export function AuthVisualStack({ title, subtitle }: AuthVisualStackProps) {
           <p className="text-xs text-primary-600 font-medium mt-0.5">by purepearl studio</p>
 
           <div className="mt-3 flex items-center justify-between">
-            <div className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-neutral-100 text-[11px] font-medium text-neutral-700">
-              <BarChart2 className="w-3 h-3 text-neutral-600" />
+            <div className="flex items-center gap-1.5 text-xs text-neutral-600 font-medium">
+              <BarChart2 className="w-3.5 h-3.5 text-neutral-600" />
               <span>Beginner</span>
             </div>
-            <AvatarGroup extraCount="26+" size={22} />
+            <AvatarGroup extraCount="26+" size={22} badgeBg="black" />
           </div>
 
           <div className="mt-3 pt-2 border-t border-neutral-100 flex items-baseline gap-1">
@@ -99,7 +99,7 @@ export function AuthVisualStack({ title, subtitle }: AuthVisualStackProps) {
             </div>
           </div>
           <div className="mt-2">
-            <AvatarGroup extraCount="2K+" size={24} />
+            <AvatarGroup extraCount="2K+" size={24} badgeBg="black" />
           </div>
         </div>
       </div>

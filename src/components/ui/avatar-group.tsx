@@ -4,6 +4,7 @@ interface AvatarGroupProps {
   avatars?: string[];
   extraCount?: string | number;
   size?: number;
+  badgeBg?: 'lime' | 'black';
 }
 
 export function AvatarGroup({
@@ -15,7 +16,10 @@ export function AvatarGroup({
   ],
   extraCount = '26+',
   size = 24,
+  badgeBg = 'lime',
 }: AvatarGroupProps) {
+  const isLime = badgeBg === 'lime';
+
   return (
     <div className="flex items-center -space-x-1.5">
       {avatars.slice(0, 4).map((src, i) => (
@@ -34,7 +38,9 @@ export function AvatarGroup({
       ))}
       {extraCount && (
         <div
-          className="rounded-full bg-black text-white text-[10px] font-bold flex items-center justify-center border-2 border-white"
+          className={`rounded-full text-[10px] font-bold flex items-center justify-center border-2 border-white ${
+            isLime ? 'bg-[#cbfc01] text-black' : 'bg-black text-white'
+          }`}
           style={{ width: `${size}px`, height: `${size}px` }}
         >
           {extraCount}

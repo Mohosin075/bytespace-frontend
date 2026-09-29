@@ -4,9 +4,10 @@ import { ROUTES } from '@/constants/routes';
 interface LogoProps {
   variant?: 'light' | 'dark';
   className?: string;
+  iconOnly?: boolean;
 }
 
-export function Logo({ variant = 'light', className = '' }: LogoProps) {
+export function Logo({ variant = 'light', className = '', iconOnly = false }: LogoProps) {
   const isLight = variant === 'light';
 
   return (
@@ -26,13 +27,15 @@ export function Logo({ variant = 'light', className = '' }: LogoProps) {
         </svg>
       </div>
 
-      <span
-        className={`font-poppins font-bold text-xl tracking-tight transition-colors ${
-          isLight ? 'text-white' : 'text-[#242528]'
-        }`}
-      >
-        ByteSpace
-      </span>
+      {!iconOnly && (
+        <span
+          className={`font-poppins font-bold text-xl tracking-tight transition-colors ${
+            isLight ? 'text-white' : 'text-[#242528]'
+          }`}
+        >
+          ByteSpace
+        </span>
+      )}
     </Link>
   );
 }

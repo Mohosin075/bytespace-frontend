@@ -72,11 +72,11 @@ export default function CreatorProfilePage() {
               {/* Stats Pills */}
               <div className="flex items-center gap-3 pt-2">
                 <div className="px-5 py-2 rounded-full bg-white text-neutral-900 text-xs font-semibold shadow-xs">
-                  <span className="text-primary-600 font-bold mr-1">{MOCK_CREATOR.productsCount}</span> Products
+                  <span className="text-neutral-950 font-bold mr-1">{MOCK_CREATOR.productsCount}</span> Products
                 </div>
 
                 <div className="px-5 py-2 rounded-full bg-white text-neutral-900 text-xs font-semibold shadow-xs">
-                  <span className="text-primary-600 font-bold mr-1">{followersCount}</span> Followers
+                  <span className="text-neutral-950 font-bold mr-1">{followersCount}</span> Followers
                 </div>
               </div>
             </div>

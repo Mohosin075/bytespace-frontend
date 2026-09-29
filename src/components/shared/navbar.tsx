@@ -63,10 +63,8 @@ export function Navbar({ variant = 'blue' }: NavbarProps) {
 
           <Link
             href={ROUTES.AUTH.REGISTER}
-            className={`text-[14px] font-medium px-5 py-2 rounded-full transition-all duration-200 ${
-              isBlue
-                ? 'border border-white/40 text-white hover:bg-white/10 hover:border-white'
-                : 'border border-neutral-300 text-neutral-800 hover:bg-neutral-100'
+            className={`text-[15px] font-medium transition-colors ${
+              isBlue ? 'text-white/90 hover:text-white' : 'text-neutral-700 hover:text-neutral-950'
             }`}
           >
             Join Us

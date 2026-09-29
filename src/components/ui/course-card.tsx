@@ -23,14 +23,14 @@ export function CourseCard({ course }: CourseCardProps) {
         />
 
         {/* Floating lesson & duration pills overlay */}
-        <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between gap-1">
-          <div className="px-3 py-1 rounded-full bg-white/80 backdrop-blur-md text-[11px] font-medium text-neutral-800 shadow-xs border border-white/40">
+        <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between gap-1">
+          <div className="px-2.5 py-1 rounded-full bg-neutral-200/85 backdrop-blur-xs text-[11px] font-medium text-neutral-800 shadow-xs">
             {course.lessonsCount} Lessons
           </div>
-          <div className="px-3 py-1 rounded-full bg-white/80 backdrop-blur-md text-[11px] font-medium text-neutral-800 shadow-xs border border-white/40">
+          <div className="px-2.5 py-1 rounded-full bg-neutral-200/85 backdrop-blur-xs text-[11px] font-medium text-neutral-800 shadow-xs">
             {course.duration}
           </div>
-          <div className="px-3 py-1 rounded-full bg-white/80 backdrop-blur-md text-[11px] font-medium text-neutral-800 shadow-xs border border-white/40">
+          <div className="px-2.5 py-1 rounded-full bg-neutral-200/85 backdrop-blur-xs text-[11px] font-medium text-neutral-800 shadow-xs">
             {course.commentsCount} Comments
           </div>
         </div>
@@ -66,12 +66,12 @@ export function CourseCard({ course }: CourseCardProps) {
 
         {/* Level and Avatar Group */}
         <div className="flex items-center justify-between pt-1">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-neutral-100 text-[11px] font-medium text-neutral-700">
-            <BarChart2 className="w-3 h-3 text-neutral-600" />
+          <div className="inline-flex items-center gap-1.5 text-xs text-neutral-600 font-medium">
+            <BarChart2 className="w-3.5 h-3.5 text-neutral-600" />
             <span>{course.level}</span>
           </div>
 
-          <AvatarGroup />
+          <AvatarGroup badgeBg="lime" />
         </div>
 
         {/* Price */}

@@ -135,35 +135,37 @@ export default function CoursesPage() {
         </div>
 
         {/* Pagination Bar */}
-        <div className="mt-16 flex items-center justify-center gap-3">
+        <div className="mt-16 flex items-center justify-center gap-4">
           <button
             onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-            className="w-10 h-10 rounded-full border border-neutral-300 flex items-center justify-center hover:bg-neutral-100 transition-colors cursor-pointer text-neutral-700"
+            className="w-9 h-9 rounded-full border border-neutral-300 flex items-center justify-center hover:bg-neutral-100 transition-colors cursor-pointer text-neutral-700"
             aria-label="Previous Page"
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
 
-          {[1, 2, 3, 4, 5].map((page) => {
-            const isActive = currentPage === page;
-            return (
-              <button
-                key={page}
-                onClick={() => setCurrentPage(page)}
-                className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold transition-all cursor-pointer ${
-                  isActive
-                    ? 'bg-neutral-950 text-white'
-                    : 'text-neutral-700 hover:bg-neutral-100'
-                }`}
-              >
-                {page}
-              </button>
-            );
-          })}
+          <div className="flex items-center gap-3">
+            {[1, 2, 3, 4, 5].map((page) => {
+              const isActive = currentPage === page;
+              return (
+                <button
+                  key={page}
+                  onClick={() => setCurrentPage(page)}
+                  className={`w-8 h-8 flex items-center justify-center text-sm font-semibold transition-colors cursor-pointer ${
+                    isActive
+                      ? 'text-neutral-950 font-bold'
+                      : 'text-neutral-500 font-medium hover:text-neutral-950'
+                  }`}
+                >
+                  {page}
+                </button>
+              );
+            })}
+          </div>
 
           <button
             onClick={() => setCurrentPage((p) => Math.min(5, p + 1))}
-            className="w-10 h-10 rounded-full border border-neutral-300 flex items-center justify-center hover:bg-neutral-100 transition-colors cursor-pointer text-neutral-700"
+            className="w-9 h-9 rounded-full border border-neutral-300 flex items-center justify-center hover:bg-neutral-100 transition-colors cursor-pointer text-neutral-700"
             aria-label="Next Page"
           >
             <ChevronRight className="w-4 h-4" />

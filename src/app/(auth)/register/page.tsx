@@ -25,9 +25,9 @@ export default function RegisterPage() {
 
   return (
     <div className="bg-hero-grid min-h-screen text-white relative flex flex-col justify-between p-6 sm:p-10 lg:p-14">
-      {/* Top Left Logo */}
+      {/* Top Left Logo Mark */}
       <div className="relative z-20">
-        <Logo variant="light" />
+        <Logo variant="light" iconOnly />
       </div>
 
       {/* Main Content Grid */}

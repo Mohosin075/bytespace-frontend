@@ -71,7 +71,7 @@ export default function CourseDetailPage() {
                 by{' '}
                 <Link
                   href={ROUTES.CREATOR_DETAIL('purepearl-studio')}
-                  className="text-[#cbfc01] font-semibold hover:underline"
+                  className="text-white font-medium hover:underline"
                 >
                   purepearl studio
                 </Link>
@@ -140,7 +140,7 @@ export default function CourseDetailPage() {
                 const isActive = activeTab === tab;
                 const tabNames = {
                   about: 'About',
-                  lessons: 'Lessons',
+                  lessons: 'Lesson',
                   reviews: 'Reviews',
                 };
                 return (

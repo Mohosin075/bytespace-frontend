@@ -48,96 +48,42 @@ export default function HomePage() {
       <section className="bg-hero-grid relative overflow-hidden text-white" style={{ minHeight: '760px' }}>
         <Navbar variant="blue" />
 
-        {/* ── 3D Floating Graphic Elements ── */}
-        {/* TOP-LEFT: Lime blob / snake shape */}
-        <div className="absolute top-14 left-6 xl:left-16 w-[140px] h-[180px] pointer-events-none z-10">
-          <svg viewBox="0 0 140 180" fill="none" className="w-full h-full drop-shadow-2xl">
-            <defs>
-              <linearGradient id="limeBlob" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#faffc5" />
-                <stop offset="40%" stopColor="#cbfc01" />
-                <stop offset="80%" stopColor="#8cb400" />
-                <stop offset="100%" stopColor="#546b09" />
-              </linearGradient>
-            </defs>
-            <path d="M 30 20 Q 140 30 110 70 Q 20 110 130 130 Q 30 170 120 170" stroke="url(#limeBlob)" strokeWidth="38" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
+        {/* ── 3D Floating Graphic Elements from Figma ── */}
+        {/* TOP-LEFT: Lime wavy ribbon */}
+        <div className="absolute top-10 left-4 xl:left-14 w-[160px] xl:w-[200px] pointer-events-none z-10">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/hero/left1.svg" alt="3D Lime Ribbon" className="w-full h-auto drop-shadow-2xl" />
         </div>
 
         {/* MID-LEFT: White wavy ribbon */}
-        <div className="absolute top-[58%] left-[9%] xl:left-[13%] w-[90px] h-[110px] pointer-events-none z-10 -rotate-12">
+        <div className="absolute top-[55%] left-[8%] xl:left-[12%] w-[85px] xl:w-[100px] pointer-events-none z-10 -rotate-6">
           <svg viewBox="0 0 100 120" fill="none" className="w-full h-full drop-shadow-xl">
-            <defs>
-              <linearGradient id="whiteWaveL" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#ffffff" />
-                <stop offset="70%" stopColor="#e2e8f0" />
-                <stop offset="100%" stopColor="#cbd5e1" />
-              </linearGradient>
-            </defs>
-            <path d="M 15 20 Q 90 25 70 60 Q 15 95 80 105" stroke="url(#whiteWaveL)" strokeWidth="22" strokeLinecap="round" />
+            <path d="M 15 20 Q 90 25 70 60 Q 15 95 80 105" stroke="#ffffff" strokeWidth="22" strokeLinecap="round" />
           </svg>
         </div>
 
         {/* BOTTOM-LEFT: Giant white torus ring */}
-        <div className="absolute bottom-0 -left-16 xl:-left-8 w-[220px] h-[220px] xl:w-[280px] xl:h-[280px] pointer-events-none z-20 -rotate-12">
-          <svg viewBox="0 0 240 240" fill="none" className="w-full h-full drop-shadow-2xl">
-            <defs>
-              <linearGradient id="whiteTorus" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#ffffff" />
-                <stop offset="50%" stopColor="#f8fafc" />
-                <stop offset="85%" stopColor="#e2e8f0" />
-                <stop offset="100%" stopColor="#cbd5e1" />
-              </linearGradient>
-            </defs>
-            <path d="M 120 16 A 104 104 0 1 0 120 224 A 104 104 0 1 0 120 16 M 120 64 A 56 56 0 1 1 120 176 A 56 56 0 1 1 120 64" fill="url(#whiteTorus)" />
-          </svg>
+        <div className="absolute bottom-4 -left-10 xl:left-4 w-[140px] xl:w-[170px] pointer-events-none z-20">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/hero/left2.svg" alt="3D White Donut" className="w-full h-auto drop-shadow-2xl" />
         </div>
 
         {/* TOP-RIGHT: Lime tall capsule/cylinder */}
-        <div className="absolute top-8 right-6 xl:right-16 w-[120px] h-[240px] xl:w-[140px] xl:h-[280px] pointer-events-none z-10 rotate-12">
-          <svg viewBox="0 0 120 260" fill="none" className="w-full h-full drop-shadow-2xl">
-            <defs>
-              <linearGradient id="limeCapsule" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#fdffe4" />
-                <stop offset="35%" stopColor="#cbfc01" />
-                <stop offset="75%" stopColor="#8cb400" />
-                <stop offset="100%" stopColor="#465a0d" />
-              </linearGradient>
-            </defs>
-            <rect x="10" y="10" width="100" height="240" rx="50" fill="url(#limeCapsule)" />
-          </svg>
+        <div className="absolute top-6 right-6 xl:right-16 w-[130px] xl:w-[170px] pointer-events-none z-10">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/hero/right1.svg" alt="3D Lime Capsule" className="w-full h-auto drop-shadow-2xl" />
         </div>
 
         {/* MID-RIGHT: White 3D triangle / pyramid */}
-        <div className="absolute top-[42%] right-[9%] xl:right-[14%] w-[90px] h-[100px] pointer-events-none z-10 rotate-6">
-          <svg viewBox="0 0 120 140" fill="none" className="w-full h-full drop-shadow-2xl">
-            <defs>
-              <linearGradient id="triGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#ffffff" />
-                <stop offset="100%" stopColor="#e2e8f0" />
-              </linearGradient>
-              <linearGradient id="triGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#d1d9e8" />
-                <stop offset="100%" stopColor="#94a3b8" />
-              </linearGradient>
-            </defs>
-            <polygon points="60,8 114,124 60,134" fill="url(#triGrad1)" />
-            <polygon points="60,8 60,134 6,104" fill="url(#triGrad2)" />
-          </svg>
+        <div className="absolute top-[38%] right-[8%] xl:right-[13%] w-[110px] xl:w-[140px] pointer-events-none z-10">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/hero/right2.svg" alt="3D White Pyramid" className="w-full h-auto drop-shadow-2xl" />
         </div>
 
         {/* BOTTOM-RIGHT: White wavy ribbon */}
-        <div className="absolute bottom-16 right-6 xl:right-14 w-[110px] h-[130px] pointer-events-none z-20 rotate-12">
-          <svg viewBox="0 0 130 160" fill="none" className="w-full h-full drop-shadow-2xl">
-            <defs>
-              <linearGradient id="whiteWaveR" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#ffffff" />
-                <stop offset="60%" stopColor="#f1f5f9" />
-                <stop offset="100%" stopColor="#cbd5e1" />
-              </linearGradient>
-            </defs>
-            <path d="M 15 20 Q 120 20 90 70 Q 15 120 115 145" stroke="url(#whiteWaveR)" strokeWidth="26" strokeLinecap="round" />
-          </svg>
+        <div className="absolute bottom-8 right-6 xl:right-14 w-[160px] xl:w-[220px] pointer-events-none z-20">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/hero/right3.svg" alt="3D White Wave" className="w-full h-auto drop-shadow-2xl" />
         </div>
 
         {/* ── Hero Text Content ── */}
@@ -176,24 +122,11 @@ export default function HomePage() {
           {/* Fixed-width inner stage — everything positioned relative to this */}
           <div className="relative" style={{ width: '900px', height: '440px' }}>
 
-            {/* Giant lime circle — centered, bottom half showing as semi-circle */}
+            {/* Giant lime circle arch from Figma */}
             <div
-              className="absolute rounded-full bg-[#cbfc01] pointer-events-none z-0"
+              className="absolute pointer-events-none z-0"
               style={{
-                width: '620px',
-                height: '620px',
-                left: '50%',
-                transform: 'translateX(-50%)',
-                bottom: '-310px',
-              }}
-            />
-
-            {/* Student photo — centered on the lime circle, upper body visible */}
-            <div
-              className="absolute z-10"
-              style={{
-                width: '340px',
-                height: '440px',
+                width: '880px',
                 left: '50%',
                 transform: 'translateX(-50%)',
                 bottom: 0,
@@ -201,16 +134,27 @@ export default function HomePage() {
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/hero-student.jpg"
+                src="/hero/centerbackshpae.svg"
+                alt="Lime semicircle background"
+                className="w-full h-auto object-contain"
+              />
+            </div>
+
+            {/* Student photo from Figma cutout */}
+            <div
+              className="absolute z-10"
+              style={{
+                width: '520px',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                bottom: 0,
+              }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/hero/centerman.svg"
                 alt="Student with headphones holding laptop"
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  objectPosition: 'top center',
-                  borderRadius: '180px 180px 0 0',
-                  display: 'block',
-                }}
+                className="w-full h-auto object-contain"
               />
             </div>
 
@@ -288,15 +232,48 @@ export default function HomePage() {
           ========================================================================= */}
       <section className="border-b border-neutral-200/80 bg-white py-12 relative z-10">
         <div className="layout-container">
-          <div className="flex flex-wrap items-center justify-between gap-8 opacity-65 hover:opacity-100 transition-opacity duration-300">
-            {[1, 2, 3, 4, 5].map((index) => (
-              <div key={index} className="flex items-center gap-2.5 font-poppins font-bold text-neutral-700 text-xl tracking-tight">
-                <svg className="w-8 h-8 fill-current text-neutral-700" viewBox="0 0 24 24">
-                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-                </svg>
-                <span>Logoipsum</span>
-              </div>
-            ))}
+          <div className="flex flex-wrap items-center justify-between gap-8 opacity-70 hover:opacity-100 transition-opacity duration-300">
+            {/* Logo 1: Leaf / Drop swirl */}
+            <div className="flex items-center gap-2.5 font-poppins font-bold text-neutral-700 text-xl tracking-tight">
+              <svg className="w-8 h-8 fill-current text-neutral-700" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
+              </svg>
+              <span>Logoipsum</span>
+            </div>
+
+            {/* Logo 2: Radiant star / burst */}
+            <div className="flex items-center gap-2.5 font-poppins font-bold text-neutral-700 text-xl tracking-tight">
+              <svg className="w-8 h-8 fill-current text-neutral-700" viewBox="0 0 24 24">
+                <path d="M12 2l2.4 7.2h7.6l-6 4.8 2.4 7.2-6.4-4.8-6.4 4.8 2.4-7.2-6-4.8h7.6z" />
+              </svg>
+              <span>Logoipsum</span>
+            </div>
+
+            {/* Logo 3: Lightning bolt in circle */}
+            <div className="flex items-center gap-2.5 font-poppins font-bold text-neutral-700 text-xl tracking-tight">
+              <svg className="w-8 h-8 fill-current text-neutral-700" viewBox="0 0 24 24">
+                <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 14.5l-1.5 2.5-1-4h-2l4-8-1 5.5h2l-0.5 4z" />
+              </svg>
+              <span>Logoipsum</span>
+            </div>
+
+            {/* Logo 4: 4-petal flower / diamond */}
+            <div className="flex items-center gap-2.5 font-poppins font-bold text-neutral-700 text-xl tracking-tight">
+              <svg className="w-8 h-8 fill-current text-neutral-700" viewBox="0 0 24 24">
+                <path d="M12 2c1.1 2.9 3.1 4.9 6 6-2.9 1.1-4.9 3.1-6 6-1.1-2.9-3.1-4.9-6-6 2.9-1.1 4.9-3.1 6-6z M12 10c1.1 2.9 3.1 4.9 6 6-2.9 1.1-4.9 3.1-6 6-1.1-2.9-3.1-4.9-6-6 2.9-1.1 4.9-3.1 6-6z" />
+              </svg>
+              <span>Logoipsum</span>
+            </div>
+
+            {/* Logo 5: Segmented globe / halftone */}
+            <div className="flex items-center gap-2.5 font-poppins font-bold text-neutral-700 text-xl tracking-tight">
+              <svg className="w-8 h-8 fill-current text-neutral-700" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="2.5" />
+                <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
+                <path d="M2 12h20" stroke="currentColor" strokeWidth="2" />
+              </svg>
+              <span>Logoipsum</span>
+            </div>
           </div>
         </div>
       </section>
@@ -320,6 +297,7 @@ export default function HomePage() {
           <div className="mt-10 flex flex-wrap items-center justify-center gap-2.5 max-w-5xl mx-auto">
             {CATEGORIES.map((category) => {
               const isActive = selectedCategory === category;
+              const isMore = category === '+ More';
               return (
                 <button
                   key={category}
@@ -327,7 +305,9 @@ export default function HomePage() {
                   className={`px-5 py-2.5 rounded-full text-xs font-medium transition-all cursor-pointer ${
                     isActive
                       ? 'bg-[#cbfc01] text-black font-semibold shadow-xs'
-                      : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
+                      : isMore
+                        ? 'bg-transparent text-[#0445ff] font-semibold hover:underline'
+                        : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
                   }`}
                 >
                   {category}
@@ -401,23 +381,30 @@ export default function HomePage() {
               {/* Stats Row */}
               <div className="pt-6 grid grid-cols-3 gap-6 border-t border-neutral-100">
                 <div>
-                  <p className="font-poppins font-bold text-3xl sm:text-4xl text-[#0445ff]">12K</p>
+                  <p className="font-poppins font-bold text-3xl sm:text-4xl text-neutral-950">12K</p>
                   <p className="text-xs sm:text-sm text-neutral-500 mt-1 font-medium">Students</p>
                 </div>
                 <div>
-                  <p className="font-poppins font-bold text-3xl sm:text-4xl text-[#0445ff]">70+</p>
+                  <p className="font-poppins font-bold text-3xl sm:text-4xl text-neutral-950">70+</p>
                   <p className="text-xs sm:text-sm text-neutral-500 mt-1 font-medium">Courses</p>
                 </div>
                 <div>
-                  <p className="font-poppins font-bold text-3xl sm:text-4xl text-[#0445ff]">16</p>
+                  <p className="font-poppins font-bold text-3xl sm:text-4xl text-neutral-950">16</p>
                   <p className="text-xs sm:text-sm text-neutral-500 mt-1 font-medium">Creators</p>
                 </div>
               </div>
             </div>
 
-            {/* Right Visual Image with Overlays */}
+            {/* Right Visual Image with Overlays & 3D Lime Squiggle */}
             <div className="lg:col-span-6 relative">
-              <div className="relative mx-auto max-w-md">
+              {/* 3D Lime Squiggle behind right side */}
+              <div className="absolute -top-10 -right-4 w-32 h-44 pointer-events-none z-0 rotate-12">
+                <svg viewBox="0 0 140 180" fill="none" className="w-full h-full drop-shadow-xl">
+                  <path d="M 30 20 Q 140 30 110 70 Q 20 110 130 130 Q 30 170 120 170" stroke="#cbfc01" strokeWidth="32" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
+
+              <div className="relative mx-auto max-w-md z-10">
                 <div className="rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-neutral-100">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
@@ -461,9 +448,16 @@ export default function HomePage() {
       <section className="py-24 bg-neutral-50/70">
         <div className="layout-container">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-            {/* Left Visual Image with Revenue Badges */}
+            {/* Left Visual Image with Revenue Badges & 3D Lime Shape */}
             <div className="lg:col-span-6 relative order-2 lg:order-1">
-              <div className="relative mx-auto max-w-md">
+              {/* 3D Lime Squiggle behind image */}
+              <div className="absolute top-28 -right-6 w-32 h-44 pointer-events-none z-0 -rotate-12">
+                <svg viewBox="0 0 140 180" fill="none" className="w-full h-full drop-shadow-xl">
+                  <path d="M 30 20 Q 140 30 110 70 Q 20 110 130 130 Q 30 170 120 170" stroke="#cbfc01" strokeWidth="32" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
+
+              <div className="relative mx-auto max-w-md z-10">
                 <div className="rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-neutral-100">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
@@ -540,7 +534,44 @@ export default function HomePage() {
           UNLOCK YOUR POTENTIAL AS A CREATOR BANNER (Electric Blue Blueprint Grid)
           ========================================================================= */}
       <section className="bg-hero-grid relative overflow-hidden py-24 text-white text-center">
-        <div className="layout-container max-w-4xl mx-auto relative z-10 space-y-6">
+        {/* Floating 3D Shapes on Creator Banner */}
+        {/* Mid-Left: White wavy ribbon */}
+        <div className="absolute top-1/3 left-4 xl:left-12 w-24 h-28 pointer-events-none z-10 -rotate-12 opacity-90">
+          <svg viewBox="0 0 100 120" fill="none" className="w-full h-full drop-shadow-xl">
+            <path d="M 15 20 Q 90 25 70 60 Q 15 95 80 105" stroke="#ffffff" strokeWidth="22" strokeLinecap="round" />
+          </svg>
+        </div>
+
+        {/* Bottom-Left: White torus / donut ring */}
+        <div className="absolute -bottom-12 -left-8 w-44 h-44 pointer-events-none z-10 -rotate-12 opacity-95">
+          <svg viewBox="0 0 240 240" fill="none" className="w-full h-full drop-shadow-2xl">
+            <path d="M 120 16 A 104 104 0 1 0 120 224 A 104 104 0 1 0 120 16 M 120 64 A 56 56 0 1 1 120 176 A 56 56 0 1 1 120 64" fill="#ffffff" />
+          </svg>
+        </div>
+
+        {/* Top-Right: Lime pyramid / cone */}
+        <div className="absolute top-6 right-16 xl:right-32 w-24 h-28 pointer-events-none z-10 rotate-12 opacity-90">
+          <svg viewBox="0 0 120 140" fill="none" className="w-full h-full drop-shadow-xl">
+            <polygon points="60,8 114,124 60,134" fill="#cbfc01" />
+            <polygon points="60,8 60,134 6,104" fill="#8cb400" />
+          </svg>
+        </div>
+
+        {/* Mid-Right: White vertical cylinder */}
+        <div className="absolute top-1/4 -right-6 xl:right-6 w-24 h-48 pointer-events-none z-10 rotate-6 opacity-90">
+          <svg viewBox="0 0 120 240" fill="none" className="w-full h-full drop-shadow-xl">
+            <rect x="10" y="10" width="100" height="220" rx="50" fill="#ffffff" />
+          </svg>
+        </div>
+
+        {/* Bottom-Right: Lime wavy squiggle ribbon */}
+        <div className="absolute -bottom-8 right-12 xl:right-24 w-32 h-36 pointer-events-none z-10 rotate-12 opacity-95">
+          <svg viewBox="0 0 140 180" fill="none" className="w-full h-full drop-shadow-xl">
+            <path d="M 30 20 Q 140 30 110 70 Q 20 110 130 130 Q 30 170 120 170" stroke="#cbfc01" strokeWidth="32" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </div>
+
+        <div className="layout-container max-w-4xl mx-auto relative z-20 space-y-6">
           <h2 className="font-poppins font-bold text-3xl sm:text-4xl md:text-5xl tracking-tight leading-tight">
             Unlock Your Potential as a <br /> Creator with ByteSpace
           </h2>
