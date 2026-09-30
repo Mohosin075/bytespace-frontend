@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { ScrollReveal } from '@/components/ui/scroll-reveal';
 
 interface LogoItem {
   id: string;
@@ -40,7 +41,7 @@ export function LogoStrip() {
 
   return (
     <section className="bg-neutral-100/80 border-b border-neutral-200/60 py-8 sm:py-12 md:py-16 relative z-10 overflow-hidden select-none">
-      <div className="w-full overflow-hidden">
+      <ScrollReveal direction="up" distance={16} duration={500} className="w-full overflow-hidden">
         <div className="animate-marquee flex items-center gap-12 sm:gap-16 md:gap-24 py-2 opacity-80 hover:opacity-100 transition-opacity duration-300">
           {marqueeLogos.map((logo, idx) => (
             <div
@@ -56,7 +57,7 @@ export function LogoStrip() {
             </div>
           ))}
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 }

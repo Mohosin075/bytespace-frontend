@@ -6,6 +6,7 @@ import { Logo } from '@/components/shared/logo';
 import { ROUTES } from '@/constants/routes';
 
 import { useToast } from '@/context/toast-context';
+import { ScrollReveal } from '@/components/ui/scroll-reveal';
 
 export function Footer() {
   const [email, setEmail] = useState('');
@@ -26,7 +27,8 @@ export function Footer() {
     <footer className="w-full bg-white text-neutral-900 border-t border-neutral-200/80 pt-16 pb-12">
       <div className="layout-container">
         {/* Top Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 pb-16">
+        <ScrollReveal direction="up" distance={20} duration={600}>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 pb-16">
           {/* Newsletter Left Side */}
           <div className="lg:col-span-6 space-y-6">
             <Logo variant="dark" />
@@ -119,6 +121,7 @@ export function Footer() {
             </div>
           </div>
         </div>
+      </ScrollReveal>
 
         {/* Bottom Sub-footer */}
         <div className="border-t border-neutral-200 pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-neutral-500 gap-4">

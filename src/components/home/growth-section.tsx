@@ -1,9 +1,8 @@
-'use client';
-
 import React from 'react';
 import Image from 'next/image';
 import { Check, Star } from 'lucide-react';
 import { SectionTitle, SectionSubtitle } from '@/components/ui/section-header';
+import { ScrollReveal } from '@/components/ui/scroll-reveal';
 
 export function GrowthSection() {
   const studentAvatars = [
@@ -74,8 +73,8 @@ export function GrowthSection() {
       <div className="layout-container relative z-10 flex flex-col gap-24 sm:gap-32 lg:gap-40">
         {/* ── PART 1: Student Growth Section ── */}
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-12 lg:gap-16">
-          {/* Content Column (Bottom on mobile, Left on desktop) */}
-          <div className="order-2 lg:order-1 flex flex-col space-y-6">
+          {/* Content Column with ScrollReveal */}
+          <ScrollReveal direction="up" distance={24} duration={650} className="order-2 lg:order-1 flex flex-col space-y-6">
             <SectionTitle className="text-left">
               Your Path to Professional
               <br className="hidden sm:inline" />
@@ -86,26 +85,26 @@ export function GrowthSection() {
               Explore our curated selection of courses tailored to enhance your capabilities and accelerate your career journey. Whether you are looking to sharpen specific skills, gain industry expertise, or embark on a new career path entirely, we have the resources you need.
             </SectionSubtitle>
 
-            <div className="flex items-center gap-8 sm:gap-12 pt-4">
-              <div>
-                <div className="font-satoshi text-3xl sm:text-4xl lg:text-[42px] font-bold text-[#0052FE] tracking-tight">12K</div>
-                <div className="font-satoshi text-sm sm:text-base font-medium text-[#64748B] mt-1">Students</div>
+            <div className="grid grid-cols-3 gap-3.5 sm:gap-5 pt-4">
+              <div className="bg-neutral-50/90 rounded-2xl p-4 sm:p-5 border border-neutral-200/70 hover:border-primary-200 hover:bg-primary-50/20 hover:-translate-y-1 transition-all duration-300 group cursor-default">
+                <div className="font-satoshi text-2xl sm:text-3xl lg:text-[38px] font-extrabold text-[#0052FE] tracking-tight group-hover:scale-105 transition-transform duration-200 origin-left">12K+</div>
+                <div className="font-satoshi text-xs sm:text-sm font-semibold text-neutral-500 mt-1">Students</div>
               </div>
 
-              <div>
-                <div className="font-satoshi text-3xl sm:text-4xl lg:text-[42px] font-bold text-[#0052FE] tracking-tight">70+</div>
-                <div className="font-satoshi text-sm sm:text-base font-medium text-[#64748B] mt-1">Courses</div>
+              <div className="bg-neutral-50/90 rounded-2xl p-4 sm:p-5 border border-neutral-200/70 hover:border-primary-200 hover:bg-primary-50/20 hover:-translate-y-1 transition-all duration-300 group cursor-default">
+                <div className="font-satoshi text-2xl sm:text-3xl lg:text-[38px] font-extrabold text-[#0052FE] tracking-tight group-hover:scale-105 transition-transform duration-200 origin-left">70+</div>
+                <div className="font-satoshi text-xs sm:text-sm font-semibold text-neutral-500 mt-1">Courses</div>
               </div>
 
-              <div>
-                <div className="font-satoshi text-3xl sm:text-4xl lg:text-[42px] font-bold text-[#0052FE] tracking-tight">16</div>
-                <div className="font-satoshi text-sm sm:text-base font-medium text-[#64748B] mt-1">Creators</div>
+              <div className="bg-neutral-50/90 rounded-2xl p-4 sm:p-5 border border-neutral-200/70 hover:border-primary-200 hover:bg-primary-50/20 hover:-translate-y-1 transition-all duration-300 group cursor-default">
+                <div className="font-satoshi text-2xl sm:text-3xl lg:text-[38px] font-extrabold text-[#0052FE] tracking-tight group-hover:scale-105 transition-transform duration-200 origin-left">16+</div>
+                <div className="font-satoshi text-xs sm:text-sm font-semibold text-neutral-500 mt-1">Creators</div>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
 
-          {/* Visual Column (Top on mobile, Right on desktop) */}
-          <div className="order-1 lg:order-2 relative w-full max-w-140 mx-auto min-h-105 sm:min-h-125 flex items-center justify-center">
+          {/* Visual Column with ScrollReveal */}
+          <ScrollReveal direction="up" delay={150} distance={24} duration={650} className="order-1 lg:order-2 relative w-full max-w-140 mx-auto min-h-105 sm:min-h-125 flex items-center justify-center">
             {/* Back card */}
             <div className="absolute top-0 left-0 w-[58%] sm:w-[62%] z-10 pointer-events-none select-none drop-shadow-xl">
               <Image
@@ -150,13 +149,13 @@ export function GrowthSection() {
                 <div className="bg-[#CBFC01] h-full rounded-full w-[55%]" />
               </div>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
 
         {/* ── PART 2: Creator Management Section ── */}
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-12 lg:gap-16">
-          {/* Visual Column (Top on mobile, Left on desktop) */}
-          <div className="order-1 lg:order-1 relative w-full max-w-140 mx-auto min-h-110 sm:min-h-130 flex items-center justify-center">
+          {/* Visual Column with ScrollReveal */}
+          <ScrollReveal direction="up" distance={24} duration={650} className="order-1 lg:order-1 relative w-full max-w-140 mx-auto min-h-110 sm:min-h-130 flex items-center justify-center">
             {/* Green 3D squiggle icon behind creator */}
             <div className="absolute top-[28%] right-2 sm:right-6 w-[28%] sm:w-[32%] z-0 pointer-events-none select-none animate-float-slow">
               <Image
@@ -170,7 +169,7 @@ export function GrowthSection() {
             </div>
 
             {/* Total Revenue badge — BEHIND creator (z-10) */}
-            <div className="absolute top-[8%] left-[2%] sm:left-[4%] z-10 bg-[#0052FE] text-white rounded-2xl p-3.5 sm:p-4 shadow-xl border border-blue-400/40 w-37.5 sm:w-42.5 animate-float animate-border-glow">
+            <div className="absolute top-[8%] left-[2%] sm:left-[4%] z-10 bg-[#0052FE]/95 backdrop-blur-md text-white rounded-2xl p-3.5 sm:p-4 shadow-xl border border-white/20 w-37.5 sm:w-42.5 animate-float hover:scale-105 transition-transform duration-300">
               <div className="font-satoshi text-[11px] sm:text-xs text-white/90 font-medium">Total Revenue</div>
               <div className="font-satoshi text-[9px] text-white/60 font-normal">July 1-28</div>
               <div className="font-satoshi text-lg sm:text-xl font-bold text-white mt-1">$120.29</div>
@@ -180,12 +179,12 @@ export function GrowthSection() {
             </div>
 
             {/* Year to Date badge — BEHIND creator (z-10) */}
-            <div className="absolute top-[32%] left-[2%] sm:left-[4%] z-10 bg-[#0052FE] text-white rounded-2xl p-3.5 sm:p-4 shadow-xl border border-blue-400/40 w-37.5 sm:w-42.5 animate-float-slow animate-border-glow">
+            <div className="absolute top-[32%] left-[2%] sm:left-[4%] z-10 bg-[#0052FE]/95 backdrop-blur-md text-white rounded-2xl p-3.5 sm:p-4 shadow-xl border border-white/20 w-37.5 sm:w-42.5 animate-float-slow hover:scale-105 transition-transform duration-300">
               <div className="font-satoshi text-[11px] sm:text-xs text-white/90 font-medium">Year to Date</div>
               <div className="font-satoshi text-[9px] text-white/60 font-normal">2023</div>
               <div className="font-satoshi text-lg sm:text-xl font-bold text-white mt-1">$1,200.38</div>
               <div className="mt-2">
-                <span className="font-satoshi bg-[#CBFC01] text-black text-[10px] font-bold px-2 py-0.5 rounded-full inline-block">+12$</span>
+                <span className="font-satoshi bg-[#CBFC01] text-black text-[10px] font-bold px-2 py-0.5 rounded-full inline-block shadow-xs">+12$</span>
               </div>
             </div>
 
@@ -227,10 +226,10 @@ export function GrowthSection() {
                 </div>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
 
-          {/* Content Column (Bottom on mobile, Right on desktop) */}
-          <div className="order-2 lg:order-2 flex flex-col space-y-6">
+          {/* Content Column with ScrollReveal */}
+          <ScrollReveal direction="up" delay={150} distance={24} duration={650} className="order-2 lg:order-2 flex flex-col space-y-6">
             <SectionTitle className="text-left">
               Create &amp; Manage
               <br className="hidden sm:inline" />
@@ -243,17 +242,17 @@ export function GrowthSection() {
 
             <ul className="mt-8 sm:mt-10 space-y-4 pt-2">
               {creatorFeatures.map((feature, idx) => (
-                <li key={idx} className="flex items-center gap-3.5">
-                  <div className="size-5 sm:size-6 rounded-full bg-[#0052FE] flex items-center justify-center shrink-0 text-white shadow-sm">
+                <li key={idx} className="flex items-center gap-3.5 group">
+                  <div className="size-5 sm:size-6 rounded-full bg-[#0052FE] group-hover:bg-[#CBFC01] group-hover:text-black flex items-center justify-center shrink-0 text-white shadow-xs transition-colors duration-200">
                     <Check className="size-3.5 sm:size-4 stroke-[3]" />
                   </div>
-                  <span className="font-satoshi font-medium text-neutral-950 text-base sm:text-lg">
+                  <span className="font-satoshi font-medium text-neutral-950 text-base sm:text-lg group-hover:text-primary-600 transition-colors duration-200">
                     {feature}
                   </span>
                 </li>
               ))}
             </ul>
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

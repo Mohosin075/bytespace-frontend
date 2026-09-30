@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import { Navbar } from '@/components/shared/navbar';
 import { Footer } from '@/components/shared/footer';
+import { ScrollReveal } from '@/components/ui/scroll-reveal';
 import { MOCK_MODULES, MOCK_REVIEWS, MOCK_CREATOR, MOCK_COURSES } from '@/constants/mock-data';
 import { ROUTES } from '@/constants/routes';
 import { useToast } from '@/context/toast-context';
@@ -114,73 +115,77 @@ export default function CourseDetailClient({ slug }: CourseDetailClientProps = {
         <Navbar variant="blue" />
 
         <div className="layout-container pt-28 sm:pt-36 md:pt-40 pb-16 sm:pb-20">
-          <div className="flex flex-col lg:flex-row items-start justify-between gap-6">
-            <div className="space-y-4 max-w-3xl">
-              <h1 className="font-poppins font-bold text-2xl sm:text-4xl md:text-5xl text-white tracking-tight leading-snug sm:leading-tight">
-                {course.title}
-              </h1>
-              <p className="text-white/90 text-sm sm:text-base md:text-lg font-normal leading-relaxed">
-                {course.subtitle || course.description || 'Unlock the Power of Digital Creation with Expert Guidance'}
-              </p>
+          <ScrollReveal direction="up" distance={20} duration={600}>
+            <div className="flex flex-col lg:flex-row items-start justify-between gap-6">
+              <div className="space-y-4 max-w-3xl">
+                <h1 className="font-poppins font-bold text-2xl sm:text-4xl md:text-5xl text-white tracking-tight leading-snug sm:leading-tight">
+                  {course.title}
+                </h1>
+                <p className="text-white/90 text-sm sm:text-base md:text-lg font-normal leading-relaxed">
+                  {course.subtitle || course.description || 'Unlock the Power of Digital Creation with Expert Guidance'}
+                </p>
 
-              <p className="text-xs sm:text-sm text-white/90">
-                by{' '}
-                <Link
-                  href={ROUTES.CREATOR_DETAIL(course.creator.id)}
-                  className="text-white font-medium hover:underline"
-                >
-                  {course.creator.name}
-                </Link>
-              </p>
+                <p className="text-xs sm:text-sm text-white/90">
+                  by{' '}
+                  <Link
+                    href={ROUTES.CREATOR_DETAIL(course.creator.id)}
+                    className="text-white font-medium hover:underline"
+                  >
+                    {course.creator.name}
+                  </Link>
+                </p>
 
-              {/* Badges & Share button row */}
-              <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 pt-2">
-                <div className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 rounded-full bg-white text-neutral-800 text-xs font-semibold shadow-xs">
-                  <BarChart2 className="w-3.5 h-3.5 text-primary-600" />
-                  <span>{course.level}</span>
+                {/* Badges & Share button row */}
+                <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 pt-2">
+                  <div className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 rounded-full bg-white text-neutral-800 text-xs font-semibold shadow-xs">
+                    <BarChart2 className="w-3.5 h-3.5 text-primary-600" />
+                    <span>{course.level}</span>
+                  </div>
+
+                  <div className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 rounded-full bg-white text-neutral-800 text-xs font-semibold shadow-xs">
+                    <Star className="w-3.5 h-3.5 fill-[#fbbf24] text-[#fbbf24]" />
+                    <span>{course.rating.toFixed(1)} ({course.reviewsCount || 172} reviews)</span>
+                  </div>
+
+                  <div className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 rounded-full bg-white text-neutral-800 text-xs font-semibold shadow-xs">
+                    <Users className="w-3.5 h-3.5 text-primary-600" />
+                    <span>{course.studentsCount || '199 Students'}</span>
+                  </div>
+
+                  <button
+                    onClick={handleShare}
+                    className="px-4 sm:px-6 py-1.5 sm:py-2 rounded-full bg-[#cbfc01] text-black font-semibold text-xs sm:text-sm hover:brightness-95 active:scale-95 transition-all flex items-center gap-1.5 cursor-pointer shadow-lg shrink-0"
+                  >
+                    <Share2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                    <span>Share</span>
+                  </button>
                 </div>
+              </div>
+            </div>
+          </ScrollReveal>
 
-                <div className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 rounded-full bg-white text-neutral-800 text-xs font-semibold shadow-xs">
-                  <Star className="w-3.5 h-3.5 fill-[#fbbf24] text-[#fbbf24]" />
-                  <span>{course.rating.toFixed(1)} ({course.reviewsCount || 172} reviews)</span>
-                </div>
-
-                <div className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 rounded-full bg-white text-neutral-800 text-xs font-semibold shadow-xs">
-                  <Users className="w-3.5 h-3.5 text-primary-600" />
-                  <span>{course.studentsCount || '199 Students'}</span>
-                </div>
-
+          {/* Large Video Player Preview */}
+          <ScrollReveal direction="up" delay={150} distance={24} duration={650}>
+            <div className="mt-12 rounded-3xl overflow-hidden aspect-[16/9] max-h-[520px] w-full bg-neutral-900 relative shadow-2xl border-4 border-white/20">
+              <Image
+                src={course.image || "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1200&auto=format&fit=crop&q=80"}
+                alt={`${course.title} Video Preview`}
+                fill
+                unoptimized
+                className="object-cover"
+              />
+              {/* Play Button Overlay */}
+              <div className="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/20 transition-colors">
                 <button
-                  onClick={handleShare}
-                  className="px-4 sm:px-6 py-1.5 sm:py-2 rounded-full bg-[#cbfc01] text-black font-semibold text-xs sm:text-sm hover:brightness-95 active:scale-95 transition-all flex items-center gap-1.5 cursor-pointer shadow-lg shrink-0"
+                  onClick={() => setIsVideoModalOpen(true)}
+                  aria-label="Play Course Video Preview"
+                  className="w-20 h-20 rounded-full bg-white/80 backdrop-blur-md flex items-center justify-center text-neutral-900 shadow-2xl hover:scale-110 active:scale-95 transition-all cursor-pointer group"
                 >
-                  <Share2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                  <span>Share</span>
+                  <Play className="w-8 h-8 fill-current translate-x-0.5 group-hover:text-primary-600 transition-colors" />
                 </button>
               </div>
             </div>
-          </div>
-
-          {/* Large Video Player Preview */}
-          <div className="mt-12 rounded-3xl overflow-hidden aspect-[16/9] max-h-[520px] w-full bg-neutral-900 relative shadow-2xl border-4 border-white/20">
-            <Image
-              src={course.image || "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1200&auto=format&fit=crop&q=80"}
-              alt={`${course.title} Video Preview`}
-              fill
-              unoptimized
-              className="object-cover"
-            />
-            {/* Play Button Overlay */}
-            <div className="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/20 transition-colors">
-              <button
-                onClick={() => setIsVideoModalOpen(true)}
-                aria-label="Play Course Video Preview"
-                className="w-20 h-20 rounded-full bg-white/80 backdrop-blur-md flex items-center justify-center text-neutral-900 shadow-2xl hover:scale-110 active:scale-95 transition-all cursor-pointer group"
-              >
-                <Play className="w-8 h-8 fill-current translate-x-0.5 group-hover:text-primary-600 transition-colors" />
-              </button>
-            </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -493,7 +498,8 @@ export default function CourseDetailClient({ slug }: CourseDetailClientProps = {
 
           {/* RIGHT COLUMN: STICKY ENROLLMENT CARD */}
           <div className="lg:col-span-4 sticky top-28">
-            <div className="bg-white rounded-[28px] p-6 sm:p-7 border border-neutral-200/90 shadow-xl space-y-6">
+            <ScrollReveal direction="up" delay={100} distance={20} duration={600}>
+              <div className="bg-white rounded-[28px] p-6 sm:p-7 border border-neutral-200/90 shadow-xl space-y-6">
               {/* Title Header */}
               <div>
                 <h3 className="font-poppins font-bold text-xl text-neutral-950">
@@ -624,6 +630,7 @@ export default function CourseDetailClient({ slug }: CourseDetailClientProps = {
                 </Link>
               </div>
             </div>
+            </ScrollReveal>
           </div>
         </div>
       </main>

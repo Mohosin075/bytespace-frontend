@@ -46,7 +46,7 @@ export function CourseCard({ course }: CourseCardProps) {
   };
 
   return (
-    <div className="bg-white rounded-[24px] border border-neutral-200/90 p-4 card-hover-motion hover:border-primary-300 flex flex-col justify-between group relative select-none">
+    <div className="bg-white rounded-[24px] border border-neutral-200/90 p-4 transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-[0_20px_45px_-12px_rgba(0,82,254,0.14)] hover:border-primary-300/80 flex flex-col justify-between group relative select-none">
       {/* Thumbnail area wrapped in Link with smooth zoom and gradient overlay */}
       <Link
         href={ROUTES.COURSE_DETAIL(course.slug)}
@@ -60,7 +60,7 @@ export function CourseCard({ course }: CourseCardProps) {
           onError={() =>
             setImgSrc('https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800&auto=format&fit=crop&q=80')
           }
-          className="object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
+          className="object-cover group-hover:scale-106 transition-transform duration-500 ease-out"
         />
 
         {/* Ambient Dark Gradient Bottom Overlay for Tag Legibility */}
@@ -149,9 +149,9 @@ export function CourseCard({ course }: CourseCardProps) {
               onClick={handleCartClick}
               title={inCart ? 'In Cart' : 'Add to Cart'}
               aria-label={inCart ? 'In Cart' : 'Add to Cart'}
-              className={`p-2 rounded-full border transition-all duration-200 cursor-pointer ${
+              className={`p-2 rounded-full border transition-all duration-200 cursor-pointer active:scale-90 hover:scale-105 ${
                 inCart
-                  ? 'bg-emerald-50 text-emerald-600 border-emerald-200 hover:bg-emerald-100'
+                  ? 'bg-emerald-50 text-emerald-600 border-emerald-200 hover:bg-emerald-100 shadow-xs'
                   : 'bg-neutral-100 text-neutral-700 border-neutral-200 hover:bg-neutral-200 hover:text-neutral-900'
               }`}
             >
@@ -160,7 +160,7 @@ export function CourseCard({ course }: CourseCardProps) {
 
             <Link
               href={ROUTES.COURSE_DETAIL(course.slug)}
-              className="px-3.5 py-2 rounded-full bg-neutral-950 text-white font-bold text-xs hover:bg-[#cbfc01] hover:text-black hover:scale-105 active:scale-95 transition-all duration-200 shadow-sm hover:shadow-md flex items-center gap-1 group/btn"
+              className="px-3.5 py-2 rounded-full bg-neutral-950 text-white font-bold text-xs hover:bg-[#cbfc01] hover:text-black hover:scale-105 active:scale-95 transition-all duration-200 shadow-xs hover:shadow-md flex items-center gap-1 group/btn"
             >
               <span>Enroll</span>
               <ArrowUpRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />

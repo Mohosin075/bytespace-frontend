@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import { Navbar } from '@/components/shared/navbar';
 import { Footer } from '@/components/shared/footer';
+import { ScrollReveal } from '@/components/ui/scroll-reveal';
 import { MOCK_COURSES } from '@/constants/mock-data';
 import { ROUTES } from '@/constants/routes';
 import { useToast } from '@/context/toast-context';
@@ -92,20 +93,22 @@ export default function CartClient() {
       <main className="layout-container pt-28 sm:pt-36 pb-20 flex-1 font-satoshi">
         <div className="max-w-6xl mx-auto space-y-10">
           {/* Header Banner */}
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-neutral-200 pb-6">
-            <div>
-              <div className="flex items-center gap-2 text-xs font-semibold text-primary-600 uppercase tracking-wider mb-1">
-                <ShoppingBag className="w-4 h-4 text-primary-600" />
-                <span>ByteSpace Cart</span>
+          <ScrollReveal direction="up" distance={20} duration={600}>
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-neutral-200 pb-6">
+              <div>
+                <div className="flex items-center gap-2 text-xs font-semibold text-primary-600 uppercase tracking-wider mb-1">
+                  <ShoppingBag className="w-4 h-4 text-primary-600" />
+                  <span>ByteSpace Cart</span>
+                </div>
+                <h1 className="font-poppins font-bold text-3xl sm:text-4xl text-neutral-950">
+                  Your Shopping Cart
+                </h1>
               </div>
-              <h1 className="font-poppins font-bold text-3xl sm:text-4xl text-neutral-950">
-                Your Shopping Cart
-              </h1>
+              <span className="text-sm font-medium text-neutral-500">
+                {cartItems.length} {cartItems.length === 1 ? 'Course' : 'Courses'} in Cart
+              </span>
             </div>
-            <span className="text-sm font-medium text-neutral-500">
-              {cartItems.length} {cartItems.length === 1 ? 'Course' : 'Courses'} in Cart
-            </span>
-          </div>
+          </ScrollReveal>
 
           {cartItems.length > 0 ? (
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -230,99 +233,103 @@ export default function CartClient() {
               </div>
 
               {/* Right Column: Order Summary Side Card */}
-              <div className="lg:col-span-4 bg-neutral-50 rounded-3xl p-6 sm:p-7 border border-neutral-200 space-y-6 sticky top-28">
-                <h3 className="font-poppins font-bold text-xl text-neutral-950 pb-2 border-b border-neutral-200">
-                  Order Summary
-                </h3>
+              <div className="lg:col-span-4 sticky top-28">
+                <ScrollReveal direction="up" delay={100} distance={20} duration={600}>
+                  <div className="bg-neutral-50 rounded-3xl p-6 sm:p-7 border border-neutral-200 space-y-6">
+                    <h3 className="font-poppins font-bold text-xl text-neutral-950 pb-2 border-b border-neutral-200">
+                      Order Summary
+                    </h3>
 
-                {/* Price Breakdown */}
-                <div className="space-y-3 text-sm text-neutral-600">
-                  <div className="flex items-center justify-between">
-                    <span>Original Price ({cartItems.length} items)</span>
-                    <span className="font-semibold text-neutral-900">${subtotal}</span>
-                  </div>
+                    {/* Price Breakdown */}
+                    <div className="space-y-3 text-sm text-neutral-600">
+                      <div className="flex items-center justify-between">
+                        <span>Original Price ({cartItems.length} items)</span>
+                        <span className="font-semibold text-neutral-900">${subtotal}</span>
+                      </div>
 
-                  {baseDiscount > 0 && (
-                    <div className="flex items-center justify-between text-emerald-600">
-                      <span>Bundle Discount</span>
-                      <span className="font-semibold">-${baseDiscount}</span>
-                    </div>
-                  )}
-
-                  {appliedPromo && (
-                    <div className="flex items-center justify-between text-emerald-600">
-                      <span>Promo ({appliedPromo.code})</span>
-                      <span className="font-semibold">-${promoDiscount}</span>
-                    </div>
-                  )}
-
-                  <div className="flex items-center justify-between text-xs text-neutral-400">
-                    <span>Taxes & Processing</span>
-                    <span>$0.00</span>
-                  </div>
-                </div>
-
-                {/* Promo Code Form */}
-                <form onSubmit={handleApplyPromo} className="space-y-2 pt-2 border-t border-neutral-200">
-                  <label className="text-xs font-semibold text-neutral-700 flex items-center gap-1.5">
-                    <Tag className="w-3.5 h-3.5 text-primary-600" />
-                    <span>Promotional Code</span>
-                  </label>
-
-                  <div className="flex items-center gap-2">
-                    <input
-                      type="text"
-                      value={promoCode}
-                      onChange={(e) => setPromoCode(e.target.value)}
-                      placeholder="e.g. BYTESPACE20"
-                      className="w-full px-4 py-2.5 rounded-full bg-white border border-neutral-300 text-xs text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary-600 uppercase"
-                    />
-                    <button
-                      type="submit"
-                      className="px-4 py-2.5 rounded-full bg-neutral-950 text-white font-semibold text-xs hover:bg-neutral-800 transition-colors cursor-pointer shrink-0"
-                    >
-                      Apply
-                    </button>
-                  </div>
-
-                  {appliedPromo && (
-                    <div className="flex items-center gap-1.5 text-xs text-emerald-600 font-semibold pt-1">
-                      <Check className="w-3.5 h-3.5" />
-                      <span>{appliedPromo.percent}% promo discount active!</span>
-                    </div>
-                  )}
-                </form>
-
-                {/* Total Price & Checkout Button */}
-                <div className="pt-4 border-t border-neutral-200 space-y-4">
-                  <div className="flex items-baseline justify-between">
-                    <span className="font-poppins font-bold text-lg text-neutral-950">Total</span>
-                    <div className="text-right">
-                      <span className="font-poppins font-extrabold text-2xl text-primary-600">
-                        ${total}
-                      </span>
-                      {totalDiscount > 0 && (
-                        <p className="text-[11px] text-emerald-600 font-medium">
-                          You saved ${totalDiscount}!
-                        </p>
+                      {baseDiscount > 0 && (
+                        <div className="flex items-center justify-between text-emerald-600">
+                          <span>Bundle Discount</span>
+                          <span className="font-semibold">-${baseDiscount}</span>
+                        </div>
                       )}
+
+                      {appliedPromo && (
+                        <div className="flex items-center justify-between text-emerald-600">
+                          <span>Promo ({appliedPromo.code})</span>
+                          <span className="font-semibold">-${promoDiscount}</span>
+                        </div>
+                      )}
+
+                      <div className="flex items-center justify-between text-xs text-neutral-400">
+                        <span>Taxes & Processing</span>
+                        <span>$0.00</span>
+                      </div>
+                    </div>
+
+                    {/* Promo Code Form */}
+                    <form onSubmit={handleApplyPromo} className="space-y-2 pt-2 border-t border-neutral-200">
+                      <label className="text-xs font-semibold text-neutral-700 flex items-center gap-1.5">
+                        <Tag className="w-3.5 h-3.5 text-primary-600" />
+                        <span>Promotional Code</span>
+                      </label>
+
+                      <div className="flex items-center gap-2">
+                        <input
+                          type="text"
+                          value={promoCode}
+                          onChange={(e) => setPromoCode(e.target.value)}
+                          placeholder="e.g. BYTESPACE20"
+                          className="w-full px-4 py-2.5 rounded-full bg-white border border-neutral-300 text-xs text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary-600 uppercase"
+                        />
+                        <button
+                          type="submit"
+                          className="px-4 py-2.5 rounded-full bg-neutral-950 text-white font-semibold text-xs hover:bg-neutral-800 transition-colors cursor-pointer shrink-0"
+                        >
+                          Apply
+                        </button>
+                      </div>
+
+                      {appliedPromo && (
+                        <div className="flex items-center gap-1.5 text-xs text-emerald-600 font-semibold pt-1">
+                          <Check className="w-3.5 h-3.5" />
+                          <span>{appliedPromo.percent}% promo discount active!</span>
+                        </div>
+                      )}
+                    </form>
+
+                    {/* Total Price & Checkout Button */}
+                    <div className="pt-4 border-t border-neutral-200 space-y-4">
+                      <div className="flex items-baseline justify-between">
+                        <span className="font-poppins font-bold text-lg text-neutral-950">Total</span>
+                        <div className="text-right">
+                          <span className="font-poppins font-extrabold text-2xl text-primary-600">
+                            ${total}
+                          </span>
+                          {totalDiscount > 0 && (
+                            <p className="text-[11px] text-emerald-600 font-medium">
+                              You saved ${totalDiscount}!
+                            </p>
+                          )}
+                        </div>
+                      </div>
+
+                      <button
+                        type="button"
+                        onClick={handleCheckout}
+                        className="w-full py-3.5 sm:py-4 px-6 sm:px-8 rounded-full bg-[#cbfc01] text-neutral-950 font-bold text-sm sm:text-[15px] hover:brightness-95 active:scale-[0.98] transition-all duration-200 shadow-md hover:shadow-lg flex items-center justify-center gap-2 sm:gap-2.5 cursor-pointer text-center group"
+                      >
+                        <span className="leading-none">Proceed to Secure Checkout</span>
+                        <ArrowRight className="w-4 h-4 shrink-0 group-hover:translate-x-1 transition-transform duration-200" />
+                      </button>
+
+                      <div className="flex items-center justify-center gap-1.5 text-xs text-neutral-400 pt-2">
+                        <Lock className="w-3.5 h-3.5 text-neutral-500" />
+                        <span>256-Bit SSL Encrypted & Secure Checkout</span>
+                      </div>
                     </div>
                   </div>
-
-                  <button
-                    type="button"
-                    onClick={handleCheckout}
-                    className="w-full py-3.5 sm:py-4 px-6 sm:px-8 rounded-full bg-[#cbfc01] text-neutral-950 font-bold text-sm sm:text-[15px] hover:brightness-95 active:scale-[0.98] transition-all duration-200 shadow-md hover:shadow-lg flex items-center justify-center gap-2 sm:gap-2.5 cursor-pointer text-center group"
-                  >
-                    <span className="leading-none">Proceed to Secure Checkout</span>
-                    <ArrowRight className="w-4 h-4 shrink-0 group-hover:translate-x-1 transition-transform duration-200" />
-                  </button>
-
-                  <div className="flex items-center justify-center gap-1.5 text-xs text-neutral-400 pt-2">
-                    <Lock className="w-3.5 h-3.5 text-neutral-500" />
-                    <span>256-Bit SSL Encrypted & Secure Checkout</span>
-                  </div>
-                </div>
+                </ScrollReveal>
               </div>
             </div>
           ) : (
@@ -353,69 +360,71 @@ export default function CartClient() {
 
           {/* Recommended Courses Section */}
           {recommendedCourses.length > 0 && (
-            <div className="pt-12 border-t border-neutral-200 space-y-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="font-poppins font-bold text-2xl text-neutral-950">
-                    Frequently Bought Together
-                  </h3>
-                  <p className="text-xs text-neutral-500 mt-0.5">
-                    Recommended top-rated courses to accelerate your learning journey.
-                  </p>
-                </div>
-                <Link
-                  href={ROUTES.COURSES}
-                  className="text-xs font-semibold text-primary-600 hover:underline inline-flex items-center gap-1"
-                >
-                  View All <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {recommendedCourses.map((course) => (
-                  <div
-                    key={course.id}
-                    className="bg-white rounded-2xl p-4 border border-neutral-200/90 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+            <ScrollReveal direction="up" distance={20} duration={600}>
+              <div className="pt-12 border-t border-neutral-200 space-y-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="font-poppins font-bold text-2xl text-neutral-950">
+                      Frequently Bought Together
+                    </h3>
+                    <p className="text-xs text-neutral-500 mt-0.5">
+                      Recommended top-rated courses to accelerate your learning journey.
+                    </p>
+                  </div>
+                  <Link
+                    href={ROUTES.COURSES}
+                    className="text-xs font-semibold text-primary-600 hover:underline inline-flex items-center gap-1"
                   >
-                    <div>
-                      <div className="relative rounded-xl overflow-hidden aspect-[1.6/1] bg-neutral-100 mb-3">
-                        <Image
-                          src={course.image}
-                          alt={course.title}
-                          fill
-                          unoptimized
-                          className="object-cover group-hover:scale-105 transition-transform duration-500"
-                        />
-                      </div>
+                    View All <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
 
-                      <Link
-                        href={ROUTES.COURSE_DETAIL(course.slug)}
-                        className="font-poppins font-bold text-sm text-neutral-950 hover:text-primary-600 transition-colors line-clamp-1"
-                      >
-                        {course.title}
-                      </Link>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {recommendedCourses.map((course) => (
+                    <div
+                      key={course.id}
+                      className="bg-white rounded-2xl p-4 border border-neutral-200/90 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+                    >
+                      <div>
+                        <div className="relative rounded-xl overflow-hidden aspect-[1.6/1] bg-neutral-100 mb-3">
+                          <Image
+                            src={course.image}
+                            alt={course.title}
+                            fill
+                            unoptimized
+                            className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                        </div>
 
-                      <p className="text-xs text-neutral-500 mt-0.5">by {course.creator.name}</p>
-
-                      <div className="flex items-center justify-between pt-3 mt-2 border-t border-neutral-100">
-                        <span className="font-poppins font-bold text-base text-primary-600">
-                          ${course.price}
-                        </span>
-
-                        <button
-                          type="button"
-                          onClick={() => handleAddToCart(course)}
-                          className="px-3 py-1.5 rounded-full bg-neutral-100 hover:bg-[#cbfc01] text-neutral-900 hover:text-black font-semibold text-xs transition-colors flex items-center gap-1 cursor-pointer"
+                        <Link
+                          href={ROUTES.COURSE_DETAIL(course.slug)}
+                          className="font-poppins font-bold text-sm text-neutral-950 hover:text-primary-600 transition-colors line-clamp-1"
                         >
-                          <Plus className="w-3.5 h-3.5" />
-                          <span>Add to Cart</span>
-                        </button>
+                          {course.title}
+                        </Link>
+
+                        <p className="text-xs text-neutral-500 mt-0.5">by {course.creator.name}</p>
+
+                        <div className="flex items-center justify-between pt-3 mt-2 border-t border-neutral-100">
+                          <span className="font-poppins font-bold text-base text-primary-600">
+                            ${course.price}
+                          </span>
+
+                          <button
+                            type="button"
+                            onClick={() => handleAddToCart(course)}
+                            className="px-3 py-1.5 rounded-full bg-neutral-100 hover:bg-[#cbfc01] text-neutral-900 hover:text-black font-semibold text-xs transition-colors flex items-center gap-1 cursor-pointer"
+                          >
+                            <Plus className="w-3.5 h-3.5" />
+                            <span>Add to Cart</span>
+                          </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
+            </ScrollReveal>
           )}
         </div>
       </main>

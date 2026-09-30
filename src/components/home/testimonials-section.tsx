@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Star } from 'lucide-react';
 import { MOCK_TESTIMONIALS } from '@/constants/mock-data';
 import { SectionTitle, SectionSubtitle } from '@/components/ui/section-header';
+import { ScrollReveal } from '@/components/ui/scroll-reveal';
 
 export function TestimonialsSection() {
   const [filterRole, setFilterRole] = useState<'all' | 'student' | 'creator'>('all');
@@ -39,46 +40,49 @@ export function TestimonialsSection() {
   return (
     <section className="py-24 bg-white relative overflow-hidden bg-[radial-gradient(ellipse_70%_70%_at_100%_60%,rgba(203,252,1,0.28),transparent_70%)] font-satoshi">
       <div className="layout-container relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-12">
-          <div className="lg:col-span-5">
-            <SectionTitle className="text-left">
-              Discover What Our <br className="hidden sm:inline" /> Community Is Saying
-            </SectionTitle>
-          </div>
-          <div className="lg:col-span-7 space-y-4">
-            <SectionSubtitle className="text-left">
-              At ByteSpace, our vibrant community of learners and creators is at the heart of what we do. Hear directly from those who have experienced the transformative journey of learning and creating on our platform.
-            </SectionSubtitle>
+        <ScrollReveal direction="up" distance={20} duration={600}>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-12">
+            <div className="lg:col-span-5">
+              <SectionTitle className="text-left">
+                Discover What Our <br className="hidden sm:inline" /> Community Is Saying
+              </SectionTitle>
+            </div>
+            <div className="lg:col-span-7 space-y-4">
+              <SectionSubtitle className="text-left">
+                At ByteSpace, our vibrant community of learners and creators is at the heart of what we do. Hear directly from those who have experienced the transformative journey of learning and creating on our platform.
+              </SectionSubtitle>
 
-            {/* Filter Toggle Buttons */}
-            <div className="flex items-center gap-2 pt-2">
-              {[
-                { id: 'all', label: 'All Community' },
-                { id: 'student', label: 'Learners' },
-                { id: 'creator', label: 'Creators' },
-              ].map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setFilterRole(tab.id as 'all' | 'student' | 'creator')}
-                  className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
-                    filterRole === tab.id
-                      ? 'bg-neutral-900 text-white shadow-xs'
-                      : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
+              {/* Filter Toggle Buttons */}
+              <div className="flex items-center gap-2 pt-2">
+                {[
+                  { id: 'all', label: 'All Community' },
+                  { id: 'student', label: 'Learners' },
+                  { id: 'creator', label: 'Creators' },
+                ].map((tab) => (
+                  <button
+                    key={tab.id}
+                    onClick={() => setFilterRole(tab.id as 'all' | 'student' | 'creator')}
+                    className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none active:scale-95 ${
+                      filterRole === tab.id
+                        ? 'bg-neutral-900 text-white shadow-xs scale-105'
+                        : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200 hover:text-neutral-900'
+                    }`}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
 
-        {/* Dynamic Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Dynamic Testimonials Grid with ScrollReveal */}
+        <ScrollReveal direction="up" delay={150} distance={24} duration={650}>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {filtered.slice(0, 3).map((item) => (
             <div
               key={item.id}
-              className="bg-white rounded-2xl p-7 border border-neutral-200/90 shadow-sm hover:shadow-2xl hover:border-neutral-300 hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between group cursor-pointer"
+              className="bg-white rounded-2xl p-7 border border-neutral-200/80 shadow-xs hover:shadow-[0_20px_45px_-12px_rgba(0,15,80,0.1)] hover:border-neutral-300 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group cursor-default"
             >
               <div>
                 <div className="flex items-center justify-between mb-6">
@@ -113,7 +117,8 @@ export function TestimonialsSection() {
               </div>
             </div>
           ))}
-        </div>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );
