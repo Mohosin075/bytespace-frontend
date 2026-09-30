@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter, useParams } from 'next/navigation';
@@ -51,6 +51,24 @@ export default function CourseDetailClient({ slug }: CourseDetailClientProps = {
   const [activeReviewFilter, setActiveReviewFilter] = useState('All rating');
   const [isEnrolled, setIsEnrolled] = useState(false);
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+  const videoRef = useRef<HTMLDivElement>(null);
+  const [blueHeight, setBlueHeight] = useState<number>(750);
+
+  useEffect(() => {
+    const update = () => {
+      if (videoRef.current) {
+        const rect = videoRef.current.getBoundingClientRect();
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        setBlueHeight(Math.round(rect.bottom + scrollTop));
+      }
+    };
+    const rafId = requestAnimationFrame(update);
+    window.addEventListener('resize', update);
+    return () => {
+      cancelAnimationFrame(rafId);
+      window.removeEventListener('resize', update);
+    };
+  }, []);
 
   const sneakPeakImages = [
     'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=600&auto=format&fit=crop&q=80',
@@ -107,144 +125,134 @@ export default function CourseDetailClient({ slug }: CourseDetailClientProps = {
   });
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen flex flex-col bg-white relative">
+      <Navbar variant="blue" />
+
+      {/* ── Top Blue Hero Background with Large Blueprint Grid ── */}
+      <div
+        className="absolute top-0 inset-x-0 bg-[#0052FE] pointer-events-none overflow-hidden z-0 transition-[height] duration-200"
+        style={{ height: `${blueHeight}px` }}
+      >
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage:
+              'linear-gradient(to right, rgba(255, 255, 255, 0.16) 1.5px, transparent 1.5px), linear-gradient(to bottom, rgba(255, 255, 255, 0.16) 1.5px, transparent 1.5px)',
+            backgroundSize: '120px 120px',
+          }}
+        />
+      </div>
+
       {/* =========================================================================
-          HERO & HEADER BANNER
+          MAIN UNIFIED CONTENT & STICKY ENROLLMENT CARD GRID
           ========================================================================= */}
-      <section className="bg-hero-grid text-white">
-        <Navbar variant="blue" />
+      <main className="layout-container pt-28 sm:pt-36 md:pt-40 pb-20 relative z-10 flex-1 font-satoshi">
+        {/* Top Header Row: Course Title on left, Share button on right */}
+        <ScrollReveal direction="up" distance={20} duration={600}>
+          <div className="flex flex-col lg:flex-row items-start justify-between gap-6 mb-8 text-white">
+            <div className="space-y-3 max-w-3xl">
+              <h1 className="font-poppins font-bold text-2xl sm:text-4xl lg:text-[40px] text-white tracking-tight leading-snug">
+                {course.title}
+              </h1>
+              <p className="text-white/90 text-sm sm:text-base font-normal leading-relaxed">
+                {course.subtitle || course.description || 'Unlock the Power of Digital Creation with Expert Guidance'}
+              </p>
 
-        <div className="layout-container pt-28 sm:pt-36 md:pt-40 pb-16 sm:pb-20">
-          <ScrollReveal direction="up" distance={20} duration={600}>
-            <div className="flex flex-col lg:flex-row items-start justify-between gap-6">
-              <div className="space-y-4 max-w-3xl">
-                <h1 className="font-poppins font-bold text-2xl sm:text-4xl md:text-5xl text-white tracking-tight leading-snug sm:leading-tight">
-                  {course.title}
-                </h1>
-                <p className="text-white/90 text-sm sm:text-base md:text-lg font-normal leading-relaxed">
-                  {course.subtitle || course.description || 'Unlock the Power of Digital Creation with Expert Guidance'}
-                </p>
+              <p className="text-xs sm:text-sm text-white/80">
+                by{' '}
+                <Link
+                  href={ROUTES.CREATOR_DETAIL(course.creator.id)}
+                  className="text-white font-medium hover:underline"
+                >
+                  {course.creator.name}
+                </Link>
+              </p>
 
-                <p className="text-xs sm:text-sm text-white/90">
-                  by{' '}
-                  <Link
-                    href={ROUTES.CREATOR_DETAIL(course.creator.id)}
-                    className="text-white font-medium hover:underline"
-                  >
-                    {course.creator.name}
-                  </Link>
-                </p>
+              {/* 3 Pills */}
+              <div className="flex flex-wrap items-center gap-2.5 pt-2">
+                <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white text-neutral-800 text-xs font-semibold shadow-xs">
+                  <BarChart2 className="w-3.5 h-3.5 text-primary-600" />
+                  <span>{course.level}</span>
+                </div>
 
-                {/* Badges & Share button row */}
-                <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 pt-2">
-                  <div className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 rounded-full bg-white text-neutral-800 text-xs font-semibold shadow-xs">
-                    <BarChart2 className="w-3.5 h-3.5 text-primary-600" />
-                    <span>{course.level}</span>
-                  </div>
+                <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white text-neutral-800 text-xs font-semibold shadow-xs">
+                  <Star className="w-3.5 h-3.5 fill-[#fbbf24] text-[#fbbf24]" />
+                  <span>{course.rating.toFixed(1)} ({course.reviewsCount || 172} reviews)</span>
+                </div>
 
-                  <div className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 rounded-full bg-white text-neutral-800 text-xs font-semibold shadow-xs">
-                    <Star className="w-3.5 h-3.5 fill-[#fbbf24] text-[#fbbf24]" />
-                    <span>{course.rating.toFixed(1)} ({course.reviewsCount || 172} reviews)</span>
-                  </div>
-
-                  <div className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 rounded-full bg-white text-neutral-800 text-xs font-semibold shadow-xs">
-                    <Users className="w-3.5 h-3.5 text-primary-600" />
-                    <span>{course.studentsCount || '199 Students'}</span>
-                  </div>
-
-                  <button
-                    onClick={handleShare}
-                    className="px-4 sm:px-6 py-1.5 sm:py-2 rounded-full bg-[#cbfc01] text-black font-semibold text-xs sm:text-sm hover:brightness-95 active:scale-95 transition-all flex items-center gap-1.5 cursor-pointer shadow-lg shrink-0"
-                  >
-                    <Share2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                    <span>Share</span>
-                  </button>
+                <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white text-neutral-800 text-xs font-semibold shadow-xs">
+                  <Users className="w-3.5 h-3.5 text-primary-600" />
+                  <span>{course.studentsCount || '199 Students'}</span>
                 </div>
               </div>
             </div>
-          </ScrollReveal>
 
-          {/* Large Video Player Preview */}
-          <ScrollReveal direction="up" delay={150} distance={24} duration={650}>
-            <div className="mt-12 rounded-3xl overflow-hidden aspect-[16/9] max-h-[520px] w-full bg-neutral-900 relative shadow-2xl border-4 border-white/20">
-              <Image
-                src={course.image || "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1200&auto=format&fit=crop&q=80"}
-                alt={`${course.title} Video Preview`}
-                fill
-                unoptimized
-                className="object-cover"
-              />
-              {/* Play Button Overlay */}
-              <div className="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/20 transition-colors">
-                <button
-                  onClick={() => setIsVideoModalOpen(true)}
-                  aria-label="Play Course Video Preview"
-                  className="w-20 h-20 rounded-full bg-white/80 backdrop-blur-md flex items-center justify-center text-neutral-900 shadow-2xl hover:scale-110 active:scale-95 transition-all cursor-pointer group"
-                >
-                  <Play className="w-8 h-8 fill-current translate-x-0.5 group-hover:text-primary-600 transition-colors" />
-                </button>
-              </div>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      {/* Video Preview Modal */}
-      {isVideoModalOpen && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="bg-neutral-900 rounded-3xl max-w-4xl w-full overflow-hidden shadow-2xl relative border border-white/20">
-            <div className="flex items-center justify-between p-4 bg-neutral-800 border-b border-neutral-700 text-white">
-              <span className="font-semibold text-sm">Course Preview Video</span>
-              <button
-                onClick={() => setIsVideoModalOpen(false)}
-                className="p-1 text-neutral-400 hover:text-white rounded-full cursor-pointer"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-            <div className="aspect-[16/9] w-full bg-black relative flex items-center justify-center">
-              <iframe
-                className="w-full h-full"
-                src="https://www.youtube-nocookie.com/embed/cZDglsE16yM?autoplay=1&rel=0"
-                title="Course Video Preview"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
+            {/* Share Button (Top Right Lime Pill Button) */}
+            <button
+              onClick={handleShare}
+              className="px-6 py-2.5 rounded-full bg-[#cbfc01] text-black font-semibold text-xs sm:text-sm hover:brightness-95 active:scale-95 transition-all flex items-center gap-1.5 cursor-pointer shadow-lg shrink-0 self-start"
+            >
+              <Share2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+              <span>Share</span>
+            </button>
           </div>
-        </div>
-      )}
+        </ScrollReveal>
 
-      {/* =========================================================================
-          CONTENT & STICKY ENROLLMENT CARD GRID
-          ========================================================================= */}
-      <main className="layout-container py-12 sm:py-16 flex-1">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          {/* LEFT COLUMN: TABS AND TAB CONTENT */}
-          <div className="lg:col-span-8 space-y-10">
-            {/* Navigation Tabs */}
-            <div className="flex items-center gap-3 border-b border-neutral-200 pb-4">
-              {(['about', 'lessons', 'reviews'] as const).map((tab) => {
-                const isActive = activeTab === tab;
-                const tabNames = {
-                  about: 'About',
-                  lessons: 'Lesson',
-                  reviews: 'Reviews',
-                };
-                return (
+        {/* ── 2-Column Grid: Left Column (Video Player + Tabs + Content) & Right Column (Enrollment Card) ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+          {/* LEFT COLUMN (8 cols): Video Player Preview + Tabs + Tab Content */}
+          <div className="lg:col-span-8 space-y-8">
+            {/* Video Player Preview (ref={videoRef}) */}
+            <ScrollReveal direction="up" delay={100} distance={20} duration={600}>
+              <div
+                ref={videoRef}
+                className="rounded-3xl overflow-hidden aspect-[16/9] w-full bg-neutral-900 relative shadow-2xl border-4 border-white/20"
+              >
+                <Image
+                  src={course.image || "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1200&auto=format&fit=crop&q=80"}
+                  alt={`${course.title} Video Preview`}
+                  fill
+                  unoptimized
+                  className="object-cover"
+                />
+                {/* Play Button Overlay */}
+                <div className="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/20 transition-colors">
                   <button
-                    key={tab}
-                    onClick={() => setActiveTab(tab)}
-                    className={`px-6 py-2.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
-                      isActive
-                        ? 'bg-[#cbfc01] text-black shadow-xs font-bold'
-                        : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'
-                    }`}
+                    onClick={() => setIsVideoModalOpen(true)}
+                    aria-label="Play Course Video Preview"
+                    className="w-20 h-20 rounded-full bg-white/80 backdrop-blur-md flex items-center justify-center text-neutral-900 shadow-2xl hover:scale-110 active:scale-95 transition-all cursor-pointer group"
                   >
-                    {tabNames[tab]}
+                    <Play className="w-8 h-8 fill-current translate-x-0.5 group-hover:text-primary-600 transition-colors" />
                   </button>
-                );
-              })}
+                </div>
+              </div>
+            </ScrollReveal>
+
+            {/* Navigation Tabs (About, Lessons, Reviews) - Clean spacing on white background */}
+            <div className="pt-8 sm:pt-12">
+              <div className="flex items-center gap-3">
+                {(['about', 'lessons', 'reviews'] as const).map((tab) => {
+                  const isActive = activeTab === tab;
+                  const tabNames = {
+                    about: 'About',
+                    lessons: 'Lessons',
+                    reviews: 'Reviews',
+                  };
+                  return (
+                    <button
+                      key={tab}
+                      onClick={() => setActiveTab(tab)}
+                      className={`px-6 sm:px-7 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+                        isActive
+                          ? 'bg-[#cbfc01] text-black shadow-xs font-bold'
+                          : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
+                      }`}
+                    >
+                      {tabNames[tab]}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
 
             {/* TAB 1: ABOUT */}
@@ -634,6 +642,32 @@ export default function CourseDetailClient({ slug }: CourseDetailClientProps = {
           </div>
         </div>
       </main>
+
+      {/* Video Preview Modal */}
+      {isVideoModalOpen && (
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+          <div className="bg-neutral-900 rounded-3xl max-w-4xl w-full overflow-hidden shadow-2xl relative border border-white/20">
+            <div className="flex items-center justify-between p-4 bg-neutral-800 border-b border-neutral-700 text-white">
+              <span className="font-semibold text-sm">Course Preview Video</span>
+              <button
+                onClick={() => setIsVideoModalOpen(false)}
+                className="p-1 text-neutral-400 hover:text-white rounded-full cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <div className="aspect-[16/9] w-full bg-black relative flex items-center justify-center">
+              <iframe
+                className="w-full h-full"
+                src="https://www.youtube-nocookie.com/embed/cZDglsE16yM?autoplay=1&rel=0"
+                title="Course Video Preview"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        </div>
+      )}
 
       <Footer />
     </div>
