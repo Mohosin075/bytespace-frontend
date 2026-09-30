@@ -301,14 +301,14 @@ function CoursesContent() {
       </div>
 
       {/* Category Pills Row */}
-      <div className="flex flex-wrap items-center gap-2.5 pt-2 pb-8">
+      <div className="flex items-center gap-2.5 pt-2 pb-8 overflow-x-auto no-scrollbar scroll-smooth flex-nowrap sm:flex-wrap">
         {filterCategories.map((category) => {
           const isActive = selectedCategory === category;
           return (
             <button
               key={category}
               onClick={() => handleCategorySelect(category)}
-              className={`px-5 py-2 rounded-full text-xs font-medium transition-all cursor-pointer ${
+              className={`px-4 sm:px-5 py-2 rounded-full text-xs font-medium transition-all cursor-pointer shrink-0 ${
                 isActive
                   ? 'bg-[#cbfc01] text-black font-semibold shadow-xs scale-105'
                   : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'

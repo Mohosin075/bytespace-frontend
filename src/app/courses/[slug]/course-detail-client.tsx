@@ -95,7 +95,7 @@ export default function CourseDetailClient() {
       <section className="bg-hero-grid text-white">
         <Navbar variant="blue" />
 
-        <div className="layout-container pt-6 pb-20">
+        <div className="layout-container pt-28 sm:pt-36 md:pt-40 pb-16 sm:pb-20">
           <div className="flex flex-col lg:flex-row items-start justify-between gap-6">
             <div className="space-y-4 max-w-3xl">
               <h1 className="font-poppins font-bold text-3xl sm:text-4xl md:text-5xl text-white tracking-tight leading-tight">

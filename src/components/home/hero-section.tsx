@@ -77,8 +77,8 @@ export function HeroSection() {
         }}
       />
 
-      {/* ── 6 Decorative 3D / Doodle Shapes ── */}
-      <div className="absolute -left-10 lg:left-0 top-[20%] w-40 sm:w-55 lg:w-66.75 pointer-events-none select-none z-10">
+      {/* ── 6 Decorative 3D / Doodle Shapes (Hidden on mobile to prevent layout clutter) ── */}
+      <div className="hidden md:block absolute -left-10 lg:left-0 top-[20%] w-40 sm:w-48 lg:w-[267px] pointer-events-none select-none z-10">
         <Image
           src="/home/Hero/left1.png"
           alt="Decorative Shape"
@@ -89,7 +89,7 @@ export function HeroSection() {
         />
       </div>
 
-      <div className="absolute left-4 sm:left-12 lg:left-24 top-[46%] w-25 sm:w-35 lg:w-44.25 pointer-events-none select-none z-10">
+      <div className="hidden md:block absolute left-4 sm:left-12 lg:left-24 top-[46%] w-24 sm:w-32 lg:w-[177px] pointer-events-none select-none z-10">
         <Image
           src="/home/Hero/left2.png"
           alt="Decorative Shape"
@@ -100,7 +100,7 @@ export function HeroSection() {
         />
       </div>
 
-      <div className="absolute -left-12 sm:-left-6 lg:left-0 bottom-0 w-50 sm:w-70 lg:w-86.5 pointer-events-none select-none z-10">
+      <div className="hidden md:block absolute -left-12 sm:-left-6 lg:left-0 bottom-0 w-44 sm:w-56 lg:w-[346px] pointer-events-none select-none z-10">
         <Image
           src="/home/Hero/left3.png"
           alt="Decorative Shape"
@@ -111,7 +111,7 @@ export function HeroSection() {
         />
       </div>
 
-      <div className="absolute -right-8 lg:right-0 top-[18%] w-32.5 sm:w-45 lg:w-53.25 pointer-events-none select-none z-10">
+      <div className="hidden md:block absolute -right-8 lg:right-0 top-[18%] w-32 sm:w-40 lg:w-[213px] pointer-events-none select-none z-10">
         <Image
           src="/home/Hero/right1.svg"
           alt="Decorative Shape"
@@ -122,7 +122,7 @@ export function HeroSection() {
         />
       </div>
 
-      <div className="absolute right-6 sm:right-14 lg:right-28 top-[44%] w-27.5 sm:w-37.5 lg:w-47.5 pointer-events-none select-none z-10">
+      <div className="hidden md:block absolute right-6 sm:right-14 lg:right-28 top-[44%] w-24 sm:w-32 lg:w-[190px] pointer-events-none select-none z-10">
         <Image
           src="/home/Hero/right2.svg"
           alt="Decorative Shape"
@@ -133,7 +133,7 @@ export function HeroSection() {
         />
       </div>
 
-      <div className="absolute -right-10 lg:right-0 bottom-4 w-45 sm:w-62.5 lg:w-79.25 pointer-events-none select-none z-10">
+      <div className="hidden md:block absolute -right-10 lg:right-0 bottom-4 w-40 sm:w-52 lg:w-[317px] pointer-events-none select-none z-10">
         <Image
           src="/home/Hero/right3.png"
           alt="Decorative Shape"

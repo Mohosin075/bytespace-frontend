@@ -56,14 +56,17 @@ export function CoursesSection() {
         {/* Dynamic Category Chips */}
         <div className="mt-10 max-w-5xl mx-auto">
           <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 transition-all duration-300">
-            {visibleCategories.map((category) => {
+            {visibleCategories.map((category, idx) => {
               const isActive = selectedCategory === category;
+              const isHiddenOnMobileWhenCollapsed = !isExpanded && idx >= 5;
               return (
                 <button
                   key={category}
                   type="button"
                   onClick={() => setSelectedCategory(category)}
-                  className={`px-5 py-2.5 rounded-full font-satoshi text-xs sm:text-[13px] transition-all duration-200 cursor-pointer select-none active:scale-95 ${
+                  className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full font-satoshi text-xs sm:text-[13px] transition-all duration-200 cursor-pointer select-none active:scale-95 ${
+                    isHiddenOnMobileWhenCollapsed ? 'hidden sm:inline-flex' : 'inline-flex'
+                  } ${
                     isActive
                       ? 'bg-secondary-500 text-neutral-950 font-bold shadow-md scale-105 ring-2 ring-secondary-400/40 ring-offset-2 ring-offset-white'
                       : 'bg-neutral-100 text-neutral-700 font-medium hover:bg-neutral-200 hover:text-neutral-950 hover:scale-105 shadow-xs'
@@ -78,7 +81,7 @@ export function CoursesSection() {
             <button
               type="button"
               onClick={() => setIsExpanded(!isExpanded)}
-              className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full font-satoshi text-xs sm:text-[13px] font-semibold text-primary-600 hover:text-primary-700 hover:bg-primary-50 transition-all duration-200 cursor-pointer select-none active:scale-95"
+              className="inline-flex items-center gap-1.5 px-4 py-2 sm:py-2.5 rounded-full font-satoshi text-xs sm:text-[13px] font-semibold text-primary-600 hover:text-primary-700 hover:bg-primary-50 transition-all duration-200 cursor-pointer select-none active:scale-95"
             >
               {isExpanded ? (
                 <>
@@ -87,7 +90,8 @@ export function CoursesSection() {
                 </>
               ) : (
                 <>
-                  <span>+ More ({regularCategories.length - INITIAL_VISIBLE_COUNT})</span>
+                  <span className="sm:hidden">+ More ({regularCategories.length - 5})</span>
+                  <span className="hidden sm:inline">+ More ({regularCategories.length - INITIAL_VISIBLE_COUNT})</span>
                   <ChevronDown className="w-3.5 h-3.5" />
                 </>
               )}

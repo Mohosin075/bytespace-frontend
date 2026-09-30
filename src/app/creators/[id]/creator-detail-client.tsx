@@ -36,7 +36,7 @@ export default function CreatorDetailClient() {
       {/* =========================================================================
           HERO & CREATOR PROFILE BANNER
           ========================================================================= */}
-      <section className="bg-hero-grid text-white pb-20 pt-24 sm:pt-28">
+      <section className="bg-hero-grid text-white pb-16 sm:pb-20 pt-28 sm:pt-36 md:pt-40">
         <Navbar variant="blue" />
 
         <div className="layout-container pt-4">
