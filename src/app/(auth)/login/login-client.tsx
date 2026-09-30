@@ -9,6 +9,7 @@ import { ROUTES } from '@/constants/routes';
 
 import { useAuth } from '@/context/auth-context';
 import { useToast } from '@/context/toast-context';
+import { loginSchema } from '@/lib/validations/auth-schema';
 
 export default function LoginClient() {
   const router = useRouter();
@@ -16,10 +17,25 @@ export default function LoginClient() {
   const { showToast } = useToast();
   const [email, setEmail] = useState('designer@example.com');
   const [password, setPassword] = useState('********');
+  const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setErrors({});
+
+    const result = loginSchema.safeParse({ email, password });
+    if (!result.success) {
+      const fieldErrors: { email?: string; password?: string } = {};
+      result.error.issues.forEach((issue) => {
+        const path = issue.path[0] as 'email' | 'password';
+        fieldErrors[path] = issue.message;
+      });
+      setErrors(fieldErrors);
+      showToast('Please fix the errors in the form', 'warning');
+      return;
+    }
+
     setLoading(true);
     setTimeout(() => {
       login(email, 'Jamie Davis');
@@ -64,10 +80,16 @@ export default function LoginClient() {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    required
                     placeholder="designer@example.com"
-                    className="w-full px-5 py-3.5 rounded-xl border border-neutral-200 text-neutral-800 text-sm placeholder:text-neutral-400 focus:outline-none focus:border-neutral-900 transition-colors"
+                    className={`w-full px-5 py-3.5 rounded-xl border text-neutral-800 text-sm placeholder:text-neutral-400 focus:outline-none transition-colors ${
+                      errors.email
+                        ? 'border-red-500 focus:border-red-600 bg-red-50/20'
+                        : 'border-neutral-200 focus:border-neutral-900'
+                    }`}
                   />
+                  {errors.email && (
+                    <p className="text-xs text-red-500 font-medium mt-1">{errors.email}</p>
+                  )}
                 </div>
 
                 <div>
@@ -78,10 +100,16 @@ export default function LoginClient() {
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    required
                     placeholder="********"
-                    className="w-full px-5 py-3.5 rounded-xl border border-neutral-200 text-neutral-800 text-sm placeholder:text-neutral-400 focus:outline-none focus:border-neutral-900 transition-colors"
+                    className={`w-full px-5 py-3.5 rounded-xl border text-neutral-800 text-sm placeholder:text-neutral-400 focus:outline-none transition-colors ${
+                      errors.password
+                        ? 'border-red-500 focus:border-red-600 bg-red-50/20'
+                        : 'border-neutral-200 focus:border-neutral-900'
+                    }`}
                   />
+                  {errors.password && (
+                    <p className="text-xs text-red-500 font-medium mt-1">{errors.password}</p>
+                  )}
                 </div>
 
                 <div className="flex justify-end pt-2">

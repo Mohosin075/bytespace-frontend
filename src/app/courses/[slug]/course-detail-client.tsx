@@ -3,32 +3,48 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, useParams } from 'next/navigation';
 import {
   Share2,
   BarChart2,
   Star,
   Users,
   Play,
-  FileText,
   Video,
   Award,
   CheckCircle2,
   X,
   Folder,
   Radio,
+  ShoppingBag,
 } from 'lucide-react';
 import { Navbar } from '@/components/shared/navbar';
 import { Footer } from '@/components/shared/footer';
-import { MOCK_MODULES, MOCK_REVIEWS, MOCK_CREATOR } from '@/constants/mock-data';
+import { MOCK_MODULES, MOCK_REVIEWS, MOCK_CREATOR, MOCK_COURSES } from '@/constants/mock-data';
 import { ROUTES } from '@/constants/routes';
 import { useToast } from '@/context/toast-context';
 import { useAuth } from '@/context/auth-context';
+import { useCart } from '@/context/cart-context';
 
-export default function CourseDetailClient() {
+interface CourseDetailClientProps {
+  slug?: string;
+}
+
+export default function CourseDetailClient({ slug }: CourseDetailClientProps = {}) {
   const router = useRouter();
+  const params = useParams();
   const { showToast } = useToast();
   const { isLoggedIn } = useAuth();
+  const { addToCart, isInCart } = useCart();
+
+  const activeSlug = slug || (params?.slug as string) || '';
+  const course =
+    MOCK_COURSES.find(
+      (c) =>
+        c.slug === activeSlug ||
+        c.id === activeSlug ||
+        c.title.toLowerCase().replace(/[^a-z0-9]+/g, '-') === activeSlug
+    ) || MOCK_COURSES[0];
 
   const [activeTab, setActiveTab] = useState<'about' | 'lessons' | 'reviews'>('about');
   const [activeReviewFilter, setActiveReviewFilter] = useState('All rating');
@@ -79,7 +95,7 @@ export default function CourseDetailClient() {
       router.push(ROUTES.DASHBOARD.ROOT);
     } else {
       setIsEnrolled(true);
-      showToast('Congratulations! You are now enrolled in "Build Digital Asset"', 'success');
+      showToast(`Congratulations! You are now enrolled in "${course.title}"`, 'success');
     }
   };
 
@@ -101,19 +117,19 @@ export default function CourseDetailClient() {
           <div className="flex flex-col lg:flex-row items-start justify-between gap-6">
             <div className="space-y-4 max-w-3xl">
               <h1 className="font-poppins font-bold text-2xl sm:text-4xl md:text-5xl text-white tracking-tight leading-snug sm:leading-tight">
-                Build Digital Asset: A Comprehensive Guide
+                {course.title}
               </h1>
               <p className="text-white/90 text-sm sm:text-base md:text-lg font-normal leading-relaxed">
-                Unlock the Power of Digital Creation with Expert Guidance
+                {course.subtitle || course.description || 'Unlock the Power of Digital Creation with Expert Guidance'}
               </p>
 
               <p className="text-xs sm:text-sm text-white/90">
                 by{' '}
                 <Link
-                  href={ROUTES.CREATOR_DETAIL('purepearl-studio')}
+                  href={ROUTES.CREATOR_DETAIL(course.creator.id)}
                   className="text-white font-medium hover:underline"
                 >
-                  purepearl studio
+                  {course.creator.name}
                 </Link>
               </p>
 
@@ -121,17 +137,17 @@ export default function CourseDetailClient() {
               <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 pt-2">
                 <div className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 rounded-full bg-white text-neutral-800 text-xs font-semibold shadow-xs">
                   <BarChart2 className="w-3.5 h-3.5 text-primary-600" />
-                  <span>Intermediate</span>
+                  <span>{course.level}</span>
                 </div>
 
                 <div className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 rounded-full bg-white text-neutral-800 text-xs font-semibold shadow-xs">
                   <Star className="w-3.5 h-3.5 fill-[#fbbf24] text-[#fbbf24]" />
-                  <span>4.8 (172 reviews)</span>
+                  <span>{course.rating.toFixed(1)} ({course.reviewsCount || 172} reviews)</span>
                 </div>
 
                 <div className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 rounded-full bg-white text-neutral-800 text-xs font-semibold shadow-xs">
                   <Users className="w-3.5 h-3.5 text-primary-600" />
-                  <span>199 Students</span>
+                  <span>{course.studentsCount || '199 Students'}</span>
                 </div>
 
                 <button
@@ -148,8 +164,8 @@ export default function CourseDetailClient() {
           {/* Large Video Player Preview */}
           <div className="mt-12 rounded-3xl overflow-hidden aspect-[16/9] max-h-[520px] w-full bg-neutral-900 relative shadow-2xl border-4 border-white/20">
             <Image
-              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1200&auto=format&fit=crop&q=80"
-              alt="Course Video Preview"
+              src={course.image || "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1200&auto=format&fit=crop&q=80"}
+              alt={`${course.title} Video Preview`}
               fill
               unoptimized
               className="object-cover"
@@ -510,24 +526,44 @@ export default function CourseDetailClient() {
                   : 'Ready to Dive In? Enroll Now and Start Building Your Digital Future!'}
               </p>
 
-              {/* Price & CTA Button */}
+              {/* Price & CTA Buttons */}
               <div>
                 <div className="flex items-baseline gap-1 mb-4">
-                  <span className="font-poppins font-bold text-3xl sm:text-4xl text-[#0052FE]">$25</span>
-                  <span className="text-xs text-neutral-500 font-normal">/lifetime</span>
+                  <span className="font-poppins font-bold text-3xl sm:text-4xl text-[#0052FE]">${course.price}</span>
+                  <span className="text-xs text-neutral-500 font-normal">/{course.priceType || 'lifetime'}</span>
                 </div>
 
-                <button
-                  type="button"
-                  onClick={handleEnroll}
-                  className={`w-full py-3.5 rounded-full font-semibold text-sm transition-all shadow-md cursor-pointer ${
-                    isEnrolled
-                      ? 'bg-neutral-900 text-white hover:bg-neutral-800'
-                      : 'bg-[#cbfc01] text-black hover:brightness-95 active:scale-95'
-                  }`}
-                >
-                  {isEnrolled ? 'Go to Learning Workspace' : 'Enroll Now'}
-                </button>
+                <div className="flex flex-col gap-2.5">
+                  <button
+                    type="button"
+                    onClick={handleEnroll}
+                    className={`w-full py-3.5 rounded-full font-semibold text-sm transition-all shadow-md cursor-pointer ${
+                      isEnrolled
+                        ? 'bg-neutral-900 text-white hover:bg-neutral-800'
+                        : 'bg-[#cbfc01] text-black hover:brightness-95 active:scale-95'
+                    }`}
+                  >
+                    {isEnrolled ? 'Go to Learning Workspace' : 'Enroll Now'}
+                  </button>
+
+                  {!isEnrolled && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        if (!isInCart(course.id)) {
+                          addToCart(course);
+                          showToast(`Added "${course.title}" to cart!`, 'success');
+                        } else {
+                          showToast(`"${course.title}" is already in your cart`, 'info');
+                        }
+                      }}
+                      className="w-full py-3 rounded-full border border-neutral-300 font-semibold text-xs text-neutral-800 hover:border-neutral-900 hover:bg-neutral-50 transition-all cursor-pointer flex items-center justify-center gap-2"
+                    >
+                      <ShoppingBag className="w-4 h-4 text-[#0052FE]" />
+                      <span>{isInCart(course.id) ? 'In Your Cart' : 'Add to Cart'}</span>
+                    </button>
+                  )}
+                </div>
               </div>
 
               {/* This Course Include */}
@@ -561,8 +597,8 @@ export default function CourseDetailClient() {
                 <div className="flex items-center gap-3.5">
                   <div className="relative w-12 h-12 rounded-full overflow-hidden border border-neutral-200 shrink-0">
                     <Image
-                      src={MOCK_CREATOR.avatar}
-                      alt={MOCK_CREATOR.name}
+                      src={course.creator.avatar || MOCK_CREATOR.avatar}
+                      alt={course.creator.name}
                       fill
                       unoptimized
                       className="object-cover"
@@ -570,9 +606,9 @@ export default function CourseDetailClient() {
                   </div>
                   <div>
                     <p className="font-poppins font-semibold text-sm sm:text-base text-neutral-950">
-                      {MOCK_CREATOR.name}
+                      {course.creator.name}
                     </p>
-                    <p className="text-xs text-neutral-500">Professional Creator</p>
+                    <p className="text-xs text-neutral-500">{course.creator.role || 'Professional Creator'}</p>
                   </div>
                 </div>
 
@@ -581,7 +617,7 @@ export default function CourseDetailClient() {
                 </p>
 
                 <Link
-                  href={ROUTES.CREATOR_DETAIL('purepearl-studio')}
+                  href={ROUTES.CREATOR_DETAIL(course.creator.id)}
                   className="inline-block text-center py-2 px-5 rounded-full border border-neutral-300 text-neutral-800 text-xs font-semibold hover:border-neutral-950 transition-colors"
                 >
                   See Full Profile

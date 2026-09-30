@@ -35,14 +35,17 @@ const PARTNER_LOGOS: LogoItem[] = [
 ];
 
 export function LogoStrip() {
+  // Duplicate logos for seamless infinite looping
+  const marqueeLogos = [...PARTNER_LOGOS, ...PARTNER_LOGOS, ...PARTNER_LOGOS, ...PARTNER_LOGOS];
+
   return (
-    <section className="bg-neutral-100/80 border-b border-neutral-200/60 py-8 sm:py-12 md:py-16 relative z-10 overflow-hidden">
-      <div className="layout-container">
-        <div className="flex items-center justify-start md:justify-between gap-10 sm:gap-12 md:gap-8 overflow-x-auto no-scrollbar scroll-smooth flex-nowrap py-2 px-1 opacity-75 hover:opacity-100 transition-opacity duration-300">
-          {PARTNER_LOGOS.map((logo) => (
+    <section className="bg-neutral-100/80 border-b border-neutral-200/60 py-8 sm:py-12 md:py-16 relative z-10 overflow-hidden select-none">
+      <div className="w-full overflow-hidden">
+        <div className="animate-marquee flex items-center gap-12 sm:gap-16 md:gap-24 py-2 opacity-80 hover:opacity-100 transition-opacity duration-300">
+          {marqueeLogos.map((logo, idx) => (
             <div
-              key={logo.id}
-              className="relative h-9 sm:h-10 w-32 sm:w-36 shrink-0 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300"
+              key={`${logo.id}-${idx}`}
+              className="relative h-9 sm:h-10 w-32 sm:w-36 shrink-0 flex items-center justify-center grayscale hover:grayscale-0 hover:scale-110 hover:-translate-y-1 transition-all duration-300 cursor-pointer"
             >
               <Image
                 src={logo.src}

@@ -23,9 +23,9 @@ export function AuthVisualStack({ title, subtitle }: AuthVisualStackProps) {
       {/* Decorative Interactive Stack (Desktop only to prevent mobile scroll clutter) */}
       <div className="hidden lg:block relative mt-12 mb-8 py-10">
         {/* Floating Shapes */}
-        <DonutShape className="absolute -top-6 -left-8 w-28 h-28 opacity-90 z-20" />
-        <ConeShape className="absolute -bottom-8 -left-6 w-24 h-28 opacity-90 z-20" />
-        <SquiggleShape className="absolute bottom-12 -right-8 w-32 h-20 opacity-80 z-20" />
+        <DonutShape className="absolute -top-6 -left-8 w-28 h-28 opacity-90 z-20 animate-float" />
+        <ConeShape className="absolute -bottom-8 -left-6 w-24 h-28 opacity-90 z-20 animate-float-slow" />
+        <SquiggleShape className="absolute bottom-12 -right-8 w-32 h-20 opacity-80 z-20 animate-float-reverse" />
 
         {/* Card 1: Behind (Build Digital Asset) */}
         <div className="absolute top-4 -left-6 w-72 bg-white text-neutral-900 rounded-2xl p-4 shadow-xl border border-neutral-100 opacity-90 transform -rotate-3 pointer-events-none">

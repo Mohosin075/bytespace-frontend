@@ -32,9 +32,9 @@ export function LearningPathsSection() {
             <Link
               key={path.title}
               href={`/courses?category=${encodeURIComponent(path.title)}`}
-              className="w-38 sm:w-auto shrink-0 sm:shrink-initial bg-white rounded-2xl p-6 sm:p-7 border border-neutral-200/90 flex flex-col items-center justify-center gap-4 hover:shadow-xl hover:border-neutral-300 transition-all duration-300 group"
+              className="w-38 sm:w-auto shrink-0 sm:shrink-initial bg-white rounded-2xl p-6 sm:p-7 border border-neutral-200/90 flex flex-col items-center justify-center gap-4 hover:shadow-2xl hover:border-primary-300 hover:-translate-y-2 transition-all duration-300 group cursor-pointer"
             >
-              <div className="relative w-14 h-14 sm:w-16 sm:h-16 group-hover:scale-110 transition-transform">
+              <div className="relative w-14 h-14 sm:w-16 sm:h-16 group-hover:scale-115 group-hover:-rotate-3 transition-transform duration-300">
                 <Image
                   src={path.image}
                   alt={path.title}
@@ -43,7 +43,7 @@ export function LearningPathsSection() {
                   className="w-full h-full object-contain"
                 />
               </div>
-              <span className="font-satoshi font-semibold text-neutral-900 text-sm whitespace-nowrap sm:whitespace-normal">
+              <span className="font-satoshi font-semibold text-neutral-900 group-hover:text-primary-600 transition-colors text-sm whitespace-nowrap sm:whitespace-normal">
                 {path.title}
               </span>
             </Link>

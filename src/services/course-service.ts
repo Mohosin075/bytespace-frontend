@@ -1,39 +1,37 @@
-import { MOCK_COURSES } from '@/constants/mock-data';
-import { Course } from '@/types';
+import { Course, Creator } from '@/types';
+import { MOCK_COURSES, MOCK_CREATOR } from '@/constants/mock-data';
 
-export const courseService = {
-  getAll: (): Course[] => {
+export const CourseService = {
+  async getAllCourses(): Promise<Course[]> {
     return MOCK_COURSES;
   },
 
-  getBySlug: (slug: string): Course | undefined => {
-    return MOCK_COURSES.find((c) => c.slug === slug || c.id === slug);
-  },
-
-  getFeatured: (limit = 6): Course[] => {
-    return MOCK_COURSES.filter((c) => c.featured || c.rating >= 4.7).slice(0, limit);
-  },
-
-  getByCategory: (category: string): Course[] => {
-    if (category === 'Featured') {
-      return courseService.getFeatured();
-    }
-    const matched = MOCK_COURSES.filter(
-      (c) =>
-        c.category.toLowerCase() === category.toLowerCase() ||
-        c.title.toLowerCase().includes(category.toLowerCase())
+  async getCourseBySlug(slug: string): Promise<Course | undefined> {
+    return MOCK_COURSES.find(
+      (c) => c.slug === slug || c.id === slug || c.title.toLowerCase().replace(/[^a-z0-9]+/g, '-') === slug
     );
-    return matched.length > 0 ? matched : MOCK_COURSES.slice(0, 3);
   },
 
-  search: (query: string, limit = 4): Course[] => {
-    const trimmed = query.trim().toLowerCase();
-    if (!trimmed) return [];
+  async getCoursesByCategory(category: string): Promise<Course[]> {
+    if (category === 'All' || !category) return MOCK_COURSES;
+    return MOCK_COURSES.filter((c) => c.category.toLowerCase() === category.toLowerCase());
+  },
+
+  async searchCourses(query: string): Promise<Course[]> {
+    if (!query.trim()) return MOCK_COURSES;
+    const term = query.toLowerCase();
     return MOCK_COURSES.filter(
       (c) =>
-        c.title.toLowerCase().includes(trimmed) ||
-        c.category.toLowerCase().includes(trimmed) ||
-        c.creator.name.toLowerCase().includes(trimmed)
-    ).slice(0, limit);
+        c.title.toLowerCase().includes(term) ||
+        c.category.toLowerCase().includes(term) ||
+        c.creator.name.toLowerCase().includes(term)
+    );
+  },
+
+  async getCreatorById(id: string): Promise<Creator | undefined> {
+    if (id === MOCK_CREATOR.id || id === MOCK_CREATOR.handle) {
+      return MOCK_CREATOR;
+    }
+    return MOCK_CREATOR;
   },
 };

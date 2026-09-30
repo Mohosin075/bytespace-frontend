@@ -78,7 +78,7 @@ export function HeroSection() {
       />
 
       {/* ── 6 Decorative 3D / Doodle Shapes (Hidden on mobile to prevent layout clutter) ── */}
-      <div className="hidden md:block absolute -left-10 lg:left-0 top-[20%] w-40 sm:w-48 lg:w-[267px] pointer-events-none select-none z-10">
+      <div className="hidden md:block absolute -left-10 lg:left-0 top-[20%] w-40 sm:w-48 lg:w-[267px] pointer-events-none select-none z-10 animate-float">
         <Image
           src="/home/Hero/left1.png"
           alt="Decorative Shape"
@@ -89,7 +89,7 @@ export function HeroSection() {
         />
       </div>
 
-      <div className="hidden md:block absolute left-4 sm:left-12 lg:left-24 top-[46%] w-24 sm:w-32 lg:w-[177px] pointer-events-none select-none z-10">
+      <div className="hidden md:block absolute left-4 sm:left-12 lg:left-24 top-[46%] w-24 sm:w-32 lg:w-[177px] pointer-events-none select-none z-10 animate-float-reverse">
         <Image
           src="/home/Hero/left2.png"
           alt="Decorative Shape"
@@ -100,7 +100,7 @@ export function HeroSection() {
         />
       </div>
 
-      <div className="hidden md:block absolute -left-12 sm:-left-6 lg:left-0 bottom-0 w-44 sm:w-56 lg:w-[346px] pointer-events-none select-none z-10">
+      <div className="hidden md:block absolute -left-12 sm:-left-6 lg:left-0 bottom-0 w-44 sm:w-56 lg:w-[346px] pointer-events-none select-none z-10 animate-float-slow">
         <Image
           src="/home/Hero/left3.png"
           alt="Decorative Shape"
@@ -111,7 +111,7 @@ export function HeroSection() {
         />
       </div>
 
-      <div className="hidden md:block absolute -right-8 lg:right-0 top-[18%] w-32 sm:w-40 lg:w-[213px] pointer-events-none select-none z-10">
+      <div className="hidden md:block absolute -right-8 lg:right-0 top-[18%] w-32 sm:w-40 lg:w-[213px] pointer-events-none select-none z-10 animate-float-slow">
         <Image
           src="/home/Hero/right1.svg"
           alt="Decorative Shape"
@@ -122,7 +122,7 @@ export function HeroSection() {
         />
       </div>
 
-      <div className="hidden md:block absolute right-6 sm:right-14 lg:right-28 top-[44%] w-24 sm:w-32 lg:w-[190px] pointer-events-none select-none z-10">
+      <div className="hidden md:block absolute right-6 sm:right-14 lg:right-28 top-[44%] w-24 sm:w-32 lg:w-[190px] pointer-events-none select-none z-10 animate-float">
         <Image
           src="/home/Hero/right2.svg"
           alt="Decorative Shape"
@@ -133,7 +133,7 @@ export function HeroSection() {
         />
       </div>
 
-      <div className="hidden md:block absolute -right-10 lg:right-0 bottom-4 w-40 sm:w-52 lg:w-[317px] pointer-events-none select-none z-10">
+      <div className="hidden md:block absolute -right-10 lg:right-0 bottom-4 w-40 sm:w-52 lg:w-[317px] pointer-events-none select-none z-10 animate-float-reverse">
         <Image
           src="/home/Hero/right3.png"
           alt="Decorative Shape"
@@ -307,7 +307,7 @@ export function HeroSection() {
         {/* ── Student Centerpiece + Lime Halo Backdrop + Badges ── */}
         <div className="relative w-full max-w-4xl mt-8 sm:mt-16 flex justify-center items-end min-h-[300px] sm:min-h-[480px] lg:min-h-[560px]">
           {/* Center Back Halo Arc */}
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[340px] sm:w-[600px] lg:w-[850px] pointer-events-none select-none z-0">
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[340px] sm:w-[600px] lg:w-[850px] pointer-events-none select-none z-0 animate-pulse-glow">
             <Image
               src="/home/Hero/centerbackshpae.svg"
               alt="Center Back Halo"
@@ -331,7 +331,7 @@ export function HeroSection() {
           </div>
 
           {/* Badge 1: UI/UX Design */}
-          <div className="absolute top-[8%] sm:top-[18%] left-1 sm:left-6 lg:left-12 z-20 bg-white rounded-xl sm:rounded-2xl p-2.5 sm:p-4 shadow-xl animate-in fade-in duration-300 text-left scale-85 sm:scale-100 origin-top-left">
+          <div className="absolute top-[8%] sm:top-[18%] left-1 sm:left-6 lg:left-12 z-20 bg-white rounded-xl sm:rounded-2xl p-2.5 sm:p-4 shadow-xl text-left scale-85 sm:scale-100 origin-top-left animate-float">
             <h4 className="font-bold text-zinc-900 text-[11px] sm:text-sm">UI/UX Design</h4>
             <p className="text-[9px] sm:text-xs text-zinc-500 font-medium mt-0.5">
               200 Courses &bull; 1000+ Students
@@ -339,7 +339,7 @@ export function HeroSection() {
           </div>
 
           {/* Badge 2: Learning Progress 55% */}
-          <div className="absolute top-[12%] sm:top-[22%] right-1 sm:right-6 lg:right-10 z-20 bg-white rounded-xl sm:rounded-2xl p-3 sm:p-5 shadow-xl w-36 sm:w-50 animate-in fade-in duration-300 text-left scale-85 sm:scale-100 origin-top-right">
+          <div className="absolute top-[12%] sm:top-[22%] right-1 sm:right-6 lg:right-10 z-20 bg-white rounded-xl sm:rounded-2xl p-3 sm:p-5 shadow-xl w-36 sm:w-50 text-left scale-85 sm:scale-100 origin-top-right animate-float-reverse">
             <span className="text-[10px] sm:text-xs font-semibold text-zinc-500">
               Learning Progress
             </span>
@@ -350,7 +350,7 @@ export function HeroSection() {
           </div>
 
           {/* Badge 3: Happy Students */}
-          <div className="absolute bottom-[6%] sm:bottom-[12%] left-0 sm:left-4 lg:left-8 z-20 bg-white rounded-xl sm:rounded-2xl p-2.5 sm:p-4 shadow-xl animate-in fade-in duration-300 text-left scale-85 sm:scale-100 origin-bottom-left">
+          <div className="absolute bottom-[6%] sm:bottom-[12%] left-0 sm:left-4 lg:left-8 z-20 bg-white rounded-xl sm:rounded-2xl p-2.5 sm:p-4 shadow-xl text-left scale-85 sm:scale-100 origin-bottom-left animate-float-slow">
             <h4 className="font-bold text-zinc-900 text-[11px] sm:text-sm tracking-tight leading-none">
               Happy Students
             </h4>

@@ -78,7 +78,7 @@ export function TestimonialsSection() {
           {filtered.slice(0, 3).map((item) => (
             <div
               key={item.id}
-              className="bg-white rounded-2xl p-7 border border-neutral-200/90 shadow-sm hover:shadow-xl transition-all flex flex-col justify-between group"
+              className="bg-white rounded-2xl p-7 border border-neutral-200/90 shadow-sm hover:shadow-2xl hover:border-neutral-300 hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between group cursor-pointer"
             >
               <div>
                 <div className="flex items-center justify-between mb-6">

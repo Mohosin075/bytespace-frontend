@@ -119,7 +119,7 @@ export function GrowthSection() {
             </div>
 
             {/* Shape */}
-            <div className="absolute top-2 sm:top-4 right-0 sm:right-4 w-[28%] sm:w-[32%] z-0 pointer-events-none select-none">
+            <div className="absolute top-2 sm:top-4 right-0 sm:right-4 w-[28%] sm:w-[32%] z-0 pointer-events-none select-none animate-float">
               <Image
                 src="/home/growth/person1icon1.png"
                 alt="Shape"
@@ -143,7 +143,7 @@ export function GrowthSection() {
             </div>
 
             {/* Learning progress floating card */}
-            <div className="absolute top-[42%] -right-2.5 sm:-right-3.75 z-30 bg-white/95 backdrop-blur-md rounded-2xl p-4 sm:p-5 shadow-2xl border border-white/80 w-42.5 sm:w-50">
+            <div className="absolute top-[42%] -right-2.5 sm:-right-3.75 z-30 bg-white/95 backdrop-blur-md rounded-2xl p-4 sm:p-5 shadow-2xl border border-white/80 w-42.5 sm:w-50 animate-float-reverse">
               <span className="font-satoshi text-[11px] sm:text-xs font-semibold text-zinc-500">Learning Progress</span>
               <div className="font-satoshi text-2xl sm:text-3xl font-extrabold text-zinc-900 mt-1">55%</div>
               <div className="w-full bg-zinc-100 rounded-full h-2 mt-2.5 overflow-hidden">
@@ -158,7 +158,7 @@ export function GrowthSection() {
           {/* Visual Column (Top on mobile, Left on desktop) */}
           <div className="order-1 lg:order-1 relative w-full max-w-140 mx-auto min-h-110 sm:min-h-130 flex items-center justify-center">
             {/* Green 3D squiggle icon behind creator */}
-            <div className="absolute top-[28%] right-2 sm:right-6 w-[28%] sm:w-[32%] z-0 pointer-events-none select-none">
+            <div className="absolute top-[28%] right-2 sm:right-6 w-[28%] sm:w-[32%] z-0 pointer-events-none select-none animate-float-slow">
               <Image
                 src="/home/growth/person2icon1.png"
                 alt="Shape"
@@ -170,7 +170,7 @@ export function GrowthSection() {
             </div>
 
             {/* Total Revenue badge — BEHIND creator (z-10) */}
-            <div className="absolute top-[8%] left-[2%] sm:left-[4%] z-10 bg-[#0052FE] text-white rounded-2xl p-3.5 sm:p-4 shadow-xl border border-blue-400/30 w-37.5 sm:w-42.5">
+            <div className="absolute top-[8%] left-[2%] sm:left-[4%] z-10 bg-[#0052FE] text-white rounded-2xl p-3.5 sm:p-4 shadow-xl border border-blue-400/40 w-37.5 sm:w-42.5 animate-float animate-border-glow">
               <div className="font-satoshi text-[11px] sm:text-xs text-white/90 font-medium">Total Revenue</div>
               <div className="font-satoshi text-[9px] text-white/60 font-normal">July 1-28</div>
               <div className="font-satoshi text-lg sm:text-xl font-bold text-white mt-1">$120.29</div>
@@ -180,7 +180,7 @@ export function GrowthSection() {
             </div>
 
             {/* Year to Date badge — BEHIND creator (z-10) */}
-            <div className="absolute top-[32%] left-[2%] sm:left-[4%] z-10 bg-[#0052FE] text-white rounded-2xl p-3.5 sm:p-4 shadow-xl border border-blue-400/30 w-37.5 sm:w-42.5">
+            <div className="absolute top-[32%] left-[2%] sm:left-[4%] z-10 bg-[#0052FE] text-white rounded-2xl p-3.5 sm:p-4 shadow-xl border border-blue-400/40 w-37.5 sm:w-42.5 animate-float-slow animate-border-glow">
               <div className="font-satoshi text-[11px] sm:text-xs text-white/90 font-medium">Year to Date</div>
               <div className="font-satoshi text-[9px] text-white/60 font-normal">2023</div>
               <div className="font-satoshi text-lg sm:text-xl font-bold text-white mt-1">$1,200.38</div>
@@ -202,7 +202,7 @@ export function GrowthSection() {
             </div>
 
             {/* Happy Students card — IN FRONT of creator (z-30) */}
-            <div className="absolute bottom-[16%] sm:bottom-[18%] right-[3%] sm:right-[6%] lg:right-[8%] z-30 bg-white rounded-2xl p-4 sm:p-5 shadow-[0_20px_45px_rgba(0,0,0,0.12)] border border-neutral-100">
+            <div className="absolute bottom-[16%] sm:bottom-[18%] right-[3%] sm:right-[6%] lg:right-[8%] z-30 bg-white rounded-2xl p-4 sm:p-5 shadow-[0_20px_45px_rgba(0,0,0,0.12)] border border-neutral-100 animate-float-reverse card-hover-motion">
               <h4 className="font-satoshi font-bold text-neutral-950 text-sm sm:text-base leading-tight">Happy Students</h4>
               <div className="flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-neutral-900 mt-1">
                 <span className="font-satoshi">4.5</span>
