@@ -189,49 +189,64 @@ function CoursesContent() {
   };
 
   return (
-    <main className="layout-container py-12 flex-1 font-satoshi">
-      {/* Search Header Banner */}
-      <ScrollReveal direction="up" distance={20} duration={600}>
-        <section className="bg-hero-grid rounded-3xl p-8 sm:p-12 mb-10 text-white shadow-xl relative overflow-hidden">
-        <div className="max-w-2xl mx-auto text-center space-y-4 relative z-10">
-          <h1 className="font-poppins font-bold text-3xl sm:text-4xl text-white">
-            Find Your Next Course
-          </h1>
-          <p className="text-white/80 text-sm sm:text-base">
-            Explore hundreds of expert-led courses and upgrade your skills today.
-          </p>
+    <div className="font-satoshi">
+      {/* ── 100% Full-Width Search Header Banner ── */}
+      <section className="relative w-full bg-[#0052FE] text-white pt-28 sm:pt-36 md:pt-40 pb-16 sm:pb-20 overflow-hidden">
+        {/* Blueprint Grid Lines Accent */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage:
+              'linear-gradient(to right, rgba(255, 255, 255, 0.16) 1.5px, transparent 1.5px), linear-gradient(to bottom, rgba(255, 255, 255, 0.16) 1.5px, transparent 1.5px)',
+            backgroundSize: '120px 120px',
+          }}
+        />
 
-          <div className="pt-2">
-            <div className="bg-white rounded-full p-2 pl-6 flex items-center shadow-xl border border-white/20">
-              <Search className="w-5 h-5 text-neutral-400 mr-3 shrink-0" />
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => {
-                  setSearchQuery(e.target.value);
-                  setCurrentPage(1);
-                }}
-                placeholder="Search by topic, skill, title, or creator..."
-                className="w-full bg-transparent text-neutral-800 placeholder:text-neutral-400 text-sm focus:outline-none"
-              />
-              {searchQuery && (
-                <button
-                  type="button"
-                  onClick={() => {
-                    setSearchQuery('');
-                    setCurrentPage(1);
-                  }}
-                  className="px-3 text-xs text-neutral-400 hover:text-neutral-700 cursor-pointer flex items-center gap-1"
-                >
-                  <X className="w-3.5 h-3.5" />
-                  <span>Clear</span>
-                </button>
-              )}
+        <div className="layout-container relative z-10">
+          <ScrollReveal direction="up" distance={20} duration={600}>
+            <div className="max-w-3xl mx-auto text-center space-y-4">
+              <h1 className="font-poppins font-bold text-3xl sm:text-5xl md:text-6xl text-white tracking-tight leading-tight">
+                Find Your Next Course
+              </h1>
+              <p className="text-white/90 text-sm sm:text-base md:text-lg max-w-xl mx-auto font-normal leading-relaxed">
+                Explore hundreds of expert-led courses and upgrade your skills today.
+              </p>
+
+              <div className="pt-2 max-w-2xl mx-auto">
+                <div className="bg-white rounded-full p-2 pl-6 flex items-center shadow-xl border border-white/20">
+                  <Search className="w-5 h-5 text-neutral-400 mr-3 shrink-0" />
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => {
+                      setSearchQuery(e.target.value);
+                      setCurrentPage(1);
+                    }}
+                    placeholder="Search by topic, skill, title, or creator..."
+                    className="w-full bg-transparent text-neutral-800 placeholder:text-neutral-400 text-sm sm:text-base focus:outline-none"
+                  />
+                  {searchQuery && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setSearchQuery('');
+                        setCurrentPage(1);
+                      }}
+                      className="px-3 text-xs text-neutral-400 hover:text-neutral-700 cursor-pointer flex items-center gap-1"
+                    >
+                      <X className="w-3.5 h-3.5" />
+                      <span>Clear</span>
+                    </button>
+                  )}
+                </div>
+              </div>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
-    </ScrollReveal>
+
+      {/* ── Main Catalog Grid & Filters Container ── */}
+      <main className="layout-container py-10 sm:py-14 flex-1">
 
       {/* Filter Controls Row */}
       <div className="flex flex-wrap items-center justify-between gap-4 pb-6">
@@ -518,15 +533,16 @@ function CoursesContent() {
           </div>
         </ScrollReveal>
       )}
-    </main>
+      </main>
+    </div>
   );
 }
 
 export default function CoursesClient() {
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      <Navbar variant="light" />
-      <div className="pt-20 sm:pt-24 md:pt-28 flex-1">
+      <Navbar variant="blue" />
+      <div className="flex-1">
         <Suspense fallback={<div className="p-12 text-center text-sm">Loading courses...</div>}>
           <CoursesContent />
         </Suspense>
