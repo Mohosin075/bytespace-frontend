@@ -66,7 +66,8 @@ export function GrowthSection() {
       <div className="layout-container relative z-10 flex flex-col gap-24 sm:gap-32 lg:gap-40">
         {/* ── PART 1: Student Growth Section ── */}
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-12 lg:gap-16">
-          <div className="flex flex-col space-y-6">
+          {/* Content Column (Bottom on mobile, Left on desktop) */}
+          <div className="order-2 lg:order-1 flex flex-col space-y-6">
             <SectionTitle className="text-left">
               Your Path to Professional
               <br />
@@ -95,7 +96,8 @@ export function GrowthSection() {
             </div>
           </div>
 
-          <div className="relative w-full max-w-140 mx-auto min-h-105 sm:min-h-125 flex items-center justify-center">
+          {/* Visual Column (Top on mobile, Right on desktop) */}
+          <div className="order-1 lg:order-2 relative w-full max-w-140 mx-auto min-h-105 sm:min-h-125 flex items-center justify-center">
             {/* Back card */}
             <div className="absolute top-0 left-0 w-[58%] sm:w-[62%] z-10 pointer-events-none select-none drop-shadow-xl">
               <Image
@@ -145,8 +147,8 @@ export function GrowthSection() {
 
         {/* ── PART 2: Creator Management Section ── */}
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-12 lg:gap-16">
-          {/* Visual Column (Left on desktop) */}
-          <div className="order-2 lg:order-1 relative w-full max-w-140 mx-auto min-h-110 sm:min-h-130 flex items-center justify-center">
+          {/* Visual Column (Top on mobile, Left on desktop) */}
+          <div className="order-1 lg:order-1 relative w-full max-w-140 mx-auto min-h-110 sm:min-h-130 flex items-center justify-center">
             {/* Green 3D squiggle icon behind creator */}
             <div className="absolute top-[28%] right-2 sm:right-6 w-[28%] sm:w-[32%] z-0 pointer-events-none select-none">
               <Image
@@ -219,8 +221,8 @@ export function GrowthSection() {
             </div>
           </div>
 
-          {/* Content Column (Right on desktop) */}
-          <div className="order-1 lg:order-2 flex flex-col space-y-6">
+          {/* Content Column (Bottom on mobile, Right on desktop) */}
+          <div className="order-2 lg:order-2 flex flex-col space-y-6">
             <SectionTitle className="text-left">
               Create &amp; Manage
               <br />
