@@ -21,13 +21,13 @@ export default function ForgotPasswordPage() {
   };
 
   return (
-    <div className="bg-hero-grid min-h-screen text-white relative flex flex-col justify-between p-6 sm:p-10 lg:p-14 font-satoshi">
-      <div className="relative z-20">
+    <div className="bg-hero-grid min-h-screen text-white relative flex flex-col justify-between p-4 sm:p-8 lg:p-12 font-satoshi">
+      <div className="relative z-20 pt-2 pl-2 sm:pt-0 sm:pl-0">
         <Logo variant="light" iconOnly />
       </div>
 
-      <main className="relative z-10 layout-container my-auto py-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      <main className="relative z-10 layout-container my-auto py-6 sm:py-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
           <div className="lg:col-span-6 flex justify-center lg:justify-start">
             <AuthVisualStack
               title="Reset Your Password"
@@ -36,7 +36,7 @@ export default function ForgotPasswordPage() {
           </div>
 
           <div className="lg:col-span-6 flex justify-center lg:justify-end">
-            <div className="bg-white rounded-[32px] p-8 sm:p-12 lg:p-14 shadow-2xl max-w-lg w-full text-neutral-900 border border-white/20">
+            <div className="bg-white rounded-3xl sm:rounded-[32px] p-6 sm:p-10 lg:p-12 shadow-2xl max-w-lg w-full text-neutral-900 border border-white/20">
               <span className="text-primary-600 font-medium text-sm">Account Recovery</span>
               <h1 className="font-poppins font-bold text-3xl sm:text-4xl text-neutral-950 mt-1">
                 Forgot Password?

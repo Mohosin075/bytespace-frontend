@@ -20,8 +20,8 @@ export function AuthVisualStack({ title, subtitle }: AuthVisualStackProps) {
         </p>
       </div>
 
-      {/* Decorative Interactive Stack */}
-      <div className="relative mt-12 mb-8 py-10">
+      {/* Decorative Interactive Stack (Desktop only to prevent mobile scroll clutter) */}
+      <div className="hidden lg:block relative mt-12 mb-8 py-10">
         {/* Floating Shapes */}
         <DonutShape className="absolute -top-6 -left-8 w-28 h-28 opacity-90 z-20" />
         <ConeShape className="absolute -bottom-8 -left-6 w-24 h-28 opacity-90 z-20" />
