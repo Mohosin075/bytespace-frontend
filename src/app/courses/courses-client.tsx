@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import {
   Search,
   ChevronDown,
@@ -33,12 +33,33 @@ export default function CoursesClient() {
     'Cooking',
   ];
 
-  // Repeat courses to create the full 3x6 grid shown in design
-  const allCourses = [
+  // Repeat courses to create the full 3x6 grid shown in design, memoized to prevent re-creation on render
+  const baseCourses = useMemo(() => [
     ...MOCK_COURSES,
     ...MOCK_COURSES.map((c, i) => ({ ...c, id: `c-rep1-${i}` })),
     ...MOCK_COURSES.map((c, i) => ({ ...c, id: `c-rep2-${i}` })),
-  ];
+  ], []);
+
+  const filteredCourses = useMemo(() => {
+    let result = baseCourses;
+
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase().trim();
+      result = result.filter(
+        (c) =>
+          c.title.toLowerCase().includes(q) ||
+          c.category.toLowerCase().includes(q)
+      );
+    }
+
+    if (selectedCategory !== 'Featured') {
+      result = result.filter(
+        (c) => c.category.toLowerCase() === selectedCategory.toLowerCase()
+      );
+    }
+
+    return result.length > 0 ? result : baseCourses.slice(0, 6);
+  }, [baseCourses, searchQuery, selectedCategory]);
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
@@ -129,7 +150,7 @@ export default function CoursesClient() {
 
         {/* 3-Column Course Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {allCourses.map((course) => (
+          {filteredCourses.map((course) => (
             <CourseCard key={course.id} course={course} />
           ))}
         </div>

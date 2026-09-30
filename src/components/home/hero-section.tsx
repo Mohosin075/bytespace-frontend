@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -8,6 +8,7 @@ import { Search, Star, BookOpen, User, X, ChevronRight } from 'lucide-react';
 import { coursesData } from '@/data/course';
 import { creatorsData } from '@/data/creator';
 import { Navbar } from '@/components/shared/navbar';
+import { useClickOutside } from '@/hooks/use-click-outside';
 
 export function HeroSection() {
   const [query, setQuery] = useState('');
@@ -15,15 +16,7 @@ export function HeroSection() {
   const searchRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    }
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+  useClickOutside(searchRef, () => setIsOpen(false));
 
   const trimmed = query.trim().toLowerCase();
 
@@ -239,10 +232,12 @@ export function HeroSection() {
                             className="flex items-center gap-3 p-2 rounded-xl hover:bg-zinc-50 transition-colors group"
                           >
                             <div className="relative size-10 rounded-lg overflow-hidden shrink-0 bg-zinc-100">
-                              <img
+                              <Image
                                 src={course.image}
                                 alt={course.title}
-                                className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                                fill
+                                unoptimized
+                                className="object-cover group-hover:scale-105 transition-transform"
                               />
                             </div>
                             <div className="flex-1 min-w-0 text-left">
@@ -282,10 +277,12 @@ export function HeroSection() {
                             className="flex items-center gap-3 p-2 rounded-xl hover:bg-zinc-50 transition-colors group"
                           >
                             <div className="relative size-10 rounded-full overflow-hidden shrink-0 bg-zinc-100 border border-zinc-200">
-                              <img
+                              <Image
                                 src={creator.avatar}
                                 alt={creator.name}
-                                className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                                fill
+                                unoptimized
+                                className="object-cover group-hover:scale-105 transition-transform"
                               />
                             </div>
                             <div className="flex-1 min-w-0 text-left">
@@ -374,7 +371,7 @@ export function HeroSection() {
                     idx > 0 ? '-ml-2' : ''
                   }`}
                 >
-                  <img src={avatar} alt="Student" className="w-full h-full object-cover" />
+                  <Image src={avatar} alt="Student" fill unoptimized className="object-cover" />
                 </div>
               ))}
               <div

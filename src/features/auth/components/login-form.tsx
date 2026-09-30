@@ -43,8 +43,9 @@ export function LoginForm() {
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1000));
       router.push(ROUTES.DASHBOARD.ROOT);
-    } catch (err: any) {
-      setServerError(err?.message || 'Login failed. Please try again.');
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Login failed. Please try again.';
+      setServerError(message);
     } finally {
       setIsLoading(false);
     }

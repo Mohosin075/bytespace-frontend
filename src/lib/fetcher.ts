@@ -35,8 +35,9 @@ export async function fetcher<T>(
     }
 
     return data;
-  } catch (error: any) {
-    console.error(`API Error [${endpoint}]:`, error);
-    throw new Error(error.message || 'Network error');
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : 'Network error';
+    console.error(`API Error [${endpoint}]:`, message);
+    throw new Error(message);
   }
 }
