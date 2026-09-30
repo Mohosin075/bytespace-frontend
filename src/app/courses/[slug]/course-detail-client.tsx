@@ -83,9 +83,8 @@ export default function CourseDetailClient() {
 
   const filteredReviews = MOCK_REVIEWS.filter((r) => {
     if (activeReviewFilter === 'All rating') return true;
-    if (activeReviewFilter === '★ 5') return r.rating === 5;
-    if (activeReviewFilter === '★ 4') return r.rating === 4;
-    return true;
+    const num = parseInt(activeReviewFilter.replace('★ ', ''), 10);
+    return r.rating === num;
   });
 
   return (
@@ -354,57 +353,64 @@ export default function CourseDetailClient() {
             {/* TAB 3: REVIEWS */}
             {activeTab === 'reviews' && (
               <div className="space-y-10 animate-fade-in">
+                {/* Heading & Subtitle */}
                 <div className="space-y-3">
                   <h2 className="font-poppins font-bold text-2xl text-neutral-950">
                     What Learners Are Saying
                   </h2>
                   <p className="text-neutral-600 text-[15px] leading-relaxed">
-                    Real feedback from students who completed this course.
+                    Discover what our learners have to say about their experience with &apos;Build Digital Assets: A Comprehensive Guide.&apos; Read reviews and ratings from individuals who have embarked on the transformative journey of mastering digital asset creation.
                   </p>
                 </div>
 
-                {/* Ratings Summary */}
-                <div className="bg-white rounded-2xl p-6 sm:p-8 border border-neutral-200/80 flex flex-col sm:flex-row items-center gap-8">
-                  <div className="w-32 h-32 rounded-2xl bg-[#cbfc01] flex flex-col items-center justify-center shrink-0 text-black shadow-xs">
-                    <span className="text-xs font-semibold uppercase tracking-wider text-black/70">Ratings</span>
-                    <span className="font-poppins font-bold text-4xl mt-1">4.8</span>
+                {/* Ratings Breakdown Summary Box */}
+                <div className="bg-white rounded-[24px] p-6 sm:p-8 border border-neutral-200/90 shadow-xs flex flex-col sm:flex-row items-center gap-8">
+                  {/* Big Lime Rating Box */}
+                  <div className="w-32 h-32 rounded-[20px] bg-[#cbfc01] flex flex-col items-center justify-center shrink-0 text-black shadow-xs">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-black/80">Ratings</span>
+                    <span className="font-poppins font-bold text-4xl mt-1">4.7</span>
                   </div>
 
-                  <div className="flex-1 w-full space-y-2.5">
+                  {/* Rating Bars */}
+                  <div className="flex-1 w-full space-y-3">
                     {reviewBreakdown.map((row) => (
                       <div key={row.stars} className="flex items-center gap-4 text-xs font-medium text-neutral-700">
-                        <div className="flex-1 bg-neutral-100 h-2.5 rounded-full overflow-hidden">
+                        {/* Progress Bar */}
+                        <div className="flex-1 bg-neutral-200/70 h-3 rounded-full overflow-hidden">
                           <div
                             className="bg-[#cbfc01] h-full rounded-full"
                             style={{ width: `${row.percent}%` }}
                           />
                         </div>
-                        <div className="flex items-center gap-0.5 w-20 shrink-0">
+                        {/* 5 Stars */}
+                        <div className="flex items-center gap-1 shrink-0">
                           {Array.from({ length: 5 }).map((_, i) => (
                             <Star
                               key={i}
-                              className={`w-3.5 h-3.5 ${
-                                i < row.stars ? 'fill-neutral-900 text-neutral-900' : 'text-neutral-300'
-                              }`}
+                              className="w-4 h-4 fill-neutral-800 text-neutral-800"
                             />
                           ))}
                         </div>
-                        <span className="w-8 text-right font-mono text-neutral-600">{row.count}</span>
+                        {/* Count */}
+                        <span className="w-8 text-right font-medium text-neutral-600">{row.count}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                {/* Filter Pills */}
+                {/* Individual Reviews Filter Pills */}
                 <div className="space-y-4">
-                  <div className="flex flex-wrap items-center gap-2">
-                    {['All rating', '★ 5', '★ 4'].map((filter) => {
+                  <h3 className="font-poppins font-bold text-xl text-neutral-950">
+                    Individual Reviews:
+                  </h3>
+                  <div className="flex flex-wrap items-center gap-2.5">
+                    {['All rating', '★ 5', '★ 4', '★ 3', '★ 2', '★ 1'].map((filter) => {
                       const isActive = activeReviewFilter === filter;
                       return (
                         <button
                           key={filter}
                           onClick={() => setActiveReviewFilter(filter)}
-                          className={`px-4 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+                          className={`px-5 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer ${
                             isActive
                               ? 'bg-[#cbfc01] text-black shadow-xs font-bold'
                               : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
@@ -417,45 +423,52 @@ export default function CourseDetailClient() {
                   </div>
                 </div>
 
-                {/* Reviews List */}
-                <div className="space-y-4">
-                  {filteredReviews.map((review) => (
-                    <div
-                      key={review.id}
-                      className="bg-white rounded-2xl p-6 border border-neutral-200/80 space-y-4 shadow-xs"
-                    >
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <div className="relative w-10 h-10 rounded-full overflow-hidden border border-neutral-200 shrink-0">
-                            <Image
-                              src={review.avatar}
-                              alt={review.author}
-                              fill
-                              unoptimized
-                              className="object-cover"
-                            />
+                {/* Individual Review Cards */}
+                <div className="space-y-5">
+                  {filteredReviews.length > 0 ? (
+                    filteredReviews.map((review) => (
+                      <div
+                        key={review.id}
+                        className="bg-white rounded-[24px] p-6 sm:p-7 border border-neutral-200/90 space-y-4 shadow-xs"
+                      >
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-3.5">
+                            <div className="relative w-11 h-11 rounded-full overflow-hidden border border-neutral-200 shrink-0">
+                              <Image
+                                src={review.avatar}
+                                alt={review.author}
+                                fill
+                                unoptimized
+                                className="object-cover"
+                              />
+                            </div>
+                            <div>
+                              <p className="font-poppins font-semibold text-base text-neutral-950 leading-tight">
+                                {review.author}
+                              </p>
+                              <p className="text-xs text-neutral-500 mt-0.5">{review.role}</p>
+                            </div>
                           </div>
-                          <div>
-                            <p className="font-poppins font-semibold text-sm text-neutral-950 leading-tight">
-                              {review.author}
-                            </p>
-                            <p className="text-xs text-neutral-500 mt-0.5">{review.role}</p>
-                          </div>
+                          <span className="text-xs text-neutral-400 font-normal">{review.timeAgo}</span>
                         </div>
-                        <span className="text-xs text-neutral-400">{review.timeAgo}</span>
-                      </div>
 
-                      <div className="flex items-center gap-1">
-                        {Array.from({ length: review.rating }).map((_, i) => (
-                          <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
-                        ))}
-                      </div>
+                        {/* Stars */}
+                        <div className="flex items-center gap-1">
+                          {Array.from({ length: review.rating }).map((_, i) => (
+                            <Star key={i} className="w-4 h-4 fill-neutral-800 text-neutral-800" />
+                          ))}
+                        </div>
 
-                      <p className="text-neutral-700 text-sm leading-relaxed">
-                        {review.content}
-                      </p>
+                        <p className="text-neutral-700 text-sm sm:text-[15px] leading-relaxed">
+                          {review.content}
+                        </p>
+                      </div>
+                    ))
+                  ) : (
+                    <div className="p-8 text-center bg-neutral-50 rounded-2xl border border-neutral-200 text-neutral-500 text-sm">
+                      No reviews match this rating filter.
                     </div>
-                  ))}
+                  )}
                 </div>
               </div>
             )}
