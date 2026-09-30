@@ -9,6 +9,7 @@ import { ROUTES } from '@/constants/routes';
 import { Logo } from '@/components/shared/logo';
 import { useAuth } from '@/context/auth-context';
 import { useToast } from '@/context/toast-context';
+import { useCart } from '@/context/cart-context';
 
 function ShoppingBagIcon({ className = 'w-6 h-6' }: { className?: string }) {
   return (
@@ -36,6 +37,7 @@ export function Navbar({ variant = 'blue' }: NavbarProps) {
   const router = useRouter();
   const { user, isLoggedIn, logout } = useAuth();
   const { showToast } = useToast();
+  const { cartCount } = useCart();
 
   const isBlue = variant === 'blue';
   const [scrolled, setScrolled] = useState(false);
@@ -198,12 +200,17 @@ export function Navbar({ variant = 'blue' }: NavbarProps) {
 
           <Link
             href="/cart"
-            aria-label="Shopping Cart"
-            className={`p-1.5 transition-colors duration-200 rounded-full hover:bg-white/10 ${
+            aria-label={`Shopping Cart (${cartCount} items)`}
+            className={`p-1.5 transition-colors duration-200 rounded-full hover:bg-white/10 relative ${
               isBlue ? 'text-white/90 hover:text-white' : 'text-neutral-700 hover:text-neutral-950'
             }`}
           >
             <ShoppingBagIcon className="w-6 h-6 stroke-[1.8]" />
+            {cartCount > 0 && (
+              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold w-4.5 h-4.5 rounded-full flex items-center justify-center animate-scale-in">
+                {cartCount > 9 ? '9+' : cartCount}
+              </span>
+            )}
           </Link>
         </div>
 
@@ -211,13 +218,18 @@ export function Navbar({ variant = 'blue' }: NavbarProps) {
         <div className="flex md:hidden items-center gap-2">
           <Link
             href="/cart"
-            aria-label="Shopping Cart"
-            className={`p-2 rounded-full transition-colors active:scale-95 ${
+            aria-label={`Shopping Cart (${cartCount} items)`}
+            className={`p-2 rounded-full transition-colors active:scale-95 relative ${
               isBlue ? 'text-white hover:bg-white/10' : 'text-neutral-700 hover:bg-neutral-100'
             }`}
             onClick={() => setMobileMenuOpen(false)}
           >
             <ShoppingBagIcon className="w-5.5 h-5.5 stroke-[1.8]" />
+            {cartCount > 0 && (
+              <span className="absolute top-0 right-0 bg-red-500 text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                {cartCount > 9 ? '9+' : cartCount}
+              </span>
+            )}
           </Link>
 
           <button

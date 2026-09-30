@@ -23,32 +23,34 @@ import { MOCK_COURSES } from '@/constants/mock-data';
 import { ROUTES } from '@/constants/routes';
 import { useToast } from '@/context/toast-context';
 import { useAuth } from '@/context/auth-context';
+import { useCart } from '@/context/cart-context';
 
 export default function CartClient() {
   const { showToast } = useToast();
   const { toggleWishlist, isWishlisted } = useAuth();
-
-  const [cartItems, setCartItems] = useState([
-    { ...MOCK_COURSES[0], qty: 1 },
-    { ...MOCK_COURSES[1], qty: 1 },
-  ]);
+  const {
+    cartItems,
+    addToCart,
+    removeFromCart,
+    clearCart,
+    applyPromoCode,
+    appliedPromo,
+    subtotal,
+    promoDiscount,
+    baseDiscount,
+    totalDiscount,
+    total,
+  } = useCart();
 
   const [promoCode, setPromoCode] = useState('');
-  const [appliedPromo, setAppliedPromo] = useState<{ code: string; percent: number } | null>(null);
 
   // Recommendations: courses not currently in cart
   const recommendedCourses = MOCK_COURSES.filter(
     (c) => !cartItems.some((item) => item.id === c.id)
   ).slice(0, 3);
 
-  const subtotal = cartItems.reduce((acc, item) => acc + item.price, 0);
-  const promoDiscount = appliedPromo ? Math.round((subtotal * appliedPromo.percent) / 100) : 0;
-  const baseDiscount = cartItems.length >= 2 ? 10 : 0;
-  const totalDiscount = promoDiscount + baseDiscount;
-  const total = Math.max(0, subtotal - totalDiscount);
-
   const removeItem = (id: string, title: string) => {
-    setCartItems((prev) => prev.filter((item) => item.id !== id));
+    removeFromCart(id);
     showToast(`Removed "${title}" from cart`, 'info');
   };
 
@@ -56,29 +58,29 @@ export default function CartClient() {
     e.preventDefault();
     if (!promoCode.trim()) return;
 
-    const code = promoCode.trim().toUpperCase();
-    if (code === 'BYTESPACE20' || code === 'SAVE20') {
-      setAppliedPromo({ code, percent: 20 });
-      showToast(`Promo code "${code}" applied! You saved 20%`, 'success');
-    } else if (code === 'WELCOME10') {
-      setAppliedPromo({ code, percent: 10 });
-      showToast(`Promo code "${code}" applied! You saved 10%`, 'success');
+    const res = applyPromoCode(promoCode);
+    if (res.success) {
+      showToast(res.message, 'success');
+      setPromoCode('');
     } else {
-      showToast('Invalid promo code. Try "BYTESPACE20"', 'warning');
+      showToast(res.message, 'warning');
     }
   };
 
   const handleAddToCart = (course: (typeof MOCK_COURSES)[0]) => {
-    setCartItems((prev) => [...prev, { ...course, qty: 1 }]);
-    showToast(`Added "${course.title}" to cart!`, 'success');
+    const added = addToCart(course);
+    if (added) {
+      showToast(`Added "${course.title}" to cart!`, 'success');
+    } else {
+      showToast(`"${course.title}" is already in your cart`, 'info');
+    }
   };
 
   const handleCheckout = () => {
     if (cartItems.length === 0) return;
     showToast('Processing secure checkout...', 'info');
     setTimeout(() => {
-      setCartItems([]);
-      setAppliedPromo(null);
+      clearCart();
       showToast('Payment successful! Your courses are now unlocked in your dashboard.', 'success');
     }, 1200);
   };

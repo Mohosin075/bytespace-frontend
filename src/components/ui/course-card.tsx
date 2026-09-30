@@ -3,12 +3,13 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Star, BarChart2, Heart, ArrowUpRight } from 'lucide-react';
+import { Star, BarChart2, Heart, ArrowUpRight, ShoppingBag, Check } from 'lucide-react';
 import { Course } from '@/types';
 import { ROUTES } from '@/constants/routes';
 import { AvatarGroup } from '@/components/ui/avatar-group';
 import { useAuth } from '@/context/auth-context';
 import { useToast } from '@/context/toast-context';
+import { useCart } from '@/context/cart-context';
 
 interface CourseCardProps {
   course: Course;
@@ -17,7 +18,10 @@ interface CourseCardProps {
 export function CourseCard({ course }: CourseCardProps) {
   const { toggleWishlist, isWishlisted } = useAuth();
   const { showToast } = useToast();
+  const { addToCart, isInCart } = useCart();
+
   const wishlisted = isWishlisted(course.id);
+  const inCart = isInCart(course.id);
   const [imgSrc, setImgSrc] = useState(course.image);
 
   const handleHeartClick = (e: React.MouseEvent) => {
@@ -28,6 +32,17 @@ export function CourseCard({ course }: CourseCardProps) {
       added ? `Added "${course.title}" to Wishlist` : `Removed "${course.title}" from Wishlist`,
       added ? 'success' : 'info'
     );
+  };
+
+  const handleCartClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!inCart) {
+      addToCart(course);
+      showToast(`Added "${course.title}" to Cart`, 'success');
+    } else {
+      showToast(`"${course.title}" is already in your Cart`, 'info');
+    }
   };
 
   return (
@@ -117,8 +132,8 @@ export function CourseCard({ course }: CourseCardProps) {
           <AvatarGroup badgeBg="lime" />
         </div>
 
-        {/* Price and Enroll Button */}
-        <div className="pt-3 border-t border-neutral-100 flex items-center justify-between">
+        {/* Price and Action Buttons */}
+        <div className="pt-3 border-t border-neutral-100 flex items-center justify-between gap-2">
           <div className="flex items-baseline gap-1">
             <span className="font-satoshi font-bold text-xl text-primary-600">
               ${course.price}
@@ -128,13 +143,29 @@ export function CourseCard({ course }: CourseCardProps) {
             </span>
           </div>
 
-          <Link
-            href={ROUTES.COURSE_DETAIL(course.slug)}
-            className="px-4 py-2 rounded-full bg-neutral-950 text-white font-bold text-xs hover:bg-[#cbfc01] hover:text-black hover:scale-105 active:scale-95 transition-all duration-200 shadow-sm hover:shadow-md flex items-center gap-1 group/btn"
-          >
-            <span>Enroll Now</span>
-            <ArrowUpRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
-          </Link>
+          <div className="flex items-center gap-1.5">
+            <button
+              type="button"
+              onClick={handleCartClick}
+              title={inCart ? 'In Cart' : 'Add to Cart'}
+              aria-label={inCart ? 'In Cart' : 'Add to Cart'}
+              className={`p-2 rounded-full border transition-all duration-200 cursor-pointer ${
+                inCart
+                  ? 'bg-emerald-50 text-emerald-600 border-emerald-200 hover:bg-emerald-100'
+                  : 'bg-neutral-100 text-neutral-700 border-neutral-200 hover:bg-neutral-200 hover:text-neutral-900'
+              }`}
+            >
+              {inCart ? <Check className="w-4 h-4" /> : <ShoppingBag className="w-4 h-4" />}
+            </button>
+
+            <Link
+              href={ROUTES.COURSE_DETAIL(course.slug)}
+              className="px-3.5 py-2 rounded-full bg-neutral-950 text-white font-bold text-xs hover:bg-[#cbfc01] hover:text-black hover:scale-105 active:scale-95 transition-all duration-200 shadow-sm hover:shadow-md flex items-center gap-1 group/btn"
+            >
+              <span>Enroll</span>
+              <ArrowUpRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+            </Link>
+          </div>
         </div>
       </div>
     </div>

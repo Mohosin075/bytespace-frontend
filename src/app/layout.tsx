@@ -81,15 +81,18 @@ export const metadata: Metadata = {
 
 import { AuthProvider } from '@/context/auth-context';
 import { ToastProvider } from '@/context/toast-context';
+import { CartProvider } from '@/context/cart-context';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`h-full ${poppins.variable} ${clashDisplay.variable} ${satoshi.variable}`}>
       <body className="min-h-full bg-neutral-50 text-neutral-950 font-satoshi antialiased">
         <AuthProvider>
-          <ToastProvider>
-            {children}
-          </ToastProvider>
+          <CartProvider>
+            <ToastProvider>
+              {children}
+            </ToastProvider>
+          </CartProvider>
         </AuthProvider>
       </body>
     </html>
