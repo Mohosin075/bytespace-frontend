@@ -44,13 +44,10 @@ export function HeroSection() {
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!trimmed) return;
-    if (matchedCourses.length > 0) {
-      router.push(`/courses/${matchedCourses[0].slug}`);
-    } else if (matchedCreators.length > 0) {
-      router.push(`/creators/${matchedCreators[0].slug}`);
+    if (!trimmed) {
+      router.push('/courses');
     } else {
-      router.push(`/courses`);
+      router.push(`/courses?search=${encodeURIComponent(query.trim())}`);
     }
     setIsOpen(false);
   };

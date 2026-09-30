@@ -52,12 +52,19 @@ export interface Course {
   description?: string;
 }
 
+export interface CourseLesson {
+  title: string;
+  duration: string;
+}
+
 export interface CourseModule {
   id: string;
   moduleNumber: number;
   title: string;
   description: string;
   duration?: string;
+  lessonsCount?: number;
+  lessons?: CourseLesson[];
 }
 
 export interface CourseReview {

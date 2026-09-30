@@ -2,18 +2,34 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { Star, BarChart2 } from 'lucide-react';
+import { Star, BarChart2, Heart } from 'lucide-react';
 import { Course } from '@/types';
 import { ROUTES } from '@/constants/routes';
 import { AvatarGroup } from '@/components/ui/avatar-group';
+import { useAuth } from '@/context/auth-context';
+import { useToast } from '@/context/toast-context';
 
 interface CourseCardProps {
   course: Course;
 }
 
 export function CourseCard({ course }: CourseCardProps) {
+  const { toggleWishlist, isWishlisted } = useAuth();
+  const { showToast } = useToast();
+  const wishlisted = isWishlisted(course.id);
+
+  const handleHeartClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const added = toggleWishlist(course.id);
+    showToast(
+      added ? `Added "${course.title}" to Wishlist` : `Removed "${course.title}" from Wishlist`,
+      added ? 'success' : 'info'
+    );
+  };
+
   return (
-    <div className="bg-white rounded-[24px] border border-neutral-200/90 p-4 hover:shadow-xl hover:border-neutral-300 transition-all duration-300 flex flex-col justify-between group">
+    <div className="bg-white rounded-[24px] border border-neutral-200/90 p-4 hover:shadow-xl hover:border-neutral-300 transition-all duration-300 flex flex-col justify-between group relative">
       {/* Thumbnail area */}
       <div className="relative rounded-[18px] overflow-hidden aspect-[1.5/1] bg-neutral-100 mb-4">
         <Image
@@ -23,6 +39,20 @@ export function CourseCard({ course }: CourseCardProps) {
           unoptimized
           className="object-cover group-hover:scale-105 transition-transform duration-500"
         />
+
+        {/* Favorite Bookmark Button */}
+        <button
+          type="button"
+          onClick={handleHeartClick}
+          className={`absolute top-3 right-3 z-10 w-9 h-9 rounded-full flex items-center justify-center backdrop-blur-md transition-all duration-200 cursor-pointer shadow-md active:scale-90 ${
+            wishlisted
+              ? 'bg-red-500 text-white'
+              : 'bg-white/80 text-neutral-700 hover:bg-white hover:text-red-500'
+          }`}
+          aria-label={wishlisted ? 'Remove from wishlist' : 'Save to wishlist'}
+        >
+          <Heart className={`w-4 h-4 ${wishlisted ? 'fill-current' : ''}`} />
+        </button>
 
         {/* Floating lesson & duration pills overlay */}
         <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between gap-1">
@@ -76,14 +106,23 @@ export function CourseCard({ course }: CourseCardProps) {
           <AvatarGroup badgeBg="lime" />
         </div>
 
-        {/* Price */}
-        <div className="pt-3 border-t border-neutral-100 flex items-baseline gap-1">
-          <span className="font-satoshi font-bold text-xl text-primary-600">
-            ${course.price}
-          </span>
-          <span className="text-xs text-neutral-500 font-normal">
-            /{course.priceType || 'lifetime'}
-          </span>
+        {/* Price and Enroll Button */}
+        <div className="pt-3 border-t border-neutral-100 flex items-center justify-between">
+          <div className="flex items-baseline gap-1">
+            <span className="font-satoshi font-bold text-xl text-primary-600">
+              ${course.price}
+            </span>
+            <span className="text-xs text-neutral-500 font-normal">
+              /{course.priceType || 'lifetime'}
+            </span>
+          </div>
+
+          <Link
+            href={ROUTES.COURSE_DETAIL(course.slug)}
+            className="px-3.5 py-1.5 rounded-full bg-neutral-100 hover:bg-[#cbfc01] text-neutral-900 hover:text-black font-semibold text-xs transition-colors duration-200"
+          >
+            Enroll Now
+          </Link>
         </div>
       </div>
     </div>

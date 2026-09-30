@@ -7,8 +7,13 @@ import { Logo } from '@/components/shared/logo';
 import { AuthVisualStack } from '@/components/shared/auth-visual-stack';
 import { ROUTES } from '@/constants/routes';
 
+import { useAuth } from '@/context/auth-context';
+import { useToast } from '@/context/toast-context';
+
 export default function LoginClient() {
   const router = useRouter();
+  const { login } = useAuth();
+  const { showToast } = useToast();
   const [email, setEmail] = useState('designer@example.com');
   const [password, setPassword] = useState('********');
   const [loading, setLoading] = useState(false);
@@ -17,9 +22,11 @@ export default function LoginClient() {
     e.preventDefault();
     setLoading(true);
     setTimeout(() => {
+      login(email, 'Jamie Davis');
+      showToast('Welcome back, Jamie Davis!', 'success');
       setLoading(false);
-      router.push(ROUTES.HOME);
-    }, 600);
+      router.push(ROUTES.DASHBOARD.ROOT);
+    }, 500);
   };
 
   return (

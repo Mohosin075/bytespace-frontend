@@ -12,8 +12,10 @@ import { Navbar } from '@/components/shared/navbar';
 import { Footer } from '@/components/shared/footer';
 import { CourseCard } from '@/components/ui/course-card';
 import { MOCK_CREATOR, MOCK_COURSES } from '@/constants/mock-data';
+import { useToast } from '@/context/toast-context';
 
 export default function CreatorDetailClient() {
+  const { showToast } = useToast();
   const [isFollowing, setIsFollowing] = useState(false);
   const [followersCount, setFollowersCount] = useState(MOCK_CREATOR.followersCount);
 
@@ -21,9 +23,11 @@ export default function CreatorDetailClient() {
     if (isFollowing) {
       setIsFollowing(false);
       setFollowersCount((prev) => prev - 1);
+      showToast(`Unfollowed ${MOCK_CREATOR.name}`, 'info');
     } else {
       setIsFollowing(true);
       setFollowersCount((prev) => prev + 1);
+      showToast(`You are now following ${MOCK_CREATOR.name}!`, 'success');
     }
   };
 

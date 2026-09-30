@@ -2,10 +2,13 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { Menu, X, ChevronRight } from 'lucide-react';
+import Image from 'next/image';
+import { usePathname, useRouter } from 'next/navigation';
+import { Menu, X, ChevronRight, LogOut, LayoutDashboard } from 'lucide-react';
 import { ROUTES } from '@/constants/routes';
 import { Logo } from '@/components/shared/logo';
+import { useAuth } from '@/context/auth-context';
+import { useToast } from '@/context/toast-context';
 
 function ShoppingBagIcon({ className = 'w-6 h-6' }: { className?: string }) {
   return (
@@ -30,9 +33,14 @@ interface NavbarProps {
 
 export function Navbar({ variant = 'blue' }: NavbarProps) {
   const pathname = usePathname();
+  const router = useRouter();
+  const { user, isLoggedIn, logout } = useAuth();
+  const { showToast } = useToast();
+
   const isBlue = variant === 'blue';
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [userDropdownOpen, setUserDropdownOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -63,6 +71,13 @@ export function Navbar({ variant = 'blue' }: NavbarProps) {
       document.body.style.overflow = '';
     };
   }, [mobileMenuOpen]);
+
+  const handleLogout = () => {
+    logout();
+    showToast('Logged out successfully', 'info');
+    setUserDropdownOpen(false);
+    router.push(ROUTES.HOME);
+  };
 
   const navLinks = [
     { label: 'Home', href: ROUTES.HOME },
@@ -115,23 +130,71 @@ export function Navbar({ variant = 'blue' }: NavbarProps) {
 
         {/* Right CTA Links & Cart */}
         <div className="hidden md:flex items-center gap-5 lg:gap-8">
-          <Link
-            href={ROUTES.AUTH.LOGIN}
-            className={`font-poppins text-base font-normal sm:font-medium transition-colors duration-200 ${
-              isBlue ? 'text-white/90 hover:text-white' : 'text-neutral-700 hover:text-neutral-950'
-            }`}
-          >
-            Sign In
-          </Link>
+          {isLoggedIn ? (
+            <div className="relative">
+              <button
+                onClick={() => setUserDropdownOpen(!userDropdownOpen)}
+                className="flex items-center gap-2.5 p-1 rounded-full border border-white/20 hover:border-white/40 transition-colors cursor-pointer"
+              >
+                <div className="relative w-8 h-8 rounded-full overflow-hidden border border-white">
+                  <Image
+                    src={user?.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&auto=format&fit=crop&q=80'}
+                    alt={user?.name || 'User Avatar'}
+                    fill
+                    unoptimized
+                    className="object-cover"
+                  />
+                </div>
+                <span className={`text-sm font-semibold pr-2 ${isBlue ? 'text-white' : 'text-neutral-900'}`}>
+                  {user?.name.split(' ')[0]}
+                </span>
+              </button>
 
-          <Link
-            href={ROUTES.AUTH.REGISTER}
-            className={`font-poppins text-base font-normal sm:font-medium transition-colors duration-200 ${
-              isBlue ? 'text-white/90 hover:text-white' : 'text-neutral-700 hover:text-neutral-950'
-            }`}
-          >
-            Join Us
-          </Link>
+              {userDropdownOpen && (
+                <div className="absolute right-0 top-full mt-2 w-48 bg-white rounded-2xl shadow-2xl border border-neutral-100 py-2 z-50 text-neutral-900">
+                  <div className="px-4 py-2 border-b border-neutral-100">
+                    <p className="font-semibold text-xs text-neutral-900">{user?.name}</p>
+                    <p className="text-[10px] text-neutral-500 truncate">{user?.email}</p>
+                  </div>
+                  <Link
+                    href={ROUTES.DASHBOARD.ROOT}
+                    onClick={() => setUserDropdownOpen(false)}
+                    className="flex items-center gap-2 px-4 py-2 text-xs font-medium hover:bg-neutral-50"
+                  >
+                    <LayoutDashboard className="w-3.5 h-3.5 text-primary-600" />
+                    <span>Dashboard</span>
+                  </Link>
+                  <button
+                    onClick={handleLogout}
+                    className="w-full text-left flex items-center gap-2 px-4 py-2 text-xs font-medium text-red-600 hover:bg-red-50 cursor-pointer"
+                  >
+                    <LogOut className="w-3.5 h-3.5" />
+                    <span>Log Out</span>
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <>
+              <Link
+                href={ROUTES.AUTH.LOGIN}
+                className={`font-poppins text-base font-normal sm:font-medium transition-colors duration-200 ${
+                  isBlue ? 'text-white/90 hover:text-white' : 'text-neutral-700 hover:text-neutral-950'
+                }`}
+              >
+                Sign In
+              </Link>
+
+              <Link
+                href={ROUTES.AUTH.REGISTER}
+                className={`font-poppins text-base font-normal sm:font-medium transition-colors duration-200 ${
+                  isBlue ? 'text-white/90 hover:text-white' : 'text-neutral-700 hover:text-neutral-950'
+                }`}
+              >
+                Join Us
+              </Link>
+            </>
+          )}
 
           <Link
             href="/cart"
@@ -175,21 +238,6 @@ export function Navbar({ variant = 'blue' }: NavbarProps) {
         </div>
       </div>
 
-      {/* Subtle Bottom Light Highlight Line on Scroll */}
-      <div
-        className={`absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent transition-opacity duration-300 pointer-events-none ${
-          scrolled ? 'opacity-100' : 'opacity-0'
-        }`}
-      />
-
-      {/* Mobile Drawer Overlay */}
-      {mobileMenuOpen && (
-        <div
-          className="fixed inset-0 top-0 bg-black/60 backdrop-blur-sm z-[-1] md:hidden transition-opacity duration-300"
-          onClick={() => setMobileMenuOpen(false)}
-        />
-      )}
-
       {/* Mobile Menu Dropdown */}
       <div
         className={`md:hidden absolute top-full left-0 right-0 bg-[#0047FF]/95 backdrop-blur-2xl border-b border-white/20 px-5 sm:px-6 py-6 flex flex-col gap-5 shadow-2xl text-white transition-all duration-300 origin-top ${
@@ -210,36 +258,49 @@ export function Navbar({ variant = 'blue' }: NavbarProps) {
               <ChevronRight className="w-4 h-4 text-white/50" />
             </Link>
           ))}
-          <Link
-            href="/cart"
-            onClick={() => setMobileMenuOpen(false)}
-            className="text-base font-medium text-white/90 hover:text-white transition-colors py-2.5 px-3.5 rounded-xl hover:bg-white/10 active:bg-white/15 flex items-center justify-between"
-          >
-            <div className="flex items-center gap-2.5">
-              <ShoppingBagIcon className="w-4 h-4 stroke-[1.8]" />
-              <span>Cart</span>
-            </div>
-            <ChevronRight className="w-4 h-4 text-white/50" />
-          </Link>
+          {isLoggedIn && (
+            <Link
+              href={ROUTES.DASHBOARD.ROOT}
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-base font-medium text-white/90 hover:text-white transition-colors py-2.5 px-3.5 rounded-xl hover:bg-white/10 active:bg-white/15 flex items-center justify-between"
+            >
+              <span>Dashboard</span>
+              <ChevronRight className="w-4 h-4 text-white/50" />
+            </Link>
+          )}
         </nav>
 
         <div className="h-px w-full bg-white/15 my-0.5" />
 
         <div className="flex flex-col gap-3">
-          <Link
-            href={ROUTES.AUTH.LOGIN}
-            onClick={() => setMobileMenuOpen(false)}
-            className="text-center w-full py-3 rounded-full border border-white/25 text-white text-sm font-medium hover:bg-white/10 active:scale-[0.99] transition-all"
-          >
-            Sign In
-          </Link>
-          <Link
-            href={ROUTES.AUTH.REGISTER}
-            onClick={() => setMobileMenuOpen(false)}
-            className="text-center w-full py-3 rounded-full bg-[#D4FB20] text-black text-sm font-semibold hover:bg-[#c3ea1a] active:scale-[0.99] transition-all shadow-md shadow-[#D4FB20]/20"
-          >
-            Join Us
-          </Link>
+          {isLoggedIn ? (
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                handleLogout();
+              }}
+              className="text-center w-full py-3 rounded-full bg-red-600 text-white text-sm font-semibold transition-all cursor-pointer"
+            >
+              Log Out ({user?.name.split(' ')[0]})
+            </button>
+          ) : (
+            <>
+              <Link
+                href={ROUTES.AUTH.LOGIN}
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-center w-full py-3 rounded-full border border-white/25 text-white text-sm font-medium hover:bg-white/10 transition-all"
+              >
+                Sign In
+              </Link>
+              <Link
+                href={ROUTES.AUTH.REGISTER}
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-center w-full py-3 rounded-full bg-[#D4FB20] text-black text-sm font-semibold hover:bg-[#c3ea1a] transition-all shadow-md shadow-[#D4FB20]/20"
+              >
+                Join Us
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </header>

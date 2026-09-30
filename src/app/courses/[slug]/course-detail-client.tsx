@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import {
   Share2,
   BarChart2,
@@ -12,17 +13,32 @@ import {
   FileText,
   Video,
   Award,
-  PhoneCall,
   CheckCircle2,
+  ChevronDown,
+  ChevronUp,
+  X,
+  Lock,
 } from 'lucide-react';
 import { Navbar } from '@/components/shared/navbar';
 import { Footer } from '@/components/shared/footer';
 import { MOCK_MODULES, MOCK_REVIEWS, MOCK_CREATOR } from '@/constants/mock-data';
 import { ROUTES } from '@/constants/routes';
+import { useToast } from '@/context/toast-context';
+import { useAuth } from '@/context/auth-context';
 
 export default function CourseDetailClient() {
+  const router = useRouter();
+  const { showToast } = useToast();
+  const { isLoggedIn } = useAuth();
+
   const [activeTab, setActiveTab] = useState<'about' | 'lessons' | 'reviews'>('about');
   const [activeReviewFilter, setActiveReviewFilter] = useState('All rating');
+  const [isEnrolled, setIsEnrolled] = useState(false);
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+  const [expandedModules, setExpandedModules] = useState<Record<string, boolean>>({
+    'm1': true,
+    'm2': true,
+  });
 
   const sneakPeakImages = [
     'https://images.unsplash.com/photo-1581291518655-9523c932694b?w=400&auto=format&fit=crop&q=80',
@@ -49,6 +65,39 @@ export default function CourseDetailClient() {
     { stars: 2, count: 12, percent: 1.5 },
     { stars: 1, count: 16, percent: 2 },
   ];
+
+  const handleShare = () => {
+    if (typeof window !== 'undefined') {
+      navigator.clipboard?.writeText(window.location.href);
+      showToast('Course link copied to clipboard!', 'success');
+    }
+  };
+
+  const handleEnroll = () => {
+    if (!isLoggedIn) {
+      showToast('Please sign in to enroll in this course', 'info');
+      router.push(ROUTES.AUTH.LOGIN);
+      return;
+    }
+
+    if (isEnrolled) {
+      router.push(ROUTES.DASHBOARD.ROOT);
+    } else {
+      setIsEnrolled(true);
+      showToast('Congratulations! You are now enrolled in "Build Digital Asset"', 'success');
+    }
+  };
+
+  const toggleModule = (id: string) => {
+    setExpandedModules((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
+
+  const filteredReviews = MOCK_REVIEWS.filter((r) => {
+    if (activeReviewFilter === 'All rating') return true;
+    if (activeReviewFilter === '★ 5') return r.rating === 5;
+    if (activeReviewFilter === '★ 4') return r.rating === 4;
+    return true;
+  });
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
@@ -99,7 +148,7 @@ export default function CourseDetailClient() {
 
             {/* Share Button */}
             <button
-              onClick={() => navigator.clipboard?.writeText(window.location.href)}
+              onClick={handleShare}
               className="px-6 py-2.5 rounded-full bg-[#cbfc01] text-black font-semibold text-sm hover:brightness-95 active:scale-95 transition-all flex items-center gap-2 cursor-pointer shadow-lg shrink-0"
             >
               <Share2 className="w-4 h-4" />
@@ -117,17 +166,44 @@ export default function CourseDetailClient() {
               className="object-cover"
             />
             {/* Play Button Overlay */}
-            <div className="absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/10 transition-colors">
+            <div className="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/20 transition-colors">
               <button
+                onClick={() => setIsVideoModalOpen(true)}
                 aria-label="Play Course Video Preview"
-                className="w-20 h-20 rounded-full bg-white/70 backdrop-blur-md flex items-center justify-center text-neutral-900 shadow-2xl hover:scale-110 active:scale-95 transition-all cursor-pointer"
+                className="w-20 h-20 rounded-full bg-white/80 backdrop-blur-md flex items-center justify-center text-neutral-900 shadow-2xl hover:scale-110 active:scale-95 transition-all cursor-pointer group"
               >
-                <Play className="w-8 h-8 fill-current translate-x-0.5" />
+                <Play className="w-8 h-8 fill-current translate-x-0.5 group-hover:text-primary-600 transition-colors" />
               </button>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Video Preview Modal */}
+      {isVideoModalOpen && (
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+          <div className="bg-neutral-900 rounded-3xl max-w-4xl w-full overflow-hidden shadow-2xl relative border border-white/20">
+            <div className="flex items-center justify-between p-4 bg-neutral-800 border-b border-neutral-700 text-white">
+              <span className="font-semibold text-sm">Course Preview Video</span>
+              <button
+                onClick={() => setIsVideoModalOpen(false)}
+                className="p-1 text-neutral-400 hover:text-white rounded-full cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <div className="aspect-[16/9] w-full bg-black relative flex items-center justify-center">
+              <iframe
+                className="w-full h-full"
+                src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1"
+                title="Course Video Preview"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* =========================================================================
           CONTENT & STICKY ENROLLMENT CARD GRID
@@ -137,12 +213,12 @@ export default function CourseDetailClient() {
           {/* LEFT COLUMN: TABS AND TAB CONTENT */}
           <div className="lg:col-span-8 space-y-10">
             {/* Navigation Tabs */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 border-b border-neutral-200 pb-4">
               {(['about', 'lessons', 'reviews'] as const).map((tab) => {
                 const isActive = activeTab === tab;
                 const tabNames = {
                   about: 'About',
-                  lessons: 'Lesson',
+                  lessons: 'Lessons',
                   reviews: 'Reviews',
                 };
                 return (
@@ -151,7 +227,7 @@ export default function CourseDetailClient() {
                     onClick={() => setActiveTab(tab)}
                     className={`px-6 py-2.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
                       isActive
-                        ? 'bg-[#cbfc01] text-black shadow-xs'
+                        ? 'bg-[#cbfc01] text-black shadow-xs font-bold'
                         : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'
                     }`}
                   >
@@ -174,9 +250,6 @@ export default function CourseDetailClient() {
                   </p>
                   <p className="text-neutral-600 text-[15px] leading-relaxed">
                     In the initial modules, you&apos;ll establish a solid foundation by immersing yourself in the foundational concepts that form the backbone of digital asset creation. Understand the fundamental elements that constitute compelling digital content and gain proficiency in leveraging these elements to communicate effectively in the digital realm.
-                  </p>
-                  <p className="text-neutral-600 text-[15px] leading-relaxed">
-                    As you progress through the course, you&apos;ll ascend to higher levels of expertise, delving into the nuances of design principles that drive impactful creations. Uncover the secrets behind effective visual communication, exploring color theory, typography, and layout strategies that elevate your digital assets to new heights. Engage in hands-on exercises that reinforce your understanding, allowing you to apply these principles in practical scenarios.
                   </p>
                 </div>
 
@@ -205,11 +278,11 @@ export default function CourseDetailClient() {
                   <h3 className="font-poppins font-bold text-xl text-neutral-950">
                     Key Points
                   </h3>
-                  <div className="space-y-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {keyPoints.map((point) => (
-                      <div key={point} className="flex items-center gap-3">
+                      <div key={point} className="flex items-center gap-3 bg-neutral-50 p-3 rounded-xl border border-neutral-200/60">
                         <CheckCircle2 className="w-5 h-5 text-primary-600 fill-primary-50 shrink-0" />
-                        <span className="text-neutral-800 text-[15px] font-medium">{point}</span>
+                        <span className="text-neutral-800 text-sm font-medium">{point}</span>
                       </div>
                     ))}
                   </div>
@@ -217,72 +290,80 @@ export default function CourseDetailClient() {
               </div>
             )}
 
-            {/* TAB 2: LESSONS */}
+            {/* TAB 2: LESSONS (WITH INTERACTIVE ACCORDIONS) */}
             {activeTab === 'lessons' && (
               <div className="space-y-10 animate-fade-in">
-                {/* Explore Modules Intro */}
                 <div className="space-y-3">
                   <h2 className="font-poppins font-bold text-2xl text-neutral-950">
                     Explore the Modules
                   </h2>
                   <p className="text-neutral-600 text-[15px] leading-relaxed">
-                    Immerse yourself in the course content as we break down each module into comprehensive lessons, providing practical insights and hands-on experiences.
+                    Click on any module to view its detailed lesson breakdown and interactive video topics.
                   </p>
                 </div>
 
-                {/* Lesson List */}
+                {/* Interactive Accordion Modules */}
                 <div className="space-y-4">
-                  <h3 className="font-poppins font-bold text-xl text-neutral-950">
-                    Lesson List
-                  </h3>
-                  <div className="space-y-4">
-                    {MOCK_MODULES.map((module) => (
+                  {MOCK_MODULES.map((module) => {
+                    const isExpanded = !!expandedModules[module.id];
+                    return (
                       <div
                         key={module.id}
-                        className="bg-white rounded-2xl p-5 border border-neutral-200/80 flex items-start gap-4 hover:border-neutral-300 transition-colors"
+                        className="bg-white rounded-2xl border border-neutral-200/80 overflow-hidden shadow-xs transition-all"
                       >
-                        <div className="w-12 h-12 rounded-full bg-[#cbfc01] flex items-center justify-center shrink-0 text-black">
-                          <Video className="w-5 h-5 stroke-[2]" />
-                        </div>
-                        <div className="space-y-1">
-                          <p className="font-poppins font-semibold text-neutral-950 text-base">
-                            {module.title}
-                          </p>
-                          <p className="text-neutral-600 text-sm leading-relaxed">
-                            {module.description}
-                          </p>
-                        </div>
+                        <button
+                          onClick={() => toggleModule(module.id)}
+                          className="w-full p-5 flex items-center justify-between gap-4 hover:bg-neutral-50 transition-colors text-left cursor-pointer"
+                        >
+                          <div className="flex items-center gap-4">
+                            <div className="w-10 h-10 rounded-full bg-[#cbfc01] flex items-center justify-center shrink-0 text-black font-bold">
+                              <Video className="w-5 h-5" />
+                            </div>
+                            <div>
+                              <p className="font-poppins font-semibold text-neutral-950 text-base">
+                                {module.title}
+                              </p>
+                              <p className="text-neutral-500 text-xs mt-0.5">
+                                {module.lessonsCount} lessons &bull; {module.duration}
+                              </p>
+                            </div>
+                          </div>
+                          {isExpanded ? (
+                            <ChevronUp className="w-5 h-5 text-neutral-500" />
+                          ) : (
+                            <ChevronDown className="w-5 h-5 text-neutral-500" />
+                          )}
+                        </button>
+
+                        {isExpanded && (
+                          <div className="px-5 pb-5 pt-2 border-t border-neutral-100 bg-neutral-50/50 space-y-3">
+                            <p className="text-xs text-neutral-600">{module.description}</p>
+                            <div className="space-y-2 pt-2">
+                              {module.lessons?.map((lesson, idx) => (
+                                <div
+                                  key={idx}
+                                  className="flex items-center justify-between p-3 rounded-xl bg-white border border-neutral-200/60 text-xs font-medium text-neutral-800"
+                                >
+                                  <div className="flex items-center gap-2.5">
+                                    <Play className="w-3.5 h-3.5 text-primary-600 fill-primary-600" />
+                                    <span>{lesson.title}</span>
+                                  </div>
+                                  <div className="flex items-center gap-2 text-neutral-400">
+                                    <span>{lesson.duration}</span>
+                                    {isEnrolled ? (
+                                      <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                                    ) : (
+                                      <Lock className="w-3.5 h-3.5 text-neutral-400" />
+                                    )}
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
                       </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Lesson Content Section */}
-                <div className="space-y-3">
-                  <h3 className="font-poppins font-bold text-xl text-neutral-950">
-                    Lesson Content
-                  </h3>
-                  <p className="text-neutral-600 text-[15px] leading-relaxed">
-                    Engage with each lesson through captivating video content, detailed textual explanations, and interactive elements. Download resources, complete assignments, and test your understanding with quizzes.
-                  </p>
-                </div>
-
-                {/* Lesson Progress Tracking */}
-                <div className="space-y-4">
-                  <h3 className="font-poppins font-bold text-xl text-neutral-950">
-                    Lesson Progress Tracking
-                  </h3>
-                  <p className="text-neutral-600 text-[15px] leading-relaxed">
-                    Witness your growth as you complete lessons, with an intuitive progress tracking feature guiding you through your learning journey.
-                  </p>
-
-                  <div className="bg-white rounded-2xl p-6 border border-neutral-200/80 space-y-2">
-                    <p className="text-xs text-neutral-500 font-medium">Learning Progress</p>
-                    <p className="font-poppins font-bold text-3xl text-neutral-950">55%</p>
-                    <div className="w-full bg-neutral-100 h-3 rounded-full overflow-hidden mt-3">
-                      <div className="bg-[#cbfc01] h-full rounded-full w-[55%]" />
-                    </div>
-                  </div>
+                    );
+                  })}
                 </div>
               </div>
             )}
@@ -290,36 +371,31 @@ export default function CourseDetailClient() {
             {/* TAB 3: REVIEWS */}
             {activeTab === 'reviews' && (
               <div className="space-y-10 animate-fade-in">
-                {/* Intro */}
                 <div className="space-y-3">
                   <h2 className="font-poppins font-bold text-2xl text-neutral-950">
                     What Learners Are Saying
                   </h2>
                   <p className="text-neutral-600 text-[15px] leading-relaxed">
-                    Discover what our learners have to say about their experience with &apos;Build Digital Assets: A Comprehensive Guide.&apos; Read reviews and ratings from individuals who have embarked on the transformative journey of mastering digital asset creation.
+                    Real feedback from students who completed this course.
                   </p>
                 </div>
 
-                {/* Ratings Breakdown Summary Box */}
+                {/* Ratings Summary */}
                 <div className="bg-white rounded-2xl p-6 sm:p-8 border border-neutral-200/80 flex flex-col sm:flex-row items-center gap-8">
-                  {/* Big Lime Rating Box */}
                   <div className="w-32 h-32 rounded-2xl bg-[#cbfc01] flex flex-col items-center justify-center shrink-0 text-black shadow-xs">
                     <span className="text-xs font-semibold uppercase tracking-wider text-black/70">Ratings</span>
-                    <span className="font-poppins font-bold text-4xl mt-1">4.7</span>
+                    <span className="font-poppins font-bold text-4xl mt-1">4.8</span>
                   </div>
 
-                  {/* Rating Bars */}
                   <div className="flex-1 w-full space-y-2.5">
                     {reviewBreakdown.map((row) => (
                       <div key={row.stars} className="flex items-center gap-4 text-xs font-medium text-neutral-700">
-                        {/* Progress Bar */}
                         <div className="flex-1 bg-neutral-100 h-2.5 rounded-full overflow-hidden">
                           <div
                             className="bg-[#cbfc01] h-full rounded-full"
                             style={{ width: `${row.percent}%` }}
                           />
                         </div>
-                        {/* 5 Stars */}
                         <div className="flex items-center gap-0.5 w-20 shrink-0">
                           {Array.from({ length: 5 }).map((_, i) => (
                             <Star
@@ -330,20 +406,16 @@ export default function CourseDetailClient() {
                             />
                           ))}
                         </div>
-                        {/* Count */}
                         <span className="w-8 text-right font-mono text-neutral-600">{row.count}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                {/* Individual Reviews Filter Pills */}
+                {/* Filter Pills */}
                 <div className="space-y-4">
-                  <h3 className="font-poppins font-bold text-xl text-neutral-950">
-                    Individual Reviews:
-                  </h3>
                   <div className="flex flex-wrap items-center gap-2">
-                    {['All rating', '★ 5', '★ 4', '★ 3', '★ 2', '★ 1'].map((filter) => {
+                    {['All rating', '★ 5', '★ 4'].map((filter) => {
                       const isActive = activeReviewFilter === filter;
                       return (
                         <button
@@ -351,7 +423,7 @@ export default function CourseDetailClient() {
                           onClick={() => setActiveReviewFilter(filter)}
                           className={`px-4 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer ${
                             isActive
-                              ? 'bg-[#cbfc01] text-black shadow-xs'
+                              ? 'bg-[#cbfc01] text-black shadow-xs font-bold'
                               : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
                           }`}
                         >
@@ -362,9 +434,9 @@ export default function CourseDetailClient() {
                   </div>
                 </div>
 
-                {/* Individual Review Cards */}
+                {/* Reviews List */}
                 <div className="space-y-4">
-                  {MOCK_REVIEWS.map((review) => (
+                  {filteredReviews.map((review) => (
                     <div
                       key={review.id}
                       className="bg-white rounded-2xl p-6 border border-neutral-200/80 space-y-4 shadow-xs"
@@ -390,10 +462,9 @@ export default function CourseDetailClient() {
                         <span className="text-xs text-neutral-400">{review.timeAgo}</span>
                       </div>
 
-                      {/* Stars */}
                       <div className="flex items-center gap-1">
-                        {Array.from({ length: 5 }).map((_, i) => (
-                          <Star key={i} className="w-4 h-4 fill-neutral-900 text-neutral-900" />
+                        {Array.from({ length: review.rating }).map((_, i) => (
+                          <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
                         ))}
                       </div>
 
@@ -407,37 +478,22 @@ export default function CourseDetailClient() {
             )}
           </div>
 
-          {/* RIGHT COLUMN: STICKY ENROLLMENT CARD (Present across all tabs) */}
+          {/* RIGHT COLUMN: STICKY ENROLLMENT CARD */}
           <div className="lg:col-span-4 sticky top-6">
             <div className="bg-white rounded-3xl p-6 sm:p-7 border border-neutral-200/80 shadow-xl space-y-6">
-              {/* Header Info */}
               <div>
                 <h3 className="font-poppins font-bold text-lg text-neutral-950">
                   112 Lessons (24 hours)
                 </h3>
-
-                <div className="mt-4 space-y-3 text-xs text-neutral-700">
-                  <div className="flex items-center justify-between">
-                    <span className="font-medium text-neutral-900">01 Introduction to Digital Assets</span>
-                    <span className="text-primary-600 font-semibold">12 mins</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="font-medium text-neutral-900">02 Design Principles for Impacts</span>
-                    <span className="text-primary-600 font-semibold">21 mins</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="font-medium text-neutral-900">03 Advanced Techniques in Digital Creation</span>
-                    <span className="text-primary-600 font-semibold">16 mins</span>
-                  </div>
-                  <p className="text-xs text-neutral-400 pt-1">99 more videos</p>
-                </div>
               </div>
 
               <p className="text-xs text-neutral-600 leading-relaxed">
-                Ready to Dive In? Enroll Now and Start Building Your Digital Future!
+                {isEnrolled
+                  ? 'You are enrolled in this course! Click below to open your learning space.'
+                  : 'Ready to Dive In? Enroll Now and Start Building Your Digital Future!'}
               </p>
 
-              {/* Price & CTA */}
+              {/* Price & CTA Button */}
               <div className="pt-2">
                 <div className="flex items-baseline gap-1 mb-4">
                   <span className="font-poppins font-bold text-3xl text-primary-600">$25</span>
@@ -446,16 +502,21 @@ export default function CourseDetailClient() {
 
                 <button
                   type="button"
-                  className="w-full py-3.5 rounded-full bg-[#cbfc01] text-black font-semibold text-sm hover:brightness-95 active:scale-95 transition-all shadow-md cursor-pointer"
+                  onClick={handleEnroll}
+                  className={`w-full py-3.5 rounded-full font-semibold text-sm transition-all shadow-md cursor-pointer ${
+                    isEnrolled
+                      ? 'bg-neutral-900 text-white hover:bg-neutral-800'
+                      : 'bg-[#cbfc01] text-black hover:brightness-95 active:scale-95'
+                  }`}
                 >
-                  Enroll Now
+                  {isEnrolled ? 'Go to Learning Workspace' : 'Enroll Now'}
                 </button>
               </div>
 
-              {/* Course Includes */}
+              {/* Includes */}
               <div className="pt-4 border-t border-neutral-100 space-y-3.5">
                 <p className="font-poppins font-bold text-sm text-neutral-950">
-                  This course include
+                  This course includes
                 </p>
 
                 <div className="space-y-3 text-xs text-neutral-700">
@@ -470,10 +531,6 @@ export default function CourseDetailClient() {
                   <div className="flex items-center gap-2.5">
                     <Award className="w-4 h-4 text-primary-600" />
                     <span>Certificate of Completion</span>
-                  </div>
-                  <div className="flex items-center gap-2.5">
-                    <PhoneCall className="w-4 h-4 text-primary-600" />
-                    <span>Private Consultation</span>
                   </div>
                 </div>
               </div>
@@ -497,10 +554,6 @@ export default function CourseDetailClient() {
                     <p className="text-xs text-neutral-500">Professional Creator</p>
                   </div>
                 </div>
-
-                <p className="text-xs text-neutral-600 leading-relaxed">
-                  Ready to Dive In? Enroll Now and Start Building Your Digital Future!
-                </p>
 
                 <Link
                   href={ROUTES.CREATOR_DETAIL('purepearl-studio')}
