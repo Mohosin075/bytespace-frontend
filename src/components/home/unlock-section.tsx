@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
 export default function UnlockSection() {
     return (
@@ -41,7 +42,7 @@ export default function UnlockSection() {
                 <Image src="/creator-cta/lime-zigzag-wave.svg" alt="Lime Zigzag Wave 3D Shape" width={334} height={199} className="w-full h-auto" />
             </div>
 
-            <div className="container relative mx-auto px-4 z-20 flex flex-col items-center">
+            <ScrollReveal direction="up" distance={24} duration={650} className="container relative mx-auto px-4 z-20 flex flex-col items-center">
                 <h2 className="font-clash font-bold text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-center text-white tracking-tight leading-snug sm:leading-[1.12]">
                     Unlock Your Potential as a
                     <br className="hidden sm:inline" />
@@ -53,10 +54,13 @@ export default function UnlockSection() {
                     on the ByteSpace Course Library.
                 </p>
 
-                <Link href="/register" className="mt-8 inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-[#D4FB20] text-black font-semibold text-sm sm:text-base hover:bg-[#c3ea1a] active:scale-95 transition-all shadow-md cursor-pointer">
-                    Join as Creator
+                <Link
+                  href="/register"
+                  className="mt-8 inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#D4FB20] text-neutral-950 font-bold text-sm sm:text-base hover:bg-[#c3ea1a] hover:shadow-[0_10px_25px_rgba(212,251,32,0.35)] hover:scale-[1.02] active:scale-[0.97] transition-all duration-200 shadow-md cursor-pointer"
+                >
+                  Join as Creator
                 </Link>
-            </div>
+            </ScrollReveal>
         </section>
     );
 }

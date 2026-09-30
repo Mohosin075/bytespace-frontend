@@ -18,6 +18,7 @@ import {
 import { Navbar } from '@/components/shared/navbar';
 import { Footer } from '@/components/shared/footer';
 import { CourseCard } from '@/components/ui/course-card';
+import { ScrollReveal } from '@/components/ui/scroll-reveal';
 import { MOCK_COURSES, matchCourseCategory } from '@/constants/mock-data';
 import { useToast } from '@/context/toast-context';
 
@@ -190,7 +191,8 @@ function CoursesContent() {
   return (
     <main className="layout-container py-12 flex-1 font-satoshi">
       {/* Search Header Banner */}
-      <section className="bg-hero-grid rounded-3xl p-8 sm:p-12 mb-10 text-white shadow-xl relative overflow-hidden">
+      <ScrollReveal direction="up" distance={20} duration={600}>
+        <section className="bg-hero-grid rounded-3xl p-8 sm:p-12 mb-10 text-white shadow-xl relative overflow-hidden">
         <div className="max-w-2xl mx-auto text-center space-y-4 relative z-10">
           <h1 className="font-poppins font-bold text-3xl sm:text-4xl text-white">
             Find Your Next Course
@@ -229,6 +231,7 @@ function CoursesContent() {
           </div>
         </div>
       </section>
+    </ScrollReveal>
 
       {/* Filter Controls Row */}
       <div className="flex flex-wrap items-center justify-between gap-4 pb-6">
@@ -434,8 +437,16 @@ function CoursesContent() {
       {/* 3-Column Course Grid or Clean Empty State */}
       {paginatedCourses.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {paginatedCourses.map((course) => (
-            <CourseCard key={course.id} course={course} />
+          {paginatedCourses.map((course, idx) => (
+            <ScrollReveal
+              key={course.id}
+              direction="up"
+              delay={(idx % 3) * 80}
+              distance={20}
+              duration={500}
+            >
+              <CourseCard course={course} />
+            </ScrollReveal>
           ))}
         </div>
       ) : (
@@ -463,47 +474,49 @@ function CoursesContent() {
 
       {/* Dynamic Pagination Bar */}
       {totalPages > 1 && (
-        <div className="mt-16 flex items-center justify-center gap-4">
-          <button
-            type="button"
-            onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-            disabled={currentPage === 1}
-            className="w-9 h-9 rounded-full border border-neutral-300 flex items-center justify-center hover:bg-neutral-100 transition-colors cursor-pointer text-neutral-700 disabled:opacity-40 disabled:cursor-not-allowed"
-            aria-label="Previous Page"
-          >
-            <ChevronLeft className="w-4 h-4" />
-          </button>
+        <ScrollReveal direction="up" delay={80} distance={15} duration={500}>
+          <div className="mt-16 flex items-center justify-center gap-4">
+            <button
+              type="button"
+              onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+              disabled={currentPage === 1}
+              className="w-9 h-9 rounded-full border border-neutral-300 flex items-center justify-center hover:bg-neutral-100 transition-colors cursor-pointer text-neutral-700 disabled:opacity-40 disabled:cursor-not-allowed"
+              aria-label="Previous Page"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
 
-          <div className="flex items-center gap-2">
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => {
-              const isActive = currentPage === page;
-              return (
-                <button
-                  key={page}
-                  type="button"
-                  onClick={() => setCurrentPage(page)}
-                  className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold transition-all cursor-pointer ${
-                    isActive
-                      ? 'bg-neutral-950 text-white font-bold shadow-md'
-                      : 'text-neutral-600 hover:bg-neutral-100'
-                  }`}
-                >
-                  {page}
-                </button>
-              );
-            })}
+            <div className="flex items-center gap-2">
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => {
+                const isActive = currentPage === page;
+                return (
+                  <button
+                    key={page}
+                    type="button"
+                    onClick={() => setCurrentPage(page)}
+                    className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold transition-all cursor-pointer ${
+                      isActive
+                        ? 'bg-neutral-950 text-white font-bold shadow-md'
+                        : 'text-neutral-600 hover:bg-neutral-100'
+                    }`}
+                  >
+                    {page}
+                  </button>
+                );
+              })}
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+              disabled={currentPage === totalPages}
+              className="w-9 h-9 rounded-full border border-neutral-300 flex items-center justify-center hover:bg-neutral-100 transition-colors cursor-pointer text-neutral-700 disabled:opacity-40 disabled:cursor-not-allowed"
+              aria-label="Next Page"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
           </div>
-
-          <button
-            type="button"
-            onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
-            disabled={currentPage === totalPages}
-            className="w-9 h-9 rounded-full border border-neutral-300 flex items-center justify-center hover:bg-neutral-100 transition-colors cursor-pointer text-neutral-700 disabled:opacity-40 disabled:cursor-not-allowed"
-            aria-label="Next Page"
-          >
-            <ChevronRight className="w-4 h-4" />
-          </button>
-        </div>
+        </ScrollReveal>
       )}
     </main>
   );

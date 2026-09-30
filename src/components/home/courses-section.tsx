@@ -3,6 +3,7 @@
 import React, { useState, useMemo } from 'react';
 import { SectionHeader } from '@/components/ui/section-header';
 import { CourseCard } from '@/components/ui/course-card';
+import { ScrollReveal } from '@/components/ui/scroll-reveal';
 import { MOCK_COURSES, CATEGORIES, matchCourseCategory } from '@/constants/mock-data';
 import {
   ChevronDown,
@@ -83,18 +84,20 @@ export function CoursesSection() {
   return (
     <section className="py-10 sm:py-16 md:py-24 bg-white font-satoshi">
       <div className="layout-container">
-        {/* Section Header */}
-        <SectionHeader
-          title={
-            <>
-              Discover Your Passion, <br className="hidden sm:inline" /> Build Your Skills
-            </>
-          }
-          subtitle="At Bytespace Courses, we bring you closer to life-changing knowledge. Explore a variety of courses across different fields, from technology to the arts, and make a difference in your career and life."
-        />
+        {/* Section Header with Scroll Reveal */}
+        <ScrollReveal direction="up" distance={20} duration={600}>
+          <SectionHeader
+            title={
+              <>
+                Discover Your Passion, <br className="hidden sm:inline" /> Build Your Skills
+              </>
+            }
+            subtitle="At Bytespace Courses, we bring you closer to life-changing knowledge. Explore a variety of courses across different fields, from technology to the arts, and make a difference in your career and life."
+          />
+        </ScrollReveal>
 
         {/* ── Top Filter Bar (Filter, Level, Category, Sort) ── */}
-        <div className="mt-10 mb-6 flex flex-wrap items-center justify-between gap-4 max-w-5xl mx-auto">
+        <ScrollReveal direction="up" delay={100} distance={20} duration={600} className="mt-10 mb-6 flex flex-wrap items-center justify-between gap-4 max-w-5xl mx-auto">
           {/* Left Pill Controls */}
           <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 relative">
             {/* 1. Filter / Reset Button */}
@@ -244,10 +247,10 @@ export function CoursesSection() {
               </div>
             )}
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* Dynamic Category Chips */}
-        <div className="max-w-5xl mx-auto">
+        <ScrollReveal direction="up" delay={150} distance={20} duration={600} className="max-w-5xl mx-auto">
           <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 transition-all duration-300">
             {visibleCategories.map((category, idx) => {
               const isActive = selectedCategory === category;
@@ -319,17 +322,19 @@ export function CoursesSection() {
               </button>
             </div>
           )}
-        </div>
+        </ScrollReveal>
 
-        {/* Dynamic Course Cards Grid with Smooth Key Refresh */}
-        <div
-          key={`${selectedCategory}-${selectedLevel}-${sortBy}`}
-          className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-[fadeIn_0.3s_ease-in-out]"
-        >
-          {filteredCourses.map((course) => (
-            <CourseCard key={course.id} course={course} />
-          ))}
-        </div>
+        {/* Dynamic Course Cards Grid with Smooth Key Refresh & ScrollReveal */}
+        <ScrollReveal direction="up" delay={200} distance={24} duration={650}>
+          <div
+            key={`${selectedCategory}-${selectedLevel}-${sortBy}`}
+            className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-[fadeIn_0.3s_ease-in-out]"
+          >
+            {filteredCourses.map((course) => (
+              <CourseCard key={course.id} course={course} />
+            ))}
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );

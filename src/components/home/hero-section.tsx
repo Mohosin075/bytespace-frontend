@@ -145,21 +145,21 @@ export function HeroSection() {
       </div>
 
       <div className="container relative mx-auto px-4 z-20 flex flex-col items-center">
-        <h1 className="font-poppins text-center font-bold tracking-tight text-white text-3xl sm:text-5xl md:text-6xl lg:text-[76px] leading-snug sm:leading-[1.08] max-w-4xl">
+        <h1 className="font-poppins text-center font-bold tracking-tight text-white text-3xl sm:text-5xl md:text-6xl lg:text-[76px] leading-snug sm:leading-[1.08] max-w-4xl animate-reveal-up">
           Get Access to Hundreds
           <br className="hidden sm:inline" />
           Courses Available
         </h1>
 
-        <p className="mt-4 sm:mt-6 text-center text-xs sm:text-base md:text-lg text-white/90 max-w-xl font-normal leading-relaxed">
+        <p className="mt-4 sm:mt-6 text-center text-xs sm:text-base md:text-lg text-white/90 max-w-xl font-normal leading-relaxed animate-reveal-up delay-100">
           Unlock your creativity, gain valuable knowledge, and grow your business with our wide range of courses.
         </p>
 
         {/* ── Search Bar + Dropdown ── */}
-        <div ref={searchRef} className="relative mt-6 sm:mt-10 w-full max-w-xl z-50">
+        <div ref={searchRef} className="relative mt-6 sm:mt-10 w-full max-w-xl z-50 animate-reveal-up delay-200">
           <form onSubmit={handleFormSubmit} className="flex flex-col sm:flex-row items-center gap-2.5 sm:gap-3 bg-white/0">
-            <div className="relative flex-1 w-full text-zinc-900">
-              <Search className="absolute left-4 sm:left-5 top-1/2 -translate-y-1/2 size-4.5 sm:size-5 text-zinc-400 stroke-2 pointer-events-none" />
+            <div className="relative flex-1 w-full text-zinc-900 group">
+              <Search className="absolute left-4 sm:left-5 top-1/2 -translate-y-1/2 size-4.5 sm:size-5 text-zinc-400 group-focus-within:text-primary-600 transition-colors stroke-2 pointer-events-none" />
               <input
                 type="text"
                 value={query}
@@ -171,7 +171,7 @@ export function HeroSection() {
                   if (query.trim().length > 0) setIsOpen(true);
                 }}
                 placeholder="Course, topic, creator"
-                className="w-full h-12 sm:h-14 pl-11 sm:pl-13 pr-10 rounded-full bg-white placeholder:text-zinc-400 text-sm sm:text-base font-normal shadow-lg shadow-blue-900/20 focus:outline-none focus:ring-2 focus:ring-[#D4FB20]"
+                className="w-full h-12 sm:h-14 pl-11 sm:pl-13 pr-10 rounded-full bg-white placeholder:text-zinc-400 text-sm sm:text-base font-normal shadow-lg shadow-blue-950/20 focus:outline-none focus:ring-3 focus:ring-[#D4FB20] focus:shadow-xl transition-all duration-200"
               />
               {query && (
                 <button
@@ -189,7 +189,7 @@ export function HeroSection() {
             </div>
             <button
               type="submit"
-              className="w-full sm:w-auto h-12 sm:h-14 px-8 rounded-full bg-[#D4FB20] text-black font-semibold text-sm sm:text-base hover:bg-[#c3ea1a] active:scale-95 transition-all shadow-md shadow-black/10 shrink-0 cursor-pointer"
+              className="w-full sm:w-auto h-12 sm:h-14 px-8 rounded-full bg-[#D4FB20] text-black font-semibold text-sm sm:text-base hover:bg-[#c3ea1a] hover:shadow-lg hover:shadow-black/15 active:scale-[0.97] transition-all duration-200 shadow-md shadow-black/10 shrink-0 cursor-pointer"
             >
               Search
             </button>
@@ -331,7 +331,7 @@ export function HeroSection() {
           </div>
 
           {/* Badge 1: UI/UX Design */}
-          <div className="absolute top-[8%] sm:top-[18%] left-1 sm:left-6 lg:left-12 z-20 bg-white rounded-xl sm:rounded-2xl p-2.5 sm:p-4 shadow-xl text-left scale-85 sm:scale-100 origin-top-left animate-float">
+          <div className="absolute top-[8%] sm:top-[18%] left-1 sm:left-6 lg:left-12 z-20 bg-white/95 backdrop-blur-md rounded-xl sm:rounded-2xl p-2.5 sm:p-4 shadow-[0_12px_32px_rgba(0,15,80,0.18)] border border-white/60 text-left scale-85 sm:scale-100 origin-top-left animate-float hover:scale-105 transition-transform duration-300">
             <h4 className="font-bold text-zinc-900 text-[11px] sm:text-sm">UI/UX Design</h4>
             <p className="text-[9px] sm:text-xs text-zinc-500 font-medium mt-0.5">
               200 Courses &bull; 1000+ Students
@@ -339,18 +339,18 @@ export function HeroSection() {
           </div>
 
           {/* Badge 2: Learning Progress 55% */}
-          <div className="absolute top-[12%] sm:top-[22%] right-1 sm:right-6 lg:right-10 z-20 bg-white rounded-xl sm:rounded-2xl p-3 sm:p-5 shadow-xl w-36 sm:w-50 text-left scale-85 sm:scale-100 origin-top-right animate-float-reverse">
+          <div className="absolute top-[12%] sm:top-[22%] right-1 sm:right-6 lg:right-10 z-20 bg-white/95 backdrop-blur-md rounded-xl sm:rounded-2xl p-3 sm:p-5 shadow-[0_12px_32px_rgba(0,15,80,0.18)] border border-white/60 w-36 sm:w-50 text-left scale-85 sm:scale-100 origin-top-right animate-float-reverse hover:scale-105 transition-transform duration-300">
             <span className="text-[10px] sm:text-xs font-semibold text-zinc-500">
               Learning Progress
             </span>
             <div className="text-xl sm:text-3xl font-extrabold text-zinc-900 mt-0.5 sm:mt-1">55%</div>
             <div className="w-full bg-zinc-100 rounded-full h-1.5 sm:h-2 mt-1.5 sm:mt-2.5 overflow-hidden">
-              <div className="bg-[#D4FB20] h-full rounded-full w-[55%]" />
+              <div className="bg-[#D4FB20] h-full rounded-full w-[55%] transition-all duration-1000 ease-out" />
             </div>
           </div>
 
           {/* Badge 3: Happy Students */}
-          <div className="absolute bottom-[6%] sm:bottom-[12%] left-0 sm:left-4 lg:left-8 z-20 bg-white rounded-xl sm:rounded-2xl p-2.5 sm:p-4 shadow-xl text-left scale-85 sm:scale-100 origin-bottom-left animate-float-slow">
+          <div className="absolute bottom-[6%] sm:bottom-[12%] left-0 sm:left-4 lg:left-8 z-20 bg-white/95 backdrop-blur-md rounded-xl sm:rounded-2xl p-2.5 sm:p-4 shadow-[0_12px_32px_rgba(0,15,80,0.18)] border border-white/60 text-left scale-85 sm:scale-100 origin-bottom-left animate-float-slow hover:scale-105 transition-transform duration-300">
             <h4 className="font-bold text-zinc-900 text-[11px] sm:text-sm tracking-tight leading-none">
               Happy Students
             </h4>
@@ -364,7 +364,7 @@ export function HeroSection() {
                 <div
                   key={idx}
                   style={{ zIndex: idx + 1 }}
-                  className={`relative size-5 sm:size-7 rounded-full overflow-hidden shrink-0 ${
+                  className={`relative size-5 sm:size-7 rounded-full overflow-hidden shrink-0 border border-white/80 ${
                     idx > 0 ? '-ml-1.5 sm:-ml-2' : ''
                   }`}
                 >
@@ -373,7 +373,7 @@ export function HeroSection() {
               ))}
               <div
                 style={{ zIndex: 10 }}
-                className="relative -ml-1.5 sm:-ml-2 size-5 sm:size-7 rounded-full bg-[#D4FB20] text-black text-[8px] sm:text-[10px] font-bold flex items-center justify-center shrink-0"
+                className="relative -ml-1.5 sm:-ml-2 size-5 sm:size-7 rounded-full bg-[#D4FB20] text-black text-[8px] sm:text-[10px] font-bold flex items-center justify-center shrink-0 border border-white/80"
               >
                 2K+
               </div>
