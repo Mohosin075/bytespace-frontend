@@ -92,10 +92,10 @@ export default function CourseDetailClient() {
       {/* =========================================================================
           HERO & HEADER BANNER
           ========================================================================= */}
-      <section className="bg-hero-grid text-white pb-20 pt-24 sm:pt-28">
+      <section className="bg-hero-grid text-white">
         <Navbar variant="blue" />
 
-        <div className="layout-container pt-4">
+        <div className="layout-container pt-6 pb-20">
           <div className="flex flex-col lg:flex-row items-start justify-between gap-6">
             <div className="space-y-4 max-w-3xl">
               <h1 className="font-poppins font-bold text-3xl sm:text-4xl md:text-5xl text-white tracking-tight leading-tight">
@@ -196,7 +196,7 @@ export default function CourseDetailClient() {
       {/* =========================================================================
           CONTENT & STICKY ENROLLMENT CARD GRID
           ========================================================================= */}
-      <main className="layout-container py-14 flex-1">
+      <main className="layout-container py-12 sm:py-16 flex-1">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* LEFT COLUMN: TABS AND TAB CONTENT */}
           <div className="lg:col-span-8 space-y-10">

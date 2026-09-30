@@ -412,7 +412,7 @@ export default function CoursesClient() {
   return (
     <div className="min-h-screen flex flex-col bg-white">
       <Navbar variant="light" />
-      <div className="pt-20 sm:pt-24">
+      <div className="pt-20 sm:pt-24 md:pt-28 flex-1">
         <Suspense fallback={<div className="p-12 text-center text-sm">Loading courses...</div>}>
           <CoursesContent />
         </Suspense>

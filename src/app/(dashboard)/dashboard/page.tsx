@@ -38,11 +38,11 @@ export default function DashboardPage() {
   );
 
   return (
-    <div className="space-y-10 font-satoshi pb-12">
+    <div className="space-y-8 font-satoshi pb-8">
       {/* =========================================================================
           HERO GREETING BANNER (MATCHES BYTESPACE BLUEPRINT / BLUE BRAND THEME)
           ========================================================================= */}
-      <div className="bg-[#0052FE] bg-hero-grid rounded-[32px] p-8 sm:p-10 lg:p-12 text-white shadow-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-8 relative overflow-hidden">
+      <div className="bg-[#0052FE] bg-hero-grid rounded-[28px] p-7 sm:p-10 lg:p-12 text-white shadow-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-8 relative overflow-hidden">
         {/* Ambient Radial Glow */}
         <div
           className="absolute -top-24 -right-24 w-96 h-96 rounded-full pointer-events-none blur-3xl opacity-50"
@@ -91,9 +91,9 @@ export default function DashboardPage() {
       {/* =========================================================================
           METRICS CARDS ROW
           ========================================================================= */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
         {/* Enrolled Courses */}
-        <div className="bg-white p-6 rounded-[24px] border border-neutral-200/90 shadow-sm hover:shadow-md transition-shadow flex items-center gap-4">
+        <div className="bg-white p-5 sm:p-6 rounded-[20px] border border-neutral-200/90 shadow-sm hover:shadow-md transition-shadow flex items-center gap-4">
           <div className="w-13 h-13 rounded-2xl bg-blue-50 text-[#0052FE] flex items-center justify-center shrink-0">
             <BookOpen className="w-6 h-6 stroke-[2]" />
           </div>
@@ -104,7 +104,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Hours Learned */}
-        <div className="bg-white p-6 rounded-[24px] border border-neutral-200/90 shadow-sm hover:shadow-md transition-shadow flex items-center gap-4">
+        <div className="bg-white p-5 sm:p-6 rounded-[20px] border border-neutral-200/90 shadow-sm hover:shadow-md transition-shadow flex items-center gap-4">
           <div className="w-13 h-13 rounded-2xl bg-[#cbfc01]/25 text-neutral-950 flex items-center justify-center shrink-0">
             <Clock className="w-6 h-6 stroke-[2]" />
           </div>
@@ -115,7 +115,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Certificates */}
-        <div className="bg-white p-6 rounded-[24px] border border-neutral-200/90 shadow-sm hover:shadow-md transition-shadow flex items-center gap-4">
+        <div className="bg-white p-5 sm:p-6 rounded-[20px] border border-neutral-200/90 shadow-sm hover:shadow-md transition-shadow flex items-center gap-4">
           <div className="w-13 h-13 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0">
             <Award className="w-6 h-6 stroke-[2]" />
           </div>
@@ -126,7 +126,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Wishlist Saved */}
-        <div className="bg-white p-6 rounded-[24px] border border-neutral-200/90 shadow-sm hover:shadow-md transition-shadow flex items-center gap-4">
+        <div className="bg-white p-5 sm:p-6 rounded-[20px] border border-neutral-200/90 shadow-sm hover:shadow-md transition-shadow flex items-center gap-4">
           <div className="w-13 h-13 rounded-2xl bg-rose-50 text-rose-600 flex items-center justify-center shrink-0">
             <Heart className="w-6 h-6 stroke-[2]" />
           </div>
@@ -140,7 +140,7 @@ export default function DashboardPage() {
       {/* =========================================================================
           TAB FILTERS & SEARCH ROW
           ========================================================================= */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-neutral-200 pb-5">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-neutral-200/80 pb-6">
         {/* Navigation Tabs */}
         <div className="flex flex-wrap items-center gap-2.5">
           {[

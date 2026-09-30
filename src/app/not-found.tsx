@@ -30,12 +30,18 @@ export default function NotFound() {
               Try to use a correct url or go back to homepage to start again
             </p>
 
-            <div className="pt-6">
+            <div className="pt-6 flex flex-wrap items-center justify-center gap-4">
               <Link
                 href={ROUTES.HOME}
-                className="inline-block px-8 py-3.5 rounded-full bg-secondary-500 text-black font-semibold text-sm hover:brightness-95 active:scale-95 transition-all shadow-xl"
+                className="px-8 py-3.5 rounded-full bg-[#cbfc01] text-black font-semibold text-sm hover:brightness-95 active:scale-95 transition-all shadow-xl"
               >
                 Back to Home
+              </Link>
+              <Link
+                href={ROUTES.COURSES}
+                className="px-8 py-3.5 rounded-full border border-white/30 hover:border-white text-white font-semibold text-sm transition-all"
+              >
+                Browse Courses
               </Link>
             </div>
           </div>
