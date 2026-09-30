@@ -537,7 +537,7 @@ export default function CourseDetailClient({ slug }: CourseDetailClientProps = {
                   <button
                     type="button"
                     onClick={handleEnroll}
-                    className={`w-full py-3.5 rounded-full font-semibold text-sm transition-all shadow-md cursor-pointer ${
+                    className={`w-full py-3.5 px-6 rounded-full font-bold text-sm transition-all shadow-md cursor-pointer ${
                       isEnrolled
                         ? 'bg-neutral-900 text-white hover:bg-neutral-800'
                         : 'bg-[#cbfc01] text-black hover:brightness-95 active:scale-95'
@@ -557,7 +557,7 @@ export default function CourseDetailClient({ slug }: CourseDetailClientProps = {
                           showToast(`"${course.title}" is already in your cart`, 'info');
                         }
                       }}
-                      className="w-full py-3 rounded-full border border-neutral-300 font-semibold text-xs text-neutral-800 hover:border-neutral-900 hover:bg-neutral-50 transition-all cursor-pointer flex items-center justify-center gap-2"
+                      className="w-full py-3.5 px-6 rounded-full border border-neutral-300 font-semibold text-xs text-neutral-800 hover:border-neutral-900 hover:bg-neutral-50 transition-all cursor-pointer flex items-center justify-center gap-2"
                     >
                       <ShoppingBag className="w-4 h-4 text-[#0052FE]" />
                       <span>{isInCart(course.id) ? 'In Your Cart' : 'Add to Cart'}</span>

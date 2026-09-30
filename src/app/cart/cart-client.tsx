@@ -312,10 +312,10 @@ export default function CartClient() {
                   <button
                     type="button"
                     onClick={handleCheckout}
-                    className="w-full py-4 rounded-full bg-[#cbfc01] text-black font-extrabold text-sm sm:text-base hover:brightness-95 active:scale-95 transition-all shadow-lg flex items-center justify-center gap-2.5 cursor-pointer"
+                    className="w-full py-3.5 sm:py-4 px-6 sm:px-8 rounded-full bg-[#cbfc01] text-neutral-950 font-bold text-sm sm:text-[15px] hover:brightness-95 active:scale-[0.98] transition-all duration-200 shadow-md hover:shadow-lg flex items-center justify-center gap-2 sm:gap-2.5 cursor-pointer text-center group"
                   >
-                    <span>Proceed to Secure Checkout</span>
-                    <ArrowRight className="w-4 h-4" />
+                    <span className="leading-none">Proceed to Secure Checkout</span>
+                    <ArrowRight className="w-4 h-4 shrink-0 group-hover:translate-x-1 transition-transform duration-200" />
                   </button>
 
                   <div className="flex items-center justify-center gap-1.5 text-xs text-neutral-400 pt-2">
