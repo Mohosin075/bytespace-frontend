@@ -170,7 +170,7 @@ export function GrowthSection() {
             </div>
 
             {/* Total Revenue badge — BEHIND creator (z-10) */}
-            <div className="absolute top-[8%] left-[2%] sm:left-[4%] z-10 bg-[#0052FE] text-white rounded-2xl p-3.5 sm:p-4 shadow-xl border border-blue-400/30 w-37.5 sm:w-42.5 animate-float">
+            <div className="absolute top-[8%] left-[2%] sm:left-[4%] z-10 bg-[#0052FE] text-white rounded-2xl p-3.5 sm:p-4 shadow-xl border border-blue-400/40 w-37.5 sm:w-42.5 animate-float animate-border-glow">
               <div className="font-satoshi text-[11px] sm:text-xs text-white/90 font-medium">Total Revenue</div>
               <div className="font-satoshi text-[9px] text-white/60 font-normal">July 1-28</div>
               <div className="font-satoshi text-lg sm:text-xl font-bold text-white mt-1">$120.29</div>
@@ -180,7 +180,7 @@ export function GrowthSection() {
             </div>
 
             {/* Year to Date badge — BEHIND creator (z-10) */}
-            <div className="absolute top-[32%] left-[2%] sm:left-[4%] z-10 bg-[#0052FE] text-white rounded-2xl p-3.5 sm:p-4 shadow-xl border border-blue-400/30 w-37.5 sm:w-42.5 animate-float-slow">
+            <div className="absolute top-[32%] left-[2%] sm:left-[4%] z-10 bg-[#0052FE] text-white rounded-2xl p-3.5 sm:p-4 shadow-xl border border-blue-400/40 w-37.5 sm:w-42.5 animate-float-slow animate-border-glow">
               <div className="font-satoshi text-[11px] sm:text-xs text-white/90 font-medium">Year to Date</div>
               <div className="font-satoshi text-[9px] text-white/60 font-normal">2023</div>
               <div className="font-satoshi text-lg sm:text-xl font-bold text-white mt-1">$1,200.38</div>
@@ -202,7 +202,7 @@ export function GrowthSection() {
             </div>
 
             {/* Happy Students card — IN FRONT of creator (z-30) */}
-            <div className="absolute bottom-[16%] sm:bottom-[18%] right-[3%] sm:right-[6%] lg:right-[8%] z-30 bg-white rounded-2xl p-4 sm:p-5 shadow-[0_20px_45px_rgba(0,0,0,0.12)] border border-neutral-100 animate-float-reverse">
+            <div className="absolute bottom-[16%] sm:bottom-[18%] right-[3%] sm:right-[6%] lg:right-[8%] z-30 bg-white rounded-2xl p-4 sm:p-5 shadow-[0_20px_45px_rgba(0,0,0,0.12)] border border-neutral-100 animate-float-reverse card-hover-motion">
               <h4 className="font-satoshi font-bold text-neutral-950 text-sm sm:text-base leading-tight">Happy Students</h4>
               <div className="flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-neutral-900 mt-1">
                 <span className="font-satoshi">4.5</span>

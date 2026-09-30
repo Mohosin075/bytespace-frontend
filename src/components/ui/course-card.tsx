@@ -31,7 +31,7 @@ export function CourseCard({ course }: CourseCardProps) {
   };
 
   return (
-    <div className="bg-white rounded-[24px] border border-neutral-200/90 p-4 hover:shadow-[0_22px_45px_rgba(0,82,254,0.12)] hover:border-primary-200 hover:-translate-y-2 transition-all duration-300 ease-out flex flex-col justify-between group relative select-none">
+    <div className="bg-white rounded-[24px] border border-neutral-200/90 p-4 card-hover-motion hover:border-primary-300 flex flex-col justify-between group relative select-none">
       {/* Thumbnail area wrapped in Link with smooth zoom and gradient overlay */}
       <Link
         href={ROUTES.COURSE_DETAIL(course.slug)}
