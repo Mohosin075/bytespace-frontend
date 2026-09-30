@@ -12,6 +12,8 @@ import {
   RotateCcw,
   Sparkles,
   Check,
+  SlidersHorizontal,
+  LayoutGrid,
 } from 'lucide-react';
 import { Navbar } from '@/components/shared/navbar';
 import { Footer } from '@/components/shared/footer';
@@ -32,6 +34,7 @@ function CoursesContent() {
 
   // Dropdown open states
   const [levelDropdownOpen, setLevelDropdownOpen] = useState(false);
+  const [categoryDropdownOpen, setCategoryDropdownOpen] = useState(false);
   const [sortDropdownOpen, setSortDropdownOpen] = useState(false);
 
   const { showToast } = useToast();
@@ -219,45 +222,98 @@ function CoursesContent() {
 
       {/* Filter Controls Row */}
       <div className="flex flex-wrap items-center justify-between gap-4 pb-6">
-        {/* Left Buttons: Filter, Level, Reset */}
-        <div className="flex items-center gap-3 relative">
+        {/* Left Pills: Filter, Level, Category */}
+        <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 relative">
+          {/* 1. Filter Button */}
           <button
+            type="button"
             onClick={handleResetFilters}
-            className="flex items-center gap-2 px-4 py-2 rounded-full border border-neutral-300 text-neutral-700 hover:bg-neutral-100 transition-colors text-xs font-medium cursor-pointer"
+            className={`flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border text-xs sm:text-[13px] font-medium transition-all duration-200 cursor-pointer ${
+              selectedCategory !== 'Featured' || selectedLevel !== 'All Levels' || searchQuery.trim() !== ''
+                ? 'bg-neutral-950 text-white border-neutral-950 shadow-md'
+                : 'bg-white border-neutral-300 text-neutral-800 hover:border-neutral-900'
+            }`}
           >
-            <RotateCcw className="w-3.5 h-3.5" />
-            <span>Reset All</span>
+            <SlidersHorizontal className="w-3.5 h-3.5" />
+            <span>Filter</span>
+            {(selectedCategory !== 'Featured' || selectedLevel !== 'All Levels' || searchQuery.trim() !== '') && (
+              <span className="w-2 h-2 rounded-full bg-[#cbfc01] inline-block" />
+            )}
           </button>
 
-          {/* Level Dropdown Toggle */}
+          {/* 2. Level Dropdown Button */}
           <div className="relative">
             <button
-              onClick={() => setLevelDropdownOpen(!levelDropdownOpen)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-full border transition-colors text-xs font-medium cursor-pointer ${
+              type="button"
+              onClick={() => {
+                setLevelDropdownOpen(!levelDropdownOpen);
+                setCategoryDropdownOpen(false);
+                setSortDropdownOpen(false);
+              }}
+              className={`flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border text-xs sm:text-[13px] font-medium transition-all duration-200 cursor-pointer ${
                 selectedLevel !== 'All Levels'
-                  ? 'bg-neutral-900 text-white border-neutral-900'
-                  : 'border-neutral-300 text-neutral-700 hover:border-neutral-900'
+                  ? 'bg-neutral-950 text-white border-neutral-950 shadow-md'
+                  : 'bg-white border-neutral-300 text-neutral-800 hover:border-neutral-900'
               }`}
             >
               <BarChart2 className="w-3.5 h-3.5" />
-              <span>Level: {selectedLevel}</span>
-              <ChevronDown className="w-3.5 h-3.5" />
+              <span>{selectedLevel === 'All Levels' ? 'Level' : `Level: ${selectedLevel}`}</span>
             </button>
 
             {levelDropdownOpen && (
-              <div className="absolute top-full left-0 mt-2 w-44 bg-white rounded-2xl shadow-xl border border-neutral-200 py-2 z-30">
+              <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-2xl shadow-2xl border border-neutral-200 py-2 z-50 animate-fade-in">
                 {['All Levels', 'Beginner', 'Intermediate', 'Advanced'].map((lvl) => (
                   <button
                     key={lvl}
+                    type="button"
                     onClick={() => {
                       setSelectedLevel(lvl);
                       setLevelDropdownOpen(false);
                       setCurrentPage(1);
                     }}
-                    className="w-full text-left px-4 py-2 text-xs text-neutral-700 hover:bg-neutral-100 flex items-center justify-between cursor-pointer"
+                    className="w-full text-left px-4 py-2 text-xs text-neutral-700 hover:bg-neutral-100 flex items-center justify-between cursor-pointer font-satoshi"
                   >
                     <span>{lvl}</span>
-                    {selectedLevel === lvl && <Check className="w-3.5 h-3.5 text-primary-600" />}
+                    {selectedLevel === lvl && <Check className="w-3.5 h-3.5 text-primary-600 font-bold" />}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* 3. Category Dropdown Button */}
+          <div className="relative">
+            <button
+              type="button"
+              onClick={() => {
+                setCategoryDropdownOpen(!categoryDropdownOpen);
+                setLevelDropdownOpen(false);
+                setSortDropdownOpen(false);
+              }}
+              className={`flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border text-xs sm:text-[13px] font-medium transition-all duration-200 cursor-pointer ${
+                selectedCategory !== 'Featured'
+                  ? 'bg-neutral-950 text-white border-neutral-950 shadow-md'
+                  : 'bg-white border-neutral-300 text-neutral-800 hover:border-neutral-900'
+              }`}
+            >
+              <LayoutGrid className="w-3.5 h-3.5" />
+              <span>{selectedCategory === 'Featured' ? 'Category' : selectedCategory}</span>
+            </button>
+
+            {categoryDropdownOpen && (
+              <div className="absolute top-full left-0 mt-2 w-56 max-h-72 overflow-y-auto bg-white rounded-2xl shadow-2xl border border-neutral-200 py-2 z-50 animate-fade-in">
+                {filterCategories.map((cat) => (
+                  <button
+                    key={cat}
+                    type="button"
+                    onClick={() => {
+                      handleCategorySelect(cat);
+                      setCategoryDropdownOpen(false);
+                    }}
+                    className="w-full text-left px-4 py-2 text-xs text-neutral-700 hover:bg-neutral-100 flex items-center justify-between cursor-pointer font-satoshi"
+                  >
+                    <span>{cat}</span>
+                    {selectedCategory === cat && <Check className="w-3.5 h-3.5 text-primary-600 font-bold" />}
                   </button>
                 ))}
               </div>
@@ -265,15 +321,19 @@ function CoursesContent() {
           </div>
         </div>
 
-        {/* Right Sort Dropdown */}
+        {/* Right Sort Dropdown Button */}
         <div className="relative">
           <button
-            onClick={() => setSortDropdownOpen(!sortDropdownOpen)}
-            className="flex items-center gap-2 px-4 py-2 rounded-full border border-neutral-300 text-neutral-700 hover:border-neutral-900 transition-colors text-xs font-medium cursor-pointer"
+            type="button"
+            onClick={() => {
+              setSortDropdownOpen(!sortDropdownOpen);
+              setLevelDropdownOpen(false);
+              setCategoryDropdownOpen(false);
+            }}
+            className="flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border border-neutral-300 bg-white text-neutral-800 hover:border-neutral-900 transition-all duration-200 text-xs sm:text-[13px] font-medium cursor-pointer"
           >
             <ArrowUpDown className="w-3.5 h-3.5" />
             <span>
-              Sort:{' '}
               {sortBy === 'relevant'
                 ? 'Most relevant'
                 : sortBy === 'price-asc'
@@ -282,11 +342,10 @@ function CoursesContent() {
                 ? 'Price: High to Low'
                 : 'Top Rated'}
             </span>
-            <ChevronDown className="w-3.5 h-3.5" />
           </button>
 
           {sortDropdownOpen && (
-            <div className="absolute top-full right-0 mt-2 w-48 bg-white rounded-2xl shadow-xl border border-neutral-200 py-2 z-30">
+            <div className="absolute top-full right-0 mt-2 w-52 bg-white rounded-2xl shadow-2xl border border-neutral-200 py-2 z-50 animate-fade-in">
               {[
                 { label: 'Most relevant', value: 'relevant' as const },
                 { label: 'Price: Low to High', value: 'price-asc' as const },
@@ -295,14 +354,15 @@ function CoursesContent() {
               ].map((opt) => (
                 <button
                   key={opt.value}
+                  type="button"
                   onClick={() => {
                     setSortBy(opt.value);
                     setSortDropdownOpen(false);
                   }}
-                  className="w-full text-left px-4 py-2 text-xs text-neutral-700 hover:bg-neutral-100 flex items-center justify-between cursor-pointer"
+                  className="w-full text-left px-4 py-2 text-xs text-neutral-700 hover:bg-neutral-100 flex items-center justify-between cursor-pointer font-satoshi"
                 >
                   <span>{opt.label}</span>
-                  {sortBy === opt.value && <Check className="w-3.5 h-3.5 text-primary-600" />}
+                  {sortBy === opt.value && <Check className="w-3.5 h-3.5 text-primary-600 font-bold" />}
                 </button>
               ))}
             </div>

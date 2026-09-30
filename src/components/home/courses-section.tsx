@@ -48,7 +48,7 @@ export function CoursesSection() {
               Discover Your Passion, <br className="hidden sm:inline" /> Build Your Skills
             </>
           }
-          subtitle="At Bytespace Courses, we bring you closer to life-changing knowledge. Explore a variety of courses across different fields, from technology to the arts, and make a difference in your career and life."
+          subtitle="At Bytespace Courses, we bring you closer to life-changing knowledge. Explore a variety of courses different fields, from technology to the arts, and make a difference in your career and life."
         />
 
         {/* Dynamic Category Chips */}
