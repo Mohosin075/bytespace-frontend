@@ -32,8 +32,11 @@ export function CourseCard({ course }: CourseCardProps) {
 
   return (
     <div className="bg-white rounded-[24px] border border-neutral-200/90 p-4 hover:shadow-[0_22px_45px_rgba(0,82,254,0.12)] hover:border-primary-200 hover:-translate-y-2 transition-all duration-300 ease-out flex flex-col justify-between group relative select-none">
-      {/* Thumbnail area with smooth zoom and gradient overlay */}
-      <div className="relative rounded-[18px] overflow-hidden aspect-[1.5/1] bg-neutral-100 mb-4">
+      {/* Thumbnail area wrapped in Link with smooth zoom and gradient overlay */}
+      <Link
+        href={ROUTES.COURSE_DETAIL(course.slug)}
+        className="relative block rounded-[18px] overflow-hidden aspect-[1.5/1] bg-neutral-100 mb-4 cursor-pointer"
+      >
         <Image
           src={imgSrc}
           alt={course.title}
@@ -63,18 +66,18 @@ export function CourseCard({ course }: CourseCardProps) {
         </button>
 
         {/* Floating lesson & duration pills overlay */}
-        <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between gap-1 z-10">
-          <div className="px-2.5 py-1 rounded-full bg-neutral-950/65 backdrop-blur-md text-[11px] font-medium text-white shadow-xs border border-white/10">
+        <div className="absolute bottom-2.5 left-2 left-2.5 right-2 sm:right-2.5 flex items-center justify-between gap-1 sm:gap-1.5 z-10">
+          <div className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full bg-neutral-950/70 backdrop-blur-md text-[10px] sm:text-[11px] font-medium text-white shadow-xs border border-white/15 whitespace-nowrap shrink-0">
             {course.lessonsCount} Lessons
           </div>
-          <div className="px-2.5 py-1 rounded-full bg-neutral-950/65 backdrop-blur-md text-[11px] font-medium text-white shadow-xs border border-white/10">
+          <div className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full bg-neutral-950/70 backdrop-blur-md text-[10px] sm:text-[11px] font-medium text-white shadow-xs border border-white/15 whitespace-nowrap truncate max-w-[42%] sm:max-w-none text-center">
             {course.duration}
           </div>
-          <div className="px-2.5 py-1 rounded-full bg-neutral-950/65 backdrop-blur-md text-[11px] font-medium text-white shadow-xs border border-white/10">
+          <div className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full bg-neutral-950/70 backdrop-blur-md text-[10px] sm:text-[11px] font-medium text-white shadow-xs border border-white/15 whitespace-nowrap shrink-0">
             {course.commentsCount} Comments
           </div>
         </div>
-      </div>
+      </Link>
 
       {/* Content */}
       <div className="space-y-3.5 flex-1 flex flex-col justify-between">
@@ -83,7 +86,7 @@ export function CourseCard({ course }: CourseCardProps) {
           <div className="flex items-start justify-between gap-2">
             <Link
               href={ROUTES.COURSE_DETAIL(course.slug)}
-              className="font-satoshi font-bold text-[17px] text-neutral-950 group-hover:text-primary-600 transition-colors line-clamp-1 leading-snug"
+              className="font-satoshi font-bold text-[17px] text-neutral-950 group-hover:text-primary-600 group-hover:underline transition-colors line-clamp-1 leading-snug"
             >
               {course.title}
             </Link>

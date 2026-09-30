@@ -4,7 +4,6 @@ import React, { useState, useMemo, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import {
   Search,
-  ChevronDown,
   BarChart2,
   ArrowUpDown,
   ChevronLeft,
@@ -14,6 +13,7 @@ import {
   Check,
   SlidersHorizontal,
   LayoutGrid,
+  X,
 } from 'lucide-react';
 import { Navbar } from '@/components/shared/navbar';
 import { Footer } from '@/components/shared/footer';
@@ -62,7 +62,7 @@ function CoursesContent() {
     return [
       ...MOCK_COURSES,
       {
-        id: 'c10',
+        id: 'c10-extra',
         slug: 'mastering-react-nextjs',
         title: 'Mastering React 19 & Next.js App Router',
         creator: { id: 'purepearl-studio', name: 'purepearl studio', avatar: MOCK_COURSES[0].creator.avatar },
@@ -78,7 +78,7 @@ function CoursesContent() {
         featured: true,
       },
       {
-        id: 'c11',
+        id: 'c11-extra',
         slug: 'ai-prompt-engineering-mastery',
         title: 'AI Prompt Engineering for Designers & Devs',
         creator: { id: 'purepearl-studio', name: 'purepearl studio', avatar: MOCK_COURSES[0].creator.avatar },
@@ -94,7 +94,7 @@ function CoursesContent() {
         featured: true,
       },
       {
-        id: 'c12',
+        id: 'c12-extra',
         slug: 'advanced-brand-identity-system',
         title: 'Advanced Brand Identity Systems',
         creator: { id: 'purepearl-studio', name: 'purepearl studio', avatar: MOCK_COURSES[0].creator.avatar },
@@ -116,37 +116,40 @@ function CoursesContent() {
   const filteredCourses = useMemo(() => {
     let result = [...baseCourses];
 
-    // Search query filter
+    // 1. Search query filter
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase().trim();
       result = result.filter(
         (c) =>
           c.title.toLowerCase().includes(q) ||
           c.category.toLowerCase().includes(q) ||
-          c.level.toLowerCase().includes(q)
+          c.level.toLowerCase().includes(q) ||
+          c.creator.name.toLowerCase().includes(q)
       );
     }
 
-    // Category filter using smart matching
+    // 2. Category filter using smart matching
     if (selectedCategory !== 'Featured') {
       const matched = result.filter((c) =>
         matchCourseCategory(c.category, c.title, selectedCategory)
       );
-      if (matched.length === 0 && !searchQuery.trim()) {
+      if (matched.length > 0) {
+        result = matched;
+      } else if (!searchQuery.trim()) {
         result = baseCourses.slice(0, 4);
       } else {
-        result = matched;
+        result = [];
       }
     }
 
-    // Level filter
+    // 3. Level filter
     if (selectedLevel !== 'All Levels') {
       result = result.filter(
         (c) => c.level.toLowerCase() === selectedLevel.toLowerCase()
       );
     }
 
-    // Sorting
+    // 4. Sorting
     if (sortBy === 'price-asc') {
       result.sort((a, b) => a.price - b.price);
     } else if (sortBy === 'price-desc') {
@@ -173,6 +176,9 @@ function CoursesContent() {
     setSelectedLevel('All Levels');
     setSortBy('relevant');
     setCurrentPage(1);
+    setLevelDropdownOpen(false);
+    setCategoryDropdownOpen(false);
+    setSortDropdownOpen(false);
     showToast('Filters reset to default', 'info');
   };
 
@@ -182,7 +188,7 @@ function CoursesContent() {
   };
 
   return (
-    <main className="layout-container py-12 flex-1">
+    <main className="layout-container py-12 flex-1 font-satoshi">
       {/* Search Header Banner */}
       <section className="bg-hero-grid rounded-3xl p-8 sm:p-12 mb-10 text-white shadow-xl relative overflow-hidden">
         <div className="max-w-2xl mx-auto text-center space-y-4 relative z-10">
@@ -203,16 +209,20 @@ function CoursesContent() {
                   setSearchQuery(e.target.value);
                   setCurrentPage(1);
                 }}
-                placeholder="Search by topic, skill, or keyword..."
+                placeholder="Search by topic, skill, title, or creator..."
                 className="w-full bg-transparent text-neutral-800 placeholder:text-neutral-400 text-sm focus:outline-none"
               />
               {searchQuery && (
                 <button
                   type="button"
-                  onClick={() => setSearchQuery('')}
-                  className="px-3 text-xs text-neutral-400 hover:text-neutral-700 cursor-pointer"
+                  onClick={() => {
+                    setSearchQuery('');
+                    setCurrentPage(1);
+                  }}
+                  className="px-3 text-xs text-neutral-400 hover:text-neutral-700 cursor-pointer flex items-center gap-1"
                 >
-                  Clear
+                  <X className="w-3.5 h-3.5" />
+                  <span>Clear</span>
                 </button>
               )}
             </div>
@@ -234,7 +244,11 @@ function CoursesContent() {
                 : 'bg-white border-neutral-300 text-neutral-800 hover:border-neutral-900'
             }`}
           >
-            <SlidersHorizontal className="w-3.5 h-3.5" />
+            {selectedCategory !== 'Featured' || selectedLevel !== 'All Levels' || searchQuery.trim() !== '' ? (
+              <RotateCcw className="w-3.5 h-3.5" />
+            ) : (
+              <SlidersHorizontal className="w-3.5 h-3.5" />
+            )}
             <span>Filter</span>
             {(selectedCategory !== 'Featured' || selectedLevel !== 'All Levels' || searchQuery.trim() !== '') && (
               <span className="w-2 h-2 rounded-full bg-[#cbfc01] inline-block" />
@@ -377,6 +391,7 @@ function CoursesContent() {
           return (
             <button
               key={category}
+              type="button"
               onClick={() => handleCategorySelect(category)}
               className={`px-4 sm:px-5 py-2 rounded-full text-xs font-medium transition-all cursor-pointer shrink-0 ${
                 isActive
@@ -396,11 +411,17 @@ function CoursesContent() {
           <Sparkles className="w-3.5 h-3.5 text-primary-600" />
           <span>
             Showing <strong className="text-neutral-900 font-semibold">{filteredCourses.length}</strong>{' '}
-            courses
+            {filteredCourses.length === 1 ? 'course' : 'courses'}
             {selectedCategory !== 'Featured' && (
               <span>
                 {' '}
                 in <strong className="text-primary-600">{selectedCategory}</strong>
+              </span>
+            )}
+            {searchQuery.trim() && (
+              <span>
+                {' '}
+                matching &ldquo;<strong className="text-neutral-900">{searchQuery}</strong>&rdquo;
               </span>
             )}
           </span>
@@ -410,7 +431,7 @@ function CoursesContent() {
         </span>
       </div>
 
-      {/* 3-Column Course Grid or Empty State */}
+      {/* 3-Column Course Grid or Clean Empty State */}
       {paginatedCourses.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {paginatedCourses.map((course) => (
@@ -418,17 +439,24 @@ function CoursesContent() {
           ))}
         </div>
       ) : (
-        <div className="text-center py-20 bg-neutral-50 rounded-3xl border border-neutral-200 p-8 max-w-md mx-auto">
-          <Search className="w-12 h-12 text-neutral-300 mx-auto mb-4" />
-          <h3 className="font-satoshi font-bold text-lg text-neutral-900">No courses found</h3>
-          <p className="text-xs text-neutral-500 mt-1 mb-6">
-            We couldn&apos;t find any courses matching your search query or filter criteria.
-          </p>
+        <div className="text-center py-16 bg-neutral-50 rounded-3xl border border-neutral-200 p-8 max-w-md mx-auto space-y-4">
+          <Search className="w-12 h-12 text-neutral-300 mx-auto" />
+          <div>
+            <h3 className="font-satoshi font-bold text-lg text-neutral-900">No courses found</h3>
+            <p className="text-xs text-neutral-500 mt-1">
+              {searchQuery ? (
+                <>We couldn&apos;t find any courses matching &ldquo;{searchQuery}&rdquo;.</>
+              ) : (
+                <>We couldn&apos;t find any courses matching your filter criteria.</>
+              )}
+            </p>
+          </div>
           <button
+            type="button"
             onClick={handleResetFilters}
             className="px-6 py-2.5 rounded-full bg-[#cbfc01] text-black font-semibold text-xs shadow-md hover:brightness-95 cursor-pointer"
           >
-            Reset Filters
+            Reset Search &amp; Filters
           </button>
         </div>
       )}
@@ -437,6 +465,7 @@ function CoursesContent() {
       {totalPages > 1 && (
         <div className="mt-16 flex items-center justify-center gap-4">
           <button
+            type="button"
             onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
             disabled={currentPage === 1}
             className="w-9 h-9 rounded-full border border-neutral-300 flex items-center justify-center hover:bg-neutral-100 transition-colors cursor-pointer text-neutral-700 disabled:opacity-40 disabled:cursor-not-allowed"
@@ -451,6 +480,7 @@ function CoursesContent() {
               return (
                 <button
                   key={page}
+                  type="button"
                   onClick={() => setCurrentPage(page)}
                   className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold transition-all cursor-pointer ${
                     isActive
@@ -465,6 +495,7 @@ function CoursesContent() {
           </div>
 
           <button
+            type="button"
             onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
             disabled={currentPage === totalPages}
             className="w-9 h-9 rounded-full border border-neutral-300 flex items-center justify-center hover:bg-neutral-100 transition-colors cursor-pointer text-neutral-700 disabled:opacity-40 disabled:cursor-not-allowed"
