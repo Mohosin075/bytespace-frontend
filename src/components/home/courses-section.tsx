@@ -3,7 +3,7 @@
 import React, { useState, useMemo } from 'react';
 import { SectionHeader } from '@/components/ui/section-header';
 import { CourseCard } from '@/components/ui/course-card';
-import { MOCK_COURSES, CATEGORIES } from '@/constants/mock-data';
+import { MOCK_COURSES, CATEGORIES, matchCourseCategory } from '@/constants/mock-data';
 import { ChevronDown, ChevronUp, Sparkles } from 'lucide-react';
 
 export function CoursesSection() {
@@ -28,12 +28,10 @@ export function CoursesSection() {
     if (selectedCategory === 'Featured') {
       return MOCK_COURSES.filter((c) => c.featured || c.rating >= 4.7).slice(0, 6);
     }
-    const matched = MOCK_COURSES.filter(
-      (course) =>
-        course.category.toLowerCase() === selectedCategory.toLowerCase() ||
-        course.title.toLowerCase().includes(selectedCategory.toLowerCase())
+    const matched = MOCK_COURSES.filter((course) =>
+      matchCourseCategory(course.category, course.title, selectedCategory)
     );
-    // If fewer than 3 courses match a niche tag, supplement with top rated courses
+    // Ensure every single category shows items! If 0 matched, fallback to top courses
     if (matched.length === 0) {
       return MOCK_COURSES.slice(0, 3);
     }

@@ -16,7 +16,7 @@ import {
 import { Navbar } from '@/components/shared/navbar';
 import { Footer } from '@/components/shared/footer';
 import { CourseCard } from '@/components/ui/course-card';
-import { MOCK_COURSES } from '@/constants/mock-data';
+import { MOCK_COURSES, matchCourseCategory } from '@/constants/mock-data';
 import { useToast } from '@/context/toast-context';
 
 function CoursesContent() {
@@ -38,13 +38,18 @@ function CoursesContent() {
 
   const filterCategories = [
     'Featured',
+    'Design',
+    'Development',
+    'IT & Software',
+    'Business',
+    'Marketing',
+    'Photography',
     'UI/UX Design',
     'Graphic Design',
     'Web Development',
     'Data Science',
     'Productivity',
     'Freelance & Entrepreneurship',
-    'Marketing',
     'Digital Illustration',
     'Music',
   ];
@@ -119,11 +124,16 @@ function CoursesContent() {
       );
     }
 
-    // Category filter
+    // Category filter using smart matching
     if (selectedCategory !== 'Featured') {
-      result = result.filter(
-        (c) => c.category.toLowerCase() === selectedCategory.toLowerCase()
+      const matched = result.filter((c) =>
+        matchCourseCategory(c.category, c.title, selectedCategory)
       );
+      if (matched.length === 0 && !searchQuery.trim()) {
+        result = baseCourses.slice(0, 4);
+      } else {
+        result = matched;
+      }
     }
 
     // Level filter
