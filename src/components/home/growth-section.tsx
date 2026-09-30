@@ -206,8 +206,7 @@ export function GrowthSection() {
                     style={{ zIndex: idx + 1 }}
                     className={`relative size-7 sm:size-8 rounded-full overflow-hidden border border-white ${idx > 0 ? "-ml-3 sm:-ml-3.5" : ""}`}
                   >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={avatar} alt="Student" className="w-full h-full object-cover" />
+                    <Image src={avatar} alt="Student" fill unoptimized className="object-cover" />
                   </div>
                 ))}
                 <div

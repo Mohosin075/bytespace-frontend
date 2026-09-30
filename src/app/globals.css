@@ -137,6 +137,7 @@ body {
   font-weight: 600;
   font-size: 72px;
   line-height: 1.2; /* 120% */
+  letter-spacing: -0.72px;
 }
 
 .heading-m {
@@ -238,11 +239,19 @@ body {
   gap: 40px; /* Gutter: 40px */
 }
 
-/* Tablet: reduce margin */
+/* Large tablet: reduce margin smoothly */
 @media (max-width: 1280px) {
   .layout-container {
     padding-left: 60px;
     padding-right: 60px;
+  }
+}
+
+/* Tablet: further reduce */
+@media (max-width: 1024px) {
+  .layout-container {
+    padding-left: 40px;
+    padding-right: 40px;
   }
 }
 
@@ -278,6 +287,10 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.25s ease-out both;
 }
 
 

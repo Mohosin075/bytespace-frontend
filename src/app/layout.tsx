@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 import localFont from 'next/font/local';
 import './globals.css';
-import { SITE_CONFIG } from '@/constants/site-config';
 
 const poppins = Poppins({
   weight: ['300', '400', '500', '600', '700', '800'],
@@ -80,11 +79,18 @@ export const metadata: Metadata = {
   },
 };
 
+import { AuthProvider } from '@/context/auth-context';
+import { ToastProvider } from '@/context/toast-context';
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`h-full ${poppins.variable} ${clashDisplay.variable} ${satoshi.variable}`}>
       <body className="min-h-full bg-neutral-50 text-neutral-950 font-satoshi antialiased">
-        {children}
+        <AuthProvider>
+          <ToastProvider>
+            {children}
+          </ToastProvider>
+        </AuthProvider>
       </body>
     </html>
   );

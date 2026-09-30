@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import {
   SlidersHorizontal,
   BarChart2,
@@ -11,8 +12,10 @@ import { Navbar } from '@/components/shared/navbar';
 import { Footer } from '@/components/shared/footer';
 import { CourseCard } from '@/components/ui/course-card';
 import { MOCK_CREATOR, MOCK_COURSES } from '@/constants/mock-data';
+import { useToast } from '@/context/toast-context';
 
 export default function CreatorDetailClient() {
+  const { showToast } = useToast();
   const [isFollowing, setIsFollowing] = useState(false);
   const [followersCount, setFollowersCount] = useState(MOCK_CREATOR.followersCount);
 
@@ -20,9 +23,11 @@ export default function CreatorDetailClient() {
     if (isFollowing) {
       setIsFollowing(false);
       setFollowersCount((prev) => prev - 1);
+      showToast(`Unfollowed ${MOCK_CREATOR.name}`, 'info');
     } else {
       setIsFollowing(true);
       setFollowersCount((prev) => prev + 1);
+      showToast(`You are now following ${MOCK_CREATOR.name}!`, 'success');
     }
   };
 
@@ -39,12 +44,13 @@ export default function CreatorDetailClient() {
             <div className="space-y-6 max-w-3xl">
               {/* Avatar + Name + Creator Badge */}
               <div className="flex items-center gap-5">
-                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden bg-neutral-100 border-2 border-white shadow-xl shrink-0">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden bg-neutral-100 border-2 border-white shadow-xl shrink-0 relative">
+                  <Image
                     src={MOCK_CREATOR.avatar}
                     alt={MOCK_CREATOR.name}
-                    className="w-full h-full object-cover"
+                    fill
+                    unoptimized
+                    className="object-cover"
                   />
                 </div>
 

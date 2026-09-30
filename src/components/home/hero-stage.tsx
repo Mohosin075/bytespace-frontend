@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { Star } from 'lucide-react';
 import { AvatarGroup } from '@/components/ui/avatar-group';
 
@@ -8,21 +9,23 @@ export function HeroStage() {
       <div className="relative w-[960px] h-[460px]">
         {/* Lime Semicircle Backdrop */}
         <div className="absolute left-1/2 -translate-x-1/2 -bottom-[30px] w-[860px] z-0 overflow-hidden pointer-events-none">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src="/hero/hero-lime-semicircle-backdrop.svg"
             alt="Lime semicircle background"
+            fill
+            priority
             className="w-full h-auto object-contain"
           />
         </div>
 
         {/* Student / Boy Image */}
         <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-[480px] z-10">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src="/hero/hero-student-character.svg"
             alt="Student with headphones holding laptop"
-            className="w-full h-auto object-contain block"
+            fill
+            priority
+            className="w-full h-auto object-contain"
           />
         </div>
 

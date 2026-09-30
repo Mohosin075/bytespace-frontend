@@ -1,7 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ROUTES } from '@/constants/routes';
 import { SectionHeader } from '@/components/ui/section-header';
 
 interface LearningPath {
@@ -32,7 +31,7 @@ export function LearningPathsSection() {
           {LEARNING_PATHS.map((path) => (
             <Link
               key={path.title}
-              href={ROUTES.COURSES}
+              href={`/courses?category=${encodeURIComponent(path.title)}`}
               className="bg-white rounded-2xl p-7 border border-neutral-200/90 flex flex-col items-center justify-center gap-4 hover:shadow-xl hover:border-neutral-300 transition-all duration-300 group"
             >
               <div className="relative w-16 h-16 group-hover:scale-110 transition-transform">

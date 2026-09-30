@@ -28,11 +28,12 @@ export function AvatarGroup({
           className="relative rounded-full border-2 border-white overflow-hidden bg-neutral-200"
           style={{ width: `${size}px`, height: `${size}px` }}
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={src}
             alt="Student"
-            className="w-full h-full object-cover"
+            fill
+            unoptimized
+            className="object-cover"
           />
         </div>
       ))}

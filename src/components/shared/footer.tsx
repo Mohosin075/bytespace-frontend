@@ -5,14 +5,19 @@ import Link from 'next/link';
 import { Logo } from '@/components/shared/logo';
 import { ROUTES } from '@/constants/routes';
 
+import { useToast } from '@/context/toast-context';
+
 export function Footer() {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
+  const { showToast } = useToast();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (email) {
       setSubscribed(true);
+      showToast('Thank you for subscribing to ByteSpace updates!', 'success');
+      setEmail('');
       setTimeout(() => setSubscribed(false), 3000);
     }
   };
@@ -45,7 +50,7 @@ export function Footer() {
                 type="submit"
                 className="w-full sm:w-auto h-12 px-8 rounded-full bg-secondary-500 text-black font-semibold text-sm hover:brightness-95 active:scale-95 transition-all cursor-pointer whitespace-nowrap"
               >
-                {subscribed ? 'Subscribed!' : 'Search'}
+                {subscribed ? 'Subscribed!' : 'Subscribe'}
               </button>
             </form>
 
