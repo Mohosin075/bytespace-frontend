@@ -31,7 +31,7 @@ export function CourseCard({ course }: CourseCardProps) {
   };
 
   return (
-    <div className="bg-white rounded-[24px] border border-neutral-200/90 p-4 hover:shadow-xl hover:border-neutral-300 transition-all duration-300 flex flex-col justify-between group relative">
+    <div className="bg-white rounded-[24px] border border-neutral-200/90 p-4 hover:shadow-2xl hover:border-neutral-300 hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between group relative">
       {/* Thumbnail area */}
       <div className="relative rounded-[18px] overflow-hidden aspect-[1.5/1] bg-neutral-100 mb-4">
         <Image
@@ -42,7 +42,7 @@ export function CourseCard({ course }: CourseCardProps) {
           onError={() =>
             setImgSrc('https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800&auto=format&fit=crop&q=80')
           }
-          className="object-cover group-hover:scale-105 transition-transform duration-500"
+          className="object-cover group-hover:scale-108 transition-transform duration-500 ease-out"
         />
 
         {/* Favorite Bookmark Button */}

@@ -42,7 +42,7 @@ export function LogoStrip() {
           {PARTNER_LOGOS.map((logo) => (
             <div
               key={logo.id}
-              className="relative h-9 sm:h-10 w-32 sm:w-36 shrink-0 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300"
+              className="relative h-9 sm:h-10 w-32 sm:w-36 shrink-0 flex items-center justify-center grayscale hover:grayscale-0 hover:scale-110 hover:-translate-y-1 transition-all duration-300 cursor-pointer"
             >
               <Image
                 src={logo.src}
