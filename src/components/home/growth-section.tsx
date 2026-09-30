@@ -24,7 +24,7 @@ export function GrowthSection() {
   ];
 
   return (
-    <section className="relative w-full overflow-hidden bg-white py-20 sm:py-24 lg:py-32">
+    <section className="relative w-full overflow-hidden bg-white py-10 sm:py-20 lg:py-28">
       {/* ── Ambient Radial Glows (Softened for elegant subtle backdrop) ── */}
       {/* 1. Top Section - Top-Left Lime Accent */}
       <div

@@ -41,7 +41,7 @@ export function CoursesSection() {
   }, [selectedCategory]);
 
   return (
-    <section className="py-24 bg-white">
+    <section className="py-10 sm:py-16 md:py-24 bg-white">
       <div className="layout-container">
         {/* Section Header */}
         <SectionHeader

@@ -100,14 +100,14 @@ export default function CourseDetailClient() {
         <div className="layout-container pt-28 sm:pt-36 md:pt-40 pb-16 sm:pb-20">
           <div className="flex flex-col lg:flex-row items-start justify-between gap-6">
             <div className="space-y-4 max-w-3xl">
-              <h1 className="font-poppins font-bold text-3xl sm:text-4xl md:text-5xl text-white tracking-tight leading-tight">
+              <h1 className="font-poppins font-bold text-2xl sm:text-4xl md:text-5xl text-white tracking-tight leading-snug sm:leading-tight">
                 Build Digital Asset: A Comprehensive Guide
               </h1>
-              <p className="text-white/90 text-base md:text-lg font-normal">
+              <p className="text-white/90 text-sm sm:text-base md:text-lg font-normal leading-relaxed">
                 Unlock the Power of Digital Creation with Expert Guidance
               </p>
 
-              <p className="text-sm text-white/90">
+              <p className="text-xs sm:text-sm text-white/90">
                 by{' '}
                 <Link
                   href={ROUTES.CREATOR_DETAIL('purepearl-studio')}
@@ -117,33 +117,32 @@ export default function CourseDetailClient() {
                 </Link>
               </p>
 
-              {/* Badges row */}
-              <div className="flex flex-wrap items-center gap-3 pt-2">
-                <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white text-neutral-800 text-xs font-semibold shadow-xs">
+              {/* Badges & Share button row */}
+              <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 pt-2">
+                <div className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 rounded-full bg-white text-neutral-800 text-xs font-semibold shadow-xs">
                   <BarChart2 className="w-3.5 h-3.5 text-primary-600" />
                   <span>Intermediate</span>
                 </div>
 
-                <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white text-neutral-800 text-xs font-semibold shadow-xs">
+                <div className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 rounded-full bg-white text-neutral-800 text-xs font-semibold shadow-xs">
                   <Star className="w-3.5 h-3.5 fill-[#fbbf24] text-[#fbbf24]" />
                   <span>4.8 (172 reviews)</span>
                 </div>
 
-                <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white text-neutral-800 text-xs font-semibold shadow-xs">
+                <div className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 rounded-full bg-white text-neutral-800 text-xs font-semibold shadow-xs">
                   <Users className="w-3.5 h-3.5 text-primary-600" />
                   <span>199 Students</span>
                 </div>
+
+                <button
+                  onClick={handleShare}
+                  className="px-4 sm:px-6 py-1.5 sm:py-2 rounded-full bg-[#cbfc01] text-black font-semibold text-xs sm:text-sm hover:brightness-95 active:scale-95 transition-all flex items-center gap-1.5 cursor-pointer shadow-lg shrink-0"
+                >
+                  <Share2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                  <span>Share</span>
+                </button>
               </div>
             </div>
-
-            {/* Share Button */}
-            <button
-              onClick={handleShare}
-              className="px-6 py-2.5 rounded-full bg-[#cbfc01] text-black font-semibold text-sm hover:brightness-95 active:scale-95 transition-all flex items-center gap-2 cursor-pointer shadow-lg shrink-0"
-            >
-              <Share2 className="w-4 h-4" />
-              <span>Share</span>
-            </button>
           </div>
 
           {/* Large Video Player Preview */}
