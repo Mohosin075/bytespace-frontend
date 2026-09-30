@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { Star, BarChart2 } from 'lucide-react';
 import { Course } from '@/types';
@@ -15,11 +16,12 @@ export function CourseCard({ course }: CourseCardProps) {
     <div className="bg-white rounded-[24px] border border-neutral-200/90 p-4 hover:shadow-xl hover:border-neutral-300 transition-all duration-300 flex flex-col justify-between group">
       {/* Thumbnail area */}
       <div className="relative rounded-[18px] overflow-hidden aspect-[1.5/1] bg-neutral-100 mb-4">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <Image
           src={course.image}
           alt={course.title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          fill
+          unoptimized
+          className="object-cover group-hover:scale-105 transition-transform duration-500"
         />
 
         {/* Floating lesson & duration pills overlay */}

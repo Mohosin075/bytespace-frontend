@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 interface FloatingElementConfig {
   id: string;
@@ -55,10 +56,11 @@ export function HeroFloatingElements() {
           className="absolute pointer-events-none"
           style={item.containerStyle}
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={item.src}
             alt={item.alt}
+            fill
+            priority
             className="w-full h-auto drop-shadow-2xl"
           />
         </div>

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import {
   Share2,
@@ -108,11 +109,12 @@ export default function CourseDetailClient() {
 
           {/* Large Video Player Preview */}
           <div className="mt-12 rounded-3xl overflow-hidden aspect-[16/9] max-h-[520px] w-full bg-neutral-900 relative shadow-2xl border-4 border-white/20">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1200&auto=format&fit=crop&q=80"
               alt="Course Video Preview"
-              className="w-full h-full object-cover"
+              fill
+              unoptimized
+              className="object-cover"
             />
             {/* Play Button Overlay */}
             <div className="absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/10 transition-colors">
@@ -185,12 +187,13 @@ export default function CourseDetailClient() {
                   </h3>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                     {sneakPeakImages.map((src, i) => (
-                      <div key={i} className="rounded-2xl overflow-hidden aspect-[4/3] bg-neutral-100 shadow-xs border border-neutral-200/80">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
+                      <div key={i} className="relative rounded-2xl overflow-hidden aspect-[4/3] bg-neutral-100 shadow-xs border border-neutral-200/80">
+                        <Image
                           src={src}
                           alt={`Course Preview ${i + 1}`}
-                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                          fill
+                          unoptimized
+                          className="object-cover hover:scale-105 transition-transform duration-300"
                         />
                       </div>
                     ))}
@@ -368,12 +371,15 @@ export default function CourseDetailClient() {
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
-                            src={review.avatar}
-                            alt={review.author}
-                            className="w-10 h-10 rounded-full object-cover border border-neutral-200"
-                          />
+                          <div className="relative w-10 h-10 rounded-full overflow-hidden border border-neutral-200 shrink-0">
+                            <Image
+                              src={review.avatar}
+                              alt={review.author}
+                              fill
+                              unoptimized
+                              className="object-cover"
+                            />
+                          </div>
                           <div>
                             <p className="font-poppins font-semibold text-sm text-neutral-950 leading-tight">
                               {review.author}
@@ -475,12 +481,15 @@ export default function CourseDetailClient() {
               {/* Creator Box */}
               <div className="pt-4 border-t border-neutral-100 space-y-4">
                 <div className="flex items-center gap-3">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={MOCK_CREATOR.avatar}
-                    alt={MOCK_CREATOR.name}
-                    className="w-11 h-11 rounded-full object-cover border border-neutral-200"
-                  />
+                  <div className="relative w-11 h-11 rounded-full overflow-hidden border border-neutral-200 shrink-0">
+                    <Image
+                      src={MOCK_CREATOR.avatar}
+                      alt={MOCK_CREATOR.name}
+                      fill
+                      unoptimized
+                      className="object-cover"
+                    />
+                  </div>
                   <div>
                     <p className="font-poppins font-semibold text-sm text-neutral-950">
                       {MOCK_CREATOR.name}

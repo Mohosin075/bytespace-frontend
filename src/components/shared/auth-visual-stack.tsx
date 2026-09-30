@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { Star, BarChart2 } from 'lucide-react';
 import { AvatarGroup } from '@/components/ui/avatar-group';
 import { DonutShape, SquiggleShape, ConeShape } from '@/components/ui/decorative-shapes';
@@ -29,11 +30,12 @@ export function AuthVisualStack({ title, subtitle }: AuthVisualStackProps) {
         {/* Card 1: Behind (Build Digital Asset) */}
         <div className="absolute top-4 -left-6 w-72 bg-white text-neutral-900 rounded-2xl p-4 shadow-xl border border-neutral-100 opacity-90 transform -rotate-3 pointer-events-none">
           <div className="relative rounded-lg overflow-hidden h-28 bg-neutral-200 mb-3">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&auto=format&fit=crop&q=80"
               alt="Build Digital Asset"
-              className="w-full h-full object-cover"
+              fill
+              unoptimized
+              className="object-cover"
             />
             <div className="absolute bottom-2 left-2 px-2 py-0.5 rounded-full bg-white/80 text-[10px] font-medium">
               17 Lessons
@@ -50,11 +52,12 @@ export function AuthVisualStack({ title, subtitle }: AuthVisualStackProps) {
         {/* Card 2: Front Focus (the Power of Big Data) */}
         <div className="relative z-10 mx-auto w-80 bg-white text-neutral-900 rounded-3xl p-4 shadow-2xl border border-neutral-100">
           <div className="relative rounded-2xl overflow-hidden h-36 bg-neutral-900 mb-3">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&auto=format&fit=crop&q=80"
               alt="the Power of Big Data"
-              className="w-full h-full object-cover"
+              fill
+              unoptimized
+              className="object-cover"
             />
             <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between text-[10px] font-medium text-neutral-800">
               <span className="px-2 py-0.5 rounded-full bg-white/80 backdrop-blur-md">17 Lessons</span>
