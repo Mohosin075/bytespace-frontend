@@ -16,7 +16,7 @@ import {
 import { Navbar } from '@/components/shared/navbar';
 import { Footer } from '@/components/shared/footer';
 import { CourseCard } from '@/components/ui/course-card';
-import { MOCK_COURSES } from '@/constants/mock-data';
+import { MOCK_COURSES, matchCourseCategory } from '@/constants/mock-data';
 import { useToast } from '@/context/toast-context';
 
 function CoursesContent() {
@@ -38,13 +38,18 @@ function CoursesContent() {
 
   const filterCategories = [
     'Featured',
+    'Design',
+    'Development',
+    'IT & Software',
+    'Business',
+    'Marketing',
+    'Photography',
     'UI/UX Design',
     'Graphic Design',
     'Web Development',
     'Data Science',
     'Productivity',
     'Freelance & Entrepreneurship',
-    'Marketing',
     'Digital Illustration',
     'Music',
   ];
@@ -119,11 +124,16 @@ function CoursesContent() {
       );
     }
 
-    // Category filter
+    // Category filter using smart matching
     if (selectedCategory !== 'Featured') {
-      result = result.filter(
-        (c) => c.category.toLowerCase() === selectedCategory.toLowerCase()
+      const matched = result.filter((c) =>
+        matchCourseCategory(c.category, c.title, selectedCategory)
       );
+      if (matched.length === 0 && !searchQuery.trim()) {
+        result = baseCourses.slice(0, 4);
+      } else {
+        result = matched;
+      }
     }
 
     // Level filter
@@ -301,14 +311,14 @@ function CoursesContent() {
       </div>
 
       {/* Category Pills Row */}
-      <div className="flex flex-wrap items-center gap-2.5 pt-2 pb-8">
+      <div className="flex items-center gap-2.5 pt-2 pb-8 overflow-x-auto no-scrollbar scroll-smooth flex-nowrap sm:flex-wrap">
         {filterCategories.map((category) => {
           const isActive = selectedCategory === category;
           return (
             <button
               key={category}
               onClick={() => handleCategorySelect(category)}
-              className={`px-5 py-2 rounded-full text-xs font-medium transition-all cursor-pointer ${
+              className={`px-4 sm:px-5 py-2 rounded-full text-xs font-medium transition-all cursor-pointer shrink-0 ${
                 isActive
                   ? 'bg-[#cbfc01] text-black font-semibold shadow-xs scale-105'
                   : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'

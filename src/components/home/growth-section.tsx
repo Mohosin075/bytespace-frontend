@@ -24,52 +24,61 @@ export function GrowthSection() {
   ];
 
   return (
-    <section className="relative w-full overflow-hidden bg-white py-20 sm:py-24 lg:py-32">
+    <section className="relative w-full overflow-hidden bg-white py-10 sm:py-20 lg:py-28">
       {/* ── Ambient Radial Glows ── */}
-      {/* 1. Top Section - Top-Left Lime Accent (ager moto) */}
+      {/* 1. Top Section - Top-Left Lime Accent */}
       <div
-        className="absolute -top-24 -left-32 w-162.5 h-162.5 rounded-full pointer-events-none select-none blur-[90px]"
+        className="absolute -top-24 -left-32 w-162.5 h-162.5 rounded-full pointer-events-none select-none blur-[100px]"
         style={{
           background:
-            'radial-gradient(circle, rgba(203, 252, 1, 0.6) 0%, rgba(203, 252, 1, 0.23) 53%, rgba(203, 252, 1, 0.06) 75%, transparent 100%)',
+            'radial-gradient(circle, rgba(203, 252, 1, 0.22) 0%, rgba(203, 252, 1, 0.08) 50%, rgba(203, 252, 1, 0.02) 75%, transparent 100%)',
         }}
       />
 
-
-      {/* 3. Top Section - Top-Right Soft Blue Accent */}
+      {/* 2. Top Section - Top-Right Soft Blue Accent */}
       <div
         className="absolute top-[8%] -right-24 w-150 h-150 rounded-full pointer-events-none select-none blur-[100px]"
         style={{
           background:
-            'radial-gradient(circle, rgba(0, 59, 226, 0.08) 0%, rgba(0, 59, 226, 0.04) 53%, rgba(0, 59, 226, 0.01) 75%, transparent 100%)',
+            'radial-gradient(circle, rgba(0, 59, 226, 0.05) 0%, rgba(0, 59, 226, 0.02) 53%, transparent 100%)',
         }}
       />
 
-      {/* 4. Creator Section - Bottom-Left Lime Accent */}
+      {/* 3. Middle Left - Soft Blue/Lavender Ambient Glow */}
       <div
-        className="absolute bottom-0 -left-28 w-[620px] h-[620px] rounded-full pointer-events-none select-none blur-[100px]"
+        className="absolute top-[38%] -left-32 w-[550px] h-[550px] rounded-full pointer-events-none select-none blur-[90px]"
         style={{
           background:
-            'radial-gradient(circle, rgba(203, 252, 1, 0.5) 0%, rgba(203, 252, 1, 0.22) 50%, rgba(203, 252, 1, 0.05) 75%, transparent 100%)',
+            'radial-gradient(circle, rgba(0, 82, 254, 0.14) 0%, rgba(147, 197, 253, 0.12) 45%, rgba(0, 82, 254, 0.02) 70%, transparent 100%)',
         }}
       />
 
-      {/* 5. Creator Section - Bottom-Right Blue Accent */}
+      {/* 4. Creator Section - Lower Left Lime Ambient Glow */}
       <div
-        className="absolute -bottom-24 -right-28 w-[700px] h-[700px] rounded-full pointer-events-none select-none blur-[110px]"
+        className="absolute top-[60%] sm:top-[56%] -left-28 w-[620px] h-[620px] rounded-full pointer-events-none select-none blur-[90px]"
         style={{
           background:
-            'radial-gradient(circle, rgba(0, 59, 226, 0.24) 0%, rgba(0, 59, 226, 0.12) 53%, rgba(0, 59, 226, 0.03) 75%, transparent 100%)',
+            'radial-gradient(circle, rgba(203, 252, 1, 0.32) 0%, rgba(203, 252, 1, 0.12) 50%, rgba(203, 252, 1, 0.02) 75%, transparent 100%)',
+        }}
+      />
+
+      {/* 5. Creator Section - Bottom-Right Blue Ambient Glow */}
+      <div
+        className="absolute -bottom-20 -right-20 w-[650px] sm:w-[800px] lg:w-[900px] h-[650px] sm:h-[800px] lg:h-[900px] rounded-full pointer-events-none select-none blur-[95px]"
+        style={{
+          background:
+            'radial-gradient(circle at center, rgba(0, 82, 254, 0.22) 0%, rgba(99, 102, 241, 0.14) 42%, rgba(0, 82, 254, 0.04) 70%, transparent 100%)',
         }}
       />
 
       <div className="layout-container relative z-10 flex flex-col gap-24 sm:gap-32 lg:gap-40">
         {/* ── PART 1: Student Growth Section ── */}
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-12 lg:gap-16">
-          <div className="flex flex-col space-y-6">
+          {/* Content Column (Bottom on mobile, Left on desktop) */}
+          <div className="order-2 lg:order-1 flex flex-col space-y-6">
             <SectionTitle className="text-left">
               Your Path to Professional
-              <br />
+              <br className="hidden sm:inline" />
               Growth Starts Here!
             </SectionTitle>
 
@@ -95,7 +104,8 @@ export function GrowthSection() {
             </div>
           </div>
 
-          <div className="relative w-full max-w-140 mx-auto min-h-105 sm:min-h-125 flex items-center justify-center">
+          {/* Visual Column (Top on mobile, Right on desktop) */}
+          <div className="order-1 lg:order-2 relative w-full max-w-140 mx-auto min-h-105 sm:min-h-125 flex items-center justify-center">
             {/* Back card */}
             <div className="absolute top-0 left-0 w-[58%] sm:w-[62%] z-10 pointer-events-none select-none drop-shadow-xl">
               <Image
@@ -145,8 +155,8 @@ export function GrowthSection() {
 
         {/* ── PART 2: Creator Management Section ── */}
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-12 lg:gap-16">
-          {/* Visual Column (Left on desktop) */}
-          <div className="order-2 lg:order-1 relative w-full max-w-140 mx-auto min-h-110 sm:min-h-130 flex items-center justify-center">
+          {/* Visual Column (Top on mobile, Left on desktop) */}
+          <div className="order-1 lg:order-1 relative w-full max-w-140 mx-auto min-h-110 sm:min-h-130 flex items-center justify-center">
             {/* Green 3D squiggle icon behind creator */}
             <div className="absolute top-[28%] right-2 sm:right-6 w-[28%] sm:w-[32%] z-0 pointer-events-none select-none">
               <Image
@@ -219,11 +229,11 @@ export function GrowthSection() {
             </div>
           </div>
 
-          {/* Content Column (Right on desktop) */}
-          <div className="order-1 lg:order-2 flex flex-col space-y-6">
+          {/* Content Column (Bottom on mobile, Right on desktop) */}
+          <div className="order-2 lg:order-2 flex flex-col space-y-6">
             <SectionTitle className="text-left">
               Create &amp; Manage
-              <br />
+              <br className="hidden sm:inline" />
               Courses Easily.
             </SectionTitle>
 

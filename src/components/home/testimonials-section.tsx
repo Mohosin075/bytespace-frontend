@@ -42,7 +42,7 @@ export function TestimonialsSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-12">
           <div className="lg:col-span-5">
             <SectionTitle className="text-left">
-              Discover What Our <br /> Community Is Saying
+              Discover What Our <br className="hidden sm:inline" /> Community Is Saying
             </SectionTitle>
           </div>
           <div className="lg:col-span-7 space-y-4">

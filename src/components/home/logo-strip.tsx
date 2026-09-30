@@ -36,13 +36,13 @@ const PARTNER_LOGOS: LogoItem[] = [
 
 export function LogoStrip() {
   return (
-    <section className="border-b border-neutral-200/80 bg-white py-20 relative z-10">
+    <section className="bg-neutral-100/80 border-b border-neutral-200/60 py-8 sm:py-12 md:py-16 relative z-10 overflow-hidden">
       <div className="layout-container">
-        <div className="flex flex-wrap items-center justify-between gap-8 opacity-70 hover:opacity-100 transition-opacity duration-300">
+        <div className="flex items-center justify-start md:justify-between gap-10 sm:gap-12 md:gap-8 overflow-x-auto no-scrollbar scroll-smooth flex-nowrap py-2 px-1 opacity-75 hover:opacity-100 transition-opacity duration-300">
           {PARTNER_LOGOS.map((logo) => (
             <div
               key={logo.id}
-              className="relative h-10 w-36 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300"
+              className="relative h-9 sm:h-10 w-32 sm:w-36 shrink-0 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300"
             >
               <Image
                 src={logo.src}

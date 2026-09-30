@@ -3,7 +3,7 @@
 import React, { useState, useMemo } from 'react';
 import { SectionHeader } from '@/components/ui/section-header';
 import { CourseCard } from '@/components/ui/course-card';
-import { MOCK_COURSES, CATEGORIES } from '@/constants/mock-data';
+import { MOCK_COURSES, CATEGORIES, matchCourseCategory } from '@/constants/mock-data';
 import { ChevronDown, ChevronUp, Sparkles } from 'lucide-react';
 
 export function CoursesSection() {
@@ -28,12 +28,10 @@ export function CoursesSection() {
     if (selectedCategory === 'Featured') {
       return MOCK_COURSES.filter((c) => c.featured || c.rating >= 4.7).slice(0, 6);
     }
-    const matched = MOCK_COURSES.filter(
-      (course) =>
-        course.category.toLowerCase() === selectedCategory.toLowerCase() ||
-        course.title.toLowerCase().includes(selectedCategory.toLowerCase())
+    const matched = MOCK_COURSES.filter((course) =>
+      matchCourseCategory(course.category, course.title, selectedCategory)
     );
-    // If fewer than 3 courses match a niche tag, supplement with top rated courses
+    // Ensure every single category shows items! If 0 matched, fallback to top courses
     if (matched.length === 0) {
       return MOCK_COURSES.slice(0, 3);
     }
@@ -41,7 +39,7 @@ export function CoursesSection() {
   }, [selectedCategory]);
 
   return (
-    <section className="py-24 bg-white">
+    <section className="py-10 sm:py-16 md:py-24 bg-white">
       <div className="layout-container">
         {/* Section Header */}
         <SectionHeader
@@ -56,14 +54,17 @@ export function CoursesSection() {
         {/* Dynamic Category Chips */}
         <div className="mt-10 max-w-5xl mx-auto">
           <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 transition-all duration-300">
-            {visibleCategories.map((category) => {
+            {visibleCategories.map((category, idx) => {
               const isActive = selectedCategory === category;
+              const isHiddenOnMobileWhenCollapsed = !isExpanded && idx >= 5;
               return (
                 <button
                   key={category}
                   type="button"
                   onClick={() => setSelectedCategory(category)}
-                  className={`px-5 py-2.5 rounded-full font-satoshi text-xs sm:text-[13px] transition-all duration-200 cursor-pointer select-none active:scale-95 ${
+                  className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full font-satoshi text-xs sm:text-[13px] transition-all duration-200 cursor-pointer select-none active:scale-95 ${
+                    isHiddenOnMobileWhenCollapsed ? 'hidden sm:inline-flex' : 'inline-flex'
+                  } ${
                     isActive
                       ? 'bg-secondary-500 text-neutral-950 font-bold shadow-md scale-105 ring-2 ring-secondary-400/40 ring-offset-2 ring-offset-white'
                       : 'bg-neutral-100 text-neutral-700 font-medium hover:bg-neutral-200 hover:text-neutral-950 hover:scale-105 shadow-xs'
@@ -78,7 +79,7 @@ export function CoursesSection() {
             <button
               type="button"
               onClick={() => setIsExpanded(!isExpanded)}
-              className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full font-satoshi text-xs sm:text-[13px] font-semibold text-primary-600 hover:text-primary-700 hover:bg-primary-50 transition-all duration-200 cursor-pointer select-none active:scale-95"
+              className="inline-flex items-center gap-1.5 px-4 py-2 sm:py-2.5 rounded-full font-satoshi text-xs sm:text-[13px] font-semibold text-primary-600 hover:text-primary-700 hover:bg-primary-50 transition-all duration-200 cursor-pointer select-none active:scale-95"
             >
               {isExpanded ? (
                 <>
@@ -87,7 +88,8 @@ export function CoursesSection() {
                 </>
               ) : (
                 <>
-                  <span>+ More ({regularCategories.length - INITIAL_VISIBLE_COUNT})</span>
+                  <span className="sm:hidden">+ More ({regularCategories.length - 5})</span>
+                  <span className="hidden sm:inline">+ More ({regularCategories.length - INITIAL_VISIBLE_COUNT})</span>
                   <ChevronDown className="w-3.5 h-3.5" />
                 </>
               )}
