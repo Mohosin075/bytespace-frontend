@@ -1,5 +1,6 @@
 'use client';
 
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Star, BarChart2, Heart } from 'lucide-react';
@@ -17,6 +18,7 @@ export function CourseCard({ course }: CourseCardProps) {
   const { toggleWishlist, isWishlisted } = useAuth();
   const { showToast } = useToast();
   const wishlisted = isWishlisted(course.id);
+  const [imgSrc, setImgSrc] = useState(course.image);
 
   const handleHeartClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -33,10 +35,13 @@ export function CourseCard({ course }: CourseCardProps) {
       {/* Thumbnail area */}
       <div className="relative rounded-[18px] overflow-hidden aspect-[1.5/1] bg-neutral-100 mb-4">
         <Image
-          src={course.image}
+          src={imgSrc}
           alt={course.title}
           fill
           unoptimized
+          onError={() =>
+            setImgSrc('https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800&auto=format&fit=crop&q=80')
+          }
           className="object-cover group-hover:scale-105 transition-transform duration-500"
         />
 

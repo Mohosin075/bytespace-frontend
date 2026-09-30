@@ -26,15 +26,15 @@ export function LearningPathsSection() {
           subtitle="At Bytespace, we believe in empowering individuals through knowledge. Our diverse range of courses spans various fields, ensuring there's something for everyone. Unleash your potential and explore our carefully curated categories."
         />
 
-        {/* Category Icon Cards Grid */}
-        <div className="mt-14 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
+        {/* Category Icon Cards Grid — Horizontal scroll on mobile, Grid on tablet & desktop */}
+        <div className="mt-10 sm:mt-14 flex sm:grid sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6 overflow-x-auto no-scrollbar scroll-smooth flex-nowrap pb-4 pt-2 -mx-4 px-4 sm:mx-0 sm:px-0">
           {LEARNING_PATHS.map((path) => (
             <Link
               key={path.title}
               href={`/courses?category=${encodeURIComponent(path.title)}`}
-              className="bg-white rounded-2xl p-7 border border-neutral-200/90 flex flex-col items-center justify-center gap-4 hover:shadow-xl hover:border-neutral-300 transition-all duration-300 group"
+              className="w-38 sm:w-auto shrink-0 sm:shrink-initial bg-white rounded-2xl p-6 sm:p-7 border border-neutral-200/90 flex flex-col items-center justify-center gap-4 hover:shadow-xl hover:border-neutral-300 transition-all duration-300 group"
             >
-              <div className="relative w-16 h-16 group-hover:scale-110 transition-transform">
+              <div className="relative w-14 h-14 sm:w-16 sm:h-16 group-hover:scale-110 transition-transform">
                 <Image
                   src={path.image}
                   alt={path.title}
@@ -43,7 +43,7 @@ export function LearningPathsSection() {
                   className="w-full h-full object-contain"
                 />
               </div>
-              <span className="font-satoshi font-semibold text-neutral-900 text-sm">
+              <span className="font-satoshi font-semibold text-neutral-900 text-sm whitespace-nowrap sm:whitespace-normal">
                 {path.title}
               </span>
             </Link>
