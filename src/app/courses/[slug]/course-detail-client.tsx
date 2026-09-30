@@ -14,10 +14,7 @@ import {
   Video,
   Award,
   CheckCircle2,
-  ChevronDown,
-  ChevronUp,
   X,
-  Lock,
 } from 'lucide-react';
 import { Navbar } from '@/components/shared/navbar';
 import { Footer } from '@/components/shared/footer';
@@ -35,16 +32,12 @@ export default function CourseDetailClient() {
   const [activeReviewFilter, setActiveReviewFilter] = useState('All rating');
   const [isEnrolled, setIsEnrolled] = useState(false);
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
-  const [expandedModules, setExpandedModules] = useState<Record<string, boolean>>({
-    'm1': true,
-    'm2': true,
-  });
 
   const sneakPeakImages = [
-    'https://images.unsplash.com/photo-1581291518655-9523c932694b?w=400&auto=format&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&auto=format&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&auto=format&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=400&auto=format&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=600&auto=format&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&auto=format&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&auto=format&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=600&auto=format&fit=crop&q=80',
   ];
 
   const keyPoints = [
@@ -86,10 +79,6 @@ export default function CourseDetailClient() {
       setIsEnrolled(true);
       showToast('Congratulations! You are now enrolled in "Build Digital Asset"', 'success');
     }
-  };
-
-  const toggleModule = (id: string) => {
-    setExpandedModules((prev) => ({ ...prev, [id]: !prev[id] }));
   };
 
   const filteredReviews = MOCK_REVIEWS.filter((r) => {
@@ -218,7 +207,7 @@ export default function CourseDetailClient() {
                 const isActive = activeTab === tab;
                 const tabNames = {
                   about: 'About',
-                  lessons: 'Lessons',
+                  lessons: 'Lesson',
                   reviews: 'Reviews',
                 };
                 return (
@@ -278,11 +267,13 @@ export default function CourseDetailClient() {
                   <h3 className="font-poppins font-bold text-xl text-neutral-950">
                     Key Points
                   </h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="space-y-3.5 pt-1">
                     {keyPoints.map((point) => (
-                      <div key={point} className="flex items-center gap-3 bg-neutral-50 p-3 rounded-xl border border-neutral-200/60">
-                        <CheckCircle2 className="w-5 h-5 text-primary-600 fill-primary-50 shrink-0" />
-                        <span className="text-neutral-800 text-sm font-medium">{point}</span>
+                      <div key={point} className="flex items-center gap-3.5">
+                        <CheckCircle2 className="w-5.5 h-5.5 fill-[#0052FE] text-white shrink-0" />
+                        <span className="text-neutral-700 text-[15px] sm:text-base font-normal">
+                          {point}
+                        </span>
                       </div>
                     ))}
                   </div>
@@ -290,80 +281,72 @@ export default function CourseDetailClient() {
               </div>
             )}
 
-            {/* TAB 2: LESSONS (WITH INTERACTIVE ACCORDIONS) */}
+            {/* TAB 2: LESSON */}
             {activeTab === 'lessons' && (
               <div className="space-y-10 animate-fade-in">
+                {/* Explore the Modules Header */}
                 <div className="space-y-3">
                   <h2 className="font-poppins font-bold text-2xl text-neutral-950">
                     Explore the Modules
                   </h2>
                   <p className="text-neutral-600 text-[15px] leading-relaxed">
-                    Click on any module to view its detailed lesson breakdown and interactive video topics.
+                    Immerse yourself in the course content as we break down each module into comprehensive lessons, providing practical insights and hands-on experiences.
                   </p>
                 </div>
 
-                {/* Interactive Accordion Modules */}
+                {/* Lesson List */}
                 <div className="space-y-4">
-                  {MOCK_MODULES.map((module) => {
-                    const isExpanded = !!expandedModules[module.id];
-                    return (
+                  <h3 className="font-poppins font-bold text-xl text-neutral-950">
+                    Lesson List
+                  </h3>
+                  <div className="space-y-6 pt-1">
+                    {MOCK_MODULES.map((module) => (
                       <div
                         key={module.id}
-                        className="bg-white rounded-2xl border border-neutral-200/80 overflow-hidden shadow-xs transition-all"
+                        className="flex items-start gap-4"
                       >
-                        <button
-                          onClick={() => toggleModule(module.id)}
-                          className="w-full p-5 flex items-center justify-between gap-4 hover:bg-neutral-50 transition-colors text-left cursor-pointer"
-                        >
-                          <div className="flex items-center gap-4">
-                            <div className="w-10 h-10 rounded-full bg-[#cbfc01] flex items-center justify-center shrink-0 text-black font-bold">
-                              <Video className="w-5 h-5" />
-                            </div>
-                            <div>
-                              <p className="font-poppins font-semibold text-neutral-950 text-base">
-                                {module.title}
-                              </p>
-                              <p className="text-neutral-500 text-xs mt-0.5">
-                                {module.lessonsCount} lessons &bull; {module.duration}
-                              </p>
-                            </div>
-                          </div>
-                          {isExpanded ? (
-                            <ChevronUp className="w-5 h-5 text-neutral-500" />
-                          ) : (
-                            <ChevronDown className="w-5 h-5 text-neutral-500" />
-                          )}
-                        </button>
-
-                        {isExpanded && (
-                          <div className="px-5 pb-5 pt-2 border-t border-neutral-100 bg-neutral-50/50 space-y-3">
-                            <p className="text-xs text-neutral-600">{module.description}</p>
-                            <div className="space-y-2 pt-2">
-                              {module.lessons?.map((lesson, idx) => (
-                                <div
-                                  key={idx}
-                                  className="flex items-center justify-between p-3 rounded-xl bg-white border border-neutral-200/60 text-xs font-medium text-neutral-800"
-                                >
-                                  <div className="flex items-center gap-2.5">
-                                    <Play className="w-3.5 h-3.5 text-primary-600 fill-primary-600" />
-                                    <span>{lesson.title}</span>
-                                  </div>
-                                  <div className="flex items-center gap-2 text-neutral-400">
-                                    <span>{lesson.duration}</span>
-                                    {isEnrolled ? (
-                                      <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                                    ) : (
-                                      <Lock className="w-3.5 h-3.5 text-neutral-400" />
-                                    )}
-                                  </div>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        )}
+                        <div className="w-12 h-12 rounded-[18px] bg-[#cbfc01] flex items-center justify-center shrink-0 text-black shadow-xs">
+                          <Video className="w-5 h-5 stroke-[2.2]" />
+                        </div>
+                        <div className="space-y-1 pt-0.5">
+                          <h4 className="font-poppins font-bold text-neutral-950 text-base leading-snug">
+                            {module.title}
+                          </h4>
+                          <p className="text-neutral-600 text-sm leading-relaxed">
+                            {module.description}
+                          </p>
+                        </div>
                       </div>
-                    );
-                  })}
+                    ))}
+                  </div>
+                </div>
+
+                {/* Lesson Content Section */}
+                <div className="space-y-3">
+                  <h3 className="font-poppins font-bold text-xl text-neutral-950">
+                    Lesson Content
+                  </h3>
+                  <p className="text-neutral-600 text-[15px] leading-relaxed">
+                    Engage with each lesson through captivating video content, detailed textual explanations, and interactive elements. Download resources, complete assignments, and test your understanding with quizzes.
+                  </p>
+                </div>
+
+                {/* Lesson Progress Tracking */}
+                <div className="space-y-4">
+                  <h3 className="font-poppins font-bold text-xl text-neutral-950">
+                    Lesson Progress Tracking
+                  </h3>
+                  <p className="text-neutral-600 text-[15px] leading-relaxed">
+                    Witness your growth as you complete lessons, with an intuitive progress tracking feature guiding you through your learning journey.
+                  </p>
+
+                  <div className="bg-white rounded-2xl p-6 sm:p-7 border border-neutral-200/90 space-y-2.5 shadow-xs">
+                    <p className="text-xs text-neutral-500 font-semibold">Learning Progress</p>
+                    <p className="font-poppins font-bold text-3xl text-neutral-950">55%</p>
+                    <div className="w-full bg-neutral-200/80 h-2.5 rounded-full overflow-hidden mt-3">
+                      <div className="bg-[#cbfc01] h-full rounded-full w-[55%]" />
+                    </div>
+                  </div>
                 </div>
               </div>
             )}
