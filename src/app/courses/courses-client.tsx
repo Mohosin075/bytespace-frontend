@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo, Suspense } from 'react';
+import React, { useState, useMemo, useEffect, useRef, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import {
   Search,
@@ -38,7 +38,22 @@ function CoursesContent() {
   const [categoryDropdownOpen, setCategoryDropdownOpen] = useState(false);
   const [sortDropdownOpen, setSortDropdownOpen] = useState(false);
 
+  const filterRowRef = useRef<HTMLDivElement>(null);
   const { showToast } = useToast();
+
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    if (!levelDropdownOpen && !categoryDropdownOpen && !sortDropdownOpen) return;
+    const handleClickOutside = (e: MouseEvent) => {
+      if (filterRowRef.current && !filterRowRef.current.contains(e.target as Node)) {
+        setLevelDropdownOpen(false);
+        setCategoryDropdownOpen(false);
+        setSortDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [levelDropdownOpen, categoryDropdownOpen, sortDropdownOpen]);
 
   const filterCategories = [
     'Featured',
@@ -249,9 +264,16 @@ function CoursesContent() {
       <main className="layout-container py-10 sm:py-14 flex-1">
 
       {/* Filter Controls Row */}
-      <div className="flex flex-wrap items-center justify-between gap-4 pb-6">
+      <div
+        ref={filterRowRef}
+        className={`relative flex flex-wrap items-center justify-between gap-4 pb-6 ${
+          levelDropdownOpen || categoryDropdownOpen || sortDropdownOpen ? 'z-40' : 'z-20'
+        }`}
+      >
         {/* Left Pills: Filter, Level, Category */}
-        <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 relative">
+        <div className={`flex flex-wrap items-center gap-2.5 sm:gap-3 relative ${
+          levelDropdownOpen || categoryDropdownOpen ? 'z-40' : 'z-20'
+        }`}>
           {/* 1. Filter Button */}
           <button
             type="button"
@@ -274,7 +296,7 @@ function CoursesContent() {
           </button>
 
           {/* 2. Level Dropdown Button */}
-          <div className="relative">
+          <div className={`relative ${levelDropdownOpen ? 'z-50' : 'z-10'}`}>
             <button
               type="button"
               onClick={() => {
@@ -314,7 +336,7 @@ function CoursesContent() {
           </div>
 
           {/* 3. Category Dropdown Button */}
-          <div className="relative">
+          <div className={`relative ${categoryDropdownOpen ? 'z-50' : 'z-10'}`}>
             <button
               type="button"
               onClick={() => {
@@ -354,7 +376,7 @@ function CoursesContent() {
         </div>
 
         {/* Right Sort Dropdown Button */}
-        <div className="relative">
+        <div className={`relative ${sortDropdownOpen ? 'z-50' : 'z-10'}`}>
           <button
             type="button"
             onClick={() => {
@@ -403,7 +425,7 @@ function CoursesContent() {
       </div>
 
       {/* Category Pills Row */}
-      <div className="flex items-center gap-2.5 pt-2 pb-8 overflow-x-auto no-scrollbar scroll-smooth flex-nowrap sm:flex-wrap">
+      <div className="relative z-10 flex items-center gap-2.5 pt-2 pb-8 overflow-x-auto no-scrollbar scroll-smooth flex-nowrap sm:flex-wrap">
         {filterCategories.map((category) => {
           const isActive = selectedCategory === category;
           return (
@@ -424,7 +446,7 @@ function CoursesContent() {
       </div>
 
       {/* Results Counter Bar */}
-      <div className="mb-6 flex items-center justify-between text-xs text-neutral-500 border-b border-neutral-100 pb-4">
+      <div className="relative z-0 mb-6 flex items-center justify-between text-xs text-neutral-500 border-b border-neutral-100 pb-4">
         <div className="flex items-center gap-2">
           <Sparkles className="w-3.5 h-3.5 text-primary-600" />
           <span>
@@ -451,7 +473,7 @@ function CoursesContent() {
 
       {/* 3-Column Course Grid or Clean Empty State */}
       {paginatedCourses.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="relative z-0 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {paginatedCourses.map((course, idx) => (
             <ScrollReveal
               key={course.id}
