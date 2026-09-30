@@ -15,6 +15,8 @@ import {
   Award,
   CheckCircle2,
   X,
+  Folder,
+  Radio,
 } from 'lucide-react';
 import { Navbar } from '@/components/shared/navbar';
 import { Footer } from '@/components/shared/footer';
@@ -183,7 +185,7 @@ export default function CourseDetailClient() {
             <div className="aspect-[16/9] w-full bg-black relative flex items-center justify-center">
               <iframe
                 className="w-full h-full"
-                src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1"
+                src="https://www.youtube-nocookie.com/embed/cZDglsE16yM?autoplay=1&rel=0"
                 title="Course Video Preview"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
@@ -475,24 +477,44 @@ export default function CourseDetailClient() {
           </div>
 
           {/* RIGHT COLUMN: STICKY ENROLLMENT CARD */}
-          <div className="lg:col-span-4 sticky top-6">
-            <div className="bg-white rounded-3xl p-6 sm:p-7 border border-neutral-200/80 shadow-xl space-y-6">
+          <div className="lg:col-span-4 sticky top-28">
+            <div className="bg-white rounded-[28px] p-6 sm:p-7 border border-neutral-200/90 shadow-xl space-y-6">
+              {/* Title Header */}
               <div>
-                <h3 className="font-poppins font-bold text-lg text-neutral-950">
+                <h3 className="font-poppins font-bold text-xl text-neutral-950">
                   112 Lessons (24 hours)
                 </h3>
               </div>
 
-              <p className="text-xs text-neutral-600 leading-relaxed">
+              {/* Lesson Preview Items List */}
+              <div className="space-y-3 pt-1">
+                {[
+                  { num: '01', title: 'Introduction to Digital Assets', duration: '12 mins' },
+                  { num: '02', title: 'Design Principles for Impacts', duration: '21 mins' },
+                  { num: '03', title: 'Advanced Techniques in Digital Creation', duration: '16 mins' },
+                ].map((item) => (
+                  <div key={item.num} className="flex items-start justify-between gap-3 text-xs sm:text-sm">
+                    <div className="flex items-start gap-3">
+                      <span className="text-neutral-400 font-medium">{item.num}</span>
+                      <span className="font-medium text-neutral-800 leading-snug">{item.title}</span>
+                    </div>
+                    <span className="font-medium text-[#0052FE] shrink-0">{item.duration}</span>
+                  </div>
+                ))}
+                <p className="text-xs text-neutral-400 font-normal pt-1">99 more videos</p>
+              </div>
+
+              {/* Subtitle Text */}
+              <p className="text-xs sm:text-sm text-neutral-500 leading-relaxed pt-1">
                 {isEnrolled
                   ? 'You are enrolled in this course! Click below to open your learning space.'
                   : 'Ready to Dive In? Enroll Now and Start Building Your Digital Future!'}
               </p>
 
               {/* Price & CTA Button */}
-              <div className="pt-2">
+              <div>
                 <div className="flex items-baseline gap-1 mb-4">
-                  <span className="font-poppins font-bold text-3xl text-primary-600">$25</span>
+                  <span className="font-poppins font-bold text-3xl sm:text-4xl text-[#0052FE]">$25</span>
                   <span className="text-xs text-neutral-500 font-normal">/lifetime</span>
                 </div>
 
@@ -509,32 +531,36 @@ export default function CourseDetailClient() {
                 </button>
               </div>
 
-              {/* Includes */}
-              <div className="pt-4 border-t border-neutral-100 space-y-3.5">
-                <p className="font-poppins font-bold text-sm text-neutral-950">
-                  This course includes
-                </p>
+              {/* This Course Include */}
+              <div className="pt-4 border-t border-neutral-100 space-y-4">
+                <h4 className="font-poppins font-bold text-base sm:text-lg text-neutral-950">
+                  This course include
+                </h4>
 
-                <div className="space-y-3 text-xs text-neutral-700">
-                  <div className="flex items-center gap-2.5">
-                    <FileText className="w-4 h-4 text-primary-600" />
+                <div className="space-y-3.5 text-xs sm:text-sm font-medium text-neutral-700">
+                  <div className="flex items-center gap-3">
+                    <Folder className="w-4.5 h-4.5 text-[#0052FE] shrink-0" />
                     <span>Learning Resources</span>
                   </div>
-                  <div className="flex items-center gap-2.5">
-                    <Video className="w-4 h-4 text-primary-600" />
+                  <div className="flex items-center gap-3">
+                    <Video className="w-4.5 h-4.5 text-[#0052FE] shrink-0" />
                     <span>Quality Lesson Videos</span>
                   </div>
-                  <div className="flex items-center gap-2.5">
-                    <Award className="w-4 h-4 text-primary-600" />
+                  <div className="flex items-center gap-3">
+                    <Award className="w-4.5 h-4.5 text-[#0052FE] shrink-0" />
                     <span>Certificate of Completion</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Radio className="w-4.5 h-4.5 text-[#0052FE] shrink-0" />
+                    <span>Private Consultation</span>
                   </div>
                 </div>
               </div>
 
-              {/* Creator Box */}
-              <div className="pt-4 border-t border-neutral-100 space-y-4">
-                <div className="flex items-center gap-3">
-                  <div className="relative w-11 h-11 rounded-full overflow-hidden border border-neutral-200 shrink-0">
+              {/* Creator Card */}
+              <div className="pt-5 border-t border-neutral-100 space-y-4">
+                <div className="flex items-center gap-3.5">
+                  <div className="relative w-12 h-12 rounded-full overflow-hidden border border-neutral-200 shrink-0">
                     <Image
                       src={MOCK_CREATOR.avatar}
                       alt={MOCK_CREATOR.name}
@@ -544,16 +570,20 @@ export default function CourseDetailClient() {
                     />
                   </div>
                   <div>
-                    <p className="font-poppins font-semibold text-sm text-neutral-950">
+                    <p className="font-poppins font-semibold text-sm sm:text-base text-neutral-950">
                       {MOCK_CREATOR.name}
                     </p>
                     <p className="text-xs text-neutral-500">Professional Creator</p>
                   </div>
                 </div>
 
+                <p className="text-xs text-neutral-500 leading-relaxed">
+                  Ready to Dive In? Enroll Now and Start Building Your Digital Future!
+                </p>
+
                 <Link
                   href={ROUTES.CREATOR_DETAIL('purepearl-studio')}
-                  className="block text-center py-2.5 px-4 rounded-full border border-neutral-300 text-neutral-800 text-xs font-semibold hover:border-neutral-950 transition-colors"
+                  className="inline-block text-center py-2 px-5 rounded-full border border-neutral-300 text-neutral-800 text-xs font-semibold hover:border-neutral-950 transition-colors"
                 >
                   See Full Profile
                 </Link>

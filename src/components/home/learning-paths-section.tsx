@@ -19,7 +19,7 @@ const LEARNING_PATHS: LearningPath[] = [
 
 export function LearningPathsSection() {
   return (
-    <section className="py-20 bg-neutral-50/60 border-t border-b border-neutral-200/80">
+    <section className="py-20 bg-neutral-50/60">
       <div className="layout-container text-center">
         <SectionHeader
           title="Explore Diverse Learning Paths at Bytespace"

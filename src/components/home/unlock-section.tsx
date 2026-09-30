@@ -42,9 +42,9 @@ export default function UnlockSection() {
             </div>
 
             <div className="container relative mx-auto px-4 z-20 flex flex-col items-center">
-                <h2 className="font-clash font-bold text-3xl sm:text-5xl md:text-6xl text-center text-white tracking-tight leading-[1.12]">
+                <h2 className="font-clash font-bold text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-center text-white tracking-tight leading-snug sm:leading-[1.12]">
                     Unlock Your Potential as a
-                    <br />
+                    <br className="hidden sm:inline" />
                     Creator with ByteSpace
                 </h2>
 
