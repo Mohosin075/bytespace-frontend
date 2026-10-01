@@ -49,7 +49,7 @@ export function SectionHeader({
   titleClassName = '',
   subtitleClassName = '',
   align = 'center',
-  maxWidth = 'max-w-3xl',
+  maxWidth = 'max-w-5xl',
 }: SectionHeaderProps) {
   const alignClass =
     align === 'center'

@@ -69,7 +69,7 @@ export default function ForgotPasswordPage() {
                 </form>
               ) : (
                 <div className="mt-8 space-y-4 p-6 bg-lime-50 border border-lime-200 rounded-2xl text-center">
-                  <p className="font-poppins font-bold text-base text-neutral-900">
+                  <p className="font-satoshi font-bold text-base text-neutral-900">
                     Check your inbox!
                   </p>
                   <p className="text-xs text-neutral-600">

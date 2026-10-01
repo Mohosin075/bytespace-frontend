@@ -307,7 +307,7 @@ export function HeroSection() {
         {/* ── Student Centerpiece + Lime Halo Backdrop + Badges ── */}
         <div className="relative w-full max-w-4xl mt-8 sm:mt-16 flex justify-center items-end min-h-[300px] sm:min-h-[480px] lg:min-h-[560px]">
           {/* Center Back Halo Arc */}
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[340px] sm:w-[600px] lg:w-[850px] pointer-events-none select-none z-0 animate-pulse-glow">
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[380px] sm:w-[700px] md:w-[880px] lg:w-[1020px] xl:w-[1060px] max-w-none pointer-events-none select-none z-0 animate-pulse-glow">
             <Image
               src="/home/Hero/centerbackshpae.svg"
               alt="Center Back Halo"
@@ -319,12 +319,12 @@ export function HeroSection() {
           </div>
 
           {/* Centerman Student Image */}
-          <div className="relative z-10 w-[260px] sm:w-[480px] lg:w-[640px] flex justify-center pointer-events-none select-none">
+          <div className="relative z-10 w-[260px] sm:w-[520px] lg:w-[700px] flex justify-center pointer-events-none select-none">
             <Image
               src="/home/Hero/centerman.svg"
               alt="ByteSpace Student"
-              width={722}
-              height={515}
+              width={800}
+              height={580}
               priority
               className="w-full h-auto object-contain drop-shadow-2xl"
             />
@@ -351,7 +351,7 @@ export function HeroSection() {
 
           {/* Badge 3: Happy Students */}
           <div className="absolute bottom-[6%] sm:bottom-[12%] left-0 sm:left-4 lg:left-8 z-20 bg-white/95 backdrop-blur-md rounded-xl sm:rounded-2xl p-2.5 sm:p-4 shadow-[0_12px_32px_rgba(0,15,80,0.18)] border border-white/60 text-left scale-85 sm:scale-100 origin-bottom-left animate-float-slow hover:scale-105 transition-transform duration-300">
-            <h4 className="font-bold text-zinc-900 text-[11px] sm:text-sm tracking-tight leading-none">
+            <h4 className="font-satoshi font-bold text-zinc-900 text-[11px] sm:text-sm tracking-tight leading-none">
               Happy Students
             </h4>
             <div className="flex items-center gap-1 text-[10px] sm:text-xs font-semibold text-zinc-800 mt-1">

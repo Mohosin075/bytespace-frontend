@@ -8,7 +8,7 @@ export function HeroStage() {
     <div className="relative w-full flex justify-center overflow-visible mt-9 h-[460px]">
       <div className="relative w-[960px] h-[460px]">
         {/* Lime Semicircle Backdrop */}
-        <div className="absolute left-1/2 -translate-x-1/2 -bottom-[30px] w-[860px] z-0 overflow-hidden pointer-events-none">
+        <div className="absolute left-1/2 -translate-x-1/2 -bottom-[30px] w-[1020px] z-0 overflow-hidden pointer-events-none">
           <Image
             src="/hero/hero-lime-semicircle-backdrop.svg"
             alt="Lime semicircle background"

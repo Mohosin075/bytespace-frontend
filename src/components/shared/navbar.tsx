@@ -114,7 +114,7 @@ export function Navbar({ variant = 'blue' }: NavbarProps) {
               <Link
                 key={link.label}
                 href={link.href}
-                className={`font-poppins text-base font-normal tracking-normal transition-colors duration-200 relative py-1 ${
+                className={`font-satoshi text-base font-normal tracking-normal transition-colors duration-200 relative py-1 ${
                   isBlue
                     ? isActive
                       ? 'text-white font-medium'
@@ -180,7 +180,7 @@ export function Navbar({ variant = 'blue' }: NavbarProps) {
             <>
               <Link
                 href={ROUTES.AUTH.LOGIN}
-                className={`font-poppins text-base font-normal sm:font-medium transition-colors duration-200 ${
+                className={`font-satoshi text-base font-normal sm:font-medium transition-colors duration-200 ${
                   isBlue ? 'text-white/90 hover:text-white' : 'text-neutral-700 hover:text-neutral-950'
                 }`}
               >
@@ -189,7 +189,7 @@ export function Navbar({ variant = 'blue' }: NavbarProps) {
 
               <Link
                 href={ROUTES.AUTH.REGISTER}
-                className={`font-poppins text-base font-normal sm:font-medium transition-colors duration-200 ${
+                className={`font-satoshi text-base font-normal sm:font-medium transition-colors duration-200 ${
                   isBlue ? 'text-white/90 hover:text-white' : 'text-neutral-700 hover:text-neutral-950'
                 }`}
               >

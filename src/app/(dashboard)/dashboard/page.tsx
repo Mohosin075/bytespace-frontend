@@ -99,7 +99,7 @@ export default function DashboardPage() {
           </div>
           <div>
             <p className="text-xs text-neutral-500 font-medium">Enrolled Courses</p>
-            <p className="font-poppins font-bold text-2xl text-neutral-950 mt-0.5">3</p>
+            <p className="font-satoshi font-bold text-2xl text-neutral-950 mt-0.5">3</p>
           </div>
         </div>
 
@@ -110,7 +110,7 @@ export default function DashboardPage() {
           </div>
           <div>
             <p className="text-xs text-neutral-500 font-medium">Hours Learned</p>
-            <p className="font-poppins font-bold text-2xl text-neutral-950 mt-0.5">14.5 hrs</p>
+            <p className="font-satoshi font-bold text-2xl text-neutral-950 mt-0.5">14.5 hrs</p>
           </div>
         </div>
 
@@ -121,7 +121,7 @@ export default function DashboardPage() {
           </div>
           <div>
             <p className="text-xs text-neutral-500 font-medium">Certificates Earned</p>
-            <p className="font-poppins font-bold text-2xl text-neutral-950 mt-0.5">1</p>
+            <p className="font-satoshi font-bold text-2xl text-neutral-950 mt-0.5">1</p>
           </div>
         </div>
 
@@ -132,7 +132,7 @@ export default function DashboardPage() {
           </div>
           <div>
             <p className="text-xs text-neutral-500 font-medium">Wishlist Items</p>
-            <p className="font-poppins font-bold text-2xl text-neutral-950 mt-0.5">{wishlist.length}</p>
+            <p className="font-satoshi font-bold text-2xl text-neutral-950 mt-0.5">{wishlist.length}</p>
           </div>
         </div>
       </div>
@@ -203,7 +203,7 @@ export default function DashboardPage() {
                 </div>
 
                 <div className="space-y-3 flex-1">
-                  <h3 className="font-poppins font-bold text-base text-neutral-950 line-clamp-1 group-hover:text-primary-600 transition-colors">
+                  <h3 className="font-satoshi font-bold text-base text-neutral-950 line-clamp-1 group-hover:text-primary-600 transition-colors">
                     {course.title}
                   </h3>
                   <p className="text-xs text-neutral-500">by {course.creator.name}</p>
@@ -241,7 +241,7 @@ export default function DashboardPage() {
                 <TrendingUp className="w-6 h-6" />
               </div>
               <div>
-                <h4 className="font-poppins font-bold text-base text-neutral-900">
+                <h4 className="font-satoshi font-bold text-base text-neutral-900">
                   Keep your learning streak active!
                 </h4>
                 <p className="text-xs text-neutral-500 mt-0.5">
@@ -273,7 +273,7 @@ export default function DashboardPage() {
           ) : (
             <div className="text-center py-20 bg-neutral-50 rounded-[28px] border border-neutral-200/90 p-8 max-w-md mx-auto space-y-4 shadow-sm">
               <Heart className="w-12 h-12 text-neutral-300 mx-auto" />
-              <h3 className="font-poppins font-bold text-lg text-neutral-950">Your wishlist is empty</h3>
+              <h3 className="font-satoshi font-bold text-lg text-neutral-950">Your wishlist is empty</h3>
               <p className="text-xs text-neutral-500 leading-relaxed">
                 Explore our catalog and click the heart icon on courses to bookmark them for later.
               </p>
@@ -303,7 +303,7 @@ export default function DashboardPage() {
                 <span className="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-bold text-[10px]">
                   Verified Certificate
                 </span>
-                <h4 className="font-poppins font-bold text-lg text-neutral-950">
+                <h4 className="font-satoshi font-bold text-lg text-neutral-950">
                   UI/UX Design Masterclass
                 </h4>
                 <p className="text-xs text-neutral-500">Issued on Sept 15, 2026 &bull; PurePearl Studio</p>

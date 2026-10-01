@@ -1,93 +1,80 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
-import { Star } from 'lucide-react';
 import { MOCK_TESTIMONIALS } from '@/constants/mock-data';
-import { SectionTitle, SectionSubtitle } from '@/components/ui/section-header';
+import { SectionTitle } from '@/components/ui/section-header';
 import { ScrollReveal } from '@/components/ui/scroll-reveal';
 
 export function TestimonialsSection() {
-  const [filterRole, setFilterRole] = useState<'all' | 'student' | 'creator'>('all');
-
-  const extraTestimonials = [
-    ...MOCK_TESTIMONIALS,
-    {
-      id: 't4',
-      name: 'Alex Rivera',
-      role: 'UI Designer',
-      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&auto=format&fit=crop&q=80',
-      content:
-        'The interactive lessons and real-world projects on ByteSpace helped me transition from freelance design into a full-time senior product designer role.',
-    },
-    {
-      id: 't5',
-      name: 'Marcus Chen',
-      role: 'Content Creator & Developer',
-      avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&auto=format&fit=crop&q=80',
-      content:
-        'Publishing my web development courses on ByteSpace allowed me to reach 10,000+ enthusiastic learners and build a thriving passive income stream.',
-    },
-  ];
-
-  const filtered = extraTestimonials.filter((item) => {
-    if (filterRole === 'all') return true;
-    if (filterRole === 'creator') return item.role.toLowerCase().includes('creator');
-    if (filterRole === 'student') return !item.role.toLowerCase().includes('creator');
-    return true;
-  });
-
   return (
-    <section className="py-24 bg-white relative overflow-hidden bg-[radial-gradient(ellipse_70%_70%_at_100%_60%,rgba(203,252,1,0.28),transparent_70%)] font-satoshi">
+    <section className="py-16 sm:py-24 lg:py-28 bg-white relative overflow-hidden font-satoshi">
+      {/* ── Ambient Radial Glows (Exact to Screenshot) ── */}
+      {/* 1. Top Center/Right Lime Ambient Glow */}
+      <div
+        className="absolute -top-24 sm:-top-32 left-[52%] -translate-x-1/2 w-[700px] sm:w-[900px] lg:w-[1050px] h-[500px] sm:h-[620px] rounded-full blur-[100px] pointer-events-none select-none"
+        style={{
+          background:
+            'radial-gradient(ellipse at center, rgba(203, 252, 1, 0.48) 0%, rgba(203, 252, 1, 0.22) 42%, rgba(203, 252, 1, 0.05) 70%, transparent 100%)',
+        }}
+      />
+
+      {/* 2. Top Right Lime Accent */}
+      <div
+        className="absolute -top-16 -right-20 w-[500px] sm:w-[650px] h-[500px] sm:h-[650px] rounded-full blur-[95px] pointer-events-none select-none"
+        style={{
+          background:
+            'radial-gradient(circle, rgba(203, 252, 1, 0.35) 0%, rgba(203, 252, 1, 0.14) 48%, transparent 75%)',
+        }}
+      />
+
+      {/* 3. Bottom Left Corner Soft Blue Glow (behind Sarah M.) */}
+      <div
+        className="absolute -bottom-24 sm:-bottom-32 -left-20 sm:-left-28 w-[550px] sm:w-[700px] h-[550px] sm:h-[700px] rounded-full blur-[90px] pointer-events-none select-none"
+        style={{
+          background:
+            'radial-gradient(circle at center, rgba(0, 82, 254, 0.20) 0%, rgba(147, 197, 253, 0.16) 42%, rgba(0, 82, 254, 0.02) 68%, transparent 100%)',
+        }}
+      />
+
+      {/* 4. Top Left Soft Blue Accent */}
+      <div
+        className="absolute top-[4%] -left-28 w-[450px] h-[450px] rounded-full blur-[90px] pointer-events-none select-none"
+        style={{
+          background:
+            'radial-gradient(circle, rgba(0, 82, 254, 0.10) 0%, rgba(129, 197, 255, 0.06) 45%, transparent 75%)',
+        }}
+      />
+
       <div className="layout-container relative z-10">
+        {/* Section Header: Title on Left, Subtitle on Right */}
         <ScrollReveal direction="up" distance={20} duration={600}>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-12">
-            <div className="lg:col-span-5">
-              <SectionTitle className="text-left">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-start mb-12 sm:mb-16">
+            <div className="lg:col-span-6">
+              <SectionTitle className="text-left font-poppins font-bold text-3xl sm:text-4xl lg:text-[42px] text-neutral-950 leading-tight">
                 Discover What Our <br className="hidden sm:inline" /> Community Is Saying
               </SectionTitle>
             </div>
-            <div className="lg:col-span-7 space-y-4">
-              <SectionSubtitle className="text-left">
-                At ByteSpace, our vibrant community of learners and creators is at the heart of what we do. Hear directly from those who have experienced the transformative journey of learning and creating on our platform.
-              </SectionSubtitle>
-
-              {/* Filter Toggle Buttons */}
-              <div className="flex items-center gap-2 pt-2">
-                {[
-                  { id: 'all', label: 'All Community' },
-                  { id: 'student', label: 'Learners' },
-                  { id: 'creator', label: 'Creators' },
-                ].map((tab) => (
-                  <button
-                    key={tab.id}
-                    onClick={() => setFilterRole(tab.id as 'all' | 'student' | 'creator')}
-                    className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none active:scale-95 ${
-                      filterRole === tab.id
-                        ? 'bg-neutral-900 text-white shadow-xs scale-105'
-                        : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200 hover:text-neutral-900'
-                    }`}
-                  >
-                    {tab.label}
-                  </button>
-                ))}
-              </div>
+            <div className="lg:col-span-6 flex items-center">
+              <p className="text-neutral-500 font-satoshi text-xs sm:text-sm lg:text-[14px] leading-relaxed">
+                At ByteSpace, our vibrant community of learners and creators is at the heart of what we do. Hear directly from those who have experienced the transformative journey of learning and creating on our platform. Explore testimonials that reflect the diverse perspectives of enthusiastic learners and accomplished creators.
+              </p>
             </div>
           </div>
         </ScrollReveal>
 
-        {/* Dynamic Testimonials Grid with ScrollReveal */}
+        {/* 3 Testimonials Cards Grid */}
         <ScrollReveal direction="up" delay={150} distance={24} duration={650}>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {filtered.slice(0, 3).map((item) => (
-            <div
-              key={item.id}
-              className="bg-white rounded-2xl p-7 border border-neutral-200/80 shadow-xs hover:shadow-[0_20px_45px_-12px_rgba(0,15,80,0.1)] hover:border-neutral-300 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group cursor-default"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-6">
-                  <div className="flex items-center gap-3.5">
-                    <div className="relative w-12 h-12 rounded-full overflow-hidden border border-neutral-200 shrink-0">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+            {MOCK_TESTIMONIALS.slice(0, 3).map((item) => (
+              <div
+                key={item.id}
+                className="bg-white rounded-[28px] p-6 sm:p-7 border border-neutral-100 shadow-[0_10px_30px_rgba(0,0,0,0.04)] hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group cursor-default"
+              >
+                <div>
+                  {/* User Profile */}
+                  <div className="flex items-center gap-3.5 mb-5">
+                    <div className="relative w-12 h-12 rounded-full overflow-hidden border border-neutral-100 shrink-0">
                       <Image
                         src={item.avatar}
                         alt={item.name}
@@ -97,26 +84,22 @@ export function TestimonialsSection() {
                       />
                     </div>
                     <div>
-                      <p className="font-poppins font-semibold text-neutral-950 text-sm">
+                      <h4 className="font-satoshi font-bold text-neutral-950 text-base leading-snug">
                         {item.name}
+                      </h4>
+                      <p className="text-xs sm:text-[13px] text-[#0052FE] font-medium mt-0.5">
+                        {item.role}
                       </p>
-                      <p className="text-xs text-primary-600 font-medium">{item.role}</p>
                     </div>
                   </div>
-                </div>
 
-                <div className="flex items-center gap-1 mb-3">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-                  ))}
+                  {/* Testimonial Quote */}
+                  <p className="text-neutral-600 font-satoshi text-xs sm:text-[13px] leading-relaxed">
+                    {item.content}
+                  </p>
                 </div>
-
-                <p className="text-neutral-700 text-sm leading-relaxed">
-                  &ldquo;{item.content}&rdquo;
-                </p>
               </div>
-            </div>
-          ))}
+            ))}
           </div>
         </ScrollReveal>
       </div>
