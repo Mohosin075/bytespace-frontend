@@ -69,14 +69,14 @@ export function Navbar({ variant = 'blue' }: NavbarProps) {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ease-in-out ${
+      className={`fixed top-0 left-0 right-0 z-50 w-full h-20 sm:h-22 transition-all duration-300 ease-in-out ${
         scrolled || mobileMenuOpen
           ? isBlue
-            ? 'bg-primary-600/80 backdrop-blur-xl shadow-[0_10px_30px_-10px_rgba(0,15,80,0.3)] border-b border-white/15 h-16 sm:h-20'
-            : 'bg-white/85 backdrop-blur-xl shadow-sm border-b border-neutral-200/80 h-16 sm:h-20'
+            ? 'bg-primary-600/85 backdrop-blur-xl shadow-[0_10px_30px_-10px_rgba(0,15,80,0.3)] border-b border-white/15'
+            : 'bg-white/90 backdrop-blur-xl shadow-sm border-b border-neutral-200/80'
           : isBlue
-          ? 'bg-transparent border-b border-transparent h-20 sm:h-24 md:h-28 text-white'
-          : 'bg-white/90 backdrop-blur-md border-b border-neutral-100 h-20 sm:h-24 text-neutral-900'
+          ? 'bg-transparent border-b border-transparent text-white'
+          : 'bg-white/95 backdrop-blur-md border-b border-neutral-100 text-neutral-900'
       }`}
     >
       <div className="layout-container h-full flex items-center justify-between relative">
