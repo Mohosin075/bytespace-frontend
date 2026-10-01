@@ -9,6 +9,7 @@ import { ROUTES } from '@/constants/routes';
 
 import { useAuth } from '@/context/auth-context';
 import { useToast } from '@/context/toast-context';
+import { registerSchema } from '@/lib/validations/auth-schema';
 
 export default function RegisterClient() {
   const router = useRouter();
@@ -17,10 +18,25 @@ export default function RegisterClient() {
   const [fullName, setFullName] = useState('Jamie Davis');
   const [email, setEmail] = useState('designer@example.com');
   const [password, setPassword] = useState('********');
+  const [errors, setErrors] = useState<{ name?: string; email?: string; password?: string }>({});
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setErrors({});
+
+    const result = registerSchema.safeParse({ name: fullName, email, password });
+    if (!result.success) {
+      const fieldErrors: { name?: string; email?: string; password?: string } = {};
+      result.error.issues.forEach((issue) => {
+        const path = issue.path[0] as 'name' | 'email' | 'password';
+        fieldErrors[path] = issue.message;
+      });
+      setErrors(fieldErrors);
+      showToast('Please fix the errors in the form', 'warning');
+      return;
+    }
+
     setLoading(true);
     setTimeout(() => {
       login(email, fullName);
@@ -67,8 +83,9 @@ export default function RegisterClient() {
                     onChange={(e) => setFullName(e.target.value)}
                     required
                     placeholder="Jamie Davis"
-                    className="w-full px-5 py-3.5 rounded-xl border border-neutral-200 text-neutral-800 text-sm placeholder:text-neutral-400 focus:outline-none focus:border-neutral-900 transition-colors"
+                    className={`w-full px-5 py-3.5 rounded-xl border ${errors.name ? 'border-red-500' : 'border-neutral-200'} text-neutral-800 text-sm placeholder:text-neutral-400 focus:outline-none focus:border-neutral-900 transition-colors`}
                   />
+                  {errors.name && <p className="text-xs text-red-500 mt-1">{errors.name}</p>}
                 </div>
 
                 <div>
@@ -81,8 +98,9 @@ export default function RegisterClient() {
                     onChange={(e) => setEmail(e.target.value)}
                     required
                     placeholder="designer@example.com"
-                    className="w-full px-5 py-3.5 rounded-xl border border-neutral-200 text-neutral-800 text-sm placeholder:text-neutral-400 focus:outline-none focus:border-neutral-900 transition-colors"
+                    className={`w-full px-5 py-3.5 rounded-xl border ${errors.email ? 'border-red-500' : 'border-neutral-200'} text-neutral-800 text-sm placeholder:text-neutral-400 focus:outline-none focus:border-neutral-900 transition-colors`}
                   />
+                  {errors.email && <p className="text-xs text-red-500 mt-1">{errors.email}</p>}
                 </div>
 
                 <div>
@@ -95,8 +113,9 @@ export default function RegisterClient() {
                     onChange={(e) => setPassword(e.target.value)}
                     required
                     placeholder="********"
-                    className="w-full px-5 py-3.5 rounded-xl border border-neutral-200 text-neutral-800 text-sm placeholder:text-neutral-400 focus:outline-none focus:border-neutral-900 transition-colors"
+                    className={`w-full px-5 py-3.5 rounded-xl border ${errors.password ? 'border-red-500' : 'border-neutral-200'} text-neutral-800 text-sm placeholder:text-neutral-400 focus:outline-none focus:border-neutral-900 transition-colors`}
                   />
+                  {errors.password && <p className="text-xs text-red-500 mt-1">{errors.password}</p>}
                 </div>
 
                 <div className="flex justify-end pt-2">

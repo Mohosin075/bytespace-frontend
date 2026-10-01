@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { ROUTES } from '@/constants/routes';
 import { SectionHeader } from '@/components/ui/section-header';
 import { ScrollReveal } from '@/components/ui/scroll-reveal';
 
@@ -35,7 +36,7 @@ export function LearningPathsSection() {
             {LEARNING_PATHS.map((path) => (
               <Link
                 key={path.title}
-                href={`/courses?category=${encodeURIComponent(path.title)}`}
+                href={`${ROUTES.COURSES}?category=${encodeURIComponent(path.title)}`}
                 className="w-38 sm:w-auto shrink-0 sm:shrink-initial bg-white rounded-2xl p-6 sm:p-7 border border-neutral-200/80 flex flex-col items-center justify-center gap-4 hover:shadow-[0_16px_36px_-10px_rgba(0,82,254,0.12)] hover:border-primary-300/80 hover:-translate-y-1.5 active:scale-[0.97] transition-all duration-300 group cursor-pointer"
               >
                 <div className="relative w-14 h-14 sm:w-16 sm:h-16 group-hover:scale-110 group-hover:-rotate-2 transition-transform duration-300 ease-out">

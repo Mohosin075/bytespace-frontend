@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import { ROUTES } from "@/constants/routes";
 
 export default function UnlockSection() {
     return (
@@ -55,7 +56,7 @@ export default function UnlockSection() {
                 </p>
 
                 <Link
-                  href="/register"
+                  href={ROUTES.AUTH.REGISTER}
                   className="mt-8 inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#D4FB20] text-neutral-950 font-bold text-sm sm:text-base hover:bg-[#c3ea1a] hover:shadow-[0_10px_25px_rgba(212,251,32,0.35)] hover:scale-[1.02] active:scale-[0.97] transition-all duration-200 shadow-md cursor-pointer"
                 >
                   Join as Creator

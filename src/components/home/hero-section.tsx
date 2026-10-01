@@ -7,8 +7,10 @@ import { useRouter } from 'next/navigation';
 import { Search, Star, BookOpen, User, X, ChevronRight } from 'lucide-react';
 import { coursesData } from '@/data/course';
 import { creatorsData } from '@/data/creator';
+import { MOCK_STUDENT_AVATARS } from '@/constants/mock-data';
 import { Navbar } from '@/components/shared/navbar';
 import { useClickOutside } from '@/hooks/use-click-outside';
+import { ROUTES } from '@/constants/routes';
 
 export function HeroSection() {
   const [query, setQuery] = useState('');
@@ -45,22 +47,13 @@ export function HeroSection() {
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!trimmed) {
-      router.push('/courses');
+      router.push(ROUTES.COURSES);
     } else {
-      router.push(`/courses?search=${encodeURIComponent(query.trim())}`);
+      router.push(`${ROUTES.COURSES}?search=${encodeURIComponent(query.trim())}`);
     }
     setIsOpen(false);
   };
 
-  const studentAvatars = [
-    'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80',
-    'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80',
-    'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80',
-    'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80',
-    'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=120&q=80',
-    'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=120&q=80',
-    'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=120&q=80',
-  ];
 
   return (
     <>
@@ -204,7 +197,7 @@ export function HeroSection() {
                     No courses or creators matching &ldquo;{query}&rdquo;
                   </p>
                   <Link
-                    href="/courses"
+                    href={ROUTES.COURSES}
                     onClick={() => setIsOpen(false)}
                     className="inline-flex items-center gap-1.5 mt-2 text-xs font-semibold text-[#0052FE] hover:underline"
                   >
@@ -224,7 +217,7 @@ export function HeroSection() {
                         {matchedCourses.map((course) => (
                           <Link
                             key={course.id}
-                            href={`/courses/${course.slug}`}
+                          href={ROUTES.COURSE_DETAIL(course.slug)}
                             onClick={() => setIsOpen(false)}
                             className="flex items-center gap-3 p-2 rounded-xl hover:bg-zinc-50 transition-colors group"
                           >
@@ -269,7 +262,7 @@ export function HeroSection() {
                         {matchedCreators.map((creator) => (
                           <Link
                             key={creator.id}
-                            href={`/creators/${creator.slug}`}
+                            href={ROUTES.CREATOR_DETAIL(creator.slug)}
                             onClick={() => setIsOpen(false)}
                             className="flex items-center gap-3 p-2 rounded-xl hover:bg-zinc-50 transition-colors group"
                           >
@@ -360,7 +353,7 @@ export function HeroSection() {
               <Star className="size-3 sm:size-3.5 fill-amber-400 text-amber-400 shrink-0" />
             </div>
             <div className="flex items-center mt-2 sm:mt-2.5">
-              {studentAvatars.slice(0, 4).map((avatar, idx) => (
+              {MOCK_STUDENT_AVATARS.slice(0, 4).map((avatar, idx) => (
                 <div
                   key={idx}
                   style={{ zIndex: idx + 1 }}

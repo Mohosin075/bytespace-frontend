@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
@@ -10,6 +10,7 @@ import { Logo } from '@/components/shared/logo';
 import { useAuth } from '@/context/auth-context';
 import { useToast } from '@/context/toast-context';
 import { useCart } from '@/context/cart-context';
+import { useScrolled, useMobileMenu } from '@/hooks/use-navbar';
 
 function ShoppingBagIcon({ className = 'w-6 h-6' }: { className?: string }) {
   return (
@@ -32,6 +33,12 @@ interface NavbarProps {
   variant?: 'blue' | 'light';
 }
 
+const NAV_LINKS = [
+  { label: 'Home', href: ROUTES.HOME },
+  { label: 'Courses', href: ROUTES.COURSES },
+  { label: 'Creators', href: ROUTES.CREATORS },
+] as const;
+
 export function Navbar({ variant = 'blue' }: NavbarProps) {
   const pathname = usePathname();
   const router = useRouter();
@@ -40,39 +47,9 @@ export function Navbar({ variant = 'blue' }: NavbarProps) {
   const { cartCount } = useCart();
 
   const isBlue = variant === 'blue';
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const scrolled = useScrolled(20);
+  const [mobileMenuOpen, setMobileMenuOpen] = useMobileMenu();
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    handleScroll();
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768) {
-        setMobileMenuOpen(false);
-      }
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  useEffect(() => {
-    if (mobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [mobileMenuOpen]);
 
   const handleLogout = () => {
     logout();
@@ -80,12 +57,6 @@ export function Navbar({ variant = 'blue' }: NavbarProps) {
     setUserDropdownOpen(false);
     router.push(ROUTES.HOME);
   };
-
-  const navLinks = [
-    { label: 'Home', href: ROUTES.HOME },
-    { label: 'Courses', href: ROUTES.COURSES },
-    { label: 'Creators', href: ROUTES.CREATORS },
-  ];
 
   return (
     <header
@@ -108,7 +79,7 @@ export function Navbar({ variant = 'blue' }: NavbarProps) {
 
         {/* Desktop Navigation Links */}
         <nav className="hidden md:flex items-center gap-6 lg:gap-10">
-          {navLinks.map((link) => {
+          {NAV_LINKS.map((link) => {
             const isActive = pathname === link.href;
             return (
               <Link
@@ -199,7 +170,7 @@ export function Navbar({ variant = 'blue' }: NavbarProps) {
           )}
 
           <Link
-            href="/cart"
+            href={ROUTES.CART}
             aria-label={`Shopping Cart (${cartCount} items)`}
             className={`p-1.5 transition-colors duration-200 rounded-full hover:bg-white/10 relative ${
               isBlue ? 'text-white/90 hover:text-white' : 'text-neutral-700 hover:text-neutral-950'
@@ -217,7 +188,7 @@ export function Navbar({ variant = 'blue' }: NavbarProps) {
         {/* Mobile Hamburger / Cart */}
         <div className="flex md:hidden items-center gap-2">
           <Link
-            href="/cart"
+            href={ROUTES.CART}
             aria-label={`Shopping Cart (${cartCount} items)`}
             className={`p-2 rounded-full transition-colors active:scale-95 relative ${
               isBlue ? 'text-white hover:bg-white/10' : 'text-neutral-700 hover:bg-neutral-100'
@@ -259,7 +230,7 @@ export function Navbar({ variant = 'blue' }: NavbarProps) {
         }`}
       >
         <nav className="flex flex-col gap-1.5">
-          {navLinks.map((link) => (
+          {NAV_LINKS.map((link) => (
             <Link
               key={link.label}
               href={link.href}

@@ -1,4 +1,4 @@
-import { Course, coursesData } from "./course";
+﻿import { Course, coursesData } from "./course";
 
 export interface Creator {
     id: string;

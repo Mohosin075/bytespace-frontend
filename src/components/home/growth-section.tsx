@@ -1,20 +1,11 @@
 import React from 'react';
 import Image from 'next/image';
 import { Check, Star } from 'lucide-react';
+import { MOCK_STUDENT_AVATARS } from '@/constants/mock-data';
 import { SectionTitle, SectionSubtitle } from '@/components/ui/section-header';
 import { ScrollReveal } from '@/components/ui/scroll-reveal';
 
 export function GrowthSection() {
-  const studentAvatars = [
-    'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=120&q=80',
-    'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80',
-    'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80',
-    'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80',
-    'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80',
-    'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=120&q=80',
-    'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=120&q=80',
-  ];
-
   const creatorFeatures = [
     'Share Your Expertise',
     'Monetize Your Passion',
@@ -226,7 +217,7 @@ export function GrowthSection() {
                 <Star className="size-3.5 fill-[#FFB800] text-[#FFB800]" />
               </div>
               <div className="flex items-center mt-3">
-                {studentAvatars.map((avatar, idx) => (
+                {MOCK_STUDENT_AVATARS.map((avatar, idx) => (
                   <div
                     key={idx}
                     style={{ zIndex: idx + 1 }}

@@ -21,6 +21,7 @@ import { CourseCard } from '@/components/ui/course-card';
 import { ScrollReveal } from '@/components/ui/scroll-reveal';
 import { MOCK_COURSES, matchCourseCategory } from '@/constants/mock-data';
 import { useToast } from '@/context/toast-context';
+import { useClickOutside } from '@/hooks';
 
 function CoursesContent() {
   const searchParams = useSearchParams();
@@ -42,18 +43,13 @@ function CoursesContent() {
   const { showToast } = useToast();
 
   // Close dropdowns when clicking outside
-  useEffect(() => {
-    if (!levelDropdownOpen && !categoryDropdownOpen && !sortDropdownOpen) return;
-    const handleClickOutside = (e: MouseEvent) => {
-      if (filterRowRef.current && !filterRowRef.current.contains(e.target as Node)) {
-        setLevelDropdownOpen(false);
-        setCategoryDropdownOpen(false);
-        setSortDropdownOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [levelDropdownOpen, categoryDropdownOpen, sortDropdownOpen]);
+  useClickOutside(filterRowRef, () => {
+    if (levelDropdownOpen || categoryDropdownOpen || sortDropdownOpen) {
+      setLevelDropdownOpen(false);
+      setCategoryDropdownOpen(false);
+      setSortDropdownOpen(false);
+    }
+  });
 
   const filterCategories = [
     'Featured',

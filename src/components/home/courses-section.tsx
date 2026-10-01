@@ -17,6 +17,8 @@ import {
   RotateCcw,
 } from 'lucide-react';
 
+import { useClickOutside } from '@/hooks';
+
 export function CoursesSection() {
   const [selectedCategory, setSelectedCategory] = useState('Featured');
   const [selectedLevel, setSelectedLevel] = useState('All Levels');
@@ -31,18 +33,13 @@ export function CoursesSection() {
   const filterRowRef = useRef<HTMLDivElement>(null);
 
   // Close dropdowns when clicking outside
-  useEffect(() => {
-    if (!levelDropdownOpen && !categoryDropdownOpen && !sortDropdownOpen) return;
-    const handleClickOutside = (e: MouseEvent) => {
-      if (filterRowRef.current && !filterRowRef.current.contains(e.target as Node)) {
-        setLevelDropdownOpen(false);
-        setCategoryDropdownOpen(false);
-        setSortDropdownOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [levelDropdownOpen, categoryDropdownOpen, sortDropdownOpen]);
+  useClickOutside(filterRowRef, () => {
+    if (levelDropdownOpen || categoryDropdownOpen || sortDropdownOpen) {
+      setLevelDropdownOpen(false);
+      setCategoryDropdownOpen(false);
+      setSortDropdownOpen(false);
+    }
+  });
 
   // Split categories: default visible 12 categories, remaining shown on "+ More"
   const INITIAL_VISIBLE_COUNT = 12;
@@ -372,4 +369,3 @@ export function CoursesSection() {
     </section>
   );
 }
-export default CoursesSection;
