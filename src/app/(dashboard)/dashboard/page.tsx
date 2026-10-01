@@ -38,11 +38,11 @@ export default function DashboardPage() {
   );
 
   return (
-    <div className="space-y-8 font-satoshi pb-8">
+    <div className="font-satoshi">
       {/* =========================================================================
-          HERO GREETING BANNER (MATCHES BYTESPACE BLUEPRINT / BLUE BRAND THEME)
+          FULL-WIDTH HERO GREETING BANNER (EDGE-TO-EDGE SCREEN WIDTH)
           ========================================================================= */}
-      <div className="bg-[#0052FE] bg-hero-grid rounded-[28px] p-7 sm:p-10 lg:p-12 text-white shadow-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-8 relative overflow-hidden">
+      <section className="w-full bg-[#0052FE] bg-hero-grid text-white relative overflow-hidden pt-28 sm:pt-36 md:pt-40 pb-12 sm:pb-16 lg:pb-20">
         {/* Ambient Radial Glow */}
         <div
           className="absolute -top-24 -right-24 w-96 h-96 rounded-full pointer-events-none blur-3xl opacity-50"
@@ -51,42 +51,47 @@ export default function DashboardPage() {
           }}
         />
 
-        <div className="flex items-center gap-6 relative z-10">
-          <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden border-2 border-white/80 shadow-2xl relative bg-white/10 shrink-0">
-            <Image
-              src={user?.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80'}
-              alt={user?.name || 'Student Profile'}
-              fill
-              unoptimized
-              className="object-cover"
-            />
-          </div>
-          <div className="space-y-1.5">
-            <div className="flex items-center gap-2">
-              <span className="px-3.5 py-1 rounded-full bg-[#cbfc01] text-black font-bold text-xs uppercase tracking-wider shadow-sm">
-                {user?.role || 'Student & Creator'}
-              </span>
-              <span className="inline-flex items-center gap-1 px-3 py-0.5 rounded-full bg-white/15 backdrop-blur-md text-white text-xs font-medium">
-                <Sparkles className="w-3 h-3 text-[#cbfc01]" /> Pro Member
-              </span>
+        <div className="layout-container relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+          <div className="flex items-center gap-6">
+            <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden border-2 border-white/80 shadow-2xl relative bg-white/10 shrink-0">
+              <Image
+                src={user?.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80'}
+                alt={user?.name || 'Student Profile'}
+                fill
+                unoptimized
+                className="object-cover"
+              />
             </div>
-            <h1 className="font-poppins font-bold text-2xl sm:text-4xl text-white tracking-tight">
-              Welcome back, {user?.name || 'Jamie Davis'}!
-            </h1>
-            <p className="text-white/85 text-xs sm:text-sm max-w-xl font-normal leading-relaxed">
-              Track your course completion, jump back into your lessons, and manage your saved wishlist.
-            </p>
+            <div className="space-y-1.5">
+              <div className="flex items-center gap-2">
+                <span className="px-3.5 py-1 rounded-full bg-[#cbfc01] text-black font-bold text-xs uppercase tracking-wider shadow-sm">
+                  {user?.role || 'Student & Creator'}
+                </span>
+                <span className="inline-flex items-center gap-1 px-3 py-0.5 rounded-full bg-white/15 backdrop-blur-md text-white text-xs font-medium">
+                  <Sparkles className="w-3 h-3 text-[#cbfc01]" /> Pro Member
+                </span>
+              </div>
+              <h1 className="font-poppins font-bold text-2xl sm:text-4xl text-white tracking-tight">
+                Welcome back, {user?.name || 'Jamie Davis'}!
+              </h1>
+              <p className="text-white/85 text-xs sm:text-sm max-w-xl font-normal leading-relaxed">
+                Track your course completion, jump back into your lessons, and manage your saved wishlist.
+              </p>
+            </div>
           </div>
-        </div>
 
-        <Link
-          href={ROUTES.COURSES}
-          className="px-7 py-3.5 rounded-full bg-[#cbfc01] text-black font-semibold text-sm hover:brightness-95 active:scale-95 transition-all shadow-xl shrink-0 cursor-pointer relative z-10 flex items-center gap-2"
-        >
-          <span>Explore Catalog</span>
-          <ArrowRight className="w-4 h-4" />
-        </Link>
-      </div>
+          <Link
+            href={ROUTES.COURSES}
+            className="px-7 py-3.5 rounded-full bg-[#cbfc01] text-black font-semibold text-sm hover:brightness-95 active:scale-95 transition-all shadow-xl shrink-0 cursor-pointer relative z-10 flex items-center gap-2"
+          >
+            <span>Explore Catalog</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+      </section>
+
+      {/* Main Dashboard Content Body inside layout-container */}
+      <div className="layout-container py-8 sm:py-10 space-y-8 pb-16">
 
       {/* =========================================================================
           METRICS CARDS ROW
@@ -316,6 +321,7 @@ export default function DashboardPage() {
           </div>
         </div>
       )}
+      </div>
     </div>
   );
 }
