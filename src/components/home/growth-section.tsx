@@ -25,21 +25,21 @@ export function GrowthSection() {
   return (
     <section className="relative w-full overflow-hidden bg-white py-10 sm:py-20 lg:py-28">
       {/* ── Ambient Radial Glows ── */}
-      {/* 1. Top Section - Top-Left Lime Accent */}
+      {/* 1. Top Section - Top-Left Radiant Lime Glow */}
       <div
-        className="absolute -top-24 -left-32 w-162.5 h-162.5 rounded-full pointer-events-none select-none blur-[100px]"
+        className="absolute -top-36 sm:-top-44 -left-24 sm:-left-36 w-[650px] sm:w-[850px] lg:w-[980px] h-[550px] sm:h-[680px] rounded-full pointer-events-none select-none blur-[95px]"
         style={{
           background:
-            'radial-gradient(circle, rgba(203, 252, 1, 0.22) 0%, rgba(203, 252, 1, 0.08) 50%, rgba(203, 252, 1, 0.02) 75%, transparent 100%)',
+            'radial-gradient(circle at center, rgba(203, 252, 1, 0.44) 0%, rgba(203, 252, 1, 0.20) 42%, rgba(203, 252, 1, 0.04) 70%, transparent 100%)',
         }}
       />
 
-      {/* 2. Top Section - Top-Right Soft Blue Accent */}
+      {/* 2. Top Section - Right Top Corner Soft Blue Glow */}
       <div
-        className="absolute top-[8%] -right-24 w-150 h-150 rounded-full pointer-events-none select-none blur-[100px]"
+        className="absolute -top-24 sm:-top-32 -right-24 sm:-right-36 w-[550px] sm:w-[720px] h-[550px] sm:h-[720px] rounded-full pointer-events-none select-none blur-[95px]"
         style={{
           background:
-            'radial-gradient(circle, rgba(0, 59, 226, 0.05) 0%, rgba(0, 59, 226, 0.02) 53%, transparent 100%)',
+            'radial-gradient(circle at center, rgba(0, 82, 254, 0.18) 0%, rgba(129, 197, 255, 0.14) 42%, rgba(0, 82, 254, 0.02) 68%, transparent 100%)',
         }}
       />
 
@@ -52,21 +52,21 @@ export function GrowthSection() {
         }}
       />
 
-      {/* 4. Creator Section - Lower Left Lime Ambient Glow */}
+      {/* 4. Creator Section - Left Bottom Corner Lime Ambient Glow */}
       <div
-        className="absolute top-[60%] sm:top-[56%] -left-28 w-[620px] h-[620px] rounded-full pointer-events-none select-none blur-[90px]"
+        className="absolute -bottom-24 sm:-bottom-32 -left-24 sm:-left-32 w-[580px] sm:w-[720px] h-[580px] sm:h-[720px] rounded-full pointer-events-none select-none blur-[85px]"
         style={{
           background:
-            'radial-gradient(circle, rgba(203, 252, 1, 0.32) 0%, rgba(203, 252, 1, 0.12) 50%, rgba(203, 252, 1, 0.02) 75%, transparent 100%)',
+            'radial-gradient(circle, rgba(203, 252, 1, 0.45) 0%, rgba(203, 252, 1, 0.20) 45%, rgba(203, 252, 1, 0.04) 70%, transparent 100%)',
         }}
       />
 
-      {/* 5. Creator Section - Bottom-Right Blue Ambient Glow */}
+      {/* 5. Creator Section - Right Bottom Corner Blue Ambient Glow */}
       <div
-        className="absolute -bottom-20 -right-20 w-[650px] sm:w-[800px] lg:w-[900px] h-[650px] sm:h-[800px] lg:h-[900px] rounded-full pointer-events-none select-none blur-[95px]"
+        className="absolute -bottom-24 sm:-bottom-32 -right-24 sm:-right-32 w-[600px] sm:w-[780px] lg:w-[880px] h-[600px] sm:h-[780px] lg:h-[880px] rounded-full pointer-events-none select-none blur-[90px]"
         style={{
           background:
-            'radial-gradient(circle at center, rgba(0, 82, 254, 0.22) 0%, rgba(99, 102, 241, 0.14) 42%, rgba(0, 82, 254, 0.04) 70%, transparent 100%)',
+            'radial-gradient(circle at center, rgba(0, 82, 254, 0.22) 0%, rgba(147, 197, 253, 0.15) 45%, rgba(0, 82, 254, 0.03) 70%, transparent 100%)',
         }}
       />
 
@@ -85,20 +85,33 @@ export function GrowthSection() {
               Explore our curated selection of courses tailored to enhance your capabilities and accelerate your career journey. Whether you are looking to sharpen specific skills, gain industry expertise, or embark on a new career path entirely, we have the resources you need.
             </SectionSubtitle>
 
-            <div className="grid grid-cols-3 gap-3.5 sm:gap-5 pt-4">
-              <div className="bg-neutral-50/90 rounded-2xl p-4 sm:p-5 border border-neutral-200/70 hover:border-primary-200 hover:bg-primary-50/20 hover:-translate-y-1 transition-all duration-300 group cursor-default">
-                <div className="font-satoshi text-2xl sm:text-3xl lg:text-[38px] font-extrabold text-[#0052FE] tracking-tight group-hover:scale-105 transition-transform duration-200 origin-left">12K+</div>
-                <div className="font-satoshi text-xs sm:text-sm font-semibold text-neutral-500 mt-1">Students</div>
+            {/* Clean Stats Row exactly as in Screenshot (No boxes) */}
+            <div className="grid grid-cols-3 gap-6 sm:gap-8 pt-4">
+              <div>
+                <div className="font-satoshi text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#0052FE] tracking-tight leading-none">
+                  12K
+                </div>
+                <div className="font-satoshi text-xs sm:text-sm text-neutral-500 mt-2 font-normal">
+                  Students
+                </div>
               </div>
 
-              <div className="bg-neutral-50/90 rounded-2xl p-4 sm:p-5 border border-neutral-200/70 hover:border-primary-200 hover:bg-primary-50/20 hover:-translate-y-1 transition-all duration-300 group cursor-default">
-                <div className="font-satoshi text-2xl sm:text-3xl lg:text-[38px] font-extrabold text-[#0052FE] tracking-tight group-hover:scale-105 transition-transform duration-200 origin-left">70+</div>
-                <div className="font-satoshi text-xs sm:text-sm font-semibold text-neutral-500 mt-1">Courses</div>
+              <div>
+                <div className="font-satoshi text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#0052FE] tracking-tight leading-none">
+                  70+
+                </div>
+                <div className="font-satoshi text-xs sm:text-sm text-neutral-500 mt-2 font-normal">
+                  Courses
+                </div>
               </div>
 
-              <div className="bg-neutral-50/90 rounded-2xl p-4 sm:p-5 border border-neutral-200/70 hover:border-primary-200 hover:bg-primary-50/20 hover:-translate-y-1 transition-all duration-300 group cursor-default">
-                <div className="font-satoshi text-2xl sm:text-3xl lg:text-[38px] font-extrabold text-[#0052FE] tracking-tight group-hover:scale-105 transition-transform duration-200 origin-left">16+</div>
-                <div className="font-satoshi text-xs sm:text-sm font-semibold text-neutral-500 mt-1">Creators</div>
+              <div>
+                <div className="font-satoshi text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#0052FE] tracking-tight leading-none">
+                  16
+                </div>
+                <div className="font-satoshi text-xs sm:text-sm text-neutral-500 mt-2 font-normal">
+                  Creators
+                </div>
               </div>
             </div>
           </ScrollReveal>
@@ -142,10 +155,14 @@ export function GrowthSection() {
             </div>
 
             {/* Learning progress floating card */}
-            <div className="absolute top-[42%] -right-2.5 sm:-right-3.75 z-30 bg-white/95 backdrop-blur-md rounded-2xl p-4 sm:p-5 shadow-2xl border border-white/80 w-42.5 sm:w-50 animate-float-reverse">
-              <span className="font-satoshi text-[11px] sm:text-xs font-semibold text-zinc-500">Learning Progress</span>
-              <div className="font-satoshi text-2xl sm:text-3xl font-extrabold text-zinc-900 mt-1">55%</div>
-              <div className="w-full bg-zinc-100 rounded-full h-2 mt-2.5 overflow-hidden">
+            <div className="absolute top-16 sm:top-20 md:top-[30%] -right-2 sm:-right-3.75 z-30 bg-white/95 backdrop-blur-md rounded-xl sm:rounded-2xl p-2.5 sm:p-4 md:p-5 shadow-xl sm:shadow-2xl border border-white/80 w-32 sm:w-44 md:w-50 animate-float-reverse">
+              <span className="font-satoshi text-[9px] sm:text-[11px] md:text-xs font-semibold text-zinc-500 block leading-tight">
+                Learning Progress
+              </span>
+              <div className="font-satoshi text-lg sm:text-2xl md:text-3xl font-extrabold text-zinc-900 mt-0.5 sm:mt-1 leading-none">
+                55%
+              </div>
+              <div className="w-full bg-zinc-100 rounded-full h-1.5 sm:h-2 mt-1.5 sm:mt-2.5 overflow-hidden">
                 <div className="bg-[#CBFC01] h-full rounded-full w-[55%]" />
               </div>
             </div>
