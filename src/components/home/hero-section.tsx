@@ -307,7 +307,7 @@ export function HeroSection() {
         {/* ── Student Centerpiece + Lime Halo Backdrop + Badges ── */}
         <div className="relative w-full max-w-4xl mt-8 sm:mt-16 flex justify-center items-end min-h-[300px] sm:min-h-[480px] lg:min-h-[560px]">
           {/* Center Back Halo Arc */}
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[340px] sm:w-[600px] lg:w-[850px] pointer-events-none select-none z-0 animate-pulse-glow">
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[380px] sm:w-[700px] md:w-[880px] lg:w-[1020px] xl:w-[1060px] max-w-none pointer-events-none select-none z-0 animate-pulse-glow">
             <Image
               src="/home/Hero/centerbackshpae.svg"
               alt="Center Back Halo"
@@ -319,12 +319,12 @@ export function HeroSection() {
           </div>
 
           {/* Centerman Student Image */}
-          <div className="relative z-10 w-[260px] sm:w-[480px] lg:w-[640px] flex justify-center pointer-events-none select-none">
+          <div className="relative z-10 w-[260px] sm:w-[520px] lg:w-[700px] flex justify-center pointer-events-none select-none">
             <Image
               src="/home/Hero/centerman.svg"
               alt="ByteSpace Student"
-              width={722}
-              height={515}
+              width={800}
+              height={580}
               priority
               className="w-full h-auto object-contain drop-shadow-2xl"
             />
