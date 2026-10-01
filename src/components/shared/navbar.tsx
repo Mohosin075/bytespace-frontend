@@ -63,7 +63,7 @@ export function Navbar({ variant = 'blue' }: NavbarProps) {
       className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ease-in-out ${
         scrolled || mobileMenuOpen
           ? isBlue
-            ? 'bg-[#0047FF]/80 backdrop-blur-xl shadow-[0_10px_30px_-10px_rgba(0,15,80,0.3)] border-b border-white/15 h-16 sm:h-20'
+            ? 'bg-primary-600/80 backdrop-blur-xl shadow-[0_10px_30px_-10px_rgba(0,15,80,0.3)] border-b border-white/15 h-16 sm:h-20'
             : 'bg-white/85 backdrop-blur-xl shadow-sm border-b border-neutral-200/80 h-16 sm:h-20'
           : isBlue
           ? 'bg-transparent border-b border-transparent h-20 sm:h-24 md:h-28 text-white'
@@ -223,7 +223,7 @@ export function Navbar({ variant = 'blue' }: NavbarProps) {
 
       {/* Mobile Menu Dropdown */}
       <div
-        className={`md:hidden absolute top-full left-0 right-0 bg-[#0047FF]/95 backdrop-blur-2xl border-b border-white/20 px-5 sm:px-6 py-6 flex flex-col gap-5 shadow-2xl text-white transition-all duration-300 origin-top ${
+        className={`md:hidden absolute top-full left-0 right-0 bg-primary-600/95 backdrop-blur-2xl border-b border-white/20 px-5 sm:px-6 py-6 flex flex-col gap-5 shadow-2xl text-white transition-all duration-300 origin-top ${
           mobileMenuOpen
             ? 'opacity-100 translate-y-0 pointer-events-auto'
             : 'opacity-0 -translate-y-2 pointer-events-none'
@@ -278,7 +278,7 @@ export function Navbar({ variant = 'blue' }: NavbarProps) {
               <Link
                 href={ROUTES.AUTH.REGISTER}
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-center w-full py-3 rounded-full bg-[#D4FB20] text-black text-sm font-semibold hover:bg-[#c3ea1a] transition-all shadow-md shadow-[#D4FB20]/20"
+                className="text-center w-full py-3 rounded-full bg-secondary-500 text-black text-sm font-semibold hover:brightness-95 transition-all shadow-md"
               >
                 Join Us
               </Link>

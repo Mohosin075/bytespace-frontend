@@ -58,7 +58,7 @@ export function HeroSection() {
   return (
     <>
       <Navbar variant="blue" />
-      <section className="relative w-full overflow-hidden bg-[#0052FE] pt-28 sm:pt-32 lg:pt-36">
+      <section className="relative w-full overflow-hidden bg-primary-600 pt-28 sm:pt-32 lg:pt-36">
 
       {/* Blueprint Grid Lines */}
       <div
@@ -164,7 +164,7 @@ export function HeroSection() {
                   if (query.trim().length > 0) setIsOpen(true);
                 }}
                 placeholder="Course, topic, creator"
-                className="w-full h-12 sm:h-14 pl-11 sm:pl-13 pr-10 rounded-full bg-white placeholder:text-zinc-400 text-sm sm:text-base font-normal shadow-lg shadow-blue-950/20 focus:outline-none focus:ring-3 focus:ring-[#D4FB20] focus:shadow-xl transition-all duration-200"
+                className="w-full h-12 sm:h-14 pl-11 sm:pl-13 pr-10 rounded-full bg-white placeholder:text-zinc-400 text-sm sm:text-base font-normal shadow-lg shadow-blue-950/20 focus:outline-none focus:ring-3 focus:ring-secondary-500 focus:shadow-xl transition-all duration-200"
               />
               {query && (
                 <button
@@ -182,7 +182,7 @@ export function HeroSection() {
             </div>
             <button
               type="submit"
-              className="w-full sm:w-auto h-12 sm:h-14 px-8 rounded-full bg-[#D4FB20] text-black font-semibold text-sm sm:text-base hover:bg-[#c3ea1a] hover:shadow-lg hover:shadow-black/15 active:scale-[0.97] transition-all duration-200 shadow-md shadow-black/10 shrink-0 cursor-pointer"
+              className="w-full sm:w-auto h-12 sm:h-14 px-8 rounded-full bg-secondary-500 text-black font-semibold text-sm sm:text-base hover:brightness-95 hover:shadow-lg hover:shadow-black/15 active:scale-[0.97] transition-all duration-200 shadow-md shadow-black/10 shrink-0 cursor-pointer"
             >
               Search
             </button>
@@ -199,7 +199,7 @@ export function HeroSection() {
                   <Link
                     href={ROUTES.COURSES}
                     onClick={() => setIsOpen(false)}
-                    className="inline-flex items-center gap-1.5 mt-2 text-xs font-semibold text-[#0052FE] hover:underline"
+                    className="inline-flex items-center gap-1.5 mt-2 text-xs font-semibold text-primary-600 hover:underline"
                   >
                     Browse all courses <ChevronRight className="size-3" />
                   </Link>
@@ -231,7 +231,7 @@ export function HeroSection() {
                               />
                             </div>
                             <div className="flex-1 min-w-0 text-left">
-                              <h5 className="text-sm font-medium text-zinc-900 truncate group-hover:text-[#0052FE] transition-colors">
+                              <h5 className="text-sm font-medium text-zinc-900 truncate group-hover:text-primary-600 transition-colors">
                                 {course.title}
                               </h5>
                               <div className="flex items-center gap-2 text-xs text-zinc-500 mt-0.5">
@@ -276,7 +276,7 @@ export function HeroSection() {
                               />
                             </div>
                             <div className="flex-1 min-w-0 text-left">
-                              <h5 className="text-sm font-medium text-zinc-900 truncate group-hover:text-[#0052FE] transition-colors">
+                              <h5 className="text-sm font-medium text-zinc-900 truncate group-hover:text-primary-600 transition-colors">
                                 {creator.name}
                               </h5>
                               <div className="flex items-center gap-2 text-xs text-zinc-500 mt-0.5">
@@ -338,7 +338,7 @@ export function HeroSection() {
             </span>
             <div className="text-xl sm:text-3xl font-extrabold text-zinc-900 mt-0.5 sm:mt-1">55%</div>
             <div className="w-full bg-zinc-100 rounded-full h-1.5 sm:h-2 mt-1.5 sm:mt-2.5 overflow-hidden">
-              <div className="bg-[#D4FB20] h-full rounded-full w-[55%] transition-all duration-1000 ease-out" />
+              <div className="bg-secondary-500 h-full rounded-full w-[55%] transition-all duration-1000 ease-out" />
             </div>
           </div>
 
@@ -366,7 +366,7 @@ export function HeroSection() {
               ))}
               <div
                 style={{ zIndex: 10 }}
-                className="relative -ml-1.5 sm:-ml-2 size-5 sm:size-7 rounded-full bg-[#D4FB20] text-black text-[8px] sm:text-[10px] font-bold flex items-center justify-center shrink-0 border border-white/80"
+                className="relative -ml-1.5 sm:-ml-2 size-5 sm:size-7 rounded-full bg-secondary-500 text-black text-[8px] sm:text-[10px] font-bold flex items-center justify-center shrink-0 border border-white/80"
               >
                 2K+
               </div>

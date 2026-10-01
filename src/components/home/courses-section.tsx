@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo, useEffect, useRef } from 'react';
+import React, { useState, useMemo, useRef } from 'react';
 import { SectionHeader } from '@/components/ui/section-header';
 import { CourseCard } from '@/components/ui/course-card';
 import { ScrollReveal } from '@/components/ui/scroll-reveal';
@@ -138,7 +138,7 @@ export function CoursesSection() {
                   )}
                   <span>Filter</span>
                   {(selectedCategory !== 'Featured' || selectedLevel !== 'All Levels' || sortBy !== 'relevant') && (
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#cbfc01] inline-block shrink-0" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-secondary-500 inline-block shrink-0" />
                   )}
                 </button>
 

@@ -6,7 +6,7 @@ import { ROUTES } from "@/constants/routes";
 
 export default function UnlockSection() {
     return (
-        <section className="relative w-full overflow-hidden bg-[#0052FE] py-20 sm:py-28 font-satoshi">
+        <section className="relative w-full overflow-hidden bg-primary-600 py-20 sm:py-28 font-satoshi">
             <div
                 className="absolute inset-0 pointer-events-none"
                 style={{
@@ -57,7 +57,7 @@ export default function UnlockSection() {
 
                 <Link
                   href={ROUTES.AUTH.REGISTER}
-                  className="mt-8 inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#D4FB20] text-neutral-950 font-bold text-sm sm:text-base hover:bg-[#c3ea1a] hover:shadow-[0_10px_25px_rgba(212,251,32,0.35)] hover:scale-[1.02] active:scale-[0.97] transition-all duration-200 shadow-md cursor-pointer"
+                  className="mt-8 inline-flex items-center justify-center px-8 py-4 rounded-full bg-secondary-500 text-neutral-950 font-bold text-sm sm:text-base hover:brightness-95 hover:scale-[1.02] active:scale-[0.97] transition-all duration-200 shadow-md cursor-pointer"
                 >
                   Join as Creator
                 </Link>

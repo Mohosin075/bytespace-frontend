@@ -130,7 +130,7 @@ export default function CourseDetailClient({ slug }: CourseDetailClientProps = {
 
       {/* ── Top Blue Hero Background with Large Blueprint Grid ── */}
       <div
-        className="absolute top-0 inset-x-0 bg-[#0052FE] pointer-events-none overflow-hidden z-0 transition-[height] duration-200"
+        className="absolute top-0 inset-x-0 bg-primary-600 pointer-events-none overflow-hidden z-0 transition-[height] duration-200"
         style={{ height: `${blueHeight}px` }}
       >
         <div
@@ -190,7 +190,7 @@ export default function CourseDetailClient({ slug }: CourseDetailClientProps = {
             {/* Share Button (Top Right Lime Pill Button) */}
             <button
               onClick={handleShare}
-              className="px-6 py-2.5 rounded-full bg-[#cbfc01] text-black font-semibold text-xs sm:text-sm hover:brightness-95 active:scale-95 transition-all flex items-center gap-1.5 cursor-pointer shadow-lg shrink-0 self-start"
+              className="px-6 py-2.5 rounded-full bg-secondary-500 text-black font-semibold text-xs sm:text-sm hover:brightness-95 active:scale-95 transition-all flex items-center gap-1.5 cursor-pointer shadow-lg shrink-0 self-start"
             >
               <Share2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               <span>Share</span>
@@ -244,7 +244,7 @@ export default function CourseDetailClient({ slug }: CourseDetailClientProps = {
                       onClick={() => setActiveTab(tab)}
                       className={`px-6 sm:px-7 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
                         isActive
-                          ? 'bg-[#cbfc01] text-black shadow-xs font-bold'
+                          ? 'bg-secondary-500 text-black shadow-xs font-bold'
                           : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
                       }`}
                     >
@@ -299,7 +299,7 @@ export default function CourseDetailClient({ slug }: CourseDetailClientProps = {
                   <div className="space-y-3.5 pt-1">
                     {keyPoints.map((point) => (
                       <div key={point} className="flex items-center gap-3.5">
-                        <CheckCircle2 className="w-5.5 h-5.5 fill-[#0052FE] text-white shrink-0" />
+                        <CheckCircle2 className="w-5.5 h-5.5 fill-primary-600 text-white shrink-0" />
                         <span className="text-neutral-700 text-[15px] sm:text-base font-normal">
                           {point}
                         </span>
@@ -334,7 +334,7 @@ export default function CourseDetailClient({ slug }: CourseDetailClientProps = {
                         key={module.id}
                         className="flex items-start gap-4"
                       >
-                        <div className="w-12 h-12 rounded-[18px] bg-[#cbfc01] flex items-center justify-center shrink-0 text-black shadow-xs">
+                        <div className="w-12 h-12 rounded-[18px] bg-secondary-500 flex items-center justify-center shrink-0 text-black shadow-xs">
                           <Video className="w-5 h-5 stroke-[2.2]" />
                         </div>
                         <div className="space-y-1 pt-0.5">
@@ -373,7 +373,7 @@ export default function CourseDetailClient({ slug }: CourseDetailClientProps = {
                     <p className="text-xs text-neutral-500 font-semibold">Learning Progress</p>
                     <p className="font-satoshi font-bold text-3xl text-neutral-950">55%</p>
                     <div className="w-full bg-neutral-200/80 h-2.5 rounded-full overflow-hidden mt-3">
-                      <div className="bg-[#cbfc01] h-full rounded-full w-[55%]" />
+                      <div className="bg-secondary-500 h-full rounded-full w-[55%]" />
                     </div>
                   </div>
                 </div>
@@ -396,7 +396,7 @@ export default function CourseDetailClient({ slug }: CourseDetailClientProps = {
                 {/* Ratings Breakdown Summary Box */}
                 <div className="bg-white rounded-[24px] p-6 sm:p-8 border border-neutral-200/90 shadow-xs flex flex-col sm:flex-row items-center gap-8">
                   {/* Big Lime Rating Box */}
-                  <div className="w-32 h-32 rounded-[20px] bg-[#cbfc01] flex flex-col items-center justify-center shrink-0 text-black shadow-xs">
+                  <div className="w-32 h-32 rounded-[20px] bg-secondary-500 flex flex-col items-center justify-center shrink-0 text-black shadow-xs">
                     <span className="text-xs font-semibold uppercase tracking-wider text-black/80">Ratings</span>
                     <span className="font-satoshi font-bold text-4xl mt-1">4.7</span>
                   </div>
@@ -408,7 +408,7 @@ export default function CourseDetailClient({ slug }: CourseDetailClientProps = {
                         {/* Progress Bar */}
                         <div className="flex-1 bg-neutral-200/70 h-3 rounded-full overflow-hidden">
                           <div
-                            className="bg-[#cbfc01] h-full rounded-full"
+                            className="bg-secondary-500 h-full rounded-full"
                             style={{ width: `${row.percent}%` }}
                           />
                         </div>
@@ -442,7 +442,7 @@ export default function CourseDetailClient({ slug }: CourseDetailClientProps = {
                           onClick={() => setActiveReviewFilter(filter)}
                           className={`px-5 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer ${
                             isActive
-                              ? 'bg-[#cbfc01] text-black shadow-xs font-bold'
+                              ? 'bg-secondary-500 text-black shadow-xs font-bold'
                               : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
                           }`}
                         >
@@ -527,7 +527,7 @@ export default function CourseDetailClient({ slug }: CourseDetailClientProps = {
                       <span className="text-neutral-400 font-medium">{item.num}</span>
                       <span className="font-medium text-neutral-800 leading-snug">{item.title}</span>
                     </div>
-                    <span className="font-medium text-[#0052FE] shrink-0">{item.duration}</span>
+                    <span className="font-medium text-primary-600 shrink-0">{item.duration}</span>
                   </div>
                 ))}
                 <p className="text-xs text-neutral-400 font-normal pt-1">99 more videos</p>
@@ -543,7 +543,7 @@ export default function CourseDetailClient({ slug }: CourseDetailClientProps = {
               {/* Price & CTA Buttons */}
               <div>
                 <div className="flex items-baseline gap-1 mb-4">
-                  <span className="font-satoshi font-bold text-3xl sm:text-4xl text-[#0052FE]">${course.price}</span>
+                  <span className="font-satoshi font-bold text-3xl sm:text-4xl text-primary-600">${course.price}</span>
                   <span className="text-xs text-neutral-500 font-normal">/{course.priceType || 'lifetime'}</span>
                 </div>
 
@@ -554,7 +554,7 @@ export default function CourseDetailClient({ slug }: CourseDetailClientProps = {
                     className={`w-full py-3.5 px-6 rounded-full font-bold text-sm transition-all shadow-md cursor-pointer ${
                       isEnrolled
                         ? 'bg-neutral-900 text-white hover:bg-neutral-800'
-                        : 'bg-[#cbfc01] text-black hover:brightness-95 active:scale-95'
+                        : 'bg-secondary-500 text-black hover:brightness-95 active:scale-95'
                     }`}
                   >
                     {isEnrolled ? 'Go to Learning Workspace' : 'Enroll Now'}
@@ -573,7 +573,7 @@ export default function CourseDetailClient({ slug }: CourseDetailClientProps = {
                       }}
                       className="w-full py-3.5 px-6 rounded-full border border-neutral-300 font-semibold text-xs text-neutral-800 hover:border-neutral-900 hover:bg-neutral-50 transition-all cursor-pointer flex items-center justify-center gap-2"
                     >
-                      <ShoppingBag className="w-4 h-4 text-[#0052FE]" />
+                      <ShoppingBag className="w-4 h-4 text-primary-600" />
                       <span>{isInCart(course.id) ? 'In Your Cart' : 'Add to Cart'}</span>
                     </button>
                   )}
@@ -588,19 +588,19 @@ export default function CourseDetailClient({ slug }: CourseDetailClientProps = {
 
                 <div className="space-y-3.5 text-xs sm:text-sm font-medium text-neutral-700">
                   <div className="flex items-center gap-3">
-                    <Folder className="w-4.5 h-4.5 text-[#0052FE] shrink-0" />
+                    <Folder className="w-4.5 h-4.5 text-primary-600 shrink-0" />
                     <span>Learning Resources</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <Video className="w-4.5 h-4.5 text-[#0052FE] shrink-0" />
+                    <Video className="w-4.5 h-4.5 text-primary-600 shrink-0" />
                     <span>Quality Lesson Videos</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <Award className="w-4.5 h-4.5 text-[#0052FE] shrink-0" />
+                    <Award className="w-4.5 h-4.5 text-primary-600 shrink-0" />
                     <span>Certificate of Completion</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <Radio className="w-4.5 h-4.5 text-[#0052FE] shrink-0" />
+                    <Radio className="w-4.5 h-4.5 text-primary-600 shrink-0" />
                     <span>Private Consultation</span>
                   </div>
                 </div>

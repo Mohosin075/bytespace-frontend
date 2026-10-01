@@ -122,7 +122,7 @@ export default function RegisterClient() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="px-8 py-3 rounded-full bg-[#cbfc01] text-black font-semibold text-sm hover:brightness-95 active:scale-95 transition-all cursor-pointer shadow-md disabled:opacity-50"
+                    className="px-8 py-3 rounded-full bg-secondary-500 text-black font-semibold text-sm hover:brightness-95 active:scale-95 transition-all cursor-pointer shadow-md disabled:opacity-50"
                   >
                     {loading ? 'Processing...' : 'Continue'}
                   </button>

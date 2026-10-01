@@ -6,10 +6,10 @@ export function Hero3DElements() {
         <svg viewBox="0 0 160 220" fill="none" className="w-full h-full filter drop-shadow-2xl">
           <defs>
             <linearGradient id="limeZigzagGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#faffc5" />
-              <stop offset="30%" stopColor="#cbfc01" />
-              <stop offset="80%" stopColor="#8cb400" />
-              <stop offset="100%" stopColor="#4b6b00" />
+              <stop offset="0%" stopColor="var(--color-secondary-100)" />
+              <stop offset="30%" stopColor="var(--secondary)" />
+              <stop offset="80%" stopColor="var(--color-secondary-600)" />
+              <stop offset="100%" stopColor="var(--color-secondary-800)" />
             </linearGradient>
           </defs>
           <path
@@ -64,10 +64,10 @@ export function Hero3DElements() {
         <svg viewBox="0 0 140 240" fill="none" className="w-full h-full filter drop-shadow-2xl">
           <defs>
             <linearGradient id="limeCylGradExact" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#fdffe4" />
-              <stop offset="40%" stopColor="#cbfc01" />
-              <stop offset="80%" stopColor="#8cb400" />
-              <stop offset="100%" stopColor="#465a0d" />
+              <stop offset="0%" stopColor="var(--color-secondary-50)" />
+              <stop offset="40%" stopColor="var(--secondary)" />
+              <stop offset="80%" stopColor="var(--color-secondary-600)" />
+              <stop offset="100%" stopColor="var(--color-secondary-900)" />
             </linearGradient>
           </defs>
           <rect x="15" y="15" width="110" height="210" rx="55" fill="url(#limeCylGradExact)" />

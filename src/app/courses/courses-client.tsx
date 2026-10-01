@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo, useEffect, useRef, Suspense } from 'react';
+import React, { useState, useMemo, useRef, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import {
   Search,
@@ -19,7 +19,7 @@ import { Navbar } from '@/components/shared/navbar';
 import { Footer } from '@/components/shared/footer';
 import { CourseCard } from '@/components/ui/course-card';
 import { ScrollReveal } from '@/components/ui/scroll-reveal';
-import { MOCK_COURSES, matchCourseCategory } from '@/constants/mock-data';
+import { MOCK_COURSES } from '@/constants/mock-data';
 import { useToast } from '@/context/toast-context';
 import { useClickOutside, useCourseFilter } from '@/hooks';
 
@@ -161,7 +161,7 @@ function CoursesContent() {
   return (
     <div className="font-satoshi">
       {/* ── 100% Full-Width Search Header Banner ── */}
-      <section className="relative w-full bg-[#0052FE] text-white pt-28 sm:pt-36 md:pt-40 pb-16 sm:pb-20 overflow-hidden">
+      <section className="relative w-full bg-primary-600 text-white pt-28 sm:pt-36 md:pt-40 pb-16 sm:pb-20 overflow-hidden">
         {/* Blueprint Grid Lines Accent */}
         <div
           className="absolute inset-0 pointer-events-none"
@@ -246,7 +246,7 @@ function CoursesContent() {
             )}
             <span>Filter</span>
             {(selectedCategory !== 'Featured' || selectedLevel !== 'All Levels' || searchQuery.trim() !== '') && (
-              <span className="w-2 h-2 rounded-full bg-[#cbfc01] inline-block" />
+              <span className="w-2 h-2 rounded-full bg-secondary-500 inline-block" />
             )}
           </button>
 
@@ -390,7 +390,7 @@ function CoursesContent() {
               onClick={() => handleCategorySelect(category)}
               className={`px-4 sm:px-5 py-2 rounded-full text-xs font-medium transition-all cursor-pointer shrink-0 ${
                 isActive
-                  ? 'bg-[#cbfc01] text-black font-semibold shadow-xs scale-105'
+                  ? 'bg-secondary-500 text-black font-semibold shadow-xs scale-105'
                   : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
               }`}
             >
@@ -457,7 +457,7 @@ function CoursesContent() {
           <button
             type="button"
             onClick={handleResetFilters}
-            className="px-6 py-2.5 rounded-full bg-[#cbfc01] text-black font-semibold text-xs shadow-md hover:brightness-95 cursor-pointer"
+            className="px-6 py-2.5 rounded-full bg-secondary-500 text-black font-semibold text-xs shadow-md hover:brightness-95 cursor-pointer"
           >
             Reset Search &amp; Filters
           </button>

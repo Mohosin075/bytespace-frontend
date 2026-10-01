@@ -59,7 +59,7 @@ export default function CreatorDetailClient() {
                     <h1 className="font-poppins font-bold text-2xl sm:text-3xl md:text-4xl text-white">
                       {MOCK_CREATOR.name}
                     </h1>
-                    <span className="px-3.5 py-1 rounded-full bg-[#cbfc01] text-black font-semibold text-xs shadow-xs">
+                    <span className="px-3.5 py-1 rounded-full bg-secondary-500 text-black font-semibold text-xs shadow-xs">
                       Creator
                     </span>
                   </div>
@@ -91,7 +91,7 @@ export default function CreatorDetailClient() {
             <div className="shrink-0 self-end lg:self-end">
               <button
                 onClick={toggleFollow}
-                className="px-9 py-3 rounded-full bg-[#cbfc01] text-black font-semibold text-sm hover:brightness-95 active:scale-95 transition-all shadow-xl cursor-pointer"
+                className="px-9 py-3 rounded-full bg-secondary-500 text-black font-semibold text-sm hover:brightness-95 active:scale-95 transition-all shadow-xl cursor-pointer"
               >
                 {isFollowing ? 'Following' : 'Follow'}
               </button>

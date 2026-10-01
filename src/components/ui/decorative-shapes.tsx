@@ -4,9 +4,9 @@ export function DonutShape({ className = '' }: { className?: string }) {
       <svg viewBox="0 0 120 120" className="w-full h-full drop-shadow-xl" fill="none">
         <defs>
           <linearGradient id="donutGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#e4ff54" />
-            <stop offset="50%" stopColor="#cbfc01" />
-            <stop offset="100%" stopColor="#8cb400" />
+            <stop offset="0%" stopColor="var(--color-secondary-300)" />
+            <stop offset="50%" stopColor="var(--secondary)" />
+            <stop offset="100%" stopColor="var(--color-secondary-600)" />
           </linearGradient>
         </defs>
         <circle cx="60" cy="60" r="45" stroke="url(#donutGrad)" strokeWidth="22" />
@@ -42,8 +42,8 @@ export function ConeShape({ className = '' }: { className?: string }) {
       <svg viewBox="0 0 100 120" className="w-full h-full drop-shadow-xl">
         <defs>
           <linearGradient id="coneGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#d4fb20" />
-            <stop offset="100%" stopColor="#6a8902" />
+            <stop offset="0%" stopColor="var(--color-secondary-400)" />
+            <stop offset="100%" stopColor="var(--color-secondary-700)" />
           </linearGradient>
         </defs>
         <polygon points="50,10 90,110 10,110" fill="url(#coneGrad)" />
@@ -58,9 +58,9 @@ export function CylinderShape({ className = '' }: { className?: string }) {
       <svg viewBox="0 0 80 120" className="w-full h-full drop-shadow-xl">
         <defs>
           <linearGradient id="cylGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#faffc5" />
-            <stop offset="50%" stopColor="#cbfc01" />
-            <stop offset="100%" stopColor="#8cb400" />
+            <stop offset="0%" stopColor="var(--color-secondary-100)" />
+            <stop offset="50%" stopColor="var(--secondary)" />
+            <stop offset="100%" stopColor="var(--color-secondary-600)" />
           </linearGradient>
         </defs>
         <rect x="10" y="20" width="60" height="80" rx="30" fill="url(#cylGrad)" />

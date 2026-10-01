@@ -92,7 +92,7 @@ function EnrolledCourseCard({ course }: { course: EnrolledCourse }) {
           </div>
           <div className="w-full bg-neutral-100 h-2.5 rounded-full overflow-hidden">
             <div
-              className="bg-[#cbfc01] h-full rounded-full transition-all duration-500 shadow-xs"
+              className="bg-secondary-500 h-full rounded-full transition-all duration-500 shadow-xs"
               style={{ width: `${course.progress}%` }}
             />
           </div>
@@ -134,12 +134,12 @@ export default function DashboardPage() {
       {/* =========================================================
           HERO GREETING BANNER
           ========================================================= */}
-      <section className="w-full bg-[#0052FE] bg-hero-grid text-white relative overflow-hidden pt-28 sm:pt-36 md:pt-40 pb-12 sm:pb-16 lg:pb-20">
+      <section className="w-full bg-primary-600 bg-hero-grid text-white relative overflow-hidden pt-28 sm:pt-36 md:pt-40 pb-12 sm:pb-16 lg:pb-20">
         {/* Ambient Radial Glow */}
         <div
           className="absolute -top-24 -right-24 w-96 h-96 rounded-full pointer-events-none blur-3xl opacity-50"
           style={{
-            background: 'radial-gradient(circle, rgba(203, 252, 1, 0.4) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(var(--secondary-rgb), 0.4) 0%, transparent 70%)',
           }}
         />
 
@@ -156,11 +156,11 @@ export default function DashboardPage() {
             </div>
             <div className="space-y-1.5">
               <div className="flex items-center gap-2">
-                <span className="px-3.5 py-1 rounded-full bg-[#cbfc01] text-black font-bold text-xs uppercase tracking-wider shadow-sm">
+                <span className="px-3.5 py-1 rounded-full bg-secondary-500 text-black font-bold text-xs uppercase tracking-wider shadow-sm">
                   {user?.role || 'Student & Creator'}
                 </span>
                 <span className="inline-flex items-center gap-1 px-3 py-0.5 rounded-full bg-white/15 backdrop-blur-md text-white text-xs font-medium">
-                  <Sparkles className="w-3 h-3 text-[#cbfc01]" /> Pro Member
+                  <Sparkles className="w-3 h-3 text-secondary-500" /> Pro Member
                 </span>
               </div>
               <h1 className="font-poppins font-bold text-2xl sm:text-4xl text-white tracking-tight">
@@ -174,7 +174,7 @@ export default function DashboardPage() {
 
           <Link
             href={ROUTES.COURSES}
-            className="px-7 py-3.5 rounded-full bg-[#cbfc01] text-black font-semibold text-sm hover:brightness-95 active:scale-95 transition-all shadow-xl shrink-0 cursor-pointer relative z-10 flex items-center gap-2"
+            className="px-7 py-3.5 rounded-full bg-secondary-500 text-black font-semibold text-sm hover:brightness-95 active:scale-95 transition-all shadow-xl shrink-0 cursor-pointer relative z-10 flex items-center gap-2"
           >
             <span>Explore Catalog</span>
             <ArrowRight className="w-4 h-4" />
@@ -194,13 +194,13 @@ export default function DashboardPage() {
             label="Enrolled Courses"
             value={enrolledCourses.length}
             iconBg="bg-blue-50"
-            iconColor="text-[#0052FE]"
+            iconColor="text-primary-600"
           />
           <StatCard
             icon={<Clock className="w-6 h-6 stroke-[2]" />}
             label="Hours Learned"
             value="14.5 hrs"
-            iconBg="bg-[#cbfc01]/25"
+            iconBg="bg-secondary-500/25"
             iconColor="text-neutral-950"
           />
           <StatCard
@@ -233,7 +233,7 @@ export default function DashboardPage() {
                   onClick={() => setActiveTab(tab.id)}
                   className={`px-5 py-2.5 rounded-full text-xs font-semibold transition-all cursor-pointer select-none active:scale-95 ${
                     isActive
-                      ? 'bg-[#cbfc01] text-black font-bold shadow-md scale-105 ring-2 ring-[#cbfc01]/40 ring-offset-2'
+                      ? 'bg-secondary-500 text-black font-bold shadow-md scale-105 ring-2 ring-secondary-500/40 ring-offset-2'
                       : 'bg-neutral-100 text-neutral-700 font-medium hover:bg-neutral-200'
                   }`}
                 >
@@ -270,7 +270,7 @@ export default function DashboardPage() {
             {/* Learning Streak Banner */}
             <div className="bg-neutral-50 rounded-[24px] p-6 sm:p-8 border border-neutral-200/80 flex flex-col md:flex-row items-center justify-between gap-6">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-[#cbfc01] flex items-center justify-center text-black font-bold shrink-0 shadow-md">
+                <div className="w-12 h-12 rounded-full bg-secondary-500 flex items-center justify-center text-black font-bold shrink-0 shadow-md">
                   <TrendingUp className="w-6 h-6" />
                 </div>
                 <div>
@@ -312,7 +312,7 @@ export default function DashboardPage() {
                 </p>
                 <Link
                   href={ROUTES.COURSES}
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#cbfc01] text-black font-semibold text-xs shadow-md hover:brightness-95"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-secondary-500 text-black font-semibold text-xs shadow-md hover:brightness-95"
                 >
                   <span>Browse Courses</span>
                   <ArrowRight className="w-4 h-4" />
