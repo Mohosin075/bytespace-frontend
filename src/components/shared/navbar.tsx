@@ -44,7 +44,7 @@ export function Navbar({ variant = 'blue' }: NavbarProps) {
   const router = useRouter();
   const { user, isLoggedIn, logout } = useAuth();
   const { showToast } = useToast();
-  const { cartCount } = useCart();
+  const { totalItems: cartCount } = useCart();
 
   const isBlue = variant === 'blue';
   const scrolled = useScrolled(20);

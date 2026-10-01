@@ -91,13 +91,20 @@ export interface CourseReview {
 export interface Creator {
   id: string;
   name: string;
-  handle: string;
-  title: string;
   avatar: string;
   bio: string;
-  description: string;
+  slug?: string;
+  role?: string;
+  tagline?: string;
+  bioSecondary?: string;
   productsCount: number;
   followersCount: number;
+  rating?: number;
+  category?: string;
+  featured?: boolean;
+  handle?: string;
+  title?: string;
+  description?: string;
   isFollowing?: boolean;
 }
 

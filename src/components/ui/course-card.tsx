@@ -13,7 +13,7 @@ interface CourseCardProps {
   course: Course;
 }
 
-export function CourseCard({ course }: CourseCardProps) {
+export const CourseCard = React.memo(function CourseCard({ course }: CourseCardProps) {
   const router = useRouter();
   const [imgSrc, setImgSrc] = useState(course.image);
 
@@ -123,4 +123,4 @@ export function CourseCard({ course }: CourseCardProps) {
       </div>
     </Link>
   );
-}
+});

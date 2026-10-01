@@ -1,20 +1,7 @@
-﻿import { Course, coursesData } from "./course";
+import { Course, coursesData } from "./course";
+import { Creator } from "@/types";
 
-export interface Creator {
-    id: string;
-    slug: string;
-    name: string;
-    role: string;
-    tagline: string;
-    avatar: string;
-    bio: string;
-    bioSecondary?: string;
-    productsCount: number;
-    followersCount: number;
-    rating: number;
-    category: string;
-    featured?: boolean;
-}
+export type { Creator };
 
 export const creatorsData: Creator[] = [
     {
@@ -260,7 +247,7 @@ export const creatorsData: Creator[] = [
 ];
 
 export function getCreatorBySlug(slug: string): Creator | undefined {
-    return creatorsData.find((c) => c.slug.toLowerCase() === slug.toLowerCase() || c.id.toLowerCase() === slug.toLowerCase());
+    return creatorsData.find((c) => c.slug?.toLowerCase() === slug.toLowerCase() || c.id.toLowerCase() === slug.toLowerCase());
 }
 
 export function getCoursesByCreator(creatorSlug: string): Course[] {

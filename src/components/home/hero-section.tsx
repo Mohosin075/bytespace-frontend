@@ -38,8 +38,8 @@ export function HeroSection() {
         .filter(
           (cr) =>
             cr.name.toLowerCase().includes(trimmed) ||
-            cr.role.toLowerCase().includes(trimmed) ||
-            cr.category.toLowerCase().includes(trimmed)
+            (cr.role || '').toLowerCase().includes(trimmed) ||
+            (cr.category || '').toLowerCase().includes(trimmed)
         )
         .slice(0, 3)
     : [];

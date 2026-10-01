@@ -112,7 +112,7 @@ export function CoursesSection() {
         {/* ── Top Filter Bar (Filter, Level, Category, Sort) ── */}
         <div
           ref={filterRowRef}
-          className={`relative max-w-5xl mx-auto ${
+          className={`relative w-full ${
             levelDropdownOpen || categoryDropdownOpen || sortDropdownOpen ? 'z-40' : 'z-20'
           }`}
         >
