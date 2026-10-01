@@ -10,7 +10,7 @@ export default function GlobalLoading() {
           <div className="w-8 h-8 border-3 border-white border-t-transparent rounded-full animate-spin" />
         </div>
       </div>
-      <p className="mt-6 font-poppins font-semibold text-sm text-neutral-600 tracking-wide uppercase animate-pulse">
+      <p className="mt-6 font-satoshi font-semibold text-sm text-neutral-600 tracking-wide uppercase animate-pulse">
         Loading ByteSpace...
       </p>
     </div>

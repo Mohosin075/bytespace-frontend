@@ -97,7 +97,7 @@ export function TestimonialsSection() {
                       />
                     </div>
                     <div>
-                      <p className="font-poppins font-semibold text-neutral-950 text-sm">
+                      <p className="font-satoshi font-semibold text-neutral-950 text-sm">
                         {item.name}
                       </p>
                       <p className="text-xs text-primary-600 font-medium">{item.role}</p>

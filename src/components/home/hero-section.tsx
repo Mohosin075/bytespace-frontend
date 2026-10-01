@@ -351,7 +351,7 @@ export function HeroSection() {
 
           {/* Badge 3: Happy Students */}
           <div className="absolute bottom-[6%] sm:bottom-[12%] left-0 sm:left-4 lg:left-8 z-20 bg-white/95 backdrop-blur-md rounded-xl sm:rounded-2xl p-2.5 sm:p-4 shadow-[0_12px_32px_rgba(0,15,80,0.18)] border border-white/60 text-left scale-85 sm:scale-100 origin-bottom-left animate-float-slow hover:scale-105 transition-transform duration-300">
-            <h4 className="font-bold text-zinc-900 text-[11px] sm:text-sm tracking-tight leading-none">
+            <h4 className="font-satoshi font-bold text-zinc-900 text-[11px] sm:text-sm tracking-tight leading-none">
               Happy Students
             </h4>
             <div className="flex items-center gap-1 text-[10px] sm:text-xs font-semibold text-zinc-800 mt-1">

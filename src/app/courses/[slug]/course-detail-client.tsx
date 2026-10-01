@@ -273,7 +273,7 @@ export default function CourseDetailClient({ slug }: CourseDetailClientProps = {
 
                 {/* Sneak Peak */}
                 <div className="space-y-4">
-                  <h3 className="font-poppins font-bold text-xl text-neutral-950">
+                  <h3 className="font-satoshi font-bold text-xl text-neutral-950">
                     Sneak Peak
                   </h3>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
@@ -293,7 +293,7 @@ export default function CourseDetailClient({ slug }: CourseDetailClientProps = {
 
                 {/* Key Points */}
                 <div className="space-y-4">
-                  <h3 className="font-poppins font-bold text-xl text-neutral-950">
+                  <h3 className="font-satoshi font-bold text-xl text-neutral-950">
                     Key Points
                   </h3>
                   <div className="space-y-3.5 pt-1">
@@ -325,7 +325,7 @@ export default function CourseDetailClient({ slug }: CourseDetailClientProps = {
 
                 {/* Lesson List */}
                 <div className="space-y-4">
-                  <h3 className="font-poppins font-bold text-xl text-neutral-950">
+                  <h3 className="font-satoshi font-bold text-xl text-neutral-950">
                     Lesson List
                   </h3>
                   <div className="space-y-6 pt-1">
@@ -338,7 +338,7 @@ export default function CourseDetailClient({ slug }: CourseDetailClientProps = {
                           <Video className="w-5 h-5 stroke-[2.2]" />
                         </div>
                         <div className="space-y-1 pt-0.5">
-                          <h4 className="font-poppins font-bold text-neutral-950 text-base leading-snug">
+                          <h4 className="font-satoshi font-bold text-neutral-950 text-base leading-snug">
                             {module.title}
                           </h4>
                           <p className="text-neutral-600 text-sm leading-relaxed">
@@ -352,7 +352,7 @@ export default function CourseDetailClient({ slug }: CourseDetailClientProps = {
 
                 {/* Lesson Content Section */}
                 <div className="space-y-3">
-                  <h3 className="font-poppins font-bold text-xl text-neutral-950">
+                  <h3 className="font-satoshi font-bold text-xl text-neutral-950">
                     Lesson Content
                   </h3>
                   <p className="text-neutral-600 text-[15px] leading-relaxed">
@@ -362,7 +362,7 @@ export default function CourseDetailClient({ slug }: CourseDetailClientProps = {
 
                 {/* Lesson Progress Tracking */}
                 <div className="space-y-4">
-                  <h3 className="font-poppins font-bold text-xl text-neutral-950">
+                  <h3 className="font-satoshi font-bold text-xl text-neutral-950">
                     Lesson Progress Tracking
                   </h3>
                   <p className="text-neutral-600 text-[15px] leading-relaxed">
@@ -371,7 +371,7 @@ export default function CourseDetailClient({ slug }: CourseDetailClientProps = {
 
                   <div className="bg-white rounded-2xl p-6 sm:p-7 border border-neutral-200/90 space-y-2.5 shadow-xs">
                     <p className="text-xs text-neutral-500 font-semibold">Learning Progress</p>
-                    <p className="font-poppins font-bold text-3xl text-neutral-950">55%</p>
+                    <p className="font-satoshi font-bold text-3xl text-neutral-950">55%</p>
                     <div className="w-full bg-neutral-200/80 h-2.5 rounded-full overflow-hidden mt-3">
                       <div className="bg-[#cbfc01] h-full rounded-full w-[55%]" />
                     </div>
@@ -398,7 +398,7 @@ export default function CourseDetailClient({ slug }: CourseDetailClientProps = {
                   {/* Big Lime Rating Box */}
                   <div className="w-32 h-32 rounded-[20px] bg-[#cbfc01] flex flex-col items-center justify-center shrink-0 text-black shadow-xs">
                     <span className="text-xs font-semibold uppercase tracking-wider text-black/80">Ratings</span>
-                    <span className="font-poppins font-bold text-4xl mt-1">4.7</span>
+                    <span className="font-satoshi font-bold text-4xl mt-1">4.7</span>
                   </div>
 
                   {/* Rating Bars */}
@@ -430,7 +430,7 @@ export default function CourseDetailClient({ slug }: CourseDetailClientProps = {
 
                 {/* Individual Reviews Filter Pills */}
                 <div className="space-y-4">
-                  <h3 className="font-poppins font-bold text-xl text-neutral-950">
+                  <h3 className="font-satoshi font-bold text-xl text-neutral-950">
                     Individual Reviews:
                   </h3>
                   <div className="flex flex-wrap items-center gap-2.5">
@@ -473,7 +473,7 @@ export default function CourseDetailClient({ slug }: CourseDetailClientProps = {
                               />
                             </div>
                             <div>
-                              <p className="font-poppins font-semibold text-base text-neutral-950 leading-tight">
+                              <p className="font-satoshi font-semibold text-base text-neutral-950 leading-tight">
                                 {review.author}
                               </p>
                               <p className="text-xs text-neutral-500 mt-0.5">{review.role}</p>
@@ -510,7 +510,7 @@ export default function CourseDetailClient({ slug }: CourseDetailClientProps = {
               <div className="bg-white rounded-[28px] p-6 sm:p-7 border border-neutral-200/90 shadow-xl space-y-6">
               {/* Title Header */}
               <div>
-                <h3 className="font-poppins font-bold text-xl text-neutral-950">
+                <h3 className="font-satoshi font-bold text-xl text-neutral-950">
                   112 Lessons (24 hours)
                 </h3>
               </div>
@@ -543,7 +543,7 @@ export default function CourseDetailClient({ slug }: CourseDetailClientProps = {
               {/* Price & CTA Buttons */}
               <div>
                 <div className="flex items-baseline gap-1 mb-4">
-                  <span className="font-poppins font-bold text-3xl sm:text-4xl text-[#0052FE]">${course.price}</span>
+                  <span className="font-satoshi font-bold text-3xl sm:text-4xl text-[#0052FE]">${course.price}</span>
                   <span className="text-xs text-neutral-500 font-normal">/{course.priceType || 'lifetime'}</span>
                 </div>
 
@@ -582,7 +582,7 @@ export default function CourseDetailClient({ slug }: CourseDetailClientProps = {
 
               {/* This Course Include */}
               <div className="pt-4 border-t border-neutral-100 space-y-4">
-                <h4 className="font-poppins font-bold text-base sm:text-lg text-neutral-950">
+                <h4 className="font-satoshi font-bold text-base sm:text-lg text-neutral-950">
                   This course include
                 </h4>
 
@@ -619,7 +619,7 @@ export default function CourseDetailClient({ slug }: CourseDetailClientProps = {
                     />
                   </div>
                   <div>
-                    <p className="font-poppins font-semibold text-sm sm:text-base text-neutral-950">
+                    <p className="font-satoshi font-semibold text-sm sm:text-base text-neutral-950">
                       {course.creator.name}
                     </p>
                     <p className="text-xs text-neutral-500">{course.creator.role || 'Professional Creator'}</p>

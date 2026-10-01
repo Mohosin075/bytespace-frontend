@@ -43,7 +43,7 @@ export default function UnlockSection() {
             </div>
 
             <ScrollReveal direction="up" distance={24} duration={650} className="container relative mx-auto px-4 z-20 flex flex-col items-center">
-                <h2 className="font-clash font-bold text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-center text-white tracking-tight leading-snug sm:leading-[1.12]">
+                <h2 className="font-poppins font-bold text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-center text-white tracking-tight leading-snug sm:leading-[1.12]">
                     Unlock Your Potential as a
                     <br className="hidden sm:inline" />
                     Creator with ByteSpace

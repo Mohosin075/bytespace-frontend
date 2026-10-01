@@ -136,7 +136,7 @@ export default function CartClient() {
                         <div className="space-y-1 min-w-0 flex-1">
                           <Link
                             href={ROUTES.COURSE_DETAIL(item.slug)}
-                            className="font-poppins font-bold text-base sm:text-lg text-neutral-950 hover:text-primary-600 transition-colors line-clamp-1 leading-snug"
+                            className="font-satoshi font-bold text-base sm:text-lg text-neutral-950 hover:text-primary-600 transition-colors line-clamp-1 leading-snug"
                           >
                             {item.title}
                           </Link>
@@ -164,7 +164,7 @@ export default function CartClient() {
 
                       {/* Price & Actions */}
                       <div className="flex sm:flex-col items-center sm:items-end justify-between w-full sm:w-auto pt-3 sm:pt-0 border-t sm:border-t-0 border-neutral-100 shrink-0 gap-3">
-                        <span className="font-poppins font-bold text-xl text-primary-600">
+                        <span className="font-satoshi font-bold text-xl text-primary-600">
                           ${item.price}
                         </span>
 
@@ -209,7 +209,7 @@ export default function CartClient() {
                   <div className="bg-neutral-50 rounded-2xl p-4 border border-neutral-200/80 flex items-center gap-3">
                     <Clock className="w-5 h-5 text-primary-600 shrink-0" />
                     <div>
-                      <h5 className="font-bold text-xs text-neutral-900">Full Lifetime Access</h5>
+                      <h5 className="font-satoshi font-bold text-xs text-neutral-900">Full Lifetime Access</h5>
                       <p className="text-[11px] text-neutral-500">Learn at your own pace</p>
                     </div>
                   </div>
@@ -217,7 +217,7 @@ export default function CartClient() {
                   <div className="bg-neutral-50 rounded-2xl p-4 border border-neutral-200/80 flex items-center gap-3">
                     <RefreshCw className="w-5 h-5 text-primary-600 shrink-0" />
                     <div>
-                      <h5 className="font-bold text-xs text-neutral-900">30-Day Guarantee</h5>
+                      <h5 className="font-satoshi font-bold text-xs text-neutral-900">30-Day Guarantee</h5>
                       <p className="text-[11px] text-neutral-500">100% Money Back</p>
                     </div>
                   </div>
@@ -225,7 +225,7 @@ export default function CartClient() {
                   <div className="bg-neutral-50 rounded-2xl p-4 border border-neutral-200/80 flex items-center gap-3">
                     <ShieldCheck className="w-5 h-5 text-primary-600 shrink-0" />
                     <div>
-                      <h5 className="font-bold text-xs text-neutral-900">Certified Completion</h5>
+                      <h5 className="font-satoshi font-bold text-xs text-neutral-900">Certified Completion</h5>
                       <p className="text-[11px] text-neutral-500">Share on LinkedIn & resume</p>
                     </div>
                   </div>
@@ -236,7 +236,7 @@ export default function CartClient() {
               <div className="lg:col-span-4 sticky top-28">
                 <ScrollReveal direction="up" delay={100} distance={20} duration={600}>
                   <div className="bg-neutral-50 rounded-3xl p-6 sm:p-7 border border-neutral-200 space-y-6">
-                    <h3 className="font-poppins font-bold text-xl text-neutral-950 pb-2 border-b border-neutral-200">
+                    <h3 className="font-satoshi font-bold text-xl text-neutral-950 pb-2 border-b border-neutral-200">
                       Order Summary
                     </h3>
 
@@ -301,9 +301,9 @@ export default function CartClient() {
                     {/* Total Price & Checkout Button */}
                     <div className="pt-4 border-t border-neutral-200 space-y-4">
                       <div className="flex items-baseline justify-between">
-                        <span className="font-poppins font-bold text-lg text-neutral-950">Total</span>
+                        <span className="font-satoshi font-bold text-lg text-neutral-950">Total</span>
                         <div className="text-right">
-                          <span className="font-poppins font-extrabold text-2xl text-primary-600">
+                          <span className="font-satoshi font-extrabold text-2xl text-primary-600">
                             ${total}
                           </span>
                           {totalDiscount > 0 && (
@@ -340,7 +340,7 @@ export default function CartClient() {
               </div>
 
               <div>
-                <h3 className="font-poppins font-bold text-xl text-neutral-900">
+                <h3 className="font-satoshi font-bold text-xl text-neutral-900">
                   Your cart is empty
                 </h3>
                 <p className="text-xs text-neutral-500 mt-1 max-w-xs mx-auto">
@@ -364,7 +364,7 @@ export default function CartClient() {
               <div className="pt-12 border-t border-neutral-200 space-y-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="font-poppins font-bold text-2xl text-neutral-950">
+                    <h3 className="font-satoshi font-bold text-2xl text-neutral-950">
                       Frequently Bought Together
                     </h3>
                     <p className="text-xs text-neutral-500 mt-0.5">
@@ -398,7 +398,7 @@ export default function CartClient() {
 
                         <Link
                           href={ROUTES.COURSE_DETAIL(course.slug)}
-                          className="font-poppins font-bold text-sm text-neutral-950 hover:text-primary-600 transition-colors line-clamp-1"
+                          className="font-satoshi font-bold text-sm text-neutral-950 hover:text-primary-600 transition-colors line-clamp-1"
                         >
                           {course.title}
                         </Link>
@@ -406,7 +406,7 @@ export default function CartClient() {
                         <p className="text-xs text-neutral-500 mt-0.5">by {course.creator.name}</p>
 
                         <div className="flex items-center justify-between pt-3 mt-2 border-t border-neutral-100">
-                          <span className="font-poppins font-bold text-base text-primary-600">
+                          <span className="font-satoshi font-bold text-base text-primary-600">
                             ${course.price}
                           </span>
 
