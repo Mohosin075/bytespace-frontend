@@ -61,7 +61,7 @@ export default function ForgotPasswordPage() {
                   <div className="flex justify-end pt-2">
                     <button
                       type="submit"
-                      className="px-8 py-3 rounded-full bg-[#cbfc01] text-black font-semibold text-sm hover:brightness-95 active:scale-95 transition-all cursor-pointer shadow-md"
+                      className="px-8 py-3 rounded-full bg-secondary-500 text-black font-semibold text-sm hover:brightness-95 active:scale-95 transition-all cursor-pointer shadow-md"
                     >
                       Send Reset Link
                     </button>

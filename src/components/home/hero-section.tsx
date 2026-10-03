@@ -7,8 +7,10 @@ import { useRouter } from 'next/navigation';
 import { Search, Star, BookOpen, User, X, ChevronRight } from 'lucide-react';
 import { coursesData } from '@/data/course';
 import { creatorsData } from '@/data/creator';
+import { MOCK_STUDENT_AVATARS } from '@/constants/mock-data';
 import { Navbar } from '@/components/shared/navbar';
 import { useClickOutside } from '@/hooks/use-click-outside';
+import { ROUTES } from '@/constants/routes';
 
 export function HeroSection() {
   const [query, setQuery] = useState('');
@@ -36,8 +38,8 @@ export function HeroSection() {
         .filter(
           (cr) =>
             cr.name.toLowerCase().includes(trimmed) ||
-            cr.role.toLowerCase().includes(trimmed) ||
-            cr.category.toLowerCase().includes(trimmed)
+            (cr.role || '').toLowerCase().includes(trimmed) ||
+            (cr.category || '').toLowerCase().includes(trimmed)
         )
         .slice(0, 3)
     : [];
@@ -45,27 +47,18 @@ export function HeroSection() {
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!trimmed) {
-      router.push('/courses');
+      router.push(ROUTES.COURSES);
     } else {
-      router.push(`/courses?search=${encodeURIComponent(query.trim())}`);
+      router.push(`${ROUTES.COURSES}?search=${encodeURIComponent(query.trim())}`);
     }
     setIsOpen(false);
   };
 
-  const studentAvatars = [
-    'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80',
-    'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80',
-    'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80',
-    'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80',
-    'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=120&q=80',
-    'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=120&q=80',
-    'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=120&q=80',
-  ];
 
   return (
     <>
       <Navbar variant="blue" />
-      <section className="relative w-full overflow-hidden bg-[#0052FE] pt-28 sm:pt-32 lg:pt-36">
+      <section className="relative w-full overflow-hidden bg-primary-600 pt-28 sm:pt-32 lg:pt-36">
 
       {/* Blueprint Grid Lines */}
       <div
@@ -171,7 +164,7 @@ export function HeroSection() {
                   if (query.trim().length > 0) setIsOpen(true);
                 }}
                 placeholder="Course, topic, creator"
-                className="w-full h-12 sm:h-14 pl-11 sm:pl-13 pr-10 rounded-full bg-white placeholder:text-zinc-400 text-sm sm:text-base font-normal shadow-lg shadow-blue-950/20 focus:outline-none focus:ring-3 focus:ring-[#D4FB20] focus:shadow-xl transition-all duration-200"
+                className="w-full h-12 sm:h-14 pl-11 sm:pl-13 pr-10 rounded-full bg-white placeholder:text-zinc-400 text-sm sm:text-base font-normal shadow-lg shadow-blue-950/20 focus:outline-none focus:ring-3 focus:ring-secondary-500 focus:shadow-xl transition-all duration-200"
               />
               {query && (
                 <button
@@ -189,7 +182,7 @@ export function HeroSection() {
             </div>
             <button
               type="submit"
-              className="w-full sm:w-auto h-12 sm:h-14 px-8 rounded-full bg-[#D4FB20] text-black font-semibold text-sm sm:text-base hover:bg-[#c3ea1a] hover:shadow-lg hover:shadow-black/15 active:scale-[0.97] transition-all duration-200 shadow-md shadow-black/10 shrink-0 cursor-pointer"
+              className="w-full sm:w-auto h-12 sm:h-14 px-8 rounded-full bg-secondary-500 text-black font-semibold text-sm sm:text-base hover:brightness-95 hover:shadow-lg hover:shadow-black/15 active:scale-[0.97] transition-all duration-200 shadow-md shadow-black/10 shrink-0 cursor-pointer"
             >
               Search
             </button>
@@ -204,9 +197,9 @@ export function HeroSection() {
                     No courses or creators matching &ldquo;{query}&rdquo;
                   </p>
                   <Link
-                    href="/courses"
+                    href={ROUTES.COURSES}
                     onClick={() => setIsOpen(false)}
-                    className="inline-flex items-center gap-1.5 mt-2 text-xs font-semibold text-[#0052FE] hover:underline"
+                    className="inline-flex items-center gap-1.5 mt-2 text-xs font-semibold text-primary-600 hover:underline"
                   >
                     Browse all courses <ChevronRight className="size-3" />
                   </Link>
@@ -224,7 +217,7 @@ export function HeroSection() {
                         {matchedCourses.map((course) => (
                           <Link
                             key={course.id}
-                            href={`/courses/${course.slug}`}
+                          href={ROUTES.COURSE_DETAIL(course.slug)}
                             onClick={() => setIsOpen(false)}
                             className="flex items-center gap-3 p-2 rounded-xl hover:bg-zinc-50 transition-colors group"
                           >
@@ -238,7 +231,7 @@ export function HeroSection() {
                               />
                             </div>
                             <div className="flex-1 min-w-0 text-left">
-                              <h5 className="text-sm font-medium text-zinc-900 truncate group-hover:text-[#0052FE] transition-colors">
+                              <h5 className="text-sm font-medium text-zinc-900 truncate group-hover:text-primary-600 transition-colors">
                                 {course.title}
                               </h5>
                               <div className="flex items-center gap-2 text-xs text-zinc-500 mt-0.5">
@@ -269,7 +262,7 @@ export function HeroSection() {
                         {matchedCreators.map((creator) => (
                           <Link
                             key={creator.id}
-                            href={`/creators/${creator.slug}`}
+                            href={ROUTES.CREATOR_DETAIL(creator.slug)}
                             onClick={() => setIsOpen(false)}
                             className="flex items-center gap-3 p-2 rounded-xl hover:bg-zinc-50 transition-colors group"
                           >
@@ -283,7 +276,7 @@ export function HeroSection() {
                               />
                             </div>
                             <div className="flex-1 min-w-0 text-left">
-                              <h5 className="text-sm font-medium text-zinc-900 truncate group-hover:text-[#0052FE] transition-colors">
+                              <h5 className="text-sm font-medium text-zinc-900 truncate group-hover:text-primary-600 transition-colors">
                                 {creator.name}
                               </h5>
                               <div className="flex items-center gap-2 text-xs text-zinc-500 mt-0.5">
@@ -345,7 +338,7 @@ export function HeroSection() {
             </span>
             <div className="text-xl sm:text-3xl font-extrabold text-zinc-900 mt-0.5 sm:mt-1">55%</div>
             <div className="w-full bg-zinc-100 rounded-full h-1.5 sm:h-2 mt-1.5 sm:mt-2.5 overflow-hidden">
-              <div className="bg-[#D4FB20] h-full rounded-full w-[55%] transition-all duration-1000 ease-out" />
+              <div className="bg-secondary-500 h-full rounded-full w-[55%] transition-all duration-1000 ease-out" />
             </div>
           </div>
 
@@ -360,7 +353,7 @@ export function HeroSection() {
               <Star className="size-3 sm:size-3.5 fill-amber-400 text-amber-400 shrink-0" />
             </div>
             <div className="flex items-center mt-2 sm:mt-2.5">
-              {studentAvatars.slice(0, 4).map((avatar, idx) => (
+              {MOCK_STUDENT_AVATARS.slice(0, 4).map((avatar, idx) => (
                 <div
                   key={idx}
                   style={{ zIndex: idx + 1 }}
@@ -373,7 +366,7 @@ export function HeroSection() {
               ))}
               <div
                 style={{ zIndex: 10 }}
-                className="relative -ml-1.5 sm:-ml-2 size-5 sm:size-7 rounded-full bg-[#D4FB20] text-black text-[8px] sm:text-[10px] font-bold flex items-center justify-center shrink-0 border border-white/80"
+                className="relative -ml-1.5 sm:-ml-2 size-5 sm:size-7 rounded-full bg-secondary-500 text-black text-[8px] sm:text-[10px] font-bold flex items-center justify-center shrink-0 border border-white/80"
               >
                 2K+
               </div>

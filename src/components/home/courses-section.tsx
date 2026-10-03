@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo, useEffect, useRef } from 'react';
+import React, { useState, useMemo, useRef } from 'react';
 import { SectionHeader } from '@/components/ui/section-header';
 import { CourseCard } from '@/components/ui/course-card';
 import { ScrollReveal } from '@/components/ui/scroll-reveal';
@@ -17,6 +17,8 @@ import {
   RotateCcw,
 } from 'lucide-react';
 
+import { useClickOutside } from '@/hooks';
+
 export function CoursesSection() {
   const [selectedCategory, setSelectedCategory] = useState('Featured');
   const [selectedLevel, setSelectedLevel] = useState('All Levels');
@@ -31,18 +33,13 @@ export function CoursesSection() {
   const filterRowRef = useRef<HTMLDivElement>(null);
 
   // Close dropdowns when clicking outside
-  useEffect(() => {
-    if (!levelDropdownOpen && !categoryDropdownOpen && !sortDropdownOpen) return;
-    const handleClickOutside = (e: MouseEvent) => {
-      if (filterRowRef.current && !filterRowRef.current.contains(e.target as Node)) {
-        setLevelDropdownOpen(false);
-        setCategoryDropdownOpen(false);
-        setSortDropdownOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [levelDropdownOpen, categoryDropdownOpen, sortDropdownOpen]);
+  useClickOutside(filterRowRef, () => {
+    if (levelDropdownOpen || categoryDropdownOpen || sortDropdownOpen) {
+      setLevelDropdownOpen(false);
+      setCategoryDropdownOpen(false);
+      setSortDropdownOpen(false);
+    }
+  });
 
   // Split categories: default visible 12 categories, remaining shown on "+ More"
   const INITIAL_VISIBLE_COUNT = 12;
@@ -115,7 +112,7 @@ export function CoursesSection() {
         {/* ── Top Filter Bar (Filter, Level, Category, Sort) ── */}
         <div
           ref={filterRowRef}
-          className={`relative max-w-5xl mx-auto ${
+          className={`relative w-full ${
             levelDropdownOpen || categoryDropdownOpen || sortDropdownOpen ? 'z-40' : 'z-20'
           }`}
         >
@@ -141,7 +138,7 @@ export function CoursesSection() {
                   )}
                   <span>Filter</span>
                   {(selectedCategory !== 'Featured' || selectedLevel !== 'All Levels' || sortBy !== 'relevant') && (
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#cbfc01] inline-block shrink-0" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-secondary-500 inline-block shrink-0" />
                   )}
                 </button>
 
@@ -372,4 +369,3 @@ export function CoursesSection() {
     </section>
   );
 }
-export default CoursesSection;

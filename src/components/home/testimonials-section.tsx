@@ -15,7 +15,7 @@ export function TestimonialsSection() {
         className="absolute -top-24 sm:-top-32 left-[52%] -translate-x-1/2 w-[700px] sm:w-[900px] lg:w-[1050px] h-[500px] sm:h-[620px] rounded-full blur-[100px] pointer-events-none select-none"
         style={{
           background:
-            'radial-gradient(ellipse at center, rgba(203, 252, 1, 0.48) 0%, rgba(203, 252, 1, 0.22) 42%, rgba(203, 252, 1, 0.05) 70%, transparent 100%)',
+            'radial-gradient(ellipse at center, rgba(var(--secondary-rgb), 0.48) 0%, rgba(var(--secondary-rgb), 0.22) 42%, rgba(var(--secondary-rgb), 0.05) 70%, transparent 100%)',
         }}
       />
 
@@ -24,7 +24,7 @@ export function TestimonialsSection() {
         className="absolute -top-16 -right-20 w-[500px] sm:w-[650px] h-[500px] sm:h-[650px] rounded-full blur-[95px] pointer-events-none select-none"
         style={{
           background:
-            'radial-gradient(circle, rgba(203, 252, 1, 0.35) 0%, rgba(203, 252, 1, 0.14) 48%, transparent 75%)',
+            'radial-gradient(circle, rgba(var(--secondary-rgb), 0.35) 0%, rgba(var(--secondary-rgb), 0.14) 48%, transparent 75%)',
         }}
       />
 
@@ -33,7 +33,7 @@ export function TestimonialsSection() {
         className="absolute -bottom-24 sm:-bottom-32 -left-20 sm:-left-28 w-[550px] sm:w-[700px] h-[550px] sm:h-[700px] rounded-full blur-[90px] pointer-events-none select-none"
         style={{
           background:
-            'radial-gradient(circle at center, rgba(0, 82, 254, 0.20) 0%, rgba(147, 197, 253, 0.16) 42%, rgba(0, 82, 254, 0.02) 68%, transparent 100%)',
+            'radial-gradient(circle at center, rgba(var(--primary-rgb), 0.20) 0%, rgba(147, 197, 253, 0.16) 42%, rgba(var(--primary-rgb), 0.02) 68%, transparent 100%)',
         }}
       />
 
@@ -42,7 +42,7 @@ export function TestimonialsSection() {
         className="absolute top-[4%] -left-28 w-[450px] h-[450px] rounded-full blur-[90px] pointer-events-none select-none"
         style={{
           background:
-            'radial-gradient(circle, rgba(0, 82, 254, 0.10) 0%, rgba(129, 197, 255, 0.06) 45%, transparent 75%)',
+            'radial-gradient(circle, rgba(var(--primary-rgb), 0.10) 0%, rgba(129, 197, 255, 0.06) 45%, transparent 75%)',
         }}
       />
 
@@ -87,7 +87,7 @@ export function TestimonialsSection() {
                       <h4 className="font-satoshi font-bold text-neutral-950 text-base leading-snug">
                         {item.name}
                       </h4>
-                      <p className="text-xs sm:text-[13px] text-[#0052FE] font-medium mt-0.5">
+                      <p className="text-xs sm:text-[13px] text-primary-600 font-medium mt-0.5">
                         {item.role}
                       </p>
                     </div>

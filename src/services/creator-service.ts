@@ -44,7 +44,7 @@ export const creatorService = {
     return CREATORS_LIST.filter(
       (cr) =>
         cr.name.toLowerCase().includes(trimmed) ||
-        cr.title.toLowerCase().includes(trimmed)
+        (cr.title || cr.role || '').toLowerCase().includes(trimmed)
     ).slice(0, limit);
   },
 };

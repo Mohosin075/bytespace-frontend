@@ -50,7 +50,7 @@ export function Footer() {
               </div>
               <button
                 type="submit"
-                className="h-11 px-7 rounded-full bg-[#CBFC01] text-black font-semibold text-xs sm:text-sm hover:brightness-95 active:scale-95 transition-all cursor-pointer whitespace-nowrap shadow-xs font-satoshi"
+                className="h-11 px-7 rounded-full bg-secondary-500 text-black font-semibold text-xs sm:text-sm hover:brightness-95 active:scale-95 transition-all cursor-pointer whitespace-nowrap shadow-xs font-satoshi"
               >
                 {subscribed ? 'Subscribed!' : 'Search'}
               </button>

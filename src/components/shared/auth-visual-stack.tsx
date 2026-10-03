@@ -42,16 +42,16 @@ export function AuthVisualStack({ title, subtitle }: AuthVisualStackProps) {
             </div>
           </div>
           <p className="font-satoshi font-bold text-sm text-neutral-950">Build Digital Asset</p>
-          <p className="text-[11px] text-[#0052FE] mt-0.5">by purepearl studio</p>
+          <p className="text-[11px] text-primary-600 mt-0.5">by purepearl studio</p>
           <div className="mt-2.5 flex items-center justify-between">
-            <div className="inline-flex items-center gap-1.5 bg-[#f4f5f6] px-2.5 py-1 rounded-full text-[10px] font-medium text-neutral-700">
+            <div className="inline-flex items-center gap-1.5 bg-neutral-50 px-2.5 py-1 rounded-full text-[10px] font-medium text-neutral-700">
               <BarChart2 className="w-3 h-3 text-neutral-600" />
               <span>Beginner</span>
             </div>
             <AvatarGroup extraCount="26+" size={20} badgeBg="black" />
           </div>
           <div className="mt-2.5 flex items-baseline gap-0.5">
-            <span className="font-satoshi font-extrabold text-base text-[#0052FE]">$25</span>
+            <span className="font-satoshi font-extrabold text-base text-primary-600">$25</span>
             <span className="text-[10px] text-neutral-400">/lifetime</span>
           </div>
         </div>
@@ -79,13 +79,13 @@ export function AuthVisualStack({ title, subtitle }: AuthVisualStackProps) {
             </p>
             <div className="flex items-center gap-1 text-xs font-semibold text-neutral-900 shrink-0">
               <span>4.5</span>
-              <Star className="w-3.5 h-3.5 fill-[#CBFC01] text-[#CBFC01]" />
+              <Star className="w-3.5 h-3.5 fill-secondary-500 text-secondary-500" />
             </div>
           </div>
-          <p className="text-xs text-[#0052FE] font-normal mt-0.5">by purepearl studio</p>
+          <p className="text-xs text-primary-600 font-normal mt-0.5">by purepearl studio</p>
 
           <div className="mt-3 flex items-center justify-between">
-            <div className="inline-flex items-center gap-1.5 bg-[#f4f5f6] px-3 py-1 rounded-full text-xs font-medium text-neutral-700">
+            <div className="inline-flex items-center gap-1.5 bg-neutral-50 px-3 py-1 rounded-full text-xs font-medium text-neutral-700">
               <BarChart2 className="w-3.5 h-3.5 text-neutral-600" />
               <span>Beginner</span>
             </div>
@@ -93,7 +93,7 @@ export function AuthVisualStack({ title, subtitle }: AuthVisualStackProps) {
           </div>
 
           <div className="mt-3 flex items-baseline gap-1">
-            <span className="font-satoshi font-extrabold text-xl text-[#0052FE] leading-none">$25</span>
+            <span className="font-satoshi font-extrabold text-xl text-primary-600 leading-none">$25</span>
             <span className="text-xs text-neutral-400">/lifetime</span>
           </div>
         </div>

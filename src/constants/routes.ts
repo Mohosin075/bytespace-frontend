@@ -4,6 +4,7 @@ export const ROUTES = {
   COURSE_DETAIL: (slug: string = 'build-digital-asset') => `/courses/${slug}`,
   CREATORS: '/creators/purepearl-studio',
   CREATOR_DETAIL: (id: string = 'purepearl-studio') => `/creators/${id}`,
+  CART: '/cart',
   AUTH: {
     LOGIN: '/login',
     REGISTER: '/register',

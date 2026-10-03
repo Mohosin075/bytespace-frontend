@@ -1,16 +1,10 @@
 'use client';
 
 import React, { createContext, useContext, useState } from 'react';
-
-export interface UserProfile {
-  name: string;
-  email: string;
-  avatar?: string;
-  role?: string;
-}
+import { User } from '@/types';
 
 interface AuthContextType {
-  user: UserProfile | null;
+  user: User | null;
   isLoggedIn: boolean;
   wishlist: string[];
   login: (email: string, name?: string) => void;
@@ -22,7 +16,7 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<UserProfile | null>(() => {
+  const [user, setUser] = useState<User | null>(() => {
     if (typeof window === 'undefined') return null;
     try {
       const savedUser = localStorage.getItem('bytespace_user');
@@ -43,7 +37,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   });
 
   const login = (email: string, name?: string) => {
-    const newUser: UserProfile = {
+    const newUser: User = {
       name: name || email.split('@')[0] || 'Jamie Davis',
       email: email,
       avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
@@ -100,18 +94,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
-export function useAuth() {
+export function useAuth(): AuthContextType {
   const context = useContext(AuthContext);
   if (!context) {
-    return {
-      user: null,
-      isLoggedIn: false,
-      wishlist: [],
-      login: () => {},
-      logout: () => {},
-      toggleWishlist: () => false,
-      isWishlisted: () => false,
-    };
+    throw new Error('useAuth must be used within an <AuthProvider>. Did you forget to wrap your component tree?');
   }
   return context;
 }

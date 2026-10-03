@@ -317,7 +317,7 @@ export default function CartClient() {
                       <button
                         type="button"
                         onClick={handleCheckout}
-                        className="w-full py-3.5 sm:py-4 px-6 sm:px-8 rounded-full bg-[#cbfc01] text-neutral-950 font-bold text-sm sm:text-[15px] hover:brightness-95 active:scale-[0.98] transition-all duration-200 shadow-md hover:shadow-lg flex items-center justify-center gap-2 sm:gap-2.5 cursor-pointer text-center group"
+                        className="w-full py-3.5 sm:py-4 px-6 sm:px-8 rounded-full bg-secondary-500 text-neutral-950 font-bold text-sm sm:text-[15px] hover:brightness-95 active:scale-[0.98] transition-all duration-200 shadow-md hover:shadow-lg flex items-center justify-center gap-2 sm:gap-2.5 cursor-pointer text-center group"
                       >
                         <span className="leading-none">Proceed to Secure Checkout</span>
                         <ArrowRight className="w-4 h-4 shrink-0 group-hover:translate-x-1 transition-transform duration-200" />
@@ -350,7 +350,7 @@ export default function CartClient() {
 
               <Link
                 href={ROUTES.COURSES}
-                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#cbfc01] text-black font-bold text-sm shadow-md hover:brightness-95 transition-all active:scale-95"
+                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-secondary-500 text-black font-bold text-sm shadow-md hover:brightness-95 transition-all active:scale-95"
               >
                 <span>Browse Courses Catalog</span>
                 <ArrowRight className="w-4 h-4" />
@@ -413,7 +413,7 @@ export default function CartClient() {
                           <button
                             type="button"
                             onClick={() => handleAddToCart(course)}
-                            className="px-3 py-1.5 rounded-full bg-neutral-100 hover:bg-[#cbfc01] text-neutral-900 hover:text-black font-semibold text-xs transition-colors flex items-center gap-1 cursor-pointer"
+                            className="px-3 py-1.5 rounded-full bg-neutral-100 hover:bg-secondary-500 text-neutral-900 hover:text-black font-semibold text-xs transition-colors flex items-center gap-1 cursor-pointer"
                           >
                             <Plus className="w-3.5 h-3.5" />
                             <span>Add to Cart</span>
