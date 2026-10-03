@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
@@ -10,6 +10,7 @@ import { Logo } from '@/components/shared/logo';
 import { useAuth } from '@/context/auth-context';
 import { useToast } from '@/context/toast-context';
 import { useCart } from '@/context/cart-context';
+import { useScrolled, useMobileMenu } from '@/hooks/use-navbar';
 
 function ShoppingBagIcon({ className = 'w-6 h-6' }: { className?: string }) {
   return (
@@ -32,47 +33,32 @@ interface NavbarProps {
   variant?: 'blue' | 'light';
 }
 
+const NAV_LINKS = [
+  { label: 'Home', href: ROUTES.HOME },
+  { label: 'Courses', href: ROUTES.COURSES },
+  { label: 'Creators', href: ROUTES.CREATORS },
+] as const;
+
 export function Navbar({ variant = 'blue' }: NavbarProps) {
   const pathname = usePathname();
   const router = useRouter();
   const { user, isLoggedIn, logout } = useAuth();
   const { showToast } = useToast();
-  const { cartCount } = useCart();
+  const { totalItems: cartCount } = useCart();
 
   const isBlue = variant === 'blue';
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const scrolled = useScrolled(20);
+  const [mobileMenuOpen, setMobileMenuOpen] = useMobileMenu();
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    handleScroll();
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768) {
-        setMobileMenuOpen(false);
-      }
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  useEffect(() => {
-    if (mobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
+  const isLinkActive = (href: string) => {
+    if (href === '/') {
+      return pathname === '/';
     }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [mobileMenuOpen]);
+    return pathname.startsWith(href);
+  };
+
+  const isCartActive = pathname.startsWith(ROUTES.CART);
 
   const handleLogout = () => {
     logout();
@@ -81,22 +67,16 @@ export function Navbar({ variant = 'blue' }: NavbarProps) {
     router.push(ROUTES.HOME);
   };
 
-  const navLinks = [
-    { label: 'Home', href: ROUTES.HOME },
-    { label: 'Courses', href: ROUTES.COURSES },
-    { label: 'Creators', href: ROUTES.CREATORS },
-  ];
-
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ease-in-out ${
+      className={`fixed top-0 left-0 right-0 z-50 w-full h-20 sm:h-22 transition-all duration-300 ease-in-out ${
         scrolled || mobileMenuOpen
           ? isBlue
-            ? 'bg-[#0047FF]/80 backdrop-blur-xl shadow-[0_10px_30px_-10px_rgba(0,15,80,0.3)] border-b border-white/15 h-16 sm:h-20'
-            : 'bg-white/85 backdrop-blur-xl shadow-sm border-b border-neutral-200/80 h-16 sm:h-20'
+            ? 'bg-primary-600/85 backdrop-blur-xl shadow-[0_10px_30px_-10px_rgba(0,15,80,0.3)] border-b border-white/15'
+            : 'bg-white/90 backdrop-blur-xl shadow-sm border-b border-neutral-200/80'
           : isBlue
-          ? 'bg-transparent border-b border-transparent h-20 sm:h-24 md:h-28 text-white'
-          : 'bg-white/90 backdrop-blur-md border-b border-neutral-100 h-20 sm:h-24 text-neutral-900'
+          ? 'bg-transparent border-b border-transparent text-white'
+          : 'bg-white/95 backdrop-blur-md border-b border-neutral-100 text-neutral-900'
       }`}
     >
       <div className="layout-container h-full flex items-center justify-between relative">
@@ -108,20 +88,20 @@ export function Navbar({ variant = 'blue' }: NavbarProps) {
 
         {/* Desktop Navigation Links */}
         <nav className="hidden md:flex items-center gap-6 lg:gap-10">
-          {navLinks.map((link) => {
-            const isActive = pathname === link.href;
+          {NAV_LINKS.map((link) => {
+            const isActive = isLinkActive(link.href);
             return (
               <Link
                 key={link.label}
                 href={link.href}
-                className={`font-satoshi text-base font-normal tracking-normal transition-colors duration-200 relative py-1 ${
+                className={`font-satoshi text-base tracking-normal transition-all duration-200 relative py-1.5 px-1 ${
                   isBlue
                     ? isActive
-                      ? 'text-white font-medium'
-                      : 'text-white/90 hover:text-white after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-white after:transition-all after:duration-300 hover:after:w-full'
+                      ? 'text-white font-bold after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-secondary-500 after:rounded-full after:shadow-[0_0_8px_rgba(203,252,1,0.6)]'
+                      : 'text-white/80 hover:text-white font-normal after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-white/60 after:transition-all after:duration-300 hover:after:w-full'
                     : isActive
-                    ? 'text-primary-600 font-medium'
-                    : 'text-neutral-600 hover:text-neutral-950 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary-600 after:transition-all after:duration-300 hover:after:w-full'
+                    ? 'text-primary-600 font-bold after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary-600 after:rounded-full'
+                    : 'text-neutral-600 hover:text-neutral-950 font-normal after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary-600 after:transition-all after:duration-300 hover:after:w-full'
                 }`}
               >
                 {link.label}
@@ -161,7 +141,11 @@ export function Navbar({ variant = 'blue' }: NavbarProps) {
                   <Link
                     href={ROUTES.DASHBOARD.ROOT}
                     onClick={() => setUserDropdownOpen(false)}
-                    className="flex items-center gap-2 px-4 py-2 text-xs font-medium hover:bg-neutral-50"
+                    className={`flex items-center gap-2 px-4 py-2 text-xs font-medium transition-colors ${
+                      pathname.startsWith(ROUTES.DASHBOARD.ROOT)
+                        ? 'bg-primary-50 text-primary-600 font-semibold'
+                        : 'hover:bg-neutral-50 text-neutral-700'
+                    }`}
                   >
                     <LayoutDashboard className="w-3.5 h-3.5 text-primary-600" />
                     <span>Dashboard</span>
@@ -199,10 +183,16 @@ export function Navbar({ variant = 'blue' }: NavbarProps) {
           )}
 
           <Link
-            href="/cart"
+            href={ROUTES.CART}
             aria-label={`Shopping Cart (${cartCount} items)`}
-            className={`p-1.5 transition-colors duration-200 rounded-full hover:bg-white/10 relative ${
-              isBlue ? 'text-white/90 hover:text-white' : 'text-neutral-700 hover:text-neutral-950'
+            className={`p-1.5 transition-colors duration-200 rounded-full relative ${
+              isBlue
+                ? isCartActive
+                  ? 'text-secondary-500 bg-white/10 ring-1 ring-secondary-500/50'
+                  : 'text-white/90 hover:text-white hover:bg-white/10'
+                : isCartActive
+                ? 'text-primary-600 bg-primary-50 ring-1 ring-primary-500/30'
+                : 'text-neutral-700 hover:text-neutral-950 hover:bg-neutral-100'
             }`}
           >
             <ShoppingBagIcon className="w-6 h-6 stroke-[1.8]" />
@@ -217,10 +207,16 @@ export function Navbar({ variant = 'blue' }: NavbarProps) {
         {/* Mobile Hamburger / Cart */}
         <div className="flex md:hidden items-center gap-2">
           <Link
-            href="/cart"
+            href={ROUTES.CART}
             aria-label={`Shopping Cart (${cartCount} items)`}
             className={`p-2 rounded-full transition-colors active:scale-95 relative ${
-              isBlue ? 'text-white hover:bg-white/10' : 'text-neutral-700 hover:bg-neutral-100'
+              isBlue
+                ? isCartActive
+                  ? 'text-secondary-500 bg-white/15'
+                  : 'text-white hover:bg-white/10'
+                : isCartActive
+                ? 'text-primary-600 bg-primary-50'
+                : 'text-neutral-700 hover:bg-neutral-100'
             }`}
             onClick={() => setMobileMenuOpen(false)}
           >
@@ -252,32 +248,43 @@ export function Navbar({ variant = 'blue' }: NavbarProps) {
 
       {/* Mobile Menu Dropdown */}
       <div
-        className={`md:hidden absolute top-full left-0 right-0 bg-[#0047FF]/95 backdrop-blur-2xl border-b border-white/20 px-5 sm:px-6 py-6 flex flex-col gap-5 shadow-2xl text-white transition-all duration-300 origin-top ${
+        className={`md:hidden absolute top-full left-0 right-0 bg-primary-600/95 backdrop-blur-2xl border-b border-white/20 px-5 sm:px-6 py-6 flex flex-col gap-5 shadow-2xl text-white transition-all duration-300 origin-top ${
           mobileMenuOpen
             ? 'opacity-100 translate-y-0 pointer-events-auto'
             : 'opacity-0 -translate-y-2 pointer-events-none'
         }`}
       >
         <nav className="flex flex-col gap-1.5">
-          {navLinks.map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-base font-medium text-white/90 hover:text-white transition-colors py-2.5 px-3.5 rounded-xl hover:bg-white/10 active:bg-white/15 flex items-center justify-between"
-            >
-              <span>{link.label}</span>
-              <ChevronRight className="w-4 h-4 text-white/50" />
-            </Link>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const isActive = isLinkActive(link.href);
+            return (
+              <Link
+                key={link.label}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className={`text-base font-medium transition-all py-2.5 px-3.5 rounded-xl flex items-center justify-between ${
+                  isActive
+                    ? 'bg-white/20 text-white font-semibold border-l-4 border-secondary-500 shadow-sm'
+                    : 'text-white/80 hover:text-white hover:bg-white/10'
+                }`}
+              >
+                <span>{link.label}</span>
+                <ChevronRight className={`w-4 h-4 ${isActive ? 'text-secondary-500 font-bold' : 'text-white/50'}`} />
+              </Link>
+            );
+          })}
           {isLoggedIn && (
             <Link
               href={ROUTES.DASHBOARD.ROOT}
               onClick={() => setMobileMenuOpen(false)}
-              className="text-base font-medium text-white/90 hover:text-white transition-colors py-2.5 px-3.5 rounded-xl hover:bg-white/10 active:bg-white/15 flex items-center justify-between"
+              className={`text-base font-medium transition-all py-2.5 px-3.5 rounded-xl flex items-center justify-between ${
+                pathname.startsWith(ROUTES.DASHBOARD.ROOT)
+                  ? 'bg-white/20 text-white font-semibold border-l-4 border-secondary-500 shadow-sm'
+                  : 'text-white/80 hover:text-white hover:bg-white/10'
+              }`}
             >
               <span>Dashboard</span>
-              <ChevronRight className="w-4 h-4 text-white/50" />
+              <ChevronRight className={`w-4 h-4 ${pathname.startsWith(ROUTES.DASHBOARD.ROOT) ? 'text-secondary-500 font-bold' : 'text-white/50'}`} />
             </Link>
           )}
         </nav>
@@ -307,7 +314,7 @@ export function Navbar({ variant = 'blue' }: NavbarProps) {
               <Link
                 href={ROUTES.AUTH.REGISTER}
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-center w-full py-3 rounded-full bg-[#D4FB20] text-black text-sm font-semibold hover:bg-[#c3ea1a] transition-all shadow-md shadow-[#D4FB20]/20"
+                className="text-center w-full py-3 rounded-full bg-secondary-500 text-black text-sm font-semibold hover:brightness-95 transition-all shadow-md"
               >
                 Join Us
               </Link>

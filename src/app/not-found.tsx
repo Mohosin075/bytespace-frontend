@@ -15,7 +15,7 @@ export default function NotFound() {
         <div className="layout-container py-8 sm:py-12 text-center relative z-10 flex flex-col items-center justify-center my-auto">
           {/* Giant 404 in Lime Gradient */}
           <div className="relative select-none pointer-events-none mb-2 sm:mb-4">
-            <span className="font-poppins font-black text-[120px] sm:text-[180px] md:text-[240px] leading-none tracking-tight bg-gradient-to-b from-[#d4fb20] via-[#cbfc01] to-[#6a8902]/40 bg-clip-text text-transparent opacity-90 drop-shadow-2xl">
+            <span className="font-poppins font-black text-[120px] sm:text-[180px] md:text-[240px] leading-none tracking-tight bg-gradient-to-b from-secondary-400 via-secondary-500 to-secondary-700/40 bg-clip-text text-transparent opacity-90 drop-shadow-2xl">
               404
             </span>
           </div>
@@ -33,7 +33,7 @@ export default function NotFound() {
             <div className="pt-4 sm:pt-6 flex flex-wrap items-center justify-center gap-4">
               <Link
                 href={ROUTES.HOME}
-                className="px-8 py-3.5 rounded-full bg-[#cbfc01] text-black font-semibold text-sm hover:brightness-95 active:scale-95 transition-all shadow-xl"
+                className="px-8 py-3.5 rounded-full bg-secondary-500 text-black font-semibold text-sm hover:brightness-95 active:scale-95 transition-all shadow-xl"
               >
                 Back to Home
               </Link>

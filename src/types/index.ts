@@ -16,14 +16,19 @@ export interface PaginatedResponse<T> extends ApiResponse<T[]> {
   pagination: Pagination;
 }
 
+/** Single canonical user type — used across auth context, navbar, dashboard */
 export interface User {
-  id: string;
+  id?: string;
   name: string;
   email: string;
   avatar?: string;
-  role: 'admin' | 'user';
-  createdAt: string;
+  /** e.g. 'admin' | 'user' | 'Student & Creator' */
+  role?: string;
+  createdAt?: string;
 }
+
+/** @deprecated Use `User` instead */
+export type UserProfile = User;
 
 export interface Course {
   id: string;
@@ -50,6 +55,12 @@ export interface Course {
   category: string;
   featured?: boolean;
   description?: string;
+}
+
+/** Course with enrollment-specific fields — used in the dashboard enrolled tab */
+export interface EnrolledCourse extends Course {
+  progress: number;     // 0–100
+  lastAccessed: string; // human-readable, e.g. '2 hours ago'
 }
 
 export interface CourseLesson {
@@ -80,13 +91,20 @@ export interface CourseReview {
 export interface Creator {
   id: string;
   name: string;
-  handle: string;
-  title: string;
   avatar: string;
   bio: string;
-  description: string;
+  slug?: string;
+  role?: string;
+  tagline?: string;
+  bioSecondary?: string;
   productsCount: number;
   followersCount: number;
+  rating?: number;
+  category?: string;
+  featured?: boolean;
+  handle?: string;
+  title?: string;
+  description?: string;
   isFollowing?: boolean;
 }
 
