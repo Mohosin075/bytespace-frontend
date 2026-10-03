@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo, useEffect, useRef, Suspense } from 'react';
+import React, { useState, useMemo, useRef, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import {
   Search,
@@ -19,59 +19,14 @@ import { Navbar } from '@/components/shared/navbar';
 import { Footer } from '@/components/shared/footer';
 import { CourseCard } from '@/components/ui/course-card';
 import { ScrollReveal } from '@/components/ui/scroll-reveal';
-import { MOCK_COURSES, matchCourseCategory } from '@/constants/mock-data';
+import { MOCK_COURSES } from '@/constants/mock-data';
 import { useToast } from '@/context/toast-context';
+import { useClickOutside, useCourseFilter } from '@/hooks';
 
 function CoursesContent() {
   const searchParams = useSearchParams();
   const initialSearch = searchParams.get('search') || '';
   const initialCategory = searchParams.get('category') || 'Featured';
-
-  const [selectedCategory, setSelectedCategory] = useState(initialCategory);
-  const [selectedLevel, setSelectedLevel] = useState('All Levels');
-  const [sortBy, setSortBy] = useState<'relevant' | 'price-asc' | 'price-desc' | 'rating'>('relevant');
-  const [currentPage, setCurrentPage] = useState(1);
-  const [searchQuery, setSearchQuery] = useState(initialSearch);
-
-  // Dropdown open states
-  const [levelDropdownOpen, setLevelDropdownOpen] = useState(false);
-  const [categoryDropdownOpen, setCategoryDropdownOpen] = useState(false);
-  const [sortDropdownOpen, setSortDropdownOpen] = useState(false);
-
-  const filterRowRef = useRef<HTMLDivElement>(null);
-  const { showToast } = useToast();
-
-  // Close dropdowns when clicking outside
-  useEffect(() => {
-    if (!levelDropdownOpen && !categoryDropdownOpen && !sortDropdownOpen) return;
-    const handleClickOutside = (e: MouseEvent) => {
-      if (filterRowRef.current && !filterRowRef.current.contains(e.target as Node)) {
-        setLevelDropdownOpen(false);
-        setCategoryDropdownOpen(false);
-        setSortDropdownOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [levelDropdownOpen, categoryDropdownOpen, sortDropdownOpen]);
-
-  const filterCategories = [
-    'Featured',
-    'Design',
-    'Development',
-    'IT & Software',
-    'Business',
-    'Marketing',
-    'Photography',
-    'UI/UX Design',
-    'Graphic Design',
-    'Web Development',
-    'Data Science',
-    'Productivity',
-    'Freelance & Entrepreneurship',
-    'Digital Illustration',
-    'Music',
-  ];
 
   // Base list of courses
   const baseCourses = useMemo(() => {
@@ -128,65 +83,65 @@ function CoursesContent() {
     ];
   }, []);
 
-  // Filter & Sort logic
-  const filteredCourses = useMemo(() => {
-    let result = [...baseCourses];
+  const {
+    selectedCategory,
+    setSelectedCategory,
+    selectedLevel,
+    setSelectedLevel,
+    sortBy,
+    setSortBy,
+    searchQuery,
+    setSearchQuery,
+    currentPage,
+    setCurrentPage,
+    totalPages,
+    filteredCourses,
+    paginatedCourses,
+    resetFilters,
+  } = useCourseFilter({
+    courses: baseCourses,
+    initialCategory,
+    initialSearchQuery: initialSearch,
+    pageSize: 6,
+  });
 
-    // 1. Search query filter
-    if (searchQuery.trim()) {
-      const q = searchQuery.toLowerCase().trim();
-      result = result.filter(
-        (c) =>
-          c.title.toLowerCase().includes(q) ||
-          c.category.toLowerCase().includes(q) ||
-          c.level.toLowerCase().includes(q) ||
-          c.creator.name.toLowerCase().includes(q)
-      );
+  // Dropdown open states
+  const [levelDropdownOpen, setLevelDropdownOpen] = useState(false);
+  const [categoryDropdownOpen, setCategoryDropdownOpen] = useState(false);
+  const [sortDropdownOpen, setSortDropdownOpen] = useState(false);
+
+  const filterRowRef = useRef<HTMLDivElement>(null);
+  const { showToast } = useToast();
+
+  // Close dropdowns when clicking outside
+  useClickOutside(filterRowRef, () => {
+    if (levelDropdownOpen || categoryDropdownOpen || sortDropdownOpen) {
+      setLevelDropdownOpen(false);
+      setCategoryDropdownOpen(false);
+      setSortDropdownOpen(false);
     }
+  });
 
-    // 2. Category filter using smart matching
-    if (selectedCategory !== 'Featured') {
-      const matched = result.filter((c) =>
-        matchCourseCategory(c.category, c.title, selectedCategory)
-      );
-      if (matched.length > 0) {
-        result = matched;
-      } else if (!searchQuery.trim()) {
-        result = baseCourses.slice(0, 4);
-      } else {
-        result = [];
-      }
-    }
-
-    // 3. Level filter
-    if (selectedLevel !== 'All Levels') {
-      result = result.filter(
-        (c) => c.level.toLowerCase() === selectedLevel.toLowerCase()
-      );
-    }
-
-    // 4. Sorting
-    if (sortBy === 'price-asc') {
-      result.sort((a, b) => a.price - b.price);
-    } else if (sortBy === 'price-desc') {
-      result.sort((a, b) => b.price - a.price);
-    } else if (sortBy === 'rating') {
-      result.sort((a, b) => b.rating - a.rating);
-    }
-
-    return result;
-  }, [baseCourses, searchQuery, selectedCategory, selectedLevel, sortBy]);
-
-  // Pagination calculation
-  const ITEMS_PER_PAGE = 6;
-  const totalPages = Math.max(1, Math.ceil(filteredCourses.length / ITEMS_PER_PAGE));
-
-  const paginatedCourses = useMemo(() => {
-    const start = (currentPage - 1) * ITEMS_PER_PAGE;
-    return filteredCourses.slice(start, start + ITEMS_PER_PAGE);
-  }, [filteredCourses, currentPage]);
+  const filterCategories = [
+    'Featured',
+    'Design',
+    'Development',
+    'IT & Software',
+    'Business',
+    'Marketing',
+    'Photography',
+    'UI/UX Design',
+    'Graphic Design',
+    'Web Development',
+    'Data Science',
+    'Productivity',
+    'Freelance & Entrepreneurship',
+    'Digital Illustration',
+    'Music',
+  ];
 
   const handleResetFilters = () => {
+    resetFilters();
     setSearchQuery('');
     setSelectedCategory('Featured');
     setSelectedLevel('All Levels');
@@ -206,7 +161,7 @@ function CoursesContent() {
   return (
     <div className="font-satoshi">
       {/* ── 100% Full-Width Search Header Banner ── */}
-      <section className="relative w-full bg-[#0052FE] text-white pt-28 sm:pt-36 md:pt-40 pb-16 sm:pb-20 overflow-hidden">
+      <section className="relative w-full bg-primary-600 text-white pt-28 sm:pt-36 md:pt-40 pb-16 sm:pb-20 overflow-hidden">
         {/* Blueprint Grid Lines Accent */}
         <div
           className="absolute inset-0 pointer-events-none"
@@ -266,7 +221,7 @@ function CoursesContent() {
       {/* Filter Controls Row */}
       <div
         ref={filterRowRef}
-        className={`relative flex flex-wrap items-center justify-between gap-4 pb-6 ${
+        className={`relative flex items-center justify-between w-full gap-4 pb-6 ${
           levelDropdownOpen || categoryDropdownOpen || sortDropdownOpen ? 'z-40' : 'z-20'
         }`}
       >
@@ -291,7 +246,7 @@ function CoursesContent() {
             )}
             <span>Filter</span>
             {(selectedCategory !== 'Featured' || selectedLevel !== 'All Levels' || searchQuery.trim() !== '') && (
-              <span className="w-2 h-2 rounded-full bg-[#cbfc01] inline-block" />
+              <span className="w-2 h-2 rounded-full bg-secondary-500 inline-block" />
             )}
           </button>
 
@@ -435,7 +390,7 @@ function CoursesContent() {
               onClick={() => handleCategorySelect(category)}
               className={`px-4 sm:px-5 py-2 rounded-full text-xs font-medium transition-all cursor-pointer shrink-0 ${
                 isActive
-                  ? 'bg-[#cbfc01] text-black font-semibold shadow-xs scale-105'
+                  ? 'bg-secondary-500 text-black font-semibold shadow-xs scale-105'
                   : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
               }`}
             >
@@ -502,7 +457,7 @@ function CoursesContent() {
           <button
             type="button"
             onClick={handleResetFilters}
-            className="px-6 py-2.5 rounded-full bg-[#cbfc01] text-black font-semibold text-xs shadow-md hover:brightness-95 cursor-pointer"
+            className="px-6 py-2.5 rounded-full bg-secondary-500 text-black font-semibold text-xs shadow-md hover:brightness-95 cursor-pointer"
           >
             Reset Search &amp; Filters
           </button>

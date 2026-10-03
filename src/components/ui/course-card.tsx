@@ -13,14 +13,14 @@ interface CourseCardProps {
   course: Course;
 }
 
-export function CourseCard({ course }: CourseCardProps) {
+export const CourseCard = React.memo(function CourseCard({ course }: CourseCardProps) {
   const router = useRouter();
   const [imgSrc, setImgSrc] = useState(course.image);
 
   return (
     <Link
       href={ROUTES.COURSE_DETAIL(course.slug)}
-      className="bg-white rounded-[30px] border border-[#e5e6e8] p-3.5 sm:p-4 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg flex flex-col justify-between group relative select-none font-satoshi cursor-pointer block"
+      className="bg-white rounded-[30px] border border-neutral-100 p-3.5 sm:p-4 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg flex flex-col justify-between group relative select-none font-satoshi cursor-pointer block"
     >
       {/* Top Banner Image with 3 Frosted Bottom Badges */}
       <div className="relative block rounded-[20px] overflow-hidden aspect-[1.55/1] bg-neutral-100">
@@ -52,7 +52,7 @@ export function CourseCard({ course }: CourseCardProps) {
         {/* Title and Rating Row */}
         <div>
           <div className="flex items-start justify-between gap-2">
-            <h3 className="font-satoshi font-bold text-xl sm:text-[22px] text-neutral-950 group-hover:text-[#0052FE] transition-colors line-clamp-1 leading-snug tracking-tight">
+            <h3 className="font-satoshi font-bold text-xl sm:text-[22px] text-neutral-950 group-hover:text-primary-600 transition-colors line-clamp-1 leading-snug tracking-tight">
               {course.title}
             </h3>
 
@@ -61,7 +61,7 @@ export function CourseCard({ course }: CourseCardProps) {
               <span className="font-satoshi text-base sm:text-lg text-neutral-700 font-normal">
                 {course.rating.toFixed(1)}
               </span>
-              <Star className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#ced0d3] fill-[#ced0d3] -mt-0.5" />
+              <Star className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-neutral-200 fill-neutral-200 -mt-0.5" />
             </div>
           </div>
 
@@ -83,7 +83,7 @@ export function CourseCard({ course }: CourseCardProps) {
                   router.push(ROUTES.CREATOR_DETAIL(course.creator.id));
                 }
               }}
-              className="text-[#0052FE] hover:underline font-normal transition-colors cursor-pointer"
+              className="text-primary-600 hover:underline font-normal transition-colors cursor-pointer"
             >
               {course.creator.name}
             </span>
@@ -92,7 +92,7 @@ export function CourseCard({ course }: CourseCardProps) {
 
         {/* Level Badge & Avatar Stack */}
         <div className="mt-4 sm:mt-5 flex items-center justify-between">
-          <div className="inline-flex items-center gap-2 bg-[#f4f5f6] px-4 py-2 rounded-full">
+          <div className="inline-flex items-center gap-2 bg-neutral-50 px-4 py-2 rounded-full">
             <svg className="w-3.5 h-3.5 text-neutral-700 shrink-0" viewBox="0 0 16 16" fill="currentColor">
               <rect x="2" y="8" width="2.5" height="6" rx="1.25" />
               <rect x="6.75" y="5" width="2.5" height="9" rx="1.25" />
@@ -113,7 +113,7 @@ export function CourseCard({ course }: CourseCardProps) {
 
         {/* Price Row (No buttons, clean text) */}
         <div className="mt-4 sm:mt-5 pt-0.5 flex items-baseline gap-1">
-          <span className="font-satoshi font-extrabold text-2xl sm:text-[26px] text-[#0052FE] tracking-tight leading-none">
+          <span className="font-satoshi font-extrabold text-2xl sm:text-[26px] text-primary-600 tracking-tight leading-none">
             ${course.price}
           </span>
           <span className="font-satoshi text-xs sm:text-sm font-normal text-neutral-500">
@@ -123,4 +123,4 @@ export function CourseCard({ course }: CourseCardProps) {
       </div>
     </Link>
   );
-}
+});

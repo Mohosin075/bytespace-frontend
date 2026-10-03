@@ -8,7 +8,7 @@ interface DecorativeSquiggleProps {
 
 export function DecorativeSquiggle({
   className = '',
-  color = '#cbfc01',
+  color = 'var(--secondary)',
   strokeWidth = 32,
 }: DecorativeSquiggleProps) {
   return (

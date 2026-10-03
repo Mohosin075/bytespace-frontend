@@ -1,20 +1,11 @@
 import React from 'react';
 import Image from 'next/image';
 import { Check, Star } from 'lucide-react';
+import { MOCK_STUDENT_AVATARS } from '@/constants/mock-data';
 import { SectionTitle, SectionSubtitle } from '@/components/ui/section-header';
 import { ScrollReveal } from '@/components/ui/scroll-reveal';
 
 export function GrowthSection() {
-  const studentAvatars = [
-    'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=120&q=80',
-    'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80',
-    'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80',
-    'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80',
-    'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80',
-    'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=120&q=80',
-    'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=120&q=80',
-  ];
-
   const creatorFeatures = [
     'Share Your Expertise',
     'Monetize Your Passion',
@@ -30,7 +21,7 @@ export function GrowthSection() {
         className="absolute -top-36 sm:-top-44 -left-24 sm:-left-36 w-[650px] sm:w-[850px] lg:w-[980px] h-[550px] sm:h-[680px] rounded-full pointer-events-none select-none blur-[95px]"
         style={{
           background:
-            'radial-gradient(circle at center, rgba(203, 252, 1, 0.44) 0%, rgba(203, 252, 1, 0.20) 42%, rgba(203, 252, 1, 0.04) 70%, transparent 100%)',
+            'radial-gradient(circle at center, rgba(var(--secondary-rgb), 0.44) 0%, rgba(var(--secondary-rgb), 0.20) 42%, rgba(var(--secondary-rgb), 0.04) 70%, transparent 100%)',
         }}
       />
 
@@ -39,7 +30,7 @@ export function GrowthSection() {
         className="absolute -top-24 sm:-top-32 -right-24 sm:-right-36 w-[550px] sm:w-[720px] h-[550px] sm:h-[720px] rounded-full pointer-events-none select-none blur-[95px]"
         style={{
           background:
-            'radial-gradient(circle at center, rgba(0, 82, 254, 0.18) 0%, rgba(129, 197, 255, 0.14) 42%, rgba(0, 82, 254, 0.02) 68%, transparent 100%)',
+            'radial-gradient(circle at center, rgba(var(--primary-rgb), 0.18) 0%, rgba(129, 197, 255, 0.14) 42%, rgba(var(--primary-rgb), 0.02) 68%, transparent 100%)',
         }}
       />
 
@@ -48,7 +39,7 @@ export function GrowthSection() {
         className="absolute top-[38%] -left-32 w-[550px] h-[550px] rounded-full pointer-events-none select-none blur-[90px]"
         style={{
           background:
-            'radial-gradient(circle, rgba(0, 82, 254, 0.14) 0%, rgba(147, 197, 253, 0.12) 45%, rgba(0, 82, 254, 0.02) 70%, transparent 100%)',
+            'radial-gradient(circle, rgba(var(--primary-rgb), 0.14) 0%, rgba(147, 197, 253, 0.12) 45%, rgba(var(--primary-rgb), 0.02) 70%, transparent 100%)',
         }}
       />
 
@@ -57,7 +48,7 @@ export function GrowthSection() {
         className="absolute -bottom-24 sm:-bottom-32 -left-24 sm:-left-32 w-[580px] sm:w-[720px] h-[580px] sm:h-[720px] rounded-full pointer-events-none select-none blur-[85px]"
         style={{
           background:
-            'radial-gradient(circle, rgba(203, 252, 1, 0.45) 0%, rgba(203, 252, 1, 0.20) 45%, rgba(203, 252, 1, 0.04) 70%, transparent 100%)',
+            'radial-gradient(circle, rgba(var(--secondary-rgb), 0.45) 0%, rgba(var(--secondary-rgb), 0.20) 45%, rgba(var(--secondary-rgb), 0.04) 70%, transparent 100%)',
         }}
       />
 
@@ -66,7 +57,7 @@ export function GrowthSection() {
         className="absolute -bottom-24 sm:-bottom-32 -right-24 sm:-right-32 w-[600px] sm:w-[780px] lg:w-[880px] h-[600px] sm:h-[780px] lg:h-[880px] rounded-full pointer-events-none select-none blur-[90px]"
         style={{
           background:
-            'radial-gradient(circle at center, rgba(0, 82, 254, 0.22) 0%, rgba(147, 197, 253, 0.15) 45%, rgba(0, 82, 254, 0.03) 70%, transparent 100%)',
+            'radial-gradient(circle at center, rgba(var(--primary-rgb), 0.22) 0%, rgba(147, 197, 253, 0.15) 45%, rgba(var(--primary-rgb), 0.03) 70%, transparent 100%)',
         }}
       />
 
@@ -88,7 +79,7 @@ export function GrowthSection() {
             {/* Clean Stats Row exactly as in Screenshot (No boxes) */}
             <div className="grid grid-cols-3 gap-6 sm:gap-8 pt-4">
               <div>
-                <div className="font-satoshi text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#0052FE] tracking-tight leading-none">
+                <div className="font-satoshi text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-primary-600 tracking-tight leading-none">
                   12K
                 </div>
                 <div className="font-satoshi text-xs sm:text-sm text-neutral-500 mt-2 font-normal">
@@ -97,7 +88,7 @@ export function GrowthSection() {
               </div>
 
               <div>
-                <div className="font-satoshi text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#0052FE] tracking-tight leading-none">
+                <div className="font-satoshi text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-primary-600 tracking-tight leading-none">
                   70+
                 </div>
                 <div className="font-satoshi text-xs sm:text-sm text-neutral-500 mt-2 font-normal">
@@ -106,7 +97,7 @@ export function GrowthSection() {
               </div>
 
               <div>
-                <div className="font-satoshi text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#0052FE] tracking-tight leading-none">
+                <div className="font-satoshi text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-primary-600 tracking-tight leading-none">
                   16
                 </div>
                 <div className="font-satoshi text-xs sm:text-sm text-neutral-500 mt-2 font-normal">
@@ -163,7 +154,7 @@ export function GrowthSection() {
                 55%
               </div>
               <div className="w-full bg-zinc-100 rounded-full h-1.5 sm:h-2 mt-1.5 sm:mt-2.5 overflow-hidden">
-                <div className="bg-[#CBFC01] h-full rounded-full w-[55%]" />
+                <div className="bg-secondary-500 h-full rounded-full w-[55%]" />
               </div>
             </div>
           </ScrollReveal>
@@ -186,22 +177,22 @@ export function GrowthSection() {
             </div>
 
             {/* Total Revenue badge — BEHIND creator (z-10) */}
-            <div className="absolute top-[8%] left-[2%] sm:left-[4%] z-10 bg-[#0052FE]/95 backdrop-blur-md text-white rounded-2xl p-3.5 sm:p-4 shadow-xl border border-white/20 w-37.5 sm:w-42.5 animate-float hover:scale-105 transition-transform duration-300">
+            <div className="absolute top-[8%] left-[2%] sm:left-[4%] z-10 bg-primary-600/95 backdrop-blur-md text-white rounded-2xl p-3.5 sm:p-4 shadow-xl border border-white/20 w-37.5 sm:w-42.5 animate-float hover:scale-105 transition-transform duration-300">
               <div className="font-satoshi text-[11px] sm:text-xs text-white/90 font-medium">Total Revenue</div>
               <div className="font-satoshi text-[9px] text-white/60 font-normal">July 1-28</div>
               <div className="font-satoshi text-lg sm:text-xl font-bold text-white mt-1">$120.29</div>
               <div className="w-full bg-white/20 rounded-full h-1.5 mt-2.5 overflow-hidden">
-                <div className="bg-[#CBFC01] h-full rounded-full w-[70%]" />
+                <div className="bg-secondary-500 h-full rounded-full w-[70%]" />
               </div>
             </div>
 
             {/* Year to Date badge — BEHIND creator (z-10) */}
-            <div className="absolute top-[32%] left-[2%] sm:left-[4%] z-10 bg-[#0052FE]/95 backdrop-blur-md text-white rounded-2xl p-3.5 sm:p-4 shadow-xl border border-white/20 w-37.5 sm:w-42.5 animate-float-slow hover:scale-105 transition-transform duration-300">
+            <div className="absolute top-[32%] left-[2%] sm:left-[4%] z-10 bg-primary-600/95 backdrop-blur-md text-white rounded-2xl p-3.5 sm:p-4 shadow-xl border border-white/20 w-37.5 sm:w-42.5 animate-float-slow hover:scale-105 transition-transform duration-300">
               <div className="font-satoshi text-[11px] sm:text-xs text-white/90 font-medium">Year to Date</div>
               <div className="font-satoshi text-[9px] text-white/60 font-normal">2023</div>
               <div className="font-satoshi text-lg sm:text-xl font-bold text-white mt-1">$1,200.38</div>
               <div className="mt-2">
-                <span className="font-satoshi bg-[#CBFC01] text-black text-[10px] font-bold px-2 py-0.5 rounded-full inline-block shadow-xs">+12$</span>
+                <span className="font-satoshi bg-secondary-500 text-black text-[10px] font-bold px-2 py-0.5 rounded-full inline-block shadow-xs">+12$</span>
               </div>
             </div>
 
@@ -226,7 +217,7 @@ export function GrowthSection() {
                 <Star className="size-3.5 fill-[#FFB800] text-[#FFB800]" />
               </div>
               <div className="flex items-center mt-3">
-                {studentAvatars.map((avatar, idx) => (
+                {MOCK_STUDENT_AVATARS.map((avatar, idx) => (
                   <div
                     key={idx}
                     style={{ zIndex: idx + 1 }}
@@ -237,7 +228,7 @@ export function GrowthSection() {
                 ))}
                 <div
                   style={{ zIndex: 10 }}
-                  className="font-satoshi relative -ml-3 sm:-ml-3.5 size-7 sm:size-8 rounded-full bg-[#CBFC01] text-black text-[10px] sm:text-xs font-bold flex items-center justify-center shrink-0 border border-white"
+                  className="font-satoshi relative -ml-3 sm:-ml-3.5 size-7 sm:size-8 rounded-full bg-secondary-500 text-black text-[10px] sm:text-xs font-bold flex items-center justify-center shrink-0 border border-white"
                 >
                   2K+
                 </div>
@@ -260,7 +251,7 @@ export function GrowthSection() {
             <ul className="mt-8 sm:mt-10 space-y-4 pt-2">
               {creatorFeatures.map((feature, idx) => (
                 <li key={idx} className="flex items-center gap-3.5 group">
-                  <div className="size-5 sm:size-6 rounded-full bg-[#0052FE] group-hover:bg-[#CBFC01] group-hover:text-black flex items-center justify-center shrink-0 text-white shadow-xs transition-colors duration-200">
+                  <div className="size-5 sm:size-6 rounded-full bg-primary-600 group-hover:bg-secondary-500 group-hover:text-black flex items-center justify-center shrink-0 text-white shadow-xs transition-colors duration-200">
                     <Check className="size-3.5 sm:size-4 stroke-[3]" />
                   </div>
                   <span className="font-satoshi font-medium text-neutral-950 text-base sm:text-lg group-hover:text-primary-600 transition-colors duration-200">
